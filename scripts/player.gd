@@ -54,8 +54,10 @@ func _process(delta: float) -> void:
 				projectile_speed += 700.0 * delta
 			
 			if (Input.is_action_just_released("click") or projectile_speed >= 1000) and next_player_timer.is_stopped():
-				var projectile: Projectile = load("res://projectiles/rocket.tscn").instantiate()
-				#var projectile: Projectile = load("res://projectiles/bounce.tscn").instantiate()
+				var projectile: Projectile
+				projectile = load("res://projectiles/rocket.tscn").instantiate()
+				#projectile = load("res://projectiles/drill.tscn").instantiate()
+				
 				projectile.global_position = global_position
 				projectile.look_at(Globals.mouse_position)
 				projectile.speed = projectile_speed

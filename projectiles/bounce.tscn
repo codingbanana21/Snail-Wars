@@ -4,5 +4,5 @@
 
 [node name="Bounce" unique_id=152536886 instance=ExtResource("1_6j0hb")]
 damage = 20
-knockback = 3500
+knockback = 2000
 explosion_size = 2

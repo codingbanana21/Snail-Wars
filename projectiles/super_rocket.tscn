@@ -4,6 +4,6 @@
 
 [node name="SuperRocket" unique_id=152536886 instance=ExtResource("1_iyp4x")]
 damage = 150
-knockback = 3000
+knockback = 1500
 explosion_size = 5
 explosion_accuracy = 8.0

@@ -3,7 +3,4 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_tqrj2"]
 
 [node name="SuperDrill" unique_id=152536886 instance=ExtResource("1_tqrj2")]
-damage = 25
-explosion_size = 4
-explosion_accuracy = 5.0
 hp = 6

@@ -3,8 +3,8 @@ extends Area2D
 
 @onready var hit_area: Area2D = $HitArea
 
-@export var damage: int = 80
-@export var knockback: int = 1500
+@export var damage: int = 60
+@export var knockback: int = 1000
 @export var explosion_size: int = 3
 @export var explosion_accuracy: float = 3
 @export var hp: int = 1
@@ -25,6 +25,8 @@ func _physics_process(delta: float) -> void:
 	
 	for body: Node2D in self.get_overlapping_bodies():
 		hit = true
+		if body is Player:
+			queue_free()
 	
 	if hit:
 		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
@@ -48,7 +50,6 @@ func _physics_process(delta: float) -> void:
 				body.velocity = -transform.x * hit_power * knockback
 		
 		hp -= 1
-		
 		if hp <= 0:
 			queue_free()
 
