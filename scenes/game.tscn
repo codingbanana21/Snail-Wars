@@ -52,8 +52,8 @@ team_color = Color(0, 0, 1, 1)
 [node name="Player2" parent="." unique_id=1497468792 instance=ExtResource("3_lnu2h")]
 position = Vector2(561, 31)
 player_number = 2
-player_name = "Seb (The best)"
-team = "Seb"
+player_name = "Sam (The best)"
+team = "Sam"
 team_color = Color(1, 0, 0, 1)
 
 [node name="Player3" parent="." unique_id=1739016096 instance=ExtResource("3_lnu2h")]
@@ -66,6 +66,6 @@ team_color = Color(0, 0, 1, 1)
 [node name="Player4" parent="." unique_id=312835331 instance=ExtResource("3_lnu2h")]
 position = Vector2(327, -112)
 player_number = 4
-player_name = "Seb"
-team = "Seb"
+player_name = "Sam"
+team = "Sam"
 team_color = Color(1, 0, 0, 1)

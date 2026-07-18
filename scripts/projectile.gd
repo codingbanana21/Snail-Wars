@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		global_position -= transform.x * speed * delta
 		for body: Node2D in hit_area.get_overlapping_bodies():
 			if body is Player:
-				var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.0001, 0.5)
+				var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.0001, 1.0)
 				body.hp -= hit_power * damage
 				body.velocity = -transform.x * hit_power * knockback
 		
