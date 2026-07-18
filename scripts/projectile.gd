@@ -4,7 +4,7 @@ extends Area2D
 @onready var hit_area: Area2D = $HitArea
 
 @export var damage: int = 60
-@export var knockback: int = 1000
+@export var knockback: int = 800
 @export var explosion_size: int = 3
 @export var explosion_accuracy: float = 3
 @export var hp: int = 1

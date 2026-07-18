@@ -14,7 +14,7 @@ extends CharacterBody2D
 @export var team_color: Color
 
 const JUMP: float = -400.0
-const SPEED: float = 20.0
+const SPEED: float = 12.0
 const PLAYER_GRAVITY: float = 32.0
 
 var projectile_speed: float = 200.0
@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 				var projectile: Projectile
 				if weapon == 2:
 					projectile = load("res://projectiles/drill.tscn").instantiate()
-				if weapon == 3:
+				elif weapon == 3:
 					projectile = load("res://projectiles/bounce.tscn").instantiate()
 				else:
 					projectile = load("res://projectiles/rocket.tscn").instantiate()
@@ -103,7 +103,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			velocity.x *= 0.8
 		else:
-			velocity.x *= 0.9
+			velocity.x *= 0.95
 
 
 func _on_next_player_timer_timeout() -> void:

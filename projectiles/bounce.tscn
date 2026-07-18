@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_6j0hb"]
 
 [node name="Bounce" unique_id=152536886 instance=ExtResource("1_6j0hb")]
-damage = 20
-knockback = 2000
-explosion_size = 2
+damage = 30
+knockback = 1500
+explosion_size = 0
+explosion_accuracy = 0.0
