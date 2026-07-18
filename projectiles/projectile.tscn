@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cubfm8w8o5obj"]
+
+[ext_resource type="Script" uid="uid://01gbgpgohfiy" path="res://scripts/projectile.gd" id="1_q3m7n"]
+[ext_resource type="Texture2D" uid="uid://3o83rtce0c2w" path="res://assets/images/mini_fire.png" id="2_softn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fo7mc"]
+radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y514s"]
+radius = 35.0
+
+[node name="Projectile" type="Area2D" unique_id=152536886]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_q3m7n")
+
+[node name="MiniFire" type="Sprite2D" parent="." unique_id=2045045234]
+position = Vector2(0, -3)
+texture = ExtResource("2_softn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905896826]
+shape = SubResource("CircleShape2D_fo7mc")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=410086607]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1738411112]
+shape = SubResource("CircleShape2D_y514s")
+debug_color = Color(0.99692196, 0, 0.18626031, 0.41960785)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=144169725]
+position_smoothing_enabled = true
+
+[node name="DieTimer" type="Timer" parent="." unique_id=1551289240]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DieTimer" to="." method="_on_die_timer_timeout"]
