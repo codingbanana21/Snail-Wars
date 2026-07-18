@@ -20,6 +20,7 @@ const PLAYER_GRAVITY: float = 32.0
 var projectile_speed: float = 200.0
 var max_hp: int = 100
 var hp: int = max_hp
+var weapon: int = 1
 var dead: bool = false
 
 
@@ -50,13 +51,26 @@ func _process(delta: float) -> void:
 		if Globals.player_turn == player_number:
 			camera_2d.enabled = true
 			
+			if Input.is_action_just_pressed("weapon_1"):
+				weapon = 1
+			
+			if Input.is_action_just_pressed("weapon_2"): 
+				weapon = 2
+			
+			if Input.is_action_just_pressed("weapon_3"): 
+				weapon = 3
+			
 			if Input.is_action_pressed("click"):
 				projectile_speed += 700.0 * delta
 			
 			if (Input.is_action_just_released("click") or projectile_speed >= 1000) and next_player_timer.is_stopped():
 				var projectile: Projectile
-				projectile = load("res://projectiles/rocket.tscn").instantiate()
-				#projectile = load("res://projectiles/drill.tscn").instantiate()
+				if weapon == 2:
+					projectile = load("res://projectiles/drill.tscn").instantiate()
+				if weapon == 3:
+					projectile = load("res://projectiles/bounce.tscn").instantiate()
+				else:
+					projectile = load("res://projectiles/rocket.tscn").instantiate()
 				
 				projectile.global_position = global_position
 				projectile.look_at(Globals.mouse_position)
@@ -85,7 +99,11 @@ func _physics_process(delta: float) -> void:
 			velocity.y *= -1
 		
 		move_and_slide()
-		velocity.x *= 0.8
+		
+		if is_on_floor():
+			velocity.x *= 0.8
+		else:
+			velocity.x *= 0.9
 
 
 func _on_next_player_timer_timeout() -> void:
