@@ -47,6 +47,7 @@ func _process(delta: float) -> void:
 			snail.flip_h = false
 		
 		if Globals.player_turn == player_number:
+			snail.modulate.b = (sin(Engine.get_physics_frames() / 10.0) * 10)
 			if Input.is_action_just_pressed("weapon_1"):
 				weapon = 1
 			
@@ -69,7 +70,7 @@ func _process(delta: float) -> void:
 				if weapon == 2:
 					projectile = load("res://projectiles/drill.tscn").instantiate()
 				elif weapon == 3:
-					projectile = load("res://projectiles/bounce.tscn").instantiate()
+					projectile = load("res://projectiles/heal.tscn").instantiate()
 				else:
 					projectile = load("res://projectiles/rocket.tscn").instantiate()
 				
@@ -80,6 +81,8 @@ func _process(delta: float) -> void:
 				
 				projectile_speed = 200.0
 				next_player_timer.start()
+		else:
+			snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 
 func _physics_process(delta: float) -> void:

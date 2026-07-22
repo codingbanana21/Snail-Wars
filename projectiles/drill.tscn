@@ -4,6 +4,7 @@
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 damage = 30
-knockback = 600
+knockback = 500
+explosion_size = 3
 explosion_accuracy = 2.0
 hp = 3
