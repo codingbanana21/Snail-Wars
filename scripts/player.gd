@@ -62,6 +62,10 @@ func _process(delta: float) -> void:
 			
 			if Input.is_action_pressed("click"):
 				projectile_speed += 700.0 * delta
+				if global_position > Globals.mouse_position:
+					snail.flip_h = true
+				else:
+					snail.flip_h = false
 			
 			if (Input.is_action_just_released("click") or projectile_speed >= 1000) and next_player_timer.is_stopped():
 				var projectile: Projectile
