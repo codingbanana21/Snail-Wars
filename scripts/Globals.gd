@@ -7,4 +7,3 @@ var player_turn: int = 1
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		mouse_position += event.relative
-		#print(mouse_position)
