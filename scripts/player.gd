@@ -5,7 +5,6 @@ extends CharacterBody2D
 @onready var name_label: Label = $NameLabel
 @onready var team_label: Label = $TeamLabel
 @onready var progress_bar: ProgressBar = $ProgressBar
-@onready var camera_2d: Camera2D = $Camera2D
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 1
@@ -32,7 +31,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if dead:
-		camera_2d.enabled = false
 		if Globals.player_turn == player_number:
 			Globals.player_turn = (Globals.player_turn % 4) + 1
 	else:
@@ -49,8 +47,6 @@ func _process(delta: float) -> void:
 			snail.flip_h = false
 		
 		if Globals.player_turn == player_number:
-			camera_2d.enabled = true
-			
 			if Input.is_action_just_pressed("weapon_1"):
 				weapon = 1
 			
@@ -82,10 +78,7 @@ func _process(delta: float) -> void:
 				get_parent().add_child(projectile)
 				
 				projectile_speed = 200.0
-				camera_2d.enabled = false
 				next_player_timer.start()
-		else:
-			camera_2d.enabled = false
 
 
 func _physics_process(delta: float) -> void:

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dra1hgjpik7t0"]
+
+[ext_resource type="Script" uid="uid://dq5pcpy5obcn6" path="res://scripts/mouse.gd" id="1_ouscy"]
+[ext_resource type="Texture2D" uid="uid://3o83rtce0c2w" path="res://assets/images/mini_fire.png" id="2_ouscy"]
+
+[node name="Mouse" type="Node2D" unique_id=444797727]
+script = ExtResource("1_ouscy")
+
+[node name="MiniFire" type="Sprite2D" parent="." unique_id=1065564394]
+texture = ExtResource("2_ouscy")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1976517052]
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.6
+drag_top_margin = 0.6
+drag_right_margin = 0.6
+drag_bottom_margin = 0.6

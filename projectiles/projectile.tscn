@@ -27,9 +27,6 @@ shape = SubResource("CircleShape2D_fo7mc")
 shape = SubResource("CircleShape2D_y514s")
 debug_color = Color(0.99692196, 0, 0.18626031, 0.41960785)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=144169725]
-position_smoothing_enabled = true
-
 [node name="DieTimer" type="Timer" parent="." unique_id=1551289240]
 wait_time = 3.0
 one_shot = true

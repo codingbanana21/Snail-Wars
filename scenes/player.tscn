@@ -49,11 +49,6 @@ offset_bottom = -8.0
 value = 50.0
 show_percentage = false
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=412334015]
-enabled = false
-process_callback = 0
-position_smoothing_enabled = true
-
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
 wait_time = 3.0
 one_shot = true

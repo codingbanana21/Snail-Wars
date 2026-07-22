@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://assets/images/world_tileset.png" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://fcqmls4eg5v3" path="res://scripts/game.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://ctdjq1dj1itqd" path="res://scenes/player.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://dra1hgjpik7t0" path="res://scenes/mouse.tscn" id="4_lbhrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yqjtg"]
 texture = ExtResource("1_uwrxv")
@@ -69,3 +70,5 @@ player_number = 4
 player_name = "Sam"
 team = "Sam"
 team_color = Color(1, 0, 0, 1)
+
+[node name="Mouse" parent="." unique_id=444797727 instance=ExtResource("4_lbhrr")]

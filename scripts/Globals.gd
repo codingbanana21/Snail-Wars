@@ -1,8 +1,10 @@
 extends Node2D
 
-var mouse_position: Vector2
+var mouse_position: Vector2 = Vector2.ZERO
 var player_turn: int = 1
 
 
-func _process(delta: float) -> void:
-	mouse_position = get_global_mouse_position()
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_position += event.relative
+		#print(mouse_position)
