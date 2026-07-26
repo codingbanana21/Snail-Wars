@@ -14,6 +14,11 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_3vyb7")
 
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1954216530]
+position = Vector2(0, -2.5)
+color = Color(0, 0, 0, 0.47058824)
+polygon = PackedVector2Array(-6, 6.5, -8.5, 9, -6.5, 10, 6, 10, 8, 8.5, 6, 6.5)
+
 [node name="Snail" type="Sprite2D" parent="." unique_id=1069079524]
 position = Vector2(0, -1.5)
 texture = ExtResource("3_dqkch")
@@ -51,5 +56,9 @@ show_percentage = false
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
 wait_time = 3.0
 one_shot = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=573629312]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=887883612]
 
 [connection signal="timeout" from="NextPlayerTimer" to="." method="_on_next_player_timer_timeout"]

@@ -48,14 +48,14 @@ func _process(delta: float) -> void:
 		
 		if Globals.player_turn == player_number:
 			snail.modulate.b = (sin(Engine.get_physics_frames() / 10.0) * 10)
-			if Input.is_action_just_pressed("weapon_1"):
-				weapon = 1
 			
-			if Input.is_action_just_pressed("weapon_2"): 
-				weapon = 2
+			if Input.is_action_just_pressed("next_weapon"):
+				weapon += 1
 			
-			if Input.is_action_just_pressed("weapon_3"): 
-				weapon = 3
+			if Input.is_action_just_pressed("last_weapon"):
+				weapon -= 1
+			
+			weapon = clamp(weapon, 1, 3)
 			
 			if global_position > Globals.mouse_position:
 				snail.flip_h = true
@@ -67,6 +67,7 @@ func _process(delta: float) -> void:
 			
 			if (Input.is_action_just_released("click") or projectile_speed >= 1000) and next_player_timer.is_stopped():
 				var projectile: Projectile
+				
 				if weapon == 2:
 					projectile = load("res://projectiles/drill.tscn").instantiate()
 				elif weapon == 3:
