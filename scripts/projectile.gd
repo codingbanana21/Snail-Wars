@@ -12,6 +12,7 @@ extends Area2D
 var velocity: Vector2 = Vector2.ZERO
 var speed: float
 
+
 func _ready() -> void:
 	global_position += transform.x * 24
 
