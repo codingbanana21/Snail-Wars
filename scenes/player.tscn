@@ -5,8 +5,11 @@
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_qhqgy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo7mc"]
-radius = 6.0
-height = 13.0
+radius = 5.0
+height = 11.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkbq"]
+size = Vector2(12, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=1048355818]
 scale = Vector2(2, 2)
@@ -60,5 +63,8 @@ one_shot = true
 [node name="Area2D" type="Area2D" parent="." unique_id=573629312]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=887883612]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_lmkbq")
 
 [connection signal="timeout" from="NextPlayerTimer" to="." method="_on_next_player_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
