@@ -108,10 +108,18 @@ func _physics_process(delta: float) -> void:
 			velocity.x *= 0.95
 
 
+func damage(damge: int):
+	hp -= damge
+	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
+	hit_damge.text = str(damge)
+	add_child(hit_damge)
+
+
 func _on_next_player_timer_timeout() -> void:
 	Globals.player_turn = (Globals.player_turn % 4) + 1
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if velocity.y > 700:
-		hp -= int((velocity.y - 700) / 10.0)
+		var fall_damage = int((velocity.y - 700) / 10.0)
+		damage(fall_damage)

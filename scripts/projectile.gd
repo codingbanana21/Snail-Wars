@@ -37,17 +37,17 @@ func _physics_process(delta: float) -> void:
 		
 		# destroy map
 		var tile_position: Vector2 = round(global_position / 16.0)
-		
 		for size in range(explosion_size):
 			for number in range(explosion_accuracy * PI * 2):
 				get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
 		
 		# hit players
-		global_position -= transform.x * speed * delta
+		global_position -= transform.x * 16
+		
 		for body: Node2D in hit_area.get_overlapping_bodies():
 			if body is Player:
 				var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.0001, 1.0)
-				body.hp -= hit_power * damage
+				body.damage(hit_power * damage)
 				body.velocity = -transform.x * hit_power * knockback
 		
 		hp -= 1
