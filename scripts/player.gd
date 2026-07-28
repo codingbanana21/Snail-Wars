@@ -34,7 +34,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if dead:
 		if Globals.player_turn == player_number:
-			Globals.player_turn = (Globals.player_turn % 4) + 1
+			Globals.next_player()
 	else:
 		progress_bar.max_value = max_hp
 		progress_bar.value = hp
@@ -74,6 +74,8 @@ func _process(delta: float) -> void:
 					projectile = load("res://projectiles/drill.tscn").instantiate()
 				elif weapon == 3:
 					projectile = load("res://projectiles/heal.tscn").instantiate()
+				elif weapon == 4:
+					projectile = load("res://projectiles/super_rocket.tscn").instantiate()
 				else:
 					projectile = load("res://projectiles/rocket.tscn").instantiate()
 				
@@ -111,7 +113,7 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor():
 			velocity.x *= 0.8
 		else:
-			velocity.x *= 0.95
+			velocity.x *= 0.97
 
 
 func damage(damge: int):
@@ -123,10 +125,10 @@ func damage(damge: int):
 
 
 func _on_next_player_timer_timeout() -> void:
-	Globals.player_turn = (Globals.player_turn % 4) + 1
+	Globals.next_player()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if velocity.y > 800:
+	if velocity.y > 700:
 		var fall_damage = int((velocity.y - 600) / 15.0)
 		damage(fall_damage)

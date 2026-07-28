@@ -3,8 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_qhvaq"]
 
 [node name="Heal" unique_id=152536886 instance=ExtResource("1_qhvaq")]
-speed = 50.0
+speed = 30.0
+projectile_gravity = 0.0
 damage = -20
-knockback = 1200
+knockback = 1000
 explosion_size = 0
 explosion_accuracy = 0.0
