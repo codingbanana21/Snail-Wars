@@ -16,7 +16,7 @@ const JUMP: float = -400.0
 const SPEED: float = 12.0
 const PLAYER_GRAVITY: float = 32.0
 
-var projectile_speed: float = 200.0
+var projectile_speed: float = 0.0
 var max_hp: int = 100
 var hp: int = max_hp
 var weapon: int = 1
@@ -62,10 +62,10 @@ func _process(delta: float) -> void:
 			else:
 				snail.flip_h = false
 			
-			if Input.is_action_pressed("click"):
-				projectile_speed += 700.0 * delta
+			if Input.is_action_pressed("attack"):
+				projectile_speed += 8.0 * delta
 			
-			if (Input.is_action_just_released("click") or projectile_speed >= 1000) and next_player_timer.is_stopped():
+			if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and next_player_timer.is_stopped():
 				var projectile: Projectile
 				
 				if weapon == 2:
@@ -77,10 +77,10 @@ func _process(delta: float) -> void:
 				
 				projectile.global_position = global_position
 				projectile.look_at(Globals.mouse_position)
-				projectile.speed = projectile_speed
+				projectile.speed *= projectile_speed
 				get_parent().add_child(projectile)
 				
-				projectile_speed = 200.0
+				projectile_speed = 0.0
 				next_player_timer.start()
 		else:
 			snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -121,5 +121,5 @@ func _on_next_player_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if velocity.y > 700:
-		var fall_damage = int((velocity.y - 700) / 10.0)
+		var fall_damage = int((velocity.y - 600) / 15.0)
 		damage(fall_damage)

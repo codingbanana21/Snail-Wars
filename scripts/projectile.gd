@@ -4,23 +4,24 @@ extends Area2D
 @onready var hit_area: Area2D = $HitArea
 
 @export var damage: int = 50
+@export var speed: float = 100.0
 @export var knockback: int = 800
 @export var explosion_size: int = 4
 @export var explosion_accuracy: float = 4
 @export var hp: int = 1
 
 var velocity: Vector2 = Vector2.ZERO
-var speed: float
 
 
 func _ready() -> void:
 	global_position += transform.x * 24
+	velocity += transform.x * speed
 
 
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
+	
 	global_position += velocity * delta
-	global_position += transform.x * speed * delta
 	
 	var hit: bool = false
 	
@@ -46,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		
 		for body: Node2D in hit_area.get_overlapping_bodies():
 			if body is Player:
-				var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.0001, 1.0)
+				var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.01, 1.0)
 				body.damage(hit_power * damage)
 				body.velocity = -transform.x * hit_power * knockback
 		
