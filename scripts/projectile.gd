@@ -3,12 +3,13 @@ extends Area2D
 
 @onready var hit_area: Area2D = $HitArea
 
+@export var speed: float = 70.0
+@export var projectile_gravity: float = 600.0
 @export var damage: int = 50
-@export var speed: float = 100.0
 @export var knockback: int = 800
 @export var explosion_size: int = 4
 @export var explosion_accuracy: float = 4
-@export var hp: int = 1
+@export var projectile_hp: int = 1
 
 var velocity: Vector2 = Vector2.ZERO
 
@@ -19,7 +20,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity.y += gravity * delta
+	velocity.y += projectile_gravity * delta
 	
 	global_position += velocity * delta
 	
@@ -51,8 +52,8 @@ func _physics_process(delta: float) -> void:
 				body.damage(hit_power * damage)
 				body.velocity = -transform.x * hit_power * knockback
 		
-		hp -= 1
-		if hp <= 0:
+		projectile_hp -= 1
+		if projectile_hp <= 0:
 			queue_free()
 
 

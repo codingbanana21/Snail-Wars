@@ -3,8 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_d7knd"]
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
-damage = 30
-knockback = 500
+speed = 40.0
+projectile_gravity = 400.0
+damage = 35
+knockback = 600
 explosion_size = 3
 explosion_accuracy = 2.0
-hp = 3
+projectile_hp = 6

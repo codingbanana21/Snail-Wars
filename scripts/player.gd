@@ -14,6 +14,7 @@ extends CharacterBody2D
 
 const JUMP: float = -400.0
 const SPEED: float = 12.0
+const JUMP_SPEED: float = 200
 const PLAYER_GRAVITY: float = 32.0
 
 var projectile_speed: float = 0.0
@@ -21,6 +22,7 @@ var max_hp: int = 100
 var hp: int = max_hp
 var weapon: int = 1
 var dead: bool = false
+var dir: float
 
 
 func _ready() -> void:
@@ -89,12 +91,16 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	if !dead:
 		if Globals.player_turn == player_number:
-			var dir = Input.get_axis("left", "right")
-			velocity.x += dir * SPEED
-			
-			if Input.is_action_just_pressed("jump") and is_on_floor():
-				velocity.y = JUMP
-		
+			if is_on_floor():
+				dir = Input.get_axis("left", "right")
+				velocity.x += dir * SPEED
+				
+				if Input.is_action_just_pressed("jump"):
+					velocity.x += dir * JUMP_SPEED
+					velocity.y = JUMP
+			else:
+				if Input.is_action_pressed("jump"):
+					velocity.x += dir * JUMP_SPEED * delta
 		velocity.y += PLAYER_GRAVITY
 		
 		if velocity.y > 64 and is_on_floor():
@@ -110,6 +116,7 @@ func _physics_process(delta: float) -> void:
 
 func damage(damge: int):
 	hp -= damge
+	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(damge)
 	add_child(hit_damge)
@@ -120,6 +127,6 @@ func _on_next_player_timer_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if velocity.y > 700:
+	if velocity.y > 800:
 		var fall_damage = int((velocity.y - 600) / 15.0)
 		damage(fall_damage)
