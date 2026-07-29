@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://np7k70guap8o"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_yss3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+
+[node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
+damage = 40
+explosion_size = 5
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=679883136]
+shape = SubResource("CircleShape2D_qhqgy")

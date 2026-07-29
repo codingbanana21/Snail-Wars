@@ -9,25 +9,30 @@ radius = 5.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_y514s"]
 radius = 64.0
 
-[node name="Projectile" type="Area2D" unique_id=152536886]
+[node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("1_q3m7n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679883136]
 
 [node name="MiniFire" type="Sprite2D" parent="." unique_id=2045045234]
 position = Vector2(0, -3)
 texture = ExtResource("2_softn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1905896826]
+[node name="DetectBox" type="Area2D" parent="." unique_id=289666369]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
 shape = SubResource("CircleShape2D_fo7mc")
 
-[node name="HitArea" type="Area2D" parent="." unique_id=410086607]
+[node name="HurtBox" type="Area2D" parent="." unique_id=410086607]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1738411112]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1738411112]
 shape = SubResource("CircleShape2D_y514s")
 debug_color = Color(0.99692196, 0, 0.18626031, 0.41960785)
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]
 one_shot = true
 
+[connection signal="body_entered" from="DetectBox" to="." method="_on_detect_box_body_entered"]
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

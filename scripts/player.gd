@@ -71,11 +71,9 @@ func _process(delta: float) -> void:
 				var projectile: Projectile
 				
 				if weapon == 2:
-					projectile = load("res://projectiles/drill.tscn").instantiate()
+					projectile = load("res://projectiles/grenade.tscn").instantiate()
 				elif weapon == 3:
-					projectile = load("res://projectiles/heal.tscn").instantiate()
-				elif weapon == 4:
-					projectile = load("res://projectiles/super_rocket.tscn").instantiate()
+					projectile = load("res://projectiles/drill.tscn").instantiate()
 				else:
 					projectile = load("res://projectiles/rocket.tscn").instantiate()
 				

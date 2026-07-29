@@ -42,7 +42,7 @@ offset_left = -19.0
 offset_top = -29.0
 offset_right = 1190.0
 offset_bottom = 686.0
-color = Color(0.6745098, 1, 1, 1)
+color = Color(0.6509804, 0.79607844, 0.81960785, 1)
 
 [node name="Player" parent="." unique_id=818354526 instance=ExtResource("3_lnu2h")]
 position = Vector2(-286, 15)

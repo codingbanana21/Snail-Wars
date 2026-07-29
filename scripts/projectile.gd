@@ -1,7 +1,8 @@
 class_name Projectile
-extends Area2D
+extends CharacterBody2D
 
-@onready var hit_area: Area2D = $HitArea
+@onready var detect_box: Area2D = $DetectBox
+@onready var hurt_box: Area2D = $HurtBox
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var speed: float = 70.0
@@ -10,10 +11,8 @@ extends Area2D
 @export var knockback: int = 800
 @export var explosion_time: float = 3.0
 @export var explosion_size: int = 4
-@export var explosion_accuracy: float = 4
+@export var explosion_accuracy: float = 3
 @export var projectile_hp: int = 1
-
-var velocity: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -25,17 +24,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += projectile_gravity * delta
 	
-	global_position += velocity * delta
-	
-	var hit: bool = false
-	
-	for body: Node2D in self.get_overlapping_bodies():
-		hit = true
-		if body is Player:
-			queue_free()
-	
-	if hit:
-		explode()
+	move_and_slide()
 
 
 func explode():
@@ -53,7 +42,7 @@ func explode():
 	# hit players
 	global_position -= transform.x * 16
 	
-	for body: Node2D in hit_area.get_overlapping_bodies():
+	for body: Node2D in hurt_box.get_overlapping_bodies():
 		if body is Player:
 			var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.01, 1.0)
 			body.damage(hit_power * damage)
@@ -67,3 +56,11 @@ func explode():
 func _on_explosion_timer_timeout() -> void:
 	explode()
 	queue_free()
+
+
+func _on_detect_box_body_entered(body: Node2D) -> void:
+	explode()
+	
+	if body is Player:
+		queue_free()
+	
