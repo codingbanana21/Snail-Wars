@@ -128,5 +128,8 @@ func _on_next_player_timer_timeout() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if velocity.y > 700:
+		# Shake the screen
+		Mouse.shake()
+		
 		var fall_damage = int((velocity.y - 600) / 15.0)
 		damage(fall_damage)

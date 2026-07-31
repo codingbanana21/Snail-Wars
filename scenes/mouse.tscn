@@ -18,3 +18,7 @@ drag_left_margin = 0.6
 drag_top_margin = 0.6
 drag_right_margin = 0.6
 drag_bottom_margin = 0.6
+
+[node name="ShakeTimer" type="Timer" parent="." unique_id=1389379614]
+wait_time = 0.1
+one_shot = true

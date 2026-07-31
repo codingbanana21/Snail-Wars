@@ -28,6 +28,9 @@ func _physics_process(delta: float) -> void:
 
 
 func explode():
+	# Shake the screen
+	Mouse.shake()
+	
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position
 	hit_particle.emitting = true
