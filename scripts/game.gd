@@ -10,4 +10,4 @@ func _process(delta: float) -> void:
 
 
 func remove_tile(tile_position: Vector2):
-	map.set_cell(tile_position, 0, Vector2i(0, 1))
+	map.set_cell(tile_position, 0, Vector2i(0, 4))

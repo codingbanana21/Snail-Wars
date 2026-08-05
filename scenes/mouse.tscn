@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://3o83rtce0c2w" path="res://assets/images/mini_fire.png" id="2_ouscy"]
 
 [node name="Mouse" type="Node2D" unique_id=444797727]
+z_index = 100
 script = ExtResource("1_ouscy")
 
 [node name="MiniFire" type="Sprite2D" parent="." unique_id=1065564394]

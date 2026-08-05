@@ -2,11 +2,17 @@
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_d7knd"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_yss3y"]
+radius = 34.234486
+
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 speed = 50.0
 projectile_gravity = 400.0
-damage = 25
+damage = 20
 knockback = 500
-explosion_size = 3
-explosion_accuracy = 2.0
-projectile_hp = 4
+explosion_size = 6
+explosion_accuracy = 6.0
+projectile_hp = 8
+
+[node name="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(410086607) index="0" unique_id=1738411112]
+shape = SubResource("CircleShape2D_yss3y")

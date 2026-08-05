@@ -10,8 +10,8 @@ extends CharacterBody2D
 @export var damage: int = 50
 @export var knockback: int = 800
 @export var explosion_time: float = 3.0
-@export var explosion_size: int = 4
-@export var explosion_accuracy: float = 3
+@export var explosion_size: int = 12
+@export var explosion_accuracy: float = 12
 @export var projectile_hp: int = 1
 
 
@@ -23,6 +23,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity.y += projectile_gravity * delta
+	rotation = velocity.angle()
 	
 	move_and_slide()
 
@@ -37,7 +38,7 @@ func explode():
 	get_parent().add_child(hit_particle)
 	
 	# destroy map
-	var tile_position: Vector2 = round(global_position / 16.0)
+	var tile_position: Vector2 = round(global_position / 4.0)
 	for size in range(explosion_size):
 		for number in range(explosion_accuracy * PI * 2):
 			get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))

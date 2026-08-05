@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://cubfm8w8o5obj"]
 
 [ext_resource type="Script" uid="uid://01gbgpgohfiy" path="res://scripts/projectile.gd" id="1_q3m7n"]
-[ext_resource type="Texture2D" uid="uid://3o83rtce0c2w" path="res://assets/images/mini_fire.png" id="2_softn"]
+[ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="2_ighsu"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fo7mc"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
+size = Vector2(13, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y514s"]
 radius = 64.0
@@ -16,14 +16,14 @@ script = ExtResource("1_q3m7n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679883136]
 
-[node name="MiniFire" type="Sprite2D" parent="." unique_id=2045045234]
-position = Vector2(0, -3)
-texture = ExtResource("2_softn")
+[node name="Image" type="Sprite2D" parent="." unique_id=2045045234]
+texture = ExtResource("2_ighsu")
 
 [node name="DetectBox" type="Area2D" parent="." unique_id=289666369]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
-shape = SubResource("CircleShape2D_fo7mc")
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_7nr1q")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=410086607]
 
