@@ -57,7 +57,8 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 			
-			weapon = clamp(weapon, 1, 3)
+			weapon = clamp(weapon, 1, 4)
+			Globals.weapon_number = weapon
 			
 			if global_position > Globals.mouse_position:
 				snail.flip_h = true
@@ -74,6 +75,8 @@ func _process(delta: float) -> void:
 					projectile = load("res://projectiles/grenade.tscn").instantiate()
 				elif weapon == 3:
 					projectile = load("res://projectiles/drill.tscn").instantiate()
+				elif weapon == 4:
+					projectile = load("res://projectiles/bomb.tscn").instantiate()
 				else:
 					projectile = load("res://projectiles/rocket.tscn").instantiate()
 				

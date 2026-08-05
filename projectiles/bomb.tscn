@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bvbphsbp6p3fw"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_8u238"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8u238"]
+radius = 134.13426
+
+[node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
+speed = 80.0
+damage = 30
+knockback = 1000
+explosion_size = 20
+explosion_accuracy = 12.0
+
+[node name="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(410086607) index="0" unique_id=1738411112]
+shape = SubResource("CircleShape2D_8u238")

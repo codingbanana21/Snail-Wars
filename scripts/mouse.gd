@@ -1,13 +1,24 @@
 extends Node2D
 
-@onready var camera_2d: Camera2D = $Camera2D
+@onready var weapon_label: Label = $WeaponLabel
 @onready var shake_timer: Timer = $ShakeTimer
+@onready var camera_2d: Camera2D = $Camera2D
+
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _process(delta: float) -> void:
+	if Globals.weapon_number == 2:
+		weapon_label.text = "Grenade"
+	elif Globals.weapon_number == 3:
+		weapon_label.text = "Drill"
+	elif Globals.weapon_number == 4:
+		weapon_label.text = "Bomb"
+	else:
+		weapon_label.text = "Rocket"
+	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-3, 3)
 		camera_2d.offset.y = randf_range(-3, 3)

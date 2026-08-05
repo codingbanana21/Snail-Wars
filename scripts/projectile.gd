@@ -10,8 +10,8 @@ extends CharacterBody2D
 @export var damage: int = 50
 @export var knockback: int = 800
 @export var explosion_time: float = 3.0
-@export var explosion_size: int = 12
-@export var explosion_accuracy: float = 12
+@export var explosion_size: int = 14
+@export var explosion_accuracy: float = 14
 @export var projectile_hp: int = 1
 
 
