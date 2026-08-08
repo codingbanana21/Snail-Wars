@@ -6,10 +6,10 @@
 radius = 20.024984
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
-speed = 40.0
-projectile_gravity = 300.0
-damage = 25
-knockback = 500
+speed = 50.0
+projectile_gravity = 400.0
+damage = 40
+knockback = 700
 explosion_size = 6
 explosion_accuracy = 6.0
 projectile_hp = 10

@@ -6,11 +6,11 @@
 radius = 134.13426
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
-speed = 80.0
-damage = 30
+speed = 85.0
+damage = 60
 knockback = 1000
-explosion_size = 20
-explosion_accuracy = 12.0
+explosion_time = 1.0
+explosion_size = 22
 
 [node name="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(410086607) index="0" unique_id=1738411112]
 shape = SubResource("CircleShape2D_8u238")

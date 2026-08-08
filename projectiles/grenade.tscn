@@ -8,8 +8,9 @@ radius = 9.0
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
 projectile_gravity = 500.0
 damage = 40
+knockback = 900
 explosion_size = 16
-explosion_accuracy = 12.0
+explosion_accuracy = 16.0
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=679883136]
 shape = SubResource("CircleShape2D_qhqgy")

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dra1hgjpik7t0"]
 
-[ext_resource type="Script" uid="uid://dq5pcpy5obcn6" path="res://scripts/mouse.gd" id="1_ouscy"]
+[ext_resource type="Script" uid="uid://dq5pcpy5obcn6" path="res://scripts/Mouse.gd" id="1_ouscy"]
 [ext_resource type="Texture2D" uid="uid://3o83rtce0c2w" path="res://assets/images/mini_fire.png" id="2_ouscy"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_xa71f"]
 
