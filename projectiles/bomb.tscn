@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://bvbphsbp6p3fw"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_8u238"]
+[ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="2_3xfjl"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8u238"]
-radius = 134.13426
+[sub_resource type="CircleShape2D" id="CircleShape2D_dlca0"]
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
-speed = 85.0
-damage = 60
-knockback = 1000
+speed = 90.0
+projectile_gravity = 700.0
+damage = 65
 explosion_time = 1.0
 explosion_size = 22
 
-[node name="CollisionShape2D" parent="HurtBox" parent_id_path=PackedInt32Array(410086607) index="0" unique_id=1738411112]
-shape = SubResource("CircleShape2D_8u238")
+[node name="Image" parent="." index="0" unique_id=2045045234]
+texture = ExtResource("2_3xfjl")
+
+[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+shape = SubResource("CircleShape2D_dlca0")

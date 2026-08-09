@@ -7,11 +7,11 @@ extends CharacterBody2D
 
 @export var speed: float = 70.0
 @export var projectile_gravity: float = 600.0
-@export var damage: int = 50
-@export var knockback: int = 800
+@export var damage: int = 55
+@export var knockback: int = 1000
 @export var explosion_time: float = 3.0
-@export var explosion_size: int = 14
-@export var explosion_accuracy: float = 14
+@export var explosion_size: int = 16
+@export var explosion_accuracy: float = 18
 @export var projectile_hp: int = 1
 
 
@@ -19,6 +19,7 @@ func _ready() -> void:
 	global_position += transform.x * 20
 	velocity += transform.x * speed
 	explosion_timer.start(explosion_time)
+	hurt_box.scale *= explosion_size
 
 
 func _physics_process(delta: float) -> void:
@@ -57,7 +58,7 @@ func explode(big_explode: bool = false):
 				body.damage(hit_power * damage)
 				body.velocity = -transform.x * hit_power * knockback
 			else:
-				body.damage(hit_power * damage / 2.0)
+				body.damage(hit_power * damage / 4.0)
 
 
 func _on_explosion_timer_timeout() -> void:
