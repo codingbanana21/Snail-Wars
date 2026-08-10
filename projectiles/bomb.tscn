@@ -7,10 +7,10 @@
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
 speed = 90.0
-projectile_gravity = 700.0
 damage = 65
 explosion_time = 1.0
 explosion_size = 22
+explosion_accuracy = 16.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_3xfjl")

@@ -7,11 +7,6 @@
 radius = 6.0
 
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
-projectile_gravity = 500.0
-damage = 50
-knockback = 800
-explosion_size = 18
-explosion_accuracy = 16.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_5t3jc")

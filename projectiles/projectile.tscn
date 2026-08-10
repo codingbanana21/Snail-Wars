@@ -7,7 +7,7 @@
 size = Vector2(15, 9)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y514s"]
-radius = 4.0
+radius = 5.0
 
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 collision_layer = 0

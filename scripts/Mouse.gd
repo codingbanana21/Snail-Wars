@@ -30,7 +30,8 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	global_position = Globals.mouse_position
+	if !Input.is_action_pressed("attack"):
+		global_position = Globals.mouse_position
 
 
 func shake():

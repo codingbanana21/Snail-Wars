@@ -6,8 +6,8 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var speed: float = 70.0
-@export var projectile_gravity: float = 600.0
-@export var damage: int = 55
+@export var projectile_gravity: float = 650.0
+@export var damage: int = 50
 @export var knockback: int = 1000
 @export var explosion_time: float = 3.0
 @export var explosion_size: int = 16

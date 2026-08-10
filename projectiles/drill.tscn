@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="2_tpgjy"]
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
-speed = 50.0
-projectile_gravity = 400.0
+speed = 60.0
+projectile_gravity = 450.0
 damage = 30
 knockback = 800
 explosion_size = 6
