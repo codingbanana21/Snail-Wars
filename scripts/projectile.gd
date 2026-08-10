@@ -6,20 +6,26 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var speed: float = 70.0
-@export var projectile_gravity: float = 650.0
+@export var projectile_gravity: int = 650
 @export var damage: int = 50
 @export var knockback: int = 1000
 @export var explosion_time: float = 3.0
 @export var explosion_size: int = 16
 @export var explosion_accuracy: float = 18
 @export var projectile_hp: int = 1
+@export var spawn_at_mouse: bool = false
 
 
 func _ready() -> void:
-	global_position += transform.x * 20
-	velocity += transform.x * speed
 	explosion_timer.start(explosion_time)
 	hurt_box.scale *= explosion_size
+	
+	if spawn_at_mouse:
+		global_position.x = Mouse.global_position.x
+		global_position.y = -256.0
+	else:
+		global_position += transform.x * 20.0
+		velocity += transform.x * speed
 
 
 func _physics_process(delta: float) -> void:

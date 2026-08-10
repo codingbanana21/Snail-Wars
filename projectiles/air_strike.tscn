@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b6xq62iwa8ut1"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_y44nj"]
+
+[node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
+speed = 0.0
+knockback = 600
+explosion_size = 12
+explosion_accuracy = 14.0
+spawn_at_mouse = true

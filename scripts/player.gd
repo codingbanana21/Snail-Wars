@@ -58,12 +58,12 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("last_weapon"):
 			weapon -= 1
 		
-		weapon = clamp(weapon, 1, 4)
+		weapon = clamp(weapon, 1, 6)
 		Globals.weapon_number = weapon
 		
-		if global_position > Globals.mouse_position:
+		if global_position > Globals.mouse_position and Mouse.moving:
 			snail.flip_h = true
-		else:
+		elif Mouse.moving:
 			snail.flip_h = false
 		
 		if Input.is_action_pressed("attack"):
@@ -110,6 +110,10 @@ func shot():
 		projectile = load("res://projectiles/drill.tscn").instantiate()
 	elif weapon == 4:
 		projectile = load("res://projectiles/bomb.tscn").instantiate()
+	elif weapon == 5:
+		projectile = load("res://projectiles/air_strike.tscn").instantiate()
+	elif weapon == 6:
+		projectile = load("res://projectiles/drill_strike.tscn").instantiate()
 	else:
 		projectile = load("res://projectiles/rocket.tscn").instantiate()
 	
@@ -142,3 +146,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		var fall_damage = int((velocity.y - 600) / 15.0)
 		damage(fall_damage)
+		
+		if Globals.player_turn == player_number:
+			Globals.next_player()

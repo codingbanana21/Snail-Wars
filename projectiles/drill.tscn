@@ -5,12 +5,11 @@
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 speed = 60.0
-projectile_gravity = 450.0
-damage = 30
+damage = 40
 knockback = 800
-explosion_size = 6
-explosion_accuracy = 6.0
-projectile_hp = 10
+explosion_size = 8
+explosion_accuracy = 8.0
+projectile_hp = 7
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_tpgjy")
