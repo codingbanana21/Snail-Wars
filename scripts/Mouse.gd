@@ -12,18 +12,20 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Globals.weapon_number == 2:
-		weapon_label.text = "Grenade"
-	elif Globals.weapon_number == 3:
-		weapon_label.text = "Drill"
-	elif Globals.weapon_number == 4:
-		weapon_label.text = "Bomb"
-	elif Globals.weapon_number == 5:
-		weapon_label.text = "Air Strke"
-	elif Globals.weapon_number == 6:
-		weapon_label.text = "Drill Strke"
-	else:
+	if Globals.weapon_number == 0:
 		weapon_label.text = "Rocket"
+	elif Globals.weapon_number == 1:
+		weapon_label.text = "Grenade"
+	elif Globals.weapon_number == 2:
+		weapon_label.text = "Drill"
+	elif Globals.weapon_number == 3:
+		weapon_label.text = "Bomb"
+	elif Globals.weapon_number == 4:
+		weapon_label.text = "Air Strke"
+	elif Globals.weapon_number == 5:
+		weapon_label.text = "Drill Strke"
+	elif Globals.weapon_number == 6:
+		weapon_label.text = "Rock"
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-3, 3)

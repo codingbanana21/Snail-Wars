@@ -22,13 +22,11 @@ texture = ExtResource("2_ighsu")
 [node name="DetectBox" type="Area2D" parent="." unique_id=289666369]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
-position = Vector2(1.5, -0.5)
 shape = SubResource("RectangleShape2D_7nr1q")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=410086607]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1738411112]
-position = Vector2(1, 1)
 shape = SubResource("CircleShape2D_y514s")
 debug_color = Color(0.99692196, 0, 0.18626031, 0.41960785)
 

@@ -20,7 +20,7 @@ const PLAYER_GRAVITY: float = 32.0
 var projectile_speed: float = 0.0
 var max_hp: int = 100
 var hp: int = max_hp
-var weapon: int = 1
+var weapon: int = 0
 var dead: bool = false
 var dir: float
 
@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("last_weapon"):
 			weapon -= 1
 		
-		weapon = clamp(weapon, 1, 6)
+		weapon = clamp(weapon, 0, 6)
 		Globals.weapon_number = weapon
 		
 		if global_position > Globals.mouse_position and Mouse.moving:
@@ -104,18 +104,20 @@ func _physics_process(delta: float) -> void:
 func shot():
 	var projectile: Projectile
 	
-	if weapon == 2:
-		projectile = load("res://projectiles/grenade.tscn").instantiate()
-	elif weapon == 3:
-		projectile = load("res://projectiles/drill.tscn").instantiate()
-	elif weapon == 4:
-		projectile = load("res://projectiles/bomb.tscn").instantiate()
-	elif weapon == 5:
-		projectile = load("res://projectiles/air_strike.tscn").instantiate()
-	elif weapon == 6:
-		projectile = load("res://projectiles/drill_strike.tscn").instantiate()
-	else:
+	if weapon == 0:
 		projectile = load("res://projectiles/rocket.tscn").instantiate()
+	elif weapon == 1:
+		projectile = load("res://projectiles/grenade.tscn").instantiate()
+	elif weapon == 2:
+		projectile = load("res://projectiles/drill.tscn").instantiate()
+	elif weapon == 3:
+		projectile = load("res://projectiles/bomb.tscn").instantiate()
+	elif weapon == 4:
+		projectile = load("res://projectiles/air_strike.tscn").instantiate()
+	elif weapon == 5:
+		projectile = load("res://projectiles/drill_strike.tscn").instantiate()
+	elif weapon == 6:
+		projectile = load("res://projectiles/rock.tscn").instantiate()
 	
 	projectile.global_position = global_position
 	projectile.look_at(Globals.mouse_position)
