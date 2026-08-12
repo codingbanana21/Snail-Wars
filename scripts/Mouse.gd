@@ -5,6 +5,7 @@ extends Node2D
 @onready var camera_2d: Camera2D = $Camera2D
 
 var moving: bool = false
+var shake_amount: float = 0.0
 
 
 func _ready() -> void:
@@ -30,8 +31,8 @@ func _process(delta: float) -> void:
 	weapon_label.text += " " + str(Globals.weapons_left[Globals.weapon_number])
 	
 	if !shake_timer.is_stopped():
-		camera_2d.offset.x = randf_range(-3, 3)
-		camera_2d.offset.y = randf_range(-3, 3)
+		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)
+		camera_2d.offset.y = randf_range(-shake_amount, shake_amount)
 	else:
 		camera_2d.offset = Vector2.ZERO
 	
@@ -47,5 +48,6 @@ func _input(event: InputEvent) -> void:
 		moving = false
 
 
-func shake():
-	shake_timer.start()
+func shake(amount: float = 3.0, time: float = 0.1):
+	shake_amount = amount
+	shake_timer.start(time)

@@ -19,6 +19,7 @@ extends CharacterBody2D
 func _ready() -> void:
 	explosion_timer.start(explosion_time)
 	
+	#spawn type
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
 		global_position.y = -1024.0
@@ -30,7 +31,6 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += projectile_gravity * delta
 	rotation = velocity.angle()
-	
 	move_and_slide()
 
 
@@ -40,15 +40,23 @@ func explode(big_explode: bool = false):
 		big_explode = true
 		queue_free()
 	
-	# Shake the screen
-	Mouse.shake()
+	if big_explode:
+		Mouse.shake(damage / 10.0)
+	else:
+		Mouse.shake(damage / 20.0)
+	
+	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+	hit_particle.global_position = global_position
+	hit_particle.emitting = true
 	
 	if big_explode:
-		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-		hit_particle.global_position = global_position
-		hit_particle.emitting = true
-		get_parent().add_child(hit_particle)
-	elif bounce:
+		hit_particle.amount = int(damage)
+	else:
+		hit_particle.amount = int(damage / 2.0)
+	
+	get_parent().add_child(hit_particle)
+	
+	if bounce:
 		velocity.y *= -1
 	
 	# destroy map
@@ -68,7 +76,7 @@ func explode(big_explode: bool = false):
 				body.damage(hit_power * damage)
 				body.velocity = -transform.x * hit_power * knockback
 			else:
-				body.damage(hit_power * damage / 4.0)
+				body.damage(hit_power * damage / 2.0)
 
 
 func _on_explosion_timer_timeout() -> void:

@@ -4,7 +4,6 @@
 
 [node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
 speed = 0.0
-damage = 40
 knockback = 750
 explosion_size = 24
 explosion_accuracy = 28.0

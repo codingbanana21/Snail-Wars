@@ -9,8 +9,8 @@ radius = 4.0
 radius = 9.0
 
 [node name="Rock" unique_id=791496552 instance=ExtResource("1_2tc5i")]
-damage = 25
-knockback = 1200
+damage = 20.0
+knockback = 800
 explosion_size = 4
 explosion_accuracy = 0.0
 projectile_hp = 6
