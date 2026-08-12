@@ -18,12 +18,12 @@ const JUMP_SPEED: float = 200
 const PLAYER_GRAVITY: float = 32.0
 
 var projectile_speed: float = 0.0
-var max_hp: int = 100
-var hp: int = max_hp
+var max_hp: float = 100.0
+var hp: float = max_hp
 var weapon: int = 0
 var dead: bool = false
 var dir: float
-var weapons_left: Array = [99,3,2,2,1,1,3]
+var weapons_left: Array[int] = [99,3,2,2,1,1,3]
 
 
 func _ready() -> void:
@@ -133,11 +133,11 @@ func shot():
 	next_player_timer.start()
 
 
-func damage(damge: int):
+func damage(damge: float):
 	hp -= damge
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
-	hit_damge.text = str(damge)
+	hit_damge.text = str(int(damge))
 	add_child(hit_damge)
 
 
@@ -150,7 +150,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		# Shake the screen
 		Mouse.shake()
 		
-		var fall_damage = int((velocity.y - 600) / 25.0)
+		var fall_damage = (velocity.y - 600) / 25.0
 		damage(fall_damage)
 		
 		if Globals.player_turn == player_number:

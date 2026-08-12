@@ -11,7 +11,7 @@ height = 11.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkbq"]
 size = Vector2(12, 15)
 
-[node name="Player" type="CharacterBody2D" unique_id=1048355818]
+[node name="Player" type="CharacterBody2D" unique_id=1048355818 groups=["Player"]]
 scale = Vector2(2, 2)
 collision_layer = 3
 collision_mask = 3

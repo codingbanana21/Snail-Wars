@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bgoaxq3xrhblj"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_cudxu"]
+
+[node name="DestroyerOfGames" unique_id=791496552 instance=ExtResource("1_cudxu")]
+speed = 0.0
+projectile_gravity = 1000
+damage = 100.0
+knockback = 2500
+explosion_time = 10.0
+explosion_size = 30
+explosion_accuracy = 36.0
+projectile_hp = 5
+bounce = true
+spawn_at_mouse = true

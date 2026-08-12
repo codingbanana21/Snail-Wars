@@ -6,9 +6,6 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
 size = Vector2(15, 9)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y514s"]
-radius = 5.0
-
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 collision_layer = 0
 collision_mask = 2
@@ -23,12 +20,6 @@ texture = ExtResource("2_ighsu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
 shape = SubResource("RectangleShape2D_7nr1q")
-
-[node name="HurtBox" type="Area2D" parent="." unique_id=410086607]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1738411112]
-shape = SubResource("CircleShape2D_y514s")
-debug_color = Color(0.99692196, 0, 0.18626031, 0.41960785)
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]
 one_shot = true

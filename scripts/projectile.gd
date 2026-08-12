@@ -2,12 +2,11 @@ class_name Projectile
 extends CharacterBody2D
 
 @onready var detect_box: Area2D = $DetectBox
-@onready var hurt_box: Area2D = $HurtBox
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var speed: float = 70.0
 @export var projectile_gravity: int = 600
-@export var damage: int = 50
+@export var damage: float = 50
 @export var knockback: int = 1000
 @export var explosion_time: float = 3.0
 @export var explosion_size: int = 16
@@ -19,7 +18,6 @@ extends CharacterBody2D
 
 func _ready() -> void:
 	explosion_timer.start(explosion_time)
-	hurt_box.scale *= explosion_size
 	
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
@@ -60,9 +58,12 @@ func explode(big_explode: bool = false):
 			get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
 	
 	# hit players
-	for body: Node2D in hurt_box.get_overlapping_bodies():
-		if body is Player:
-			var hit_power: float = clampf(1.0 / global_position.distance_squared_to(body.global_position) * 1000.0, 0.01, 1.0)
+	for body: Player in get_tree().get_nodes_in_group("Player"):
+		var dis_to: float = global_position.distance_to(body.global_position)
+		
+		if dis_to < (4.0 * explosion_size):
+			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
+			
 			if big_explode:
 				body.damage(hit_power * damage)
 				body.velocity = -transform.x * hit_power * knockback
