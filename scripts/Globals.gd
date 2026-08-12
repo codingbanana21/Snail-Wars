@@ -4,6 +4,7 @@ var mouse_position: Vector2 = Vector2.ZERO
 var player_turn: int = 1
 var players: int = 6
 var weapon_number: int = 0
+var weapons_left: Array = [0]
 
 
 func _ready() -> void:

@@ -27,6 +27,8 @@ func _process(delta: float) -> void:
 	elif Globals.weapon_number == 6:
 		weapon_label.text = "Rock"
 	
+	weapon_label.text += " " + str(Globals.weapons_left[Globals.weapon_number])
+	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-3, 3)
 		camera_2d.offset.y = randf_range(-3, 3)

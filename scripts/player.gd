@@ -23,6 +23,7 @@ var hp: int = max_hp
 var weapon: int = 0
 var dead: bool = false
 var dir: float
+var weapons_left: Array = [99,3,2,2,1,1,3]
 
 
 func _ready() -> void:
@@ -60,17 +61,20 @@ func _process(delta: float) -> void:
 		
 		weapon = clamp(weapon, 0, 6)
 		Globals.weapon_number = weapon
+		Globals.weapons_left = weapons_left
 		
 		if global_position > Globals.mouse_position and Mouse.moving:
 			snail.flip_h = true
 		elif Mouse.moving:
 			snail.flip_h = false
 		
-		if Input.is_action_pressed("attack"):
-			projectile_speed += 8.0 * delta
-		
-		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and next_player_timer.is_stopped():
-			shot()
+		if weapons_left[weapon] > 0 and next_player_timer.is_stopped():
+			if Input.is_action_pressed("attack"):
+				projectile_speed += 8.0 * delta
+			
+			if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
+				weapons_left[weapon] -= 1
+				shot()
 	else:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
@@ -146,7 +150,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		# Shake the screen
 		Mouse.shake()
 		
-		var fall_damage = int((velocity.y - 600) / 15.0)
+		var fall_damage = int((velocity.y - 600) / 25.0)
 		damage(fall_damage)
 		
 		if Globals.player_turn == player_number:
