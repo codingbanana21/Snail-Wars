@@ -66,8 +66,8 @@ func explode(big_explode: bool = false):
 			get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
 	
 	# hit players
-	for body: Player in get_tree().get_nodes_in_group("Player"):
-		var dis_to: float = global_position.distance_to(body.global_position)
+	for player: Player in get_tree().get_nodes_in_group("Player"):
+		var dis_to: float = global_position.distance_to(player.global_position)
 		
 		if dis_to < (4.0 * explosion_size):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
@@ -75,8 +75,8 @@ func explode(big_explode: bool = false):
 			if !big_explode:
 				hit_power /= 2.0
 			
-			body.damage(hit_power * damage)
-			body.velocity = -transform.x * hit_power * knockback
+			player.damage(hit_power * damage)
+			player.velocity = -transform.x * hit_power * knockback
 
 
 func _on_explosion_timer_timeout() -> void:

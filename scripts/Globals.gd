@@ -18,3 +18,6 @@ func _input(event: InputEvent) -> void:
 
 func next_player():
 	player_turn = (player_turn % players) + 1
+	
+	for player: Player in get_tree().get_nodes_in_group("Player"):
+		player.next_player()

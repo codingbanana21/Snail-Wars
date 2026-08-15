@@ -13,6 +13,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	global_position = Globals.mouse_position
+	
 	if Globals.weapon_number == 0:
 		weapon_label.text = "Rocket"
 	elif Globals.weapon_number == 1:
@@ -42,7 +44,6 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion:
-		global_position = Globals.mouse_position
 		moving = true
 	else:
 		moving = false
