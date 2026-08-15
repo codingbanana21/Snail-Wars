@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("last_weapon"):
 		weapon -= 1
 	
-	weapon = clamp(weapon, 0, 6)
+	weapon %= 7
 	Globals.weapon_number = weapon
 	Globals.weapons_left = weapons_left
 	
