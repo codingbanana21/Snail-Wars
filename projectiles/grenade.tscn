@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="2_5t3jc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
-radius = 6.0
+radius = 8.0
 
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
+explosion_size = 18
+explosion_accuracy = 20.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_5t3jc")

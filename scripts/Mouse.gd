@@ -4,6 +4,8 @@ extends Node2D
 @onready var shake_timer: Timer = $ShakeTimer
 @onready var camera_2d: Camera2D = $Camera2D
 
+const WEAPONS: Array[String] = ["Rocket", "Grenade", "Drill", "Bomb", "Air Strike", "Drill Strike", "Destroyer Of Games"]
+
 var moving: bool = false
 var shake_amount: float = 0.0
 var mouse_position: Vector2 = Vector2.ZERO
@@ -16,22 +18,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_position = Mouse.mouse_position
 	
-	if Globals.weapon_number == 0:
-		weapon_label.text = "Rocket"
-	elif Globals.weapon_number == 1:
-		weapon_label.text = "Grenade"
-	elif Globals.weapon_number == 2:
-		weapon_label.text = "Drill"
-	elif Globals.weapon_number == 3:
-		weapon_label.text = "Bomb"
-	elif Globals.weapon_number == 4:
-		weapon_label.text = "Air Strke"
-	elif Globals.weapon_number == 5:
-		weapon_label.text = "Drill Strke"
-	elif Globals.weapon_number == 6:
-		weapon_label.text = "Destroyer Of Games"
-	
-	weapon_label.text += " " + str(Globals.weapons_left[Globals.weapon_number])
+	weapon_label.text = WEAPONS[Globals.weapon_number]+" "+str(Globals.weapons_left[Globals.weapon_number])
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)

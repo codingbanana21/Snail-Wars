@@ -8,6 +8,7 @@ var weapons_left: Array = [0]
 
 func _ready() -> void:
 	player_turn = randi_range(1, players)
+	next_player()
 
 
 func next_player():

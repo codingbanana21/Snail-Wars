@@ -16,13 +16,14 @@ const JUMP: float = -400.0
 const SPEED: float = 12.0
 const JUMP_SPEED: float = 200
 const PLAYER_GRAVITY: float = 30.0
+const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "destroyer_of_games"]
 
 var projectile_speed: float = 0.0
 var max_hp: float = 100.0
 var hp: float = max_hp
 var weapon: int = 0
-var dir: float
-var weapons_left: Array[int] = [99,3,2,2,1,1,1]
+var dir: float = 0
+var weapons_left: Array[int] = [-1,2,2,1,1,1,0]
 
 
 func _ready() -> void:
@@ -48,6 +49,7 @@ func _process(delta: float) -> void:
 		return
 	
 	if hp <= 0:
+		next_player_timer.stop()
 		Globals.next_player()
 	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
@@ -67,13 +69,17 @@ func _process(delta: float) -> void:
 	elif Mouse.moving:
 		snail.flip_h = false
 	
-	if weapons_left[weapon] > 0 and next_player_timer.is_stopped():
+	if weapons_left[weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
+			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
+			
 			weapons_left[weapon] -= 1
-			shot()
+			projectile_speed = 0.0
+			Input.action_release("attack")
+			next_player_timer.start()
 
 
 func _physics_process(delta: float) -> void:
@@ -102,32 +108,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x *= 0.97
 
 
-func shot():
-	var projectile: Projectile
-	
-	if weapon == 0:
-		projectile = load("res://projectiles/rocket.tscn").instantiate()
-	elif weapon == 1:
-		projectile = load("res://projectiles/grenade.tscn").instantiate()
-	elif weapon == 2:
-		projectile = load("res://projectiles/drill.tscn").instantiate()
-	elif weapon == 3:
-		projectile = load("res://projectiles/bomb.tscn").instantiate()
-	elif weapon == 4:
-		projectile = load("res://projectiles/air_strike.tscn").instantiate()
-	elif weapon == 5:
-		projectile = load("res://projectiles/drill_strike.tscn").instantiate()
-	elif weapon == 6:
-		projectile = load("res://projectiles/destroyer_of_games.tscn").instantiate()
-	
-	projectile.global_position = global_position
-	projectile.look_at(Mouse.mouse_position)
-	projectile.speed *= projectile_speed
-	get_parent().add_child(projectile)
-	
-	projectile_speed = 0.0
-	Input.action_release("attack")
-	next_player_timer.start()
+func shot_projectile(projectile: NodePath):
+	var new_projectile: Projectile
+	new_projectile = load(projectile).instantiate()
+	new_projectile.global_position = global_position
+	new_projectile.look_at(Mouse.mouse_position)
+	new_projectile.speed *= projectile_speed
+	get_parent().add_child(new_projectile)
 
 
 func damage(damge: float):
