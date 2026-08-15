@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 	elif velocity.x > 0:
 		snail.flip_h = false
 	
-	if Globals.player_turn != player_number:
+	if Globals.player_turn != player_number or team_number != Globals.team_turn:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		return
 	
@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y > 64 and is_on_floor():
 		velocity.y *= -1
 	
-	if Globals.player_turn == player_number and !Input.is_action_pressed("attack"):
+	if Globals.player_turn == player_number and team_number == Globals.team_turn and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED
@@ -130,7 +130,7 @@ func next_player():
 	if hp <= 0:
 		set_physics_process(false)
 		global_position.x = 100000
-	elif Globals.player_turn == player_number:
+	elif Globals.player_turn == player_number and team_number == Globals.team_turn:
 		Mouse.mouse_position = global_position
 
 
@@ -148,6 +148,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		velocity.y *= -0.5
 		
-		if Globals.player_turn == player_number:
+		if Globals.player_turn == player_number and team_number == Globals.team_turn:
 			next_player_timer.stop()
 			Globals.next_player()

@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func next_player():
 	if player_turn == 2:
-		team_turn %= 2
+		team_turn = (team_turn + 1) % 2
 		player_turn = 0
 	else:
 		player_turn += 1
