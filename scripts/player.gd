@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
-@export var player_number: int = 1
+@export var player_number: int = 0
+@export var team_number: int = 0
 @export var player_name: String
 @export var team: String
 @export var team_color: Color

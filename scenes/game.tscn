@@ -188,35 +188,37 @@ team_color = Color(0, 0, 1, 1)
 
 [node name="Player2" parent="." unique_id=1497468792 instance=ExtResource("3_lnu2h")]
 position = Vector2(677, -375)
-player_number = 2
+team_number = 1
 player_name = "Sam (The best)"
 team = "Sam"
 team_color = Color(1, 0, 0, 1)
 
 [node name="Player3" parent="." unique_id=1739016096 instance=ExtResource("3_lnu2h")]
 position = Vector2(631, -63)
-player_number = 3
+player_number = 1
 player_name = "Bad Barry"
 team = "Barry"
 team_color = Color(0, 0, 1, 1)
 
 [node name="Player4" parent="." unique_id=312835331 instance=ExtResource("3_lnu2h")]
 position = Vector2(660, -598)
-player_number = 4
+player_number = 1
+team_number = 1
 player_name = "Sam but Sam"
 team = "Sam"
 team_color = Color(1, 0, 0, 1)
 
 [node name="Player5" parent="." unique_id=1048355818 instance=ExtResource("3_lnu2h")]
 position = Vector2(-131, -483)
-player_number = 5
+player_number = 2
 player_name = "Good Barry"
 team = "Barry"
 team_color = Color(0, 0, 1, 1)
 
 [node name="Player6" parent="." unique_id=526358724 instance=ExtResource("3_lnu2h")]
 position = Vector2(-268, -289)
-player_number = 6
+player_number = 2
+team_number = 1
 player_name = "Sam but idk"
 team = "Sam"
 team_color = Color(1, 0, 0, 1)
