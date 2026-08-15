@@ -21,9 +21,8 @@ var projectile_speed: float = 0.0
 var max_hp: float = 100.0
 var hp: float = max_hp
 var weapon: int = 0
-var dead: bool = false
 var dir: float
-var weapons_left: Array[int] = [99,3,2,2,1,1,3]
+var weapons_left: Array[int] = [99,3,2,2,1,1,1]
 
 
 func _ready() -> void:
@@ -33,11 +32,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if hp <= 0 or global_position.y > 200:
-		dead = true
+	if hp <= 0 or global_position.y >= 200:
+		set_physics_process(false)
 		global_position.x = 100000
-	
-	if dead:
+		
 		if Globals.player_turn == player_number:
 			Globals.next_player()
 		return
@@ -50,59 +48,59 @@ func _process(delta: float) -> void:
 	elif velocity.x > 0:
 		snail.flip_h = false
 	
-	if Globals.player_turn == player_number:
-		snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
-		
-		if Input.is_action_just_pressed("next_weapon"):
-			weapon += 1
-		
-		if Input.is_action_just_pressed("last_weapon"):
-			weapon -= 1
-		
-		weapon = clamp(weapon, 0, 6)
-		Globals.weapon_number = weapon
-		Globals.weapons_left = weapons_left
-		
-		if global_position > Globals.mouse_position and Mouse.moving:
-			snail.flip_h = true
-		elif Mouse.moving:
-			snail.flip_h = false
-		
-		if weapons_left[weapon] > 0 and next_player_timer.is_stopped():
-			if Input.is_action_pressed("attack"):
-				projectile_speed += 8.0 * delta
-			
-			if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
-				weapons_left[weapon] -= 1
-				shot()
-	else:
+	if Globals.player_turn != player_number:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		return
+	
+	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
+	
+	if Input.is_action_just_pressed("next_weapon"):
+		weapon += 1
+	
+	if Input.is_action_just_pressed("last_weapon"):
+		weapon -= 1
+	
+	weapon = clamp(weapon, 0, 6)
+	Globals.weapon_number = weapon
+	Globals.weapons_left = weapons_left
+	
+	if global_position > Globals.mouse_position and Mouse.moving:
+		snail.flip_h = true
+	elif Mouse.moving:
+		snail.flip_h = false
+	
+	if weapons_left[weapon] > 0 and next_player_timer.is_stopped():
+		if Input.is_action_pressed("attack"):
+			projectile_speed += 8.0 * delta
+		
+		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
+			weapons_left[weapon] -= 1
+			shot()
 
 
 func _physics_process(delta: float) -> void:
-	if !dead:
-		if Globals.player_turn == player_number and !Input.is_action_pressed("attack"):
-			if is_on_floor():
-				dir = Input.get_axis("left", "right")
-				velocity.x += dir * SPEED
-				
-				if Input.is_action_just_pressed("jump"):
-					velocity.x += dir * JUMP_SPEED
-					velocity.y = JUMP
-			else:
-				if Input.is_action_pressed("jump"):
-					velocity.x += dir * JUMP_SPEED * delta
-		velocity.y += PLAYER_GRAVITY
-		
-		if velocity.y > 64 and is_on_floor():
-			velocity.y *= -1
-		
-		move_and_slide()
-		
+	if Globals.player_turn == player_number and !Input.is_action_pressed("attack"):
 		if is_on_floor():
-			velocity.x *= 0.8
+			dir = Input.get_axis("left", "right")
+			velocity.x += dir * SPEED
+			
+			if Input.is_action_just_pressed("jump"):
+				velocity.x += dir * JUMP_SPEED
+				velocity.y = JUMP
 		else:
-			velocity.x *= 0.97
+			if Input.is_action_pressed("jump"):
+				velocity.x += dir * JUMP_SPEED * delta
+	velocity.y += PLAYER_GRAVITY
+	
+	if velocity.y > 64 and is_on_floor():
+		velocity.y *= -1
+	
+	move_and_slide()
+	
+	if is_on_floor():
+		velocity.x *= 0.8
+	else:
+		velocity.x *= 0.97
 
 
 func shot():
@@ -121,7 +119,7 @@ func shot():
 	elif weapon == 5:
 		projectile = load("res://projectiles/drill_strike.tscn").instantiate()
 	elif weapon == 6:
-		projectile = load("res://projectiles/rock.tscn").instantiate()
+		projectile = load("res://projectiles/destroyer_of_games.tscn").instantiate()
 	
 	projectile.global_position = global_position
 	projectile.look_at(Globals.mouse_position)

@@ -72,11 +72,11 @@ func explode(big_explode: bool = false):
 		if dis_to < (4.0 * explosion_size):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			
-			if big_explode:
-				body.damage(hit_power * damage)
-				body.velocity = -transform.x * hit_power * knockback
-			else:
-				body.damage(hit_power * damage / 2.0)
+			if !big_explode:
+				hit_power /= 2.0
+			
+			body.damage(hit_power * damage)
+			body.velocity = -transform.x * hit_power * knockback
 
 
 func _on_explosion_timer_timeout() -> void:

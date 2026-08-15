@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	elif Globals.weapon_number == 5:
 		weapon_label.text = "Drill Strke"
 	elif Globals.weapon_number == 6:
-		weapon_label.text = "Rock"
+		weapon_label.text = "Destroyer Of Games"
 	
 	weapon_label.text += " " + str(Globals.weapons_left[Globals.weapon_number])
 	
