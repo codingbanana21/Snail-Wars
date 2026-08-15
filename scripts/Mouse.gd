@@ -6,6 +6,7 @@ extends Node2D
 
 var moving: bool = false
 var shake_amount: float = 0.0
+var mouse_position: Vector2 = Vector2.ZERO
 
 
 func _ready() -> void:
@@ -13,7 +14,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_position = Globals.mouse_position
+	global_position = Mouse.mouse_position
 	
 	if Globals.weapon_number == 0:
 		weapon_label.text = "Rocket"
@@ -44,6 +45,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion:
+		mouse_position += event.relative
 		moving = true
 	else:
 		moving = false

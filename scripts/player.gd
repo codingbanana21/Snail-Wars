@@ -22,7 +22,7 @@ var max_hp: float = 100.0
 var hp: float = max_hp
 var weapon: int = 0
 var dir: float
-var weapons_left: Array[int] = [99,3,2,2,1,1,0]
+var weapons_left: Array[int] = [99,3,2,2,1,1,1]
 
 
 func _ready() -> void:
@@ -32,13 +32,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if hp <= 0 or global_position.y >= 200:
-		set_physics_process(false)
-		global_position.x = 100000
-		
-		if Globals.player_turn == player_number:
-			Globals.next_player()
-		return
+	if global_position.y >= 200:
+		damage(1)
 	
 	progress_bar.max_value = max_hp
 	progress_bar.value = hp
@@ -52,6 +47,9 @@ func _process(delta: float) -> void:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		return
 	
+	if hp <= 0:
+		Globals.next_player()
+	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
 	
 	if Input.is_action_just_pressed("next_weapon"):
@@ -64,7 +62,7 @@ func _process(delta: float) -> void:
 	Globals.weapon_number = weapon
 	Globals.weapons_left = weapons_left
 	
-	if global_position > Globals.mouse_position and Mouse.moving:
+	if global_position > Mouse.mouse_position and Mouse.moving:
 		snail.flip_h = true
 	elif Mouse.moving:
 		snail.flip_h = false
@@ -123,7 +121,7 @@ func shot():
 		projectile = load("res://projectiles/destroyer_of_games.tscn").instantiate()
 	
 	projectile.global_position = global_position
-	projectile.look_at(Globals.mouse_position)
+	projectile.look_at(Mouse.mouse_position)
 	projectile.speed *= projectile_speed
 	get_parent().add_child(projectile)
 	
@@ -141,8 +139,11 @@ func damage(damge: float):
 
 
 func next_player():
-	if Globals.player_turn == player_number:
-		Globals.mouse_position = global_position
+	if hp <= 0:
+		set_physics_process(false)
+		global_position.x = 100000
+	elif Globals.player_turn == player_number:
+		Mouse.mouse_position = global_position
 
 
 func _on_next_player_timer_timeout() -> void:
@@ -158,4 +159,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		damage(fall_damage)
 		
 		if Globals.player_turn == player_number:
+			next_player_timer.stop()
 			Globals.next_player()
