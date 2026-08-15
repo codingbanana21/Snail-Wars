@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3o83rtce0c2w"
-path="res://.godot/imported/mini_fire.png-0de8e8985b65536cd7f85e443f80bbed.ctex"
+uid="uid://3tydmbpohdgr"
+path="res://.godot/imported/cross.png-30ced71a763af2cea3117fc20c973969.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/mini_fire.png"
-dest_files=["res://.godot/imported/mini_fire.png-0de8e8985b65536cd7f85e443f80bbed.ctex"]
+source_file="res://assets/images/cross.png"
+dest_files=["res://.godot/imported/cross.png-30ced71a763af2cea3117fc20c973969.ctex"]
 
 [params]
 

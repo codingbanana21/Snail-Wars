@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ctdjq1dj1itqd"]
 
 [ext_resource type="Script" uid="uid://clhp10dxg5hpt" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/Snail.png" id="3_dqkch"]
+[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="3_dqkch"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://y40cu0b2lobn" path="res://assets/images/hp_bar.png" id="4_dqkch"]
+[ext_resource type="Texture2D" uid="uid://80ku7v6di7w0" path="res://assets/images/hp_bar2.png" id="4_qlg0r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo7mc"]
 radius = 5.0
@@ -55,12 +57,13 @@ text = "Team"
 label_settings = ExtResource("3_qhqgy")
 horizontal_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1059633122]
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 11.0
-offset_bottom = -8.0
-show_percentage = false
+[node name="ProgressBar" type="TextureProgressBar" parent="." unique_id=1037694749]
+offset_left = -8.5
+offset_top = -17.0
+offset_right = 14.5
+offset_bottom = -1.0
+texture_under = ExtResource("4_qlg0r")
+texture_progress = ExtResource("4_dqkch")
 
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
 wait_time = 3.0

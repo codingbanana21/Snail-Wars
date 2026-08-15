@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdm5g2j38707a"
-path="res://.godot/imported/Snail.png-3323def3611909f930684bdde9bae220.ctex"
+path="res://.godot/imported/snail.png-bb472c0e43392c4215feb070693542b5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/Snail.png"
-dest_files=["res://.godot/imported/Snail.png-3323def3611909f930684bdde9bae220.ctex"]
+source_file="res://assets/images/snail.png"
+dest_files=["res://.godot/imported/snail.png-bb472c0e43392c4215feb070693542b5.ctex"]
 
 [params]
 

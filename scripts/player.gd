@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var snail: Sprite2D = $Snail
 @onready var name_label: Label = $NameLabel
 @onready var team_label: Label = $TeamLabel
-@onready var progress_bar: ProgressBar = $ProgressBar
+@onready var progress_bar: TextureProgressBar = $ProgressBar
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 1
@@ -15,7 +15,7 @@ extends CharacterBody2D
 const JUMP: float = -400.0
 const SPEED: float = 12.0
 const JUMP_SPEED: float = 200
-const PLAYER_GRAVITY: float = 32.0
+const PLAYER_GRAVITY: float = 30.0
 
 var projectile_speed: float = 0.0
 var max_hp: float = 100.0
@@ -79,6 +79,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	velocity.y += PLAYER_GRAVITY
 	
+	if velocity.y > 64 and is_on_floor():
+		velocity.y *= -1
+	
 	if Globals.player_turn == player_number and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
@@ -90,9 +93,6 @@ func _physics_process(delta: float) -> void:
 		else:
 			if Input.is_action_pressed("jump"):
 				velocity.x += dir * JUMP_SPEED * delta
-	
-	if velocity.y > 64 and is_on_floor():
-		velocity.y *= -1
 	
 	move_and_slide()
 	
@@ -157,6 +157,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		var fall_damage = (velocity.y - 600) / 25.0
 		damage(fall_damage)
+		
+		velocity.y *= -0.5
 		
 		if Globals.player_turn == player_number:
 			next_player_timer.stop()
