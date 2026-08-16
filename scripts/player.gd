@@ -17,7 +17,7 @@ const JUMP: float = -400.0
 const SPEED: float = 12.0
 const JUMP_SPEED: float = 200
 const PLAYER_GRAVITY: float = 30.0
-const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "destroyer_of_games"]
+const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
 
 var projectile_speed: float = 0.0
 var max_hp: float = 100.0
@@ -35,9 +35,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if global_position.y >= 200:
 		damage(1)
-	
-	progress_bar.max_value = max_hp
-	progress_bar.value = hp
 	
 	if velocity.x < 0:
 		snail.flip_h = true
@@ -59,6 +56,8 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("last_weapon"):
 		weapon -= 1
+		if weapon <= 0:
+			weapon = 6
 	
 	weapon %= 7
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
@@ -72,6 +71,7 @@ func _process(delta: float) -> void:
 	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
+			Mouse.shot_progess = projectile_speed
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
@@ -119,6 +119,8 @@ func shot_projectile(projectile: NodePath):
 
 func damage(damge: float):
 	hp -= damge
+	progress_bar.max_value = max_hp
+	progress_bar.value = hp
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(int(damge))
