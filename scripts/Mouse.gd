@@ -9,6 +9,8 @@ const WEAPONS: Array[String] = ["Rocket", "Grenade", "Drill", "Bomb", "Air Strik
 var moving: bool = false
 var shake_amount: float = 0.0
 var mouse_position: Vector2 = Vector2.ZERO
+var weapon_left: String
+var weapon: int
 
 
 func _ready() -> void:
@@ -18,7 +20,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_position = Mouse.mouse_position
 	
-	weapon_label.text = WEAPONS[Globals.weapon_number]+" "+str(Globals.weapons_left[Globals.weapon_number])
+	weapon_label.text = WEAPONS[weapon]+" "+weapon_left
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)

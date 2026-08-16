@@ -7,6 +7,7 @@
 radius = 8.0
 
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
+explosion_time = 2.5
 explosion_size = 18
 explosion_accuracy = 20.0
 

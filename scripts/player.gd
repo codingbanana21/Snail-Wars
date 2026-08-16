@@ -7,7 +7,8 @@ extends CharacterBody2D
 @onready var progress_bar: TextureProgressBar = $ProgressBar
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
-@export var player_number: int = 1
+@export var player_number: int = 0
+@export var team_number: int = 0
 @export var player_name: String
 @export var team: String
 @export var team_color: Color
@@ -23,7 +24,6 @@ var max_hp: float = 100.0
 var hp: float = max_hp
 var weapon: int = 0
 var dir: float = 0
-var weapons_left: Array[int] = [-1,2,2,1,1,1,0]
 
 
 func _ready() -> void:
@@ -44,13 +44,13 @@ func _process(delta: float) -> void:
 	elif velocity.x > 0:
 		snail.flip_h = false
 	
-	if Globals.player_turn != player_number:
+	if Globals.player_turn != player_number or team_number != Globals.team_turn:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		return
 	
 	if hp <= 0:
 		next_player_timer.stop()
-		Globals.next_player()
+		Globals.next_player(true)
 	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
 	
@@ -60,23 +60,23 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("last_weapon"):
 		weapon -= 1
 	
-	weapon = clamp(weapon, 0, 6)
-	Globals.weapon_number = weapon
-	Globals.weapons_left = weapons_left
+	weapon %= 7
+	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
+	Mouse.weapon = weapon
 	
 	if global_position > Mouse.mouse_position and Mouse.moving:
 		snail.flip_h = true
 	elif Mouse.moving:
 		snail.flip_h = false
 	
-	if weapons_left[weapon] != 0 and next_player_timer.is_stopped():
+	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
 			
-			weapons_left[weapon] -= 1
+			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
 			Input.action_release("attack")
 			next_player_timer.start()
@@ -88,7 +88,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y > 64 and is_on_floor():
 		velocity.y *= -1
 	
-	if Globals.player_turn == player_number and !Input.is_action_pressed("attack"):
+	if Globals.player_turn == player_number and team_number == Globals.team_turn and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED
@@ -129,7 +129,7 @@ func next_player():
 	if hp <= 0:
 		set_physics_process(false)
 		global_position.x = 100000
-	elif Globals.player_turn == player_number:
+	elif Globals.player_turn == player_number and team_number == Globals.team_turn:
 		Mouse.mouse_position = global_position
 
 
@@ -147,6 +147,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		velocity.y *= -0.5
 		
-		if Globals.player_turn == player_number:
+		if Globals.player_turn == player_number and team_number == Globals.team_turn:
 			next_player_timer.stop()
 			Globals.next_player()

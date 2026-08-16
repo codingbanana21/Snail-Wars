@@ -1,18 +1,34 @@
 extends Node2D
 
-var player_turn: int = 1
-var players: int = 6
-var weapon_number: int = 0
-var weapons_left: Array = [0]
+var player_turn: int = 0
+var team_turn: int = 0
+var players_in_team: int = 3
+var number_of_teams: int = 2
+var teams_weapons: Array[Array] = [[-1,5,4,3,1,1,0]]
 
 
 func _ready() -> void:
-	player_turn = randi_range(1, players)
-	next_player()
+	for i in range(number_of_teams - 1):
+		teams_weapons = teams_weapons + teams_weapons
 
 
-func next_player():
-	player_turn = (player_turn % players) + 1
+func next_player(skip_player: bool = false):
+	#player turn and teams picking
+	if skip_player:
+		player_turn += 1
+		
+		if player_turn >= players_in_team:
+			player_turn = 0
+	else:
+		team_turn += 1
+		
+		if team_turn >= number_of_teams:
+			if player_turn >= players_in_team - 1:
+				team_turn = 0
+				player_turn = 0
+			else:
+				team_turn = 0
+				player_turn += 1
 	
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		player.next_player()
