@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	
 	if hp <= 0:
 		next_player_timer.stop()
-		Globals.next_player()
+		Globals.next_player(true)
 	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
 	
