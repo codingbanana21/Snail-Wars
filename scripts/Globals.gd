@@ -3,27 +3,28 @@ extends Node2D
 var player_turn: int = 0
 var team_turn: int = 0
 var players_in_team: int = 3
+var number_of_teams: int = 2
 var weapon_number: int = 0
 var weapons_left: Array = [0]
 
 
 func next_player(skip_player: bool = false):
+	#player turn and teams picking
 	if skip_player:
-		print("skip")
 		player_turn += 1
 		
-		if player_turn > 2:
+		if player_turn >= players_in_team:
 			player_turn = 0
 	else:
-		if team_turn == 1:
-			if player_turn == 2:
+		team_turn += 1
+		
+		if team_turn >= number_of_teams:
+			if player_turn >= players_in_team - 1:
+				team_turn = 0
 				player_turn = 0
 			else:
+				team_turn = 0
 				player_turn += 1
-		
-		team_turn = (team_turn + 1) % 2
-	
-	print("player_turn ", player_turn, " team_turn ", team_turn)
 	
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		player.next_player()
