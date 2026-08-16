@@ -1,12 +1,14 @@
 extends Node2D
 
 @onready var weapon_label: Label = $WeaponLabel
+@onready var progress_bar: TextureProgressBar = $ProgressBar
 @onready var shake_timer: Timer = $ShakeTimer
 @onready var camera_2d: Camera2D = $Camera2D
 
 const WEAPONS: Array[String] = ["Rocket", "Grenade", "Drill", "Bomb", "Air Strike", "Drill Strike", "Destroyer Of Games"]
 
 var moving: bool = false
+var shot_progess: float = 0.0
 var shake_amount: float = 0.0
 var mouse_position: Vector2 = Vector2.ZERO
 var weapon_left: String
@@ -20,6 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_position = Mouse.mouse_position
 	
+	progress_bar.value = shot_progess
 	weapon_label.text = WEAPONS[weapon]+" "+weapon_left
 	
 	if !shake_timer.is_stopped():

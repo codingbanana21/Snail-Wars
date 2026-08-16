@@ -36,9 +36,6 @@ func _process(delta: float) -> void:
 	if global_position.y >= 200:
 		damage(1)
 	
-	progress_bar.max_value = max_hp
-	progress_bar.value = hp
-	
 	if velocity.x < 0:
 		snail.flip_h = true
 	elif velocity.x > 0:
@@ -72,6 +69,7 @@ func _process(delta: float) -> void:
 	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
+			Mouse.shot_progess = projectile_speed
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
@@ -119,6 +117,8 @@ func shot_projectile(projectile: NodePath):
 
 func damage(damge: float):
 	hp -= damge
+	progress_bar.max_value = max_hp
+	progress_bar.value = hp
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(int(damge))
