@@ -17,7 +17,7 @@ const JUMP: float = -400.0
 const SPEED: float = 12.0
 const JUMP_SPEED: float = 200
 const PLAYER_GRAVITY: float = 30.0
-const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "destroyer_of_games"]
+const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
 
 var projectile_speed: float = 0.0
 var max_hp: float = 100.0
@@ -56,6 +56,8 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("last_weapon"):
 		weapon -= 1
+		if weapon <= 0:
+			weapon = 6
 	
 	weapon %= 7
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
