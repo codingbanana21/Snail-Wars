@@ -24,7 +24,6 @@ var max_hp: float = 100.0
 var hp: float = max_hp
 var weapon: int = 0
 var dir: float = 0
-var weapons_left: Array[int] = [-1,2,2,1,1,1,0]
 
 
 func _ready() -> void:
@@ -62,22 +61,22 @@ func _process(delta: float) -> void:
 		weapon -= 1
 	
 	weapon %= 7
-	Globals.weapon_number = weapon
-	Globals.weapons_left = weapons_left
+	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
+	Mouse.weapon = weapon
 	
 	if global_position > Mouse.mouse_position and Mouse.moving:
 		snail.flip_h = true
 	elif Mouse.moving:
 		snail.flip_h = false
 	
-	if weapons_left[weapon] != 0 and next_player_timer.is_stopped():
+	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
 			
-			weapons_left[weapon] -= 1
+			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
 			Input.action_release("attack")
 			next_player_timer.start()
