@@ -62,6 +62,7 @@ func _process(delta: float) -> void:
 	weapon %= 7
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 	Mouse.weapon = weapon
+	Mouse.shot_progess = projectile_speed
 	
 	if global_position > Mouse.global_position and Mouse.moving:
 		snail.flip_h = true
@@ -71,7 +72,6 @@ func _process(delta: float) -> void:
 	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
-			Mouse.shot_progess = projectile_speed
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")

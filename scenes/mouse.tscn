@@ -3,8 +3,7 @@
 [ext_resource type="Script" uid="uid://dq5pcpy5obcn6" path="res://scripts/Mouse.gd" id="1_ouscy"]
 [ext_resource type="Texture2D" uid="uid://3tydmbpohdgr" path="res://assets/images/cross.png" id="2_xa71f"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_xa71f"]
-[ext_resource type="Texture2D" uid="uid://80ku7v6di7w0" path="res://assets/images/hp_bar2.png" id="4_dexx5"]
-[ext_resource type="Texture2D" uid="uid://y40cu0b2lobn" path="res://assets/images/hp_bar.png" id="5_j7mu1"]
+[ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="4_iog6k"]
 
 [node name="Mouse" type="Node2D" unique_id=444797727]
 z_index = 100
@@ -30,8 +29,7 @@ offset_right = 15.0
 offset_bottom = -3.5
 max_value = 10.0
 step = 0.1
-texture_under = ExtResource("4_dexx5")
-texture_progress = ExtResource("5_j7mu1")
+texture_progress = ExtResource("4_iog6k")
 tint_progress = Color(1, 1, 0, 1)
 
 [node name="ShakeTimer" type="Timer" parent="." unique_id=1389379614]
