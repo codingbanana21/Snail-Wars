@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 	Mouse.weapon = weapon
 	
-	if global_position > Mouse.mouse_position and Mouse.moving:
+	if global_position > Mouse.global_position and Mouse.moving:
 		snail.flip_h = true
 	elif Mouse.moving:
 		snail.flip_h = false
@@ -112,7 +112,7 @@ func shot_projectile(projectile: NodePath):
 	var new_projectile: Projectile
 	new_projectile = load(projectile).instantiate()
 	new_projectile.global_position = global_position
-	new_projectile.look_at(Mouse.mouse_position)
+	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= projectile_speed
 	get_parent().add_child(new_projectile)
 
@@ -132,7 +132,7 @@ func next_player():
 		set_physics_process(false)
 		global_position.x = 100000
 	elif Globals.player_turn == player_number and team_number == Globals.team_turn:
-		Mouse.mouse_position = global_position
+		Mouse.global_position = global_position
 
 
 func _on_next_player_timer_timeout() -> void:

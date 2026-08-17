@@ -17,4 +17,9 @@ func _process(delta: float) -> void:
 
 
 func remove_tile(tile_position: Vector2):
-	map.set_cell(tile_position, 0, Vector2i(0, 4))
+	var map_tile = map.get_cell_atlas_coords(tile_position)
+	
+	if map_tile.y < 3:
+		map.set_cell(tile_position, 0, map_tile+Vector2i(0, 3))
+	
+	#map.set_cell(tile_position, 0, Vector2i(0, 4))

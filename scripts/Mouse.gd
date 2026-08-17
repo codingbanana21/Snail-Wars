@@ -10,7 +10,6 @@ const WEAPONS: Array[String] = ["Rocket", "Grenade", "Drill", "Bomb", "Air Strik
 var moving: bool = false
 var shot_progess: float = 0.0
 var shake_amount: float = 0.0
-var mouse_position: Vector2 = Vector2.ZERO
 var weapon_left: String
 var weapon: int
 
@@ -20,8 +19,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	global_position = Mouse.mouse_position
-	
 	progress_bar.value = shot_progess
 	weapon_label.text = WEAPONS[weapon]+" "+weapon_left
 	
@@ -37,7 +34,7 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion:
-		mouse_position += event.relative
+		global_position += event.relative
 		moving = true
 	else:
 		moving = false
