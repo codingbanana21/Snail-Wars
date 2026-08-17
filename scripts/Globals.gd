@@ -4,7 +4,7 @@ var player_turn: int = 0
 var team_turn: int = 0
 var players_in_team: int = 3
 var number_of_teams: int = 2
-var teams_weapons: Array[Array] = [[-1,5,4,3,1,1,1], [-1,5,4,3,1,1,1]]
+var teams_weapons: Array[Array] = [[-1,-1,4,3,1,1,1], [-1,-1,4,3,1,1,1]]
 
 
 func next_player(skip_player: bool = false):

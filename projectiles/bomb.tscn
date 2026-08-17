@@ -7,12 +7,12 @@
 radius = 7.0
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
-speed = 90.0
-damage = 60
-knockback = 1200
+speed = 80.0
+damage = 60.0
+knockback = 1500
 explosion_time = 1.5
-explosion_size = 24
-explosion_accuracy = 28.0
+explosion_size = 22
+explosion_accuracy = 30.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_3xfjl")
