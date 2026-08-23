@@ -5,11 +5,8 @@
 [node name="DestroyerOfGames" unique_id=791496552 instance=ExtResource("1_cudxu")]
 speed = 0.0
 projectile_gravity = 1500
-damage = 100.0
-knockback = 2000
-explosion_time = 100.0
-explosion_size = 30
-explosion_accuracy = 40.0
-projectile_hp = 5
-bounce = true
+damage = 500.0
+knockback = 10000
+explosion_size = 50
+explosion_accuracy = 70.0
 spawn_at_mouse = true

@@ -6,12 +6,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_gjjih"]
 radius = 7.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cudxu"]
+
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
-speed = 20.0
-damage = 80.0
-knockback = 1800
+speed = 15.0
+damage = 75.0
+knockback = 1700
 explosion_size = 28
 explosion_accuracy = 38.0
+bounce = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_gjjih")
@@ -20,4 +23,4 @@ texture = ExtResource("2_gjjih")
 shape = SubResource("CircleShape2D_gjjih")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-shape = null
+shape = SubResource("CircleShape2D_cudxu")
