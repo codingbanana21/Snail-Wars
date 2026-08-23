@@ -5,8 +5,8 @@ extends Node2D
 
 
 func _ready() -> void:
-	#player_turn = randi_range(0, players_in_team - 1)
-	#team_turn = randi_range(0, 1)
+	Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
+	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	Globals.next_player()
 
 

@@ -4,7 +4,8 @@ extends CharacterBody2D
 @onready var snail: Sprite2D = $Snail
 @onready var name_label: Label = $NameLabel
 @onready var team_label: Label = $TeamLabel
-@onready var progress_bar: TextureProgressBar = $ProgressBar
+@onready var hp_bar: TextureProgressBar = $HPBar
+@onready var shot_bar: TextureProgressBar = $ShotBar
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 0
@@ -29,10 +30,14 @@ var dir: float = 0
 func _ready() -> void:
 	name_label.text = player_name
 	team_label.text = "Team " + team
-	progress_bar.modulate = team_color
+	hp_bar.modulate = team_color
+	hp_bar.max_value = max_hp
 
 
 func _process(delta: float) -> void:
+	shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
+	shot_bar.value = projectile_speed
+	
 	if global_position.y >= 200:
 		damage(1)
 	
@@ -62,7 +67,6 @@ func _process(delta: float) -> void:
 	weapon %= 7
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 	Mouse.weapon = weapon
-	Mouse.shot_progess = projectile_speed
 	
 	if global_position > Mouse.global_position and Mouse.moving:
 		snail.flip_h = true
@@ -119,8 +123,7 @@ func shot_projectile(projectile: NodePath):
 
 func damage(damge: float):
 	hp -= damge
-	progress_bar.max_value = max_hp
-	progress_bar.value = hp
+	hp_bar.value = hp
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(int(damge))

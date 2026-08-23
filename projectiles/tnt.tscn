@@ -7,11 +7,11 @@
 radius = 7.0
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
-speed = 30.0
+speed = 20.0
 damage = 80.0
 knockback = 1800
-explosion_size = 26
-explosion_accuracy = 36.0
+explosion_size = 28
+explosion_accuracy = 38.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_gjjih")

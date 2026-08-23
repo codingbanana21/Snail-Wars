@@ -5,10 +5,10 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var speed: float = 65.0
-@export var projectile_gravity: int = 600
-@export var damage: float = 40
+@export var projectile_gravity: int = 500
+@export var damage: float = 45
 @export var knockback: int = 1000
-@export var explosion_time: float = 2.5
+@export var explosion_time: float = 2.9
 @export var explosion_size: int = 14
 @export var explosion_accuracy: float = 20
 @export var projectile_hp: int = 1
@@ -36,28 +36,26 @@ func _physics_process(delta: float) -> void:
 
 func explode(big_explode: bool = false):
 	projectile_hp -= 1
+	
 	if projectile_hp <= 0 or big_explode:
 		big_explode = true
 		queue_free()
-	
-	if big_explode:
-		Mouse.shake(damage / 10.0)
-	else:
-		Mouse.shake(damage / 20.0)
 	
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position
 	hit_particle.emitting = true
 	
 	if big_explode:
+		Mouse.shake(damage / 10.0)
 		hit_particle.amount = int(damage)
 	else:
+		Mouse.shake(damage / 20.0)
 		hit_particle.amount = int(damage / 2.0)
 	
 	get_parent().add_child(hit_particle)
 	
 	if bounce:
-		velocity.y *= -1
+		velocity.y *= -0.8
 	
 	# destroy map
 	var tile_position: Vector2 = round(global_position / 4.0)
