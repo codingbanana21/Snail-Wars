@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var detect_box: Area2D = $DetectBox
 @onready var explosion_timer: Timer = $ExplosionTimer
 
-@export var speed: float = 65.0
+@export var speed: float = 60.0
 @export var projectile_gravity: int = 500
 @export var damage: float = 45
 @export var knockback: int = 1000
@@ -45,17 +45,12 @@ func explode(end_explode: bool = false):
 		end_explode = true
 		queue_free()
 	
+	Mouse.shake(damage / 10.0)
+	
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position
 	hit_particle.emitting = true
-	
-	if end_explode:
-		Mouse.shake(damage / 10.0)
-		hit_particle.amount = int(damage)
-	else:
-		Mouse.shake(damage / 20.0)
-		hit_particle.amount = int(damage / 2.0)
-	
+	hit_particle.amount = int(damage)
 	get_parent().add_child(hit_particle)
 	
 	# destroy map
@@ -71,9 +66,6 @@ func explode(end_explode: bool = false):
 		if dis_to < (4.0 * explosion_size):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			
-			if !end_explode:
-				hit_power /= 2.0
-			
 			player.damage(hit_power * damage)
 			player.velocity = -transform.x * hit_power * knockback
 
@@ -83,8 +75,4 @@ func _on_explosion_timer_timeout() -> void:
 
 
 func _on_detect_box_body_entered(body: Node2D) -> void:
-	if body is Player:
-		explode(true)
-	else:
-		explode()
-	
+	explode()

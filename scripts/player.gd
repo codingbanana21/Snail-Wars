@@ -14,9 +14,9 @@ extends CharacterBody2D
 @export var team: String
 @export var team_color: Color
 
-const JUMP: float = -400.0
+const JUMP: float = -450.0
 const SPEED: float = 12.0
-const JUMP_SPEED: float = 200
+const JUMP_SPEED: float = 180
 const PLAYER_GRAVITY: float = 30.0
 const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
 
@@ -87,7 +87,10 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity.y += PLAYER_GRAVITY
+	if velocity.y > 0:
+		velocity.y += PLAYER_GRAVITY * 1.5
+	else:
+		velocity.y += PLAYER_GRAVITY
 	
 	if Globals.player_turn == player_number and team_number == Globals.team_turn and !Input.is_action_pressed("attack"):
 		if is_on_floor():
@@ -99,7 +102,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y = JUMP
 		else:
 			if Input.is_action_pressed("jump"):
-				velocity.x += dir * JUMP_SPEED * delta
+				velocity.x += dir * JUMP_SPEED * 2.0 * delta
 	
 	move_and_slide()
 	

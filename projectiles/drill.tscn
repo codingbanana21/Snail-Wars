@@ -4,12 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="2_tpgjy"]
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
-speed = 55.0
-damage = 35.0
-knockback = 800
-explosion_size = 8
-explosion_accuracy = 10.0
-projectile_hp = 10
+damage = 30.0
+knockback = 600
+explosion_size = 10
+explosion_accuracy = 12.0
+projectile_hp = 8
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_tpgjy")
