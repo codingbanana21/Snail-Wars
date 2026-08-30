@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var damage: float = 45
 @export var knockback: int = 1000
 @export var explosion_time: float = 2.9
+@export var no_explosion_time: bool = false
 @export var explosion_size: int = 14
 @export var explosion_accuracy: float = 20
 @export var projectile_hp: int = 1
@@ -17,7 +18,8 @@ extends CharacterBody2D
 
 
 func _ready() -> void:
-	explosion_timer.start(explosion_time)
+	if !no_explosion_time:
+		explosion_timer.start(explosion_time)
 	
 	#spawn type
 	if spawn_at_mouse:

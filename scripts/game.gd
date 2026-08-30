@@ -12,7 +12,6 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("skip"):
-		Globals.player_turn = (Globals.player_turn % 4) + 1
 		Globals.next_player()
 
 

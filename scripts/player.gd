@@ -18,7 +18,7 @@ const JUMP: float = -450.0
 const SPEED: float = 12.0
 const JUMP_SPEED: float = 180
 const PLAYER_GRAVITY: float = 30.0
-const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
+const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "land_mine_strike", "destroyer_of_games"]
 
 var projectile_speed: float = 0.0
 var max_hp: float = 100.0
@@ -61,10 +61,10 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("last_weapon"):
 		weapon -= 1
-		if weapon <= 0:
-			weapon = 6
+		if weapon < 0:
+			weapon = 7
 	
-	weapon %= 7
+	weapon %= 8
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 	Mouse.weapon = weapon
 	
@@ -143,11 +143,11 @@ func _on_next_player_timer_timeout() -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if velocity.y > 700:
+	if velocity.y > 1000:
 		# Shake the screen
 		Mouse.shake()
 		
-		var fall_damage = (velocity.y - 600) / 25.0
+		var fall_damage = (velocity.y - 900) / 32.0
 		damage(fall_damage)
 		
 		velocity.y *= -0.5
