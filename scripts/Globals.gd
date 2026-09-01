@@ -2,7 +2,7 @@ extends Node2D
 
 var player_turn: int = 0
 var team_turn: int = 0
-var players_in_team: int = 3
+var players_in_team: int = 4
 var number_of_teams: int = 2
 var teams_weapons: Array[Array] = [[-1,-1,3,2,1,1,1,1], [-1,-1,3,2,1,1,1,1]]
 

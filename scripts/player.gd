@@ -25,6 +25,7 @@ var max_hp: float = 100.0
 var hp: float = max_hp
 var weapon: int = 0
 var dir: float = 0
+var has_shot_projectile: bool = false
 
 
 func _ready() -> void:
@@ -50,9 +51,15 @@ func _process(delta: float) -> void:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
 		return
 	
+	# skip dead player
 	if hp <= 0:
 		next_player_timer.stop()
 		Globals.next_player(true)
+		return
+	
+	if next_player_timer.is_stopped() and has_shot_projectile and is_on_floor():
+		Globals.next_player()
+		has_shot_projectile = false
 	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
 	
@@ -82,6 +89,7 @@ func _process(delta: float) -> void:
 			
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
+			has_shot_projectile = true
 			Input.action_release("attack")
 			next_player_timer.start()
 
@@ -138,19 +146,13 @@ func next_player():
 		Mouse.global_position = global_position
 
 
-func _on_next_player_timer_timeout() -> void:
-	Globals.next_player()
-
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if velocity.y > 1000:
-		# Shake the screen
-		Mouse.shake()
-		
-		var fall_damage = (velocity.y - 900) / 32.0
+	if velocity.y > 800:
+		var fall_damage = (velocity.y - 800) / 40.0
+		Mouse.shake(fall_damage)
 		damage(fall_damage)
 		
-		velocity.y *= -0.5
+		velocity.y *= -0.65
 		
 		if Globals.player_turn == player_number and team_number == Globals.team_turn:
 			next_player_timer.stop()

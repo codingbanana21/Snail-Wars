@@ -40,6 +40,6 @@ func _input(event: InputEvent) -> void:
 		moving = false
 
 
-func shake(amount: float = 3.0, time: float = 0.1):
+func shake(amount: float = 3.0, time: float = 0.15):
 	shake_amount = amount
 	shake_timer.start(time)
