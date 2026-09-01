@@ -3,10 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_cudxu"]
 
 [node name="DestroyerOfGames" unique_id=791496552 instance=ExtResource("1_cudxu")]
+scale = Vector2(4, 4)
 speed = 0.0
-projectile_gravity = 1500
+projectile_gravity = 1000
 damage = 500.0
-knockback = 10000
+knockback = 3000
+no_explosion_time = true
 explosion_size = 50
-explosion_accuracy = 70.0
 spawn_at_mouse = true

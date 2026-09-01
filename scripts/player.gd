@@ -69,9 +69,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("last_weapon"):
 		weapon -= 1
 		if weapon < 0:
-			weapon = 7
+			weapon = 8
 	
-	weapon %= 8
+	weapon %= 9
 	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 	Mouse.weapon = weapon
 	

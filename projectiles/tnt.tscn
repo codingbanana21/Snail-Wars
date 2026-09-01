@@ -9,11 +9,11 @@ radius = 7.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_cudxu"]
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
-speed = 15.0
+speed = 10.0
 damage = 75.0
-knockback = 1700
-explosion_size = 28
-explosion_accuracy = 38.0
+knockback = 2000
+explosion_size = 26
+explosion_accuracy = 36.0
 bounce = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]

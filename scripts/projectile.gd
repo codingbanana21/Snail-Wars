@@ -11,7 +11,6 @@ extends CharacterBody2D
 @export var explosion_time: float = 2.9
 @export var no_explosion_time: bool = false
 @export var explosion_size: int = 14
-@export var explosion_accuracy: float = 20
 @export var projectile_hp: int = 1
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
@@ -57,8 +56,10 @@ func explode(end_explode: bool = false):
 	
 	# destroy map
 	var tile_position: Vector2 = round(global_position / 4.0)
+	var explosion_accuracy: float = PI * 2
+	
 	for size in range(explosion_size):
-		for number in range(explosion_accuracy * PI * 2):
+		for number in range(explosion_accuracy * 8 * size):
 			get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
 	
 	# hit players

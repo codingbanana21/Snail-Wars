@@ -11,11 +11,11 @@ size = Vector2(11, 19.5)
 
 [node name="LandMine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
 speed = 0.0
-damage = 35.0
-knockback = 800
+damage = 25.0
+knockback = 600
 no_explosion_time = true
-explosion_size = 12
-explosion_accuracy = 18.0
+explosion_size = 10
+explosion_accuracy = 16.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 rotation = -1.5707964
