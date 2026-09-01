@@ -17,7 +17,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	weapon_label.text = WEAPONS[weapon]+" "+weapon_left
+	if int(weapon_left) >= 0:
+		weapon_label.text = WEAPONS[weapon]+" "+weapon_left
+	else:
+		weapon_label.text = WEAPONS[weapon]
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)

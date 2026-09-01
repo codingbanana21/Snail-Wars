@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Snail Wars"
 config/tags=PackedStringArray("2d", "multplayer")
-run/main_scene="uid://dbu738lf8tcco"
+run/main_scene="uid://cip5bmqtnt7sm"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

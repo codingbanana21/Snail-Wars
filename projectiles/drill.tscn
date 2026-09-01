@@ -8,7 +8,7 @@ damage = 30.0
 knockback = 600
 explosion_size = 10
 explosion_accuracy = 12.0
-projectile_hp = 8
+projectile_hp = 6
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_tpgjy")
