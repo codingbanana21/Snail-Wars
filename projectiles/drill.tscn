@@ -5,8 +5,8 @@
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 damage = 30.0
+size = 10
 knockback = 0
-explosion_size = 10
 projectile_hp = 6
 
 [node name="Image" parent="." index="0" unique_id=2045045234]

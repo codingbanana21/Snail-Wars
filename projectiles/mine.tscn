@@ -9,13 +9,11 @@ size = Vector2(9, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4n3"]
 size = Vector2(11, 19.5)
 
-[node name="LandMine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
-speed = 0.0
-damage = 25.0
+[node name="Mine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
+damage = 30.0
 knockback = 600
-no_explosion_time = true
-explosion_size = 10
-explosion_accuracy = 16.0
+speed = 0.0
+not_players = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 rotation = -1.5707964
