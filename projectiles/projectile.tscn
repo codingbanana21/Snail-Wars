@@ -10,6 +10,7 @@ radius = 1.0
 size = Vector2(15, 9)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
+top_level = true
 collision_layer = 0
 script = ExtResource("1_q3m7n")
 

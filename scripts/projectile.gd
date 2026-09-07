@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var projectile_gravity: int = 500
 @export var damage: float = 45
 @export var knockback: int = 1000
-@export var explosion_time: float = 2.9
+@export var explosion_time: float = 3.0
 @export var no_explosion_time: bool = false
 @export var explosion_size: int = 14
 @export var projectile_hp: int = 1
@@ -30,6 +30,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !no_explosion_time:
+		Mouse.global_position = global_position
+	
 	velocity.y += projectile_gravity * delta
 	rotation = velocity.angle()
 	move_and_slide()
@@ -45,6 +48,12 @@ func explode(end_explode: bool = false):
 	elif projectile_hp <= 0 or end_explode:
 		end_explode = true
 		queue_free()
+		
+		if !no_explosion_time:
+			set_physics_process(false)
+			get_parent().next_player_timer.start()
+			get_parent().has_shot_projectile = false
+			Mouse.global_position = get_parent().global_position
 	
 	Mouse.shake(damage / 5.0)
 	
@@ -60,7 +69,7 @@ func explode(end_explode: bool = false):
 	
 	for size in range(explosion_size):
 		for number in range(explosion_accuracy * 8 * size):
-			get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
+			get_parent().get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
 	
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):

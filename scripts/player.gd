@@ -26,6 +26,7 @@ var hp: float = max_hp
 var weapon: int = 0
 var dir: float = 0
 var has_shot_projectile: bool = false
+var is_player_turn: bool
 
 
 func _ready() -> void:
@@ -57,24 +58,21 @@ func _process(delta: float) -> void:
 	if global_position.y >= 200:
 		damage(100)
 	
-	if next_player_timer.is_stopped() and has_shot_projectile and is_on_floor():
-		Globals.next_player()
-		has_shot_projectile = false
-	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
 	
-	if Input.is_action_just_pressed("next_weapon"):
-		weapon += 1
-	
-	if Input.is_action_just_pressed("last_weapon"):
-		weapon -= 1
-		if weapon < 0:
-			weapon = 8
-	
-	weapon %= 9
-	Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
-	Mouse.weapon = weapon
-	
+	if !Input.is_action_pressed("attack"):
+		if Input.is_action_just_pressed("next_weapon"):
+			weapon += 1
+		
+		if Input.is_action_just_pressed("last_weapon"):
+			weapon -= 1
+			if weapon < 0:
+				weapon = 8
+		
+		weapon %= 9
+		Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
+		Mouse.weapon = weapon
+		
 	if global_position > Mouse.global_position and Mouse.moving:
 		snail.flip_h = true
 	elif Mouse.moving:
@@ -84,14 +82,14 @@ func _process(delta: float) -> void:
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
 		
-		if Input.is_action_just_released("attack") or projectile_speed >= 10.0:
+		if Input.is_action_just_released("attack") or projectile_speed >= 12.0:
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
 			
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
 			has_shot_projectile = true
+			Mouse.hide()
 			Input.action_release("attack")
-			next_player_timer.start()
 
 
 func _physics_process(delta: float) -> void:
@@ -100,7 +98,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y += PLAYER_GRAVITY
 	
-	if Globals.player_turn == player_number and team_number == Globals.team_turn and !Input.is_action_pressed("attack"):
+	if is_player_turn and !has_shot_projectile and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED
@@ -126,12 +124,16 @@ func shot_projectile(projectile: NodePath):
 	new_projectile.global_position = global_position
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= projectile_speed
-	get_parent().add_child(new_projectile)
+	add_child(new_projectile)
 
 
 func damage(damge: float):
 	hp -= damge
 	hp_bar.value = hp
+	
+	if is_player_turn:
+		next_player_timer.stop()
+		Globals.next_player()
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(int(damge))
@@ -139,10 +141,12 @@ func damage(damge: float):
 
 
 func next_player():
+	is_player_turn = Globals.player_turn == player_number and team_number == Globals.team_turn
+	
 	if hp <= 0:
 		set_physics_process(false)
 		global_position.x = 100000
-	elif Globals.player_turn == player_number and team_number == Globals.team_turn:
+	elif is_player_turn:
 		Mouse.global_position = global_position
 
 
@@ -151,9 +155,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		var fall_damage = (velocity.y - 800) / 40.0
 		Mouse.shake(fall_damage)
 		damage(fall_damage)
-		
 		velocity.y *= -0.65
-		
-		if Globals.player_turn == player_number and team_number == Globals.team_turn:
-			next_player_timer.stop()
-			Globals.next_player()
+
+
+func _on_next_player_timer_timeout() -> void:
+	if Globals.player_turn == player_number and team_number == Globals.team_turn:
+		Globals.next_player()

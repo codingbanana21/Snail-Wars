@@ -72,7 +72,7 @@ offset_right = 48.0
 offset_bottom = 16.0
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -8)
-max_value = 10.0
+max_value = 12.0
 step = 0.1
 texture_progress = ExtResource("6_tuyoq")
 tint_progress = Color(1, 1, 0, 1)
@@ -82,3 +82,4 @@ wait_time = 3.0
 one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="NextPlayerTimer" to="." method="_on_next_player_timer_timeout"]
