@@ -11,7 +11,6 @@ speed = 90.0
 damage = 55.0
 knockback = 1500
 explosion_size = 18
-explosion_accuracy = 28.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_3xfjl")

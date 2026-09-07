@@ -39,9 +39,6 @@ func _process(delta: float) -> void:
 	shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 	shot_bar.value = projectile_speed
 	
-	if global_position.y >= 200:
-		damage(1)
-	
 	if velocity.x < 0:
 		snail.flip_h = true
 	elif velocity.x > 0:
@@ -56,6 +53,9 @@ func _process(delta: float) -> void:
 		next_player_timer.stop()
 		Globals.next_player(true)
 		return
+	
+	if global_position.y >= 200:
+		damage(100)
 	
 	if next_player_timer.is_stopped() and has_shot_projectile and is_on_floor():
 		Globals.next_player()

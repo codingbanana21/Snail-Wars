@@ -6,12 +6,14 @@
 [node name="DrillStrike" unique_id=791496552 instance=ExtResource("1_qlak5")]
 speed = 0.0
 damage = 30.0
-knockback = 400
+knockback = 0
 no_explosion_time = true
 explosion_size = 10
-explosion_accuracy = 12.0
 projectile_hp = 6
 spawn_at_mouse = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_u8o3f")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
+shape = null

@@ -25,7 +25,7 @@ func _ready() -> void:
 		global_position.x = Mouse.global_position.x
 		global_position.y = -1024.0
 	else:
-		global_position += transform.x * 20.0
+		global_position += transform.x * 12.0
 		velocity += transform.x * speed
 
 
@@ -46,7 +46,7 @@ func explode(end_explode: bool = false):
 		end_explode = true
 		queue_free()
 	
-	Mouse.shake(damage / 10.0)
+	Mouse.shake(damage / 5.0)
 	
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position
@@ -78,4 +78,5 @@ func _on_explosion_timer_timeout() -> void:
 
 
 func _on_detect_box_body_entered(body: Node2D) -> void:
-	explode()
+	if explosion_timer.time_left <= explosion_time - 0.05:
+		explode()

@@ -3,18 +3,21 @@
 [ext_resource type="Script" uid="uid://01gbgpgohfiy" path="res://scripts/projectile.gd" id="1_q3m7n"]
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="2_ighsu"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3xfjl"]
+radius = 1.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
 size = Vector2(15, 9)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 collision_layer = 0
-collision_mask = 3
 script = ExtResource("1_q3m7n")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=2045045234]
 texture = ExtResource("2_ighsu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679883136]
+shape = SubResource("CircleShape2D_3xfjl")
 
 [node name="DetectBox" type="Area2D" parent="." unique_id=289666369]
 collision_layer = 3

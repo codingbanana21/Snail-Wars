@@ -7,12 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://80ku7v6di7w0" path="res://assets/images/hp_bar2.png" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="6_tuyoq"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fo7mc"]
-radius = 5.0
-height = 11.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
+size = Vector2(14, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkbq"]
-size = Vector2(12, 15)
+size = Vector2(14, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=1048355818 groups=["Player"]]
 scale = Vector2(2, 2)
@@ -26,13 +25,14 @@ color = Color(0, 0, 0, 0.47058824)
 polygon = PackedVector2Array(-6, 6.5, -8.5, 9, -6.5, 10, 6, 10, 8, 8.5, 6, 6.5)
 
 [node name="Snail" type="Sprite2D" parent="." unique_id=1069079524]
-position = Vector2(0, -1.5)
 texture = ExtResource("3_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=634553446]
-shape = SubResource("CapsuleShape2D_fo7mc")
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_fjrip")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=573629312]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=887883612]
 position = Vector2(0, 9.5)
