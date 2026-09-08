@@ -3,15 +3,10 @@
 [ext_resource type="Script" uid="uid://clhp10dxg5hpt" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="3_dqkch"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_qhqgy"]
-[ext_resource type="Texture2D" uid="uid://y40cu0b2lobn" path="res://assets/images/hp_bar.png" id="4_dqkch"]
-[ext_resource type="Texture2D" uid="uid://80ku7v6di7w0" path="res://assets/images/hp_bar2.png" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
 size = Vector2(14, 11)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmkbq"]
-size = Vector2(14, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=1048355818 groups=["Player"]]
 scale = Vector2(2, 2)
@@ -19,24 +14,12 @@ collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_3vyb7")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1954216530]
-position = Vector2(0, -2.5)
-color = Color(0, 0, 0, 0.47058824)
-polygon = PackedVector2Array(-6, 6.5, -8.5, 9, -6.5, 10, 6, 10, 8, 8.5, 6, 6.5)
-
 [node name="Snail" type="Sprite2D" parent="." unique_id=1069079524]
 texture = ExtResource("3_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=634553446]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_fjrip")
-
-[node name="Area2D" type="Area2D" parent="." unique_id=573629312]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=887883612]
-position = Vector2(0, 9.5)
-shape = SubResource("RectangleShape2D_lmkbq")
 
 [node name="NameLabel" type="Label" parent="." unique_id=338090993]
 offset_left = -14.5
@@ -58,14 +41,15 @@ text = "Team"
 label_settings = ExtResource("3_qhqgy")
 horizontal_alignment = 1
 
-[node name="HPBar" type="TextureProgressBar" parent="." unique_id=1037694749]
-offset_left = -8.5
-offset_top = -17.0
-offset_right = 14.5
-offset_bottom = -1.0
-value = 100.0
-texture_under = ExtResource("4_qlg0r")
-texture_progress = ExtResource("4_dqkch")
+[node name="HpLabel" type="Label" parent="." unique_id=1171433253]
+offset_left = -15.0
+offset_top = -12.5
+offset_right = 101.0
+offset_bottom = 3.5
+scale = Vector2(0.25, 0.25)
+text = "100"
+label_settings = ExtResource("3_qhqgy")
+horizontal_alignment = 1
 
 [node name="ShotBar" type="TextureProgressBar" parent="." unique_id=229378025]
 offset_right = 48.0
@@ -78,8 +62,7 @@ texture_progress = ExtResource("6_tuyoq")
 tint_progress = Color(1, 1, 0, 1)
 
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="NextPlayerTimer" to="." method="_on_next_player_timer_timeout"]

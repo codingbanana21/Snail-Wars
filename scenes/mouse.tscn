@@ -6,7 +6,6 @@
 
 [node name="Mouse" type="Node2D" unique_id=444797727]
 z_index = 100
-scale = Vector2(2, 2)
 script = ExtResource("1_ouscy")
 
 [node name="Cross" type="Sprite2D" parent="." unique_id=202798534]
@@ -17,7 +16,7 @@ offset_left = -16.0
 offset_top = 8.0
 offset_right = 50.0
 offset_bottom = 31.0
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 label_settings = ExtResource("3_xa71f")
 horizontal_alignment = 1
 
@@ -30,7 +29,3 @@ position_smoothing_enabled = true
 position_smoothing_speed = 12.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
-drag_left_margin = 0.3
-drag_top_margin = 0.4
-drag_right_margin = 0.3
-drag_bottom_margin = 0.4

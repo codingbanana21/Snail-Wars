@@ -10,7 +10,6 @@ radius = 7.0
 damage = 60.0
 size = 20
 knockback = 1500
-speed = 90.0
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_3xfjl")

@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var snail: Sprite2D = $Snail
 @onready var name_label: Label = $NameLabel
 @onready var team_label: Label = $TeamLabel
-@onready var hp_bar: TextureProgressBar = $HPBar
+@onready var hp_label: Label = $HpLabel
 @onready var shot_bar: TextureProgressBar = $ShotBar
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
@@ -14,15 +14,14 @@ extends CharacterBody2D
 @export var team: String
 @export var team_color: Color
 
-const JUMP: float = -450.0
-const SPEED: float = 12.0
-const JUMP_SPEED: float = 180
+const JUMP: float = -400.0
+const SPEED: float = 10.0
+const JUMP_SPEED: float = 100
 const PLAYER_GRAVITY: float = 30.0
 const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
 
 var projectile_speed: float = 0.0
-var max_hp: float = 100.0
-var hp: float = max_hp
+var hp: float = 100.0
 var weapon: int = 0
 var dir: float = 0
 var has_shot_projectile: bool = false
@@ -31,32 +30,36 @@ var is_player_turn: bool
 
 func _ready() -> void:
 	name_label.text = player_name
+	name_label.modulate = team_color
+	
 	team_label.text = "Team " + team
-	hp_bar.modulate = team_color
-	hp_bar.max_value = max_hp
+	team_label.modulate = team_color
+	
+	hp_label.modulate = team_color
 
 
 func _process(delta: float) -> void:
-	shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
-	shot_bar.value = projectile_speed
-	
-	if velocity.x < 0:
-		snail.flip_h = true
-	elif velocity.x > 0:
-		snail.flip_h = false
-	
 	if Globals.player_turn != player_number or team_number != Globals.team_turn:
 		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
+		
+		if velocity.x < 0:
+			snail.flip_h = true
+		elif velocity.x > 0:
+			snail.flip_h = false
 		return
 	
 	# skip dead player
-	if hp <= 0:
-		next_player_timer.stop()
+	if hp <= 0 or global_position.y >= 200:
 		Globals.next_player(true)
 		return
 	
-	if global_position.y >= 200:
-		damage(100)
+	shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
+	shot_bar.value = projectile_speed
+	
+	if global_position > Mouse.global_position and Mouse.moving:
+		snail.flip_h = true
+	elif Mouse.moving:
+		snail.flip_h = false
 	
 	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
 	
@@ -72,11 +75,6 @@ func _process(delta: float) -> void:
 		weapon %= 8
 		Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 		Mouse.weapon = weapon
-		
-	if global_position > Mouse.global_position and Mouse.moving:
-		snail.flip_h = true
-	elif Mouse.moving:
-		snail.flip_h = false
 	
 	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
 		if Input.is_action_pressed("attack"):
@@ -110,10 +108,20 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_pressed("jump"):
 				velocity.x += dir * JUMP_SPEED * 2.0 * delta
 	
+	var temp_velocity: Vector2 = velocity
 	move_and_slide()
 	
+	if is_player_turn:
+		Mouse.global_position += velocity * delta
+	
 	if is_on_floor():
-		velocity.x *= 0.8
+		if temp_velocity.y > 800:
+			var fall_damage = (temp_velocity.y - 800) / 40.0
+			
+			Mouse.shake(fall_damage / 5.0)
+			damage(fall_damage)
+			velocity.y = temp_velocity.y * -0.5
+		velocity.x *= 0.85
 	else:
 		velocity.x *= 0.97
 
@@ -127,16 +135,16 @@ func shot_projectile(projectile: NodePath):
 	add_child(new_projectile)
 
 
-func damage(damge: float):
-	hp -= damge
-	hp_bar.value = hp
+func damage(hurt_damage: float):
+	hp -= hurt_damage
+	hp_label.text = str(roundi(hp))
 	
 	if is_player_turn:
-		next_player_timer.stop()
-		Globals.next_player()
+		next_player_timer.start()
+		has_shot_projectile = false
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
-	hit_damge.text = str(int(damge))
+	hit_damge.text = str(roundi(hurt_damage))
 	add_child(hit_damge)
 
 
@@ -145,19 +153,10 @@ func next_player():
 	
 	if hp <= 0:
 		if is_physics_processing():
-			shot_projectile("res://projectiles/explosion_snail.tscn")
 			set_physics_process(false)
-			global_position.x = 100000
+			global_position.y = 10000
 	elif is_player_turn:
 		Mouse.global_position = global_position
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if velocity.y > 800:
-		var fall_damage = (velocity.y - 800) / 40.0
-		Mouse.shake(fall_damage)
-		damage(fall_damage)
-		velocity.y *= -0.65
 
 
 func _on_next_player_timer_timeout() -> void:

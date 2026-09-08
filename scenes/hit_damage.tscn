@@ -67,6 +67,7 @@ offset_left = -22.0
 offset_top = -9.0
 offset_right = 18.0
 offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
 text = "10"
 label_settings = ExtResource("1_a8mxf")
 horizontal_alignment = 1
