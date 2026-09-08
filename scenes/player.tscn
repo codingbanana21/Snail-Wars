@@ -6,10 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="6_tuyoq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(14, 11)
+size = Vector2(22, 17)
 
 [node name="Player" type="CharacterBody2D" unique_id=1048355818 groups=["Player"]]
-scale = Vector2(2, 2)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_3vyb7")
@@ -18,35 +17,35 @@ script = ExtResource("1_3vyb7")
 texture = ExtResource("3_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=634553446]
-position = Vector2(0, 1.5)
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_fjrip")
 
 [node name="NameLabel" type="Label" parent="." unique_id=338090993]
-offset_left = -14.5
-offset_top = -17.5
-offset_right = 101.5
-offset_bottom = -1.5
-scale = Vector2(0.25, 0.25)
+offset_left = -28.5
+offset_top = -26.5
+offset_right = 87.5
+offset_bottom = -10.5
+scale = Vector2(0.5, 0.5)
 text = "Player"
 label_settings = ExtResource("3_qhqgy")
 horizontal_alignment = 1
 
 [node name="TeamLabel" type="Label" parent="." unique_id=330105742]
-offset_left = -15.0
-offset_top = -22.5
-offset_right = 101.0
-offset_bottom = -6.5
-scale = Vector2(0.25, 0.25)
+offset_left = -29.0
+offset_top = -37.5
+offset_right = 87.0
+offset_bottom = -21.5
+scale = Vector2(0.5, 0.5)
 text = "Team"
 label_settings = ExtResource("3_qhqgy")
 horizontal_alignment = 1
 
 [node name="HpLabel" type="Label" parent="." unique_id=1171433253]
-offset_left = -15.0
-offset_top = -12.5
-offset_right = 101.0
-offset_bottom = 3.5
-scale = Vector2(0.25, 0.25)
+offset_left = -29.0
+offset_top = -16.5
+offset_right = 87.0
+offset_bottom = -0.5
+scale = Vector2(0.5, 0.5)
 text = "100"
 label_settings = ExtResource("3_qhqgy")
 horizontal_alignment = 1

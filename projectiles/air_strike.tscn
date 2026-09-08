@@ -3,6 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_y44nj"]
 
 [node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
-size = 20
-speed = 0.0
+size = 18
+gravity = 300
 spawn_at_mouse = true

@@ -81,7 +81,7 @@ func _process(delta: float) -> void:
 			projectile_speed += 8.0 * delta
 		
 		if Input.is_action_just_released("attack") or projectile_speed >= 12.0:
-			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn")
+			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
 			
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
@@ -121,15 +121,15 @@ func _physics_process(delta: float) -> void:
 			Mouse.shake(fall_damage / 5.0)
 			damage(fall_damage)
 			velocity.y = temp_velocity.y * -0.5
-		velocity.x *= 0.85
+		velocity.x *= 0.7
 	else:
 		velocity.x *= 0.97
 
 
-func shot_projectile(projectile: NodePath):
+func shot_projectile(projectile: NodePath, pos : Vector2):
 	var new_projectile: Projectile
 	new_projectile = load(projectile).instantiate()
-	new_projectile.global_position = global_position
+	new_projectile.global_position = pos
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= projectile_speed
 	add_child(new_projectile)

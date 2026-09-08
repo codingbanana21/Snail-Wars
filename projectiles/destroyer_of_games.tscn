@@ -6,5 +6,5 @@
 scale = Vector2(2, 2)
 damage = 500.0
 knockback = 2000
-speed = 0.0
+gravity = 300
 spawn_at_mouse = true

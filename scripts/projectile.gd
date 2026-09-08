@@ -5,15 +5,16 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var damage: float = 45
-@export var size: int = 14
+@export var size: int = 12
 @export var knockback: int = 1000
-@export var speed: float = 60.0
+@export var speed: float = 55.0
 @export var gravity: int = 500
 @export var projectile_hp: int = 1
 @export var timer: float = 3.0
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var not_players: bool = false
+@export var spawn: bool = false
 
 
 func _ready() -> void:
@@ -24,6 +25,7 @@ func _ready() -> void:
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
 		global_position.y = -1024.0
+		velocity.y += speed
 	else:
 		global_position += transform.x * 12.0
 		velocity += transform.x * speed
@@ -54,6 +56,8 @@ func explode(end_explode: bool = false):
 			get_parent().next_player_timer.start()
 			get_parent().has_shot_projectile = false
 			Mouse.global_position = get_parent().global_position
+	elif spawn:
+		get_parent().shot_projectile("res://projectiles/fragment.tscn", global_position)
 	
 	Mouse.shake(damage / 5.0)
 	

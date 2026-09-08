@@ -5,9 +5,9 @@
 
 [node name="DrillStrike" unique_id=791496552 instance=ExtResource("1_qlak5")]
 damage = 30.0
-size = 10
+size = 8
 knockback = 0
-speed = 0.0
+gravity = 300
 projectile_hp = 6
 spawn_at_mouse = true
 

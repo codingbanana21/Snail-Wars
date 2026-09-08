@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cpgh3wttxjdj2"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_1ak3v"]
+[ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="2_h2h75"]
+
+[node name="Fragment" unique_id=791496552 instance=ExtResource("1_1ak3v")]
+scale = Vector2(0.5, 0.5)
+damage = 5.0
+size = 4
+knockback = 0
+speed = 0.0
+projectile_hp = 6
+timer = 0.5
+not_players = true
+
+[node name="Image" parent="." index="0" unique_id=2045045234]
+texture = ExtResource("2_h2h75")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
+shape = null
