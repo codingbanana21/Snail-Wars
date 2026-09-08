@@ -76,7 +76,7 @@ func _process(delta: float) -> void:
 		Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 		Mouse.weapon = weapon
 	
-	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped():
+	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped() and !has_shot_projectile:
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
 		
@@ -141,7 +141,7 @@ func damage(hurt_damage: float):
 	
 	if is_player_turn:
 		next_player_timer.start()
-		has_shot_projectile = false
+		has_shot_projectile = true
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(roundi(hurt_damage))
@@ -161,4 +161,5 @@ func next_player():
 
 func _on_next_player_timer_timeout() -> void:
 	if Globals.player_turn == player_number and team_number == Globals.team_turn:
+		has_shot_projectile = false
 		Globals.next_player()
