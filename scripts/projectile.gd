@@ -5,12 +5,12 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var damage: float = 45
-@export var size: int = 12
+@export var size: int = 10
 @export var knockback: int = 1000
 @export var speed: float = 55.0
 @export var gravity: int = 500
 @export var projectile_hp: int = 1
-@export var timer: float = 3.0
+@export var timer: float = 2.0
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var not_players: bool = false
