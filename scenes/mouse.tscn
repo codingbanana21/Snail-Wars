@@ -5,6 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_xa71f"]
 
 [node name="Mouse" type="Node2D" unique_id=444797727]
+visible = false
 z_index = 100
 script = ExtResource("1_ouscy")
 

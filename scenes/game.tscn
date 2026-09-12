@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dbu738lf8tcco"]
+
+[ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scenes/game.gd" id="1_uwrxv"]
+
+[node name="Game" type="Node2D" unique_id=2137944541]
+script = ExtResource("1_uwrxv")
+
+[node name="MapButton" type="Button" parent="." unique_id=367210282]
+offset_left = -28.0
+offset_top = -34.0
+offset_right = 28.0
+offset_bottom = -3.0
+text = "Map 1"
+
+[node name="MapButton2" type="Button" parent="." unique_id=534044815]
+offset_left = -28.0
+offset_top = 4.0
+offset_right = 28.0
+offset_bottom = 35.0
+text = "Map 2"
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=1758057930]
+layer = -100
+
+[node name="Background" type="ColorRect" parent="Background" unique_id=756968751]
+offset_left = -19.0
+offset_top = -29.0
+offset_right = 1190.0
+offset_bottom = 686.0
+color = Color(0.6509804, 0.79607844, 0.81960785, 1)
+
+[connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
+[connection signal="pressed" from="MapButton2" to="." method="_on_map_button_2_pressed"]

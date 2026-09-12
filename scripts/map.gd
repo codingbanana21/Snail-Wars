@@ -1,4 +1,4 @@
-class_name Game
+class_name Map
 extends Node2D
 
 @onready var map: TileMapLayer = $Map

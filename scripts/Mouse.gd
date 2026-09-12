@@ -12,10 +12,6 @@ var weapon_left: String
 var weapon: int
 
 
-func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-
 func _process(delta: float) -> void:
 	if int(weapon_left) >= 0:
 		weapon_label.text = WEAPONS[weapon]+" "+weapon_left
