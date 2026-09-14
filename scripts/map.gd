@@ -10,11 +10,6 @@ func _ready() -> void:
 	Globals.next_player()
 
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("skip"):
-		Globals.next_player()
-
-
 func remove_tile(tile_position: Vector2):
 	var map_tile = map.get_cell_atlas_coords(tile_position)
 	

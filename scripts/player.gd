@@ -6,6 +6,7 @@ extends CharacterBody2D
 @onready var team_label: Label = $TeamLabel
 @onready var hp_label: Label = $HpLabel
 @onready var shot_bar: TextureProgressBar = $ShotBar
+@onready var arrow: Sprite2D = $Arrow
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 0
@@ -29,70 +30,69 @@ var player_turn_part: int = 0
 func _ready() -> void:
 	name_label.text = player_name
 	name_label.modulate = team_color
-	
 	team_label.text = "Team " + team
 	team_label.modulate = team_color
-	
 	hp_label.modulate = team_color
 
 
 func _process(delta: float) -> void:
-	if Globals.player_turn != player_number or team_number != Globals.team_turn:
-		snail.modulate = Color(1.0, 1.0, 1.0, 1.0)
-		
-		if velocity.x < 0:
-			snail.flip_h = true
-		elif velocity.x > 0:
-			snail.flip_h = false
-		return
+	if velocity.x < 0:
+		snail.flip_h = true
+	elif velocity.x > 0:
+		snail.flip_h = false
 	
 	# skip dead player
-	if hp <= 0 or global_position.y >= 200:
+	if (hp <= 0 or global_position.y >= 200) and player_turn_part != 0:
+		player_turn_part = 0
 		Globals.next_player(true)
 		return
 	
-	shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
-	shot_bar.value = projectile_speed
+	if player_turn_part == 0 or player_turn_part == 4:
+		arrow.hide()
+		return
 	
-	if global_position > Mouse.global_position and Mouse.moving:
-		snail.flip_h = true
-	elif Mouse.moving:
-		snail.flip_h = false
+	if Input.is_action_just_pressed("skip"):
+		player_turn_part = 4
+		next_player_timer.start(1.0)
 	
-	snail.modulate.b = sin(Engine.get_physics_frames() / 5.0) * 3.0 + 5.0
+	arrow.show()
+	arrow.position.y = sin(Engine.get_physics_frames() / 5.0) * 3.0 - 16.0
 	
-	if !Input.is_action_pressed("attack"):
-		if Input.is_action_just_pressed("next_weapon"):
-			weapon += 1
-		
-		if Input.is_action_just_pressed("last_weapon"):
-			weapon -= 1
-			if weapon < 0:
-				weapon = 7
-		
-		weapon %= 8
-		Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
-		Mouse.weapon = weapon
-	
-	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped() and player_turn_part == 1:
+	if player_turn_part == 1:
 		if Input.is_action_pressed("attack"):
+			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
+			shot_bar.value = projectile_speed
 			projectile_speed += 8.0 * delta
-		
-		if Input.is_action_just_released("attack") or projectile_speed >= 12.0:
-			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
+		else:
+			if global_position > Mouse.global_position and Mouse.moving:
+				snail.flip_h = true
+			elif Mouse.moving:
+				snail.flip_h = false
 			
+			if Input.is_action_just_pressed("next_weapon"):
+				weapon += 1
+			
+			if Input.is_action_just_pressed("last_weapon"):
+				weapon -= 1
+				if weapon < 0:
+					weapon = 7
+			
+			weapon %= 8
+			Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
+			Mouse.weapon = weapon
+		
+		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
+			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
+			shot_bar.value = 0
 			player_turn_part = 2
 			Mouse.hide()
 			Input.action_release("attack")
 
 
 func _physics_process(delta: float) -> void:
-	if velocity.y > 0:
-		velocity.y += PLAYER_GRAVITY * 1.5
-	else:
-		velocity.y += PLAYER_GRAVITY
+	velocity.y += PLAYER_GRAVITY
 	
 	if (player_turn_part == 1 or player_turn_part == 3) and !Input.is_action_pressed("attack"):
 		if is_on_floor():
@@ -137,7 +137,7 @@ func damage(hurt_damage: float):
 	
 	if player_turn_part != 0:
 		player_turn_part = 4
-		next_player_timer.start()
+		next_player_timer.start(1.0)
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(roundi(hurt_damage))
@@ -145,19 +145,18 @@ func damage(hurt_damage: float):
 
 
 func next_player():
-	if Globals.player_turn == player_number and team_number == Globals.team_turn:
-		player_turn_part = 1
-	
-	if hp <= 0:
+	if hp <= 0 or global_position.y >= 200:
 		if is_physics_processing():
 			set_physics_process(false)
 			global_position.y = 10000
-	elif player_turn_part != 0:
+	
+	if Globals.player_turn == player_number and team_number == Globals.team_turn:
+		player_turn_part = 1
 		Mouse.global_position = global_position
 
 
 func _on_next_player_timer_timeout() -> void:
-	if Globals.player_turn == player_number and team_number == Globals.team_turn:
+	if player_turn_part != 0:
 		if player_turn_part != 4:
 			player_turn_part = 4
 			next_player_timer.start(1.0)
