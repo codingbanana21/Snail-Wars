@@ -7,7 +7,7 @@
 radius = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
-size = Vector2(15, 9)
+size = Vector2(7, 8)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 top_level = true
@@ -25,6 +25,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
+position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_7nr1q")
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]

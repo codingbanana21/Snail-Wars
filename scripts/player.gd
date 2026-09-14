@@ -132,7 +132,7 @@ func shot_projectile(projectile: NodePath, pos : Vector2):
 	new_projectile.global_position = pos
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= projectile_speed
-	add_child(new_projectile)
+	call_deferred("add_child", new_projectile)
 
 
 func damage(hurt_damage: float):

@@ -91,5 +91,4 @@ func _on_explosion_timer_timeout() -> void:
 
 
 func _on_detect_box_body_entered(body: Node2D) -> void:
-	if explosion_timer.time_left <= timer - 0.05:
-		explode()
+	explode()
