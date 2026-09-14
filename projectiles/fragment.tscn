@@ -12,8 +12,7 @@ damage = 5.0
 size = 5
 knockback = 0
 speed = 0.0
-projectile_hp = 6
-timer = 0.5
+projectile_hp = 4
 not_players = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]

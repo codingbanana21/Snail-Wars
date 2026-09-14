@@ -11,6 +11,7 @@ size = Vector2(7.5, 18.75)
 
 [node name="Mine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
 damage = 30.0
+size = 6
 knockback = 600
 speed = 0.0
 not_players = true

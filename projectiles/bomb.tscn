@@ -10,7 +10,7 @@ radius = 5.0
 damage = 10.0
 size = 7
 knockback = 0
-projectile_hp = 6
+projectile_hp = 5
 spawn = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]

@@ -61,7 +61,7 @@ texture_progress = ExtResource("6_tuyoq")
 tint_progress = Color(1, 1, 0, 1)
 
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
-wait_time = 2.0
+wait_time = 3.0
 one_shot = true
 
 [connection signal="timeout" from="NextPlayerTimer" to="." method="_on_next_player_timer_timeout"]

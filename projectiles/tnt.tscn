@@ -11,8 +11,8 @@ radius = 9.0
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
 damage = 75.0
-size = 20
-knockback = 1800
+size = 16
+knockback = 1600
 speed = 12.0
 bounce = true
 

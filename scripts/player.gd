@@ -14,9 +14,8 @@ extends CharacterBody2D
 @export var team: String
 @export var team_color: Color
 
-const JUMP: float = -400.0
-const SPEED: float = 10.0
-const JUMP_SPEED: float = 100
+const SPEED: float = 6.0
+const JUMP: Vector2 = Vector2(90, -350.0)
 const PLAYER_GRAVITY: float = 30.0
 const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
 
@@ -24,8 +23,7 @@ var projectile_speed: float = 0.0
 var hp: float = 100.0
 var weapon: int = 0
 var dir: float = 0
-var has_shot_projectile: bool = false
-var is_player_turn: bool
+var player_turn_part: int = 0
 
 
 func _ready() -> void:
@@ -76,7 +74,7 @@ func _process(delta: float) -> void:
 		Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 		Mouse.weapon = weapon
 	
-	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped() and !has_shot_projectile:
+	if Globals.teams_weapons[team_number][weapon] != 0 and next_player_timer.is_stopped() and player_turn_part == 1:
 		if Input.is_action_pressed("attack"):
 			projectile_speed += 8.0 * delta
 		
@@ -85,7 +83,7 @@ func _process(delta: float) -> void:
 			
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
-			has_shot_projectile = true
+			player_turn_part = 2
 			Mouse.hide()
 			Input.action_release("attack")
 
@@ -96,22 +94,22 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y += PLAYER_GRAVITY
 	
-	if is_player_turn and !has_shot_projectile and !Input.is_action_pressed("attack"):
+	if (player_turn_part == 1 or player_turn_part == 3) and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED
 			
 			if Input.is_action_just_pressed("jump"):
-				velocity.x += dir * JUMP_SPEED
-				velocity.y = JUMP
+				velocity.x += dir * JUMP.x
+				velocity.y = JUMP.y
 		else:
 			if Input.is_action_pressed("jump"):
-				velocity.x += dir * JUMP_SPEED * 2.0 * delta
+				velocity.x += dir * JUMP.x * 2.0 * delta
 	
 	var temp_velocity: Vector2 = velocity
 	move_and_slide()
 	
-	if is_player_turn:
+	if player_turn_part != 0:
 		Mouse.global_position += velocity * delta
 	
 	if is_on_floor():
@@ -120,10 +118,8 @@ func _physics_process(delta: float) -> void:
 			
 			Mouse.shake(fall_damage / 5.0)
 			damage(fall_damage)
-			velocity.y = temp_velocity.y * -0.5
-		velocity.x *= 0.7
-	else:
-		velocity.x *= 0.97
+			velocity.y = temp_velocity.y * -0.45
+		velocity.x *= 0.8
 
 
 func shot_projectile(projectile: NodePath, pos : Vector2):
@@ -139,9 +135,9 @@ func damage(hurt_damage: float):
 	hp -= hurt_damage
 	hp_label.text = str(roundi(hp))
 	
-	if is_player_turn:
+	if player_turn_part != 0:
+		player_turn_part = 4
 		next_player_timer.start()
-		has_shot_projectile = true
 	
 	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
 	hit_damge.text = str(roundi(hurt_damage))
@@ -149,17 +145,22 @@ func damage(hurt_damage: float):
 
 
 func next_player():
-	is_player_turn = Globals.player_turn == player_number and team_number == Globals.team_turn
+	if Globals.player_turn == player_number and team_number == Globals.team_turn:
+		player_turn_part = 1
 	
 	if hp <= 0:
 		if is_physics_processing():
 			set_physics_process(false)
 			global_position.y = 10000
-	elif is_player_turn:
+	elif player_turn_part != 0:
 		Mouse.global_position = global_position
 
 
 func _on_next_player_timer_timeout() -> void:
 	if Globals.player_turn == player_number and team_number == Globals.team_turn:
-		has_shot_projectile = false
-		Globals.next_player()
+		if player_turn_part != 4:
+			player_turn_part = 4
+			next_player_timer.start(1.0)
+		else:
+			player_turn_part = 0
+			Globals.next_player()

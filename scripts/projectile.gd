@@ -5,12 +5,12 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 
 @export var damage: float = 45
-@export var size: int = 10
-@export var knockback: int = 1000
-@export var speed: float = 55.0
+@export var size: int = 8
+@export var knockback: int = 800
+@export var speed: float = 50.0
 @export var gravity: int = 500
 @export var projectile_hp: int = 1
-@export var timer: float = 2.0
+@export var timer: float = 3.0
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var not_players: bool = false
@@ -54,7 +54,7 @@ func explode(end_explode: bool = false):
 		if !not_players:
 			set_physics_process(false)
 			get_parent().next_player_timer.start()
-			get_parent().has_shot_projectile = false
+			get_parent().player_turn_part = 3
 			Mouse.global_position = get_parent().global_position
 	elif spawn:
 		get_parent().shot_projectile("res://projectiles/fragment.tscn", global_position)
