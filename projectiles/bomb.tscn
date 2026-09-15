@@ -9,7 +9,7 @@ radius = 5.0
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
 damage = 10.0
 size = 7
-knockback = 0
+knockback = 200
 projectile_hp = 5
 spawn = true
 

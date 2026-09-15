@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("skip"):
 		player_turn_part = 4
-		next_player_timer.start(1.0)
+		next_player_timer.start(0.5)
 	
 	arrow.show()
 	arrow.position.y = sin(Engine.get_physics_frames() / 5.0) * 3.0 - 16.0
@@ -82,13 +82,13 @@ func _process(delta: float) -> void:
 			Mouse.weapon = weapon
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
+			Input.action_release("attack")
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
 			shot_bar.value = 0
 			player_turn_part = 2
 			Mouse.hide()
-			Input.action_release("attack")
 
 
 func _physics_process(delta: float) -> void:
@@ -115,10 +115,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if temp_velocity.y > 800:
 			var fall_damage = (temp_velocity.y - 800) / 40.0
-			
 			Mouse.shake(fall_damage / 5.0)
 			damage(fall_damage)
-			velocity.y = temp_velocity.y * -0.45
 		velocity.x *= 0.8
 
 
@@ -134,19 +132,19 @@ func shot_projectile(projectile: NodePath, pos : Vector2):
 func damage(hurt_damage: float):
 	hp -= hurt_damage
 	hp_label.text = str(roundi(hp))
+	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
+	hit_text.text = str(roundi(hurt_damage))
+	add_child(hit_text)
 	
 	if player_turn_part != 0:
 		player_turn_part = 4
-		next_player_timer.start(1.0)
-	
-	var hit_damge: Label = load("res://scenes/hit_damage.tscn").instantiate()
-	hit_damge.text = str(roundi(hurt_damage))
-	add_child(hit_damge)
+		next_player_timer.start(1.5)
 
 
 func next_player():
 	if hp <= 0 or global_position.y >= 200:
 		if is_physics_processing():
+			shot_projectile("res://projectiles/snail.tscn", global_position)
 			set_physics_process(false)
 			global_position.y = 10000
 	
@@ -159,7 +157,7 @@ func _on_next_player_timer_timeout() -> void:
 	if player_turn_part != 0:
 		if player_turn_part != 4:
 			player_turn_part = 4
-			next_player_timer.start(1.0)
+			next_player_timer.start(1.5)
 		else:
 			player_turn_part = 0
 			Globals.next_player()

@@ -6,9 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 5.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5t3jc"]
-radius = 9.0
-
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
 bounce = true
 
@@ -20,4 +17,4 @@ shape = SubResource("CircleShape2D_qhqgy")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
 position = Vector2(0, 0)
-shape = SubResource("CircleShape2D_5t3jc")
+shape = null

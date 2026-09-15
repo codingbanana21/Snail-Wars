@@ -15,10 +15,11 @@ extends CharacterBody2D
 @export var spawn_at_mouse: bool = false
 @export var not_players: bool = false
 @export var spawn: bool = false
+@export var spawn_type: String = "fragment"
 
 
 func _ready() -> void:
-	if !not_players:
+	if timer > 0:
 		explosion_timer.start(timer)
 	
 	#spawn type
@@ -37,17 +38,30 @@ func _physics_process(delta: float) -> void:
 	
 	velocity.y += gravity * delta
 	rotation = velocity.angle()
+	
+	var temp_velocity: Vector2 = velocity
 	move_and_slide()
+	
+	if is_on_floor() and bounce:
+		velocity.y = temp_velocity.y * -0.8
+	
+	if is_on_wall() and bounce:
+		velocity.x = temp_velocity.x * -0.8
 
 
 func explode(end_explode: bool = false):
 	projectile_hp -= 1
+	Mouse.shake(damage / 5.0)
+	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+	hit_particle.global_position = global_position
+	hit_particle.emitting = true
+	hit_particle.amount = int(damage)
+	get_parent().add_child(hit_particle)
 	
-	if bounce and !end_explode:
-		velocity.y *= -0.8
-		velocity.x *= 0.8
-		return
-	elif projectile_hp <= 0 or end_explode:
+	if spawn:
+		get_parent().shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)
+	
+	if projectile_hp <= 0 or end_explode:
 		end_explode = true
 		queue_free()
 		
@@ -56,32 +70,19 @@ func explode(end_explode: bool = false):
 			get_parent().next_player_timer.start()
 			get_parent().player_turn_part = 3
 			Mouse.global_position = get_parent().global_position
-	elif spawn:
-		get_parent().shot_projectile("res://projectiles/fragment.tscn", global_position)
-	
-	Mouse.shake(damage / 5.0)
-	
-	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-	hit_particle.global_position = global_position
-	hit_particle.emitting = true
-	hit_particle.amount = int(damage)
-	get_parent().add_child(hit_particle)
 	
 	# destroy map
 	var tile_position: Vector2 = round(global_position / 4.0)
 	var explosion_accuracy: float = PI * 2
-	
-	for size in range(size):
-		for number in range(explosion_accuracy * 8 * size):
-			get_parent().get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * size, cos(number / explosion_accuracy) * size))
+	for explosion_size in range(size):
+		for number in range(explosion_accuracy * 8 * explosion_size):
+			get_parent().get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size))
 	
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
-		
 		if dis_to < (4.0 * size):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
-			
 			player.damage(hit_power * damage)
 			player.velocity = -transform.x * hit_power * knockback
 
