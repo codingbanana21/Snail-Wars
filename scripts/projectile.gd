@@ -43,12 +43,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if is_on_floor() and bounce:
-		velocity.x = temp_velocity.x * 0.9
+		velocity.x = temp_velocity.x * 0.95
 		velocity.y = temp_velocity.y * -0.65
 	
 	if is_on_wall() and bounce:
 		velocity.x = temp_velocity.x * -0.65
-		velocity.y = temp_velocity.y * 0.9
+		velocity.y = temp_velocity.y * 0.95
 
 
 func explode(end_explode: bool = false):
@@ -57,13 +57,13 @@ func explode(end_explode: bool = false):
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position
 	hit_particle.emitting = true
-	hit_particle.amount = int(damage)
+	hit_particle.amount = clampi(int(damage), 1, 200)
 	get_parent().add_child(hit_particle)
 	
 	if spawn:
 		get_parent().shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)
 	
-	if projectile_hp <= 0 or end_explode:
+	if projectile_hp == 0 or end_explode:
 		end_explode = true
 		queue_free()
 		

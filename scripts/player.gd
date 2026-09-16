@@ -21,7 +21,7 @@ extends CharacterBody2D
 const SPEED: float = 6.0
 const JUMP: Vector2 = Vector2(90, -350.0)
 const PLAYER_GRAVITY: float = 30.0
-const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "destroyer_of_games"]
+const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "pumkin_grenade", "destroyer_of_games"]
 
 var projectile_speed: float = 0.0
 var hp: float = 100.0
@@ -78,9 +78,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 				if weapon < 0:
-					weapon = 7
+					weapon = 8
 			
-			weapon %= 8
+			weapon %= 9
 			Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
 			Mouse.weapon = weapon
 		
