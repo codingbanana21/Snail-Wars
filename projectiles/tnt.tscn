@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="2_gjjih"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gjjih"]
-radius = 6.0
+radius = 5.0
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
 damage = 75.0

@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="3_dqkch"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://dyocank7ysnuk" path="res://assets/images/arrow.png" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://bh853f128q8t7" path="res://assets/sounds/ooff1.mp3" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="6_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://dga6pd2qr6mhc" path="res://assets/sounds/looser.mp3" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://dov8abymctmg1" path="res://assets/sounds/impressive1.mp3" id="8_smehm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
 size = Vector2(22, 17)
@@ -64,6 +67,20 @@ tint_progress = Color(1, 1, 0, 1)
 [node name="Arrow" type="Sprite2D" parent="." unique_id=1626282355]
 visible = false
 texture = ExtResource("5_qlg0r")
+
+[node name="Ooff" type="AudioStreamPlayer" parent="." unique_id=523737660]
+stream = ExtResource("6_fjrip")
+pitch_scale = 1.7
+
+[node name="Looser" type="AudioStreamPlayer" parent="." unique_id=167378126]
+stream = ExtResource("7_fjrip")
+volume_db = 10.0
+pitch_scale = 1.7
+
+[node name="Impressive" type="AudioStreamPlayer" parent="." unique_id=253486996]
+stream = ExtResource("8_smehm")
+volume_db = 10.0
+pitch_scale = 1.6
 
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
 wait_time = 3.0

@@ -28,7 +28,7 @@ func _ready() -> void:
 		global_position.y = -1024.0
 		velocity.y += speed
 	else:
-		global_position += transform.x * 12.0
+		global_position += transform.x * 16.0
 		velocity += transform.x * speed
 
 
@@ -43,10 +43,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if is_on_floor() and bounce:
-		velocity.y = temp_velocity.y * -0.8
+		velocity.x = temp_velocity.x * 0.9
+		velocity.y = temp_velocity.y * -0.65
 	
 	if is_on_wall() and bounce:
-		velocity.x = temp_velocity.x * -0.8
+		velocity.x = temp_velocity.x * -0.65
+		velocity.y = temp_velocity.y * 0.9
 
 
 func explode(end_explode: bool = false):

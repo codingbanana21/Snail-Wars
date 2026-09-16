@@ -7,6 +7,9 @@ extends CharacterBody2D
 @onready var hp_label: Label = $HpLabel
 @onready var shot_bar: TextureProgressBar = $ShotBar
 @onready var arrow: Sprite2D = $Arrow
+@onready var ooff: AudioStreamPlayer = $Ooff
+@onready var looser: AudioStreamPlayer = $Looser
+@onready var impressive: AudioStreamPlayer = $Impressive
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 0
@@ -42,7 +45,7 @@ func _process(delta: float) -> void:
 		snail.flip_h = false
 	
 	# skip dead player
-	if (hp <= 0 or global_position.y >= 200) and player_turn_part != 0:
+	if (hp < 1 or global_position.y >= 200) and player_turn_part != 0:
 		player_turn_part = 0
 		Globals.next_player(true)
 		return
@@ -131,18 +134,26 @@ func shot_projectile(projectile: NodePath, pos : Vector2):
 
 func damage(hurt_damage: float):
 	hp -= hurt_damage
-	hp_label.text = str(roundi(hp))
+	hp_label.text = str(int(hp))
+	
 	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
-	hit_text.text = str(roundi(hurt_damage))
+	hit_text.text = str(int(hurt_damage))
 	add_child(hit_text)
+	
+	if player_turn_part != 0 and hp < 1:
+		impressive.play()
+	elif player_turn_part != 0:
+		looser.play()
+	else:
+		ooff.play()
 	
 	if player_turn_part != 0:
 		player_turn_part = 4
-		next_player_timer.start(1.5)
+		next_player_timer.start(3.0)
 
 
 func next_player():
-	if hp <= 0 or global_position.y >= 200:
+	if hp < 1 or global_position.y >= 200:
 		if is_physics_processing():
 			shot_projectile("res://projectiles/snail.tscn", global_position)
 			set_physics_process(false)
