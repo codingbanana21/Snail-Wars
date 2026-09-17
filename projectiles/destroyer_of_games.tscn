@@ -8,4 +8,5 @@ damage = 500.0
 size = 50
 knockback = 1500
 gravity = 300
+timer = 5.0
 spawn_at_mouse = true

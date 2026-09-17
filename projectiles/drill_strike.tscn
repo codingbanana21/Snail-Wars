@@ -9,7 +9,9 @@ size = 6
 knockback = 0
 gravity = 300
 projectile_hp = 7
+timer = 5.0
 spawn_at_mouse = true
+hit_stun_time = 0.15
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_u8o3f")

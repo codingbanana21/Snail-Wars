@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @onready var detect_box: Area2D = $DetectBox
 @onready var explosion_timer: Timer = $ExplosionTimer
+@onready var hit_timer: Timer = $HitTimer
 
 @export var damage: float = 45
 @export var size: int = 8
@@ -15,6 +16,7 @@ extends CharacterBody2D
 @export var spawn_at_mouse: bool = false
 @export var not_players: bool = false
 @export var spawn: bool = false
+@export var hit_stun_time: float = 0.0
 @export var spawn_type: String = "fragment"
 
 
@@ -33,6 +35,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !hit_timer.is_stopped():
+		return
+	
 	if !not_players:
 		Mouse.global_position = global_position
 	
@@ -53,6 +58,10 @@ func _physics_process(delta: float) -> void:
 
 func explode(end_explode: bool = false):
 	projectile_hp -= 1
+	
+	if hit_stun_time > 0:
+		hit_timer.start(hit_stun_time)
+	
 	Mouse.shake(damage / 5.0)
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position

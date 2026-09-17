@@ -31,5 +31,8 @@ shape = SubResource("RectangleShape2D_7nr1q")
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]
 one_shot = true
 
+[node name="HitTimer" type="Timer" parent="." unique_id=1294282225]
+one_shot = true
+
 [connection signal="body_entered" from="DetectBox" to="." method="_on_detect_box_body_entered"]
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]

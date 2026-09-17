@@ -6,4 +6,5 @@
 size = 12
 knockback = 1000
 gravity = 300
+timer = 5.0
 spawn_at_mouse = true
