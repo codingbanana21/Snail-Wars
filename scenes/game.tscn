@@ -9,27 +9,35 @@ script = ExtResource("1_uwrxv")
 
 [node name="MapButton" type="Button" parent="." unique_id=367210282]
 offset_left = -129.0
-offset_top = -14.0
+offset_top = -54.0
 offset_right = -47.0
-offset_bottom = 17.0
+offset_bottom = -23.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 1"
 
 [node name="MapButton2" type="Button" parent="." unique_id=534044815]
 offset_left = -41.0
-offset_top = -14.0
+offset_top = -54.0
 offset_right = 41.0
-offset_bottom = 17.0
+offset_bottom = -23.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 2"
 
 [node name="MapButton3" type="Button" parent="." unique_id=1759142092]
 offset_left = 47.0
-offset_top = -14.0
+offset_top = -54.0
 offset_right = 129.0
-offset_bottom = 17.0
+offset_bottom = -23.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 3"
+
+[node name="MapButton4" type="Button" parent="." unique_id=1242686351]
+offset_left = -129.0
+offset_top = -14.0
+offset_right = -47.0
+offset_bottom = 17.0
+theme_override_fonts/font = ExtResource("2_lnu2h")
+text = "Map 4"
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1758057930]
 layer = -100
@@ -63,3 +71,4 @@ label_settings = ExtResource("2_yqjtg")
 [connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="MapButton2" to="." method="_on_map_button_2_pressed"]
 [connection signal="pressed" from="MapButton3" to="." method="_on_map_button_3_pressed"]
+[connection signal="pressed" from="MapButton4" to="." method="_on_map_button_4_pressed"]

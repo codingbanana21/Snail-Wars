@@ -27,7 +27,7 @@ func _ready() -> void:
 	#spawn type
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
-		global_position.y = -1024.0
+		global_position.y = -1040.0
 		velocity.y += speed
 	else:
 		global_position += transform.x * 16.0
@@ -87,7 +87,7 @@ func explode(end_explode: bool = false):
 	var explosion_accuracy: float = PI * 2
 	for explosion_size in range(size):
 		for number in range(explosion_accuracy * 8 * explosion_size):
-			get_parent().get_parent().remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size))
+			get_tree().current_scene.remove_tile(tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size))
 	
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):

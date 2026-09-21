@@ -10,16 +10,22 @@ func _process(delta: float) -> void:
 	Globals.players_in_team = int(h_slider.value)
 
 
-func _on_map_button_pressed() -> void:
+func load_map(level: int = 1):
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://maps/map_1.scn")
+	get_tree().change_scene_to_file("res://maps/map_"+str(level)+".scn")
+
+
+func _on_map_button_pressed() -> void:
+	load_map(1)
 
 
 func _on_map_button_2_pressed() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://maps/map_2.scn")
+	load_map(2)
 
 
 func _on_map_button_3_pressed() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://maps/map_3.scn")
+	load_map(3)
+
+
+func _on_map_button_4_pressed() -> void:
+	load_map(4)

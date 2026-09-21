@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="2_u8o3f"]
 
 [node name="DrillStrike" unique_id=791496552 instance=ExtResource("1_qlak5")]
-damage = 25.0
+damage = 10.0
 size = 6
-knockback = 0
+knockback = 200
 gravity = 300
 projectile_hp = 7
 timer = 5.0
