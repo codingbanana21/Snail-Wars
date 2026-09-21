@@ -1,16 +1,25 @@
 class_name Game
 extends Node2D
 
-@onready var h_slider: HSlider = $HSlider
+@onready var per_team_h_slider: HSlider = $PerTeamHSlider
 @onready var per_team_label: Label = $PerTeamLabel
+@onready var weapons_h_slider: HSlider = $WeaponsHSlider
+@onready var weapons_label: Label = $WeaponsLabel
 
 
 func _process(delta: float) -> void:
-	per_team_label.text = str(int(h_slider.value)) + " Player"
-	Globals.players_in_team = int(h_slider.value)
+	per_team_label.text = str(int(per_team_h_slider.value)) + " Player"
+	Globals.players_in_team = int(per_team_h_slider.value)
+	
+	weapons_label.text = "Weapon per set "+str(int(weapons_h_slider.value))
 
 
 func load_map(level: int = 1):
+	if int(weapons_h_slider.value) == 2:
+		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1], [-1,-1,-1,-1,-1,-1,-1,-1,-1]]
+	elif int(weapons_h_slider.value) == 3:
+		Globals.teams_weapons = [[0,-1,1,2,0,2,2,2,0], [0,-1,1,2,0,2,2,2,0]]
+	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().change_scene_to_file("res://maps/map_"+str(level)+".scn")
 

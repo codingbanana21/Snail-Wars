@@ -41,6 +41,9 @@ func _physics_process(delta: float) -> void:
 	if !not_players:
 		Mouse.global_position = global_position
 	
+	if global_position.y >= 200:
+		explode(true)
+	
 	velocity.y += gravity * delta
 	rotation = velocity.angle()
 	

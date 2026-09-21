@@ -8,8 +8,6 @@ var teams_weapons: Array[Array] = [[-1,-1,2,4,1,1,1,1,0], [-1,-1,2,4,1,1,1,1,0]]
 
 
 func next_player(skip_player: bool = false):
-	#teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1], [-1,-1,-1,-1,-1,-1,-1,-1,-1]]
-	#teams_weapons = [[0,-1,1,2,0,2,2,2,0], [0,-1,1,2,0,2,2,2,0]]
 	Mouse.show()
 	
 	#player turn and teams picking

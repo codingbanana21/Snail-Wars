@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 	# skip dead player
 	if (dead or global_position.y >= 200) and player_turn_part != 0:
 		player_turn_part = 0
-		dead = true
+		hp = 0
 		Globals.next_player(true)
 		return
 	

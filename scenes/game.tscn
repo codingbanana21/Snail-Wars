@@ -3,17 +3,23 @@
 [ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scripts/game.gd" id="1_uwrxv"]
 [ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_lnu2h"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="4_p57ef"]
+[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="5_gee14"]
+[ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="6_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="6_p57ef"]
 
 [node name="Game" type="Node2D" unique_id=2137944541]
 script = ExtResource("1_uwrxv")
 
 [node name="MapButton" type="Button" parent="." unique_id=367210282]
-offset_left = -129.0
+offset_left = -153.0
 offset_top = -54.0
-offset_right = -47.0
-offset_bottom = -23.0
+offset_right = -43.0
+offset_bottom = -22.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 1"
+icon = ExtResource("6_p57ef")
 
 [node name="MapButton2" type="Button" parent="." unique_id=534044815]
 offset_left = -41.0
@@ -22,22 +28,25 @@ offset_right = 41.0
 offset_bottom = -23.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 2"
+icon = ExtResource("4_p57ef")
 
 [node name="MapButton3" type="Button" parent="." unique_id=1759142092]
-offset_left = 47.0
+offset_left = 71.0
 offset_top = -54.0
-offset_right = 129.0
+offset_right = 153.0
 offset_bottom = -23.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 3"
+icon = ExtResource("5_gee14")
 
 [node name="MapButton4" type="Button" parent="." unique_id=1242686351]
-offset_left = -129.0
+offset_left = -153.0
 offset_top = -14.0
-offset_right = -47.0
-offset_bottom = 17.0
+offset_right = -43.0
+offset_bottom = 18.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 4"
+icon = ExtResource("6_0tnpc")
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1758057930]
 layer = -100
@@ -49,11 +58,13 @@ offset_right = 1190.0
 offset_bottom = 686.0
 color = Color(0.6509804, 0.79607844, 0.81960785, 1)
 
-[node name="HSlider" type="HSlider" parent="." unique_id=2044711407]
+[node name="PerTeamHSlider" type="HSlider" parent="." unique_id=2044711407]
 offset_left = -48.0
 offset_top = 25.0
 offset_right = 49.0
 offset_bottom = 41.0
+theme_override_icons/grabber = ExtResource("3_lbhrr")
+theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
 min_value = 1.0
 max_value = 4.0
 value = 4.0
@@ -66,6 +77,27 @@ offset_right = 87.0
 offset_bottom = 45.0
 scale = Vector2(0.5, 0.5)
 text = "4 Player"
+label_settings = ExtResource("2_yqjtg")
+
+[node name="WeaponsHSlider" type="HSlider" parent="." unique_id=858606506]
+offset_left = -48.0
+offset_top = 49.0
+offset_right = 49.0
+offset_bottom = 65.0
+theme_override_icons/grabber = ExtResource("3_lbhrr")
+theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
+min_value = 1.0
+max_value = 3.0
+value = 1.0
+rounded = true
+
+[node name="WeaponsLabel" type="Label" parent="." unique_id=1362672685]
+offset_left = -53.0
+offset_top = 53.0
+offset_right = 179.0
+offset_bottom = 69.0
+scale = Vector2(0.5, 0.5)
+text = "Weapon per set 1"
 label_settings = ExtResource("2_yqjtg")
 
 [connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
