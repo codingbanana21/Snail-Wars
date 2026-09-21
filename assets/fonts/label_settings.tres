@@ -5,5 +5,7 @@
 [resource]
 line_spacing = 0.0
 font = ExtResource("1_li8ak")
-shadow_size = 10
+outline_size = 6
+outline_color = Color(0.50187874, 0.5018787, 0.5018787, 1)
+shadow_size = 8
 shadow_color = Color(0, 0, 0, 1)

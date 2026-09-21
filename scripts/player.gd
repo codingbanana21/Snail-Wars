@@ -28,6 +28,7 @@ var hp: float = 100.0
 var weapon: int = 0
 var dir: float = 0
 var player_turn_part: int = 0
+var dead: bool = false
 
 
 func _ready() -> void:
@@ -36,6 +37,9 @@ func _ready() -> void:
 	team_label.text = "Team " + team
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
+	
+	if Globals.players_in_team <= player_number:
+		hp = 0
 
 
 func _process(delta: float) -> void:
@@ -45,8 +49,9 @@ func _process(delta: float) -> void:
 		snail.flip_h = false
 	
 	# skip dead player
-	if (hp < 1 or global_position.y >= 200) and player_turn_part != 0:
+	if (dead or global_position.y >= 200) and player_turn_part != 0:
 		player_turn_part = 0
+		dead = true
 		Globals.next_player(true)
 		return
 	
@@ -153,11 +158,11 @@ func damage(hurt_damage: float):
 
 
 func next_player():
-	if hp < 1 or global_position.y >= 200:
-		if is_physics_processing():
-			shot_projectile("res://projectiles/snail.tscn", global_position)
-			set_physics_process(false)
-			global_position.y = 10000
+	if hp < 1 and !dead:
+		dead = true
+		shot_projectile("res://projectiles/snail.tscn", global_position)
+		set_physics_process(false)
+		global_position.y = 10000
 	
 	if Globals.player_turn == player_number and team_number == Globals.team_turn:
 		player_turn_part = 1
