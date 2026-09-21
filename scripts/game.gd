@@ -12,9 +12,14 @@ func _process(delta: float) -> void:
 
 func _on_map_button_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://scenes/map_1.scn")
+	get_tree().change_scene_to_file("res://maps/map_1.scn")
 
 
 func _on_map_button_2_pressed() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://scenes/map_2.scn")
+	get_tree().change_scene_to_file("res://maps/map_2.scn")
+
+
+func _on_map_button_3_pressed() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	get_tree().change_scene_to_file("res://maps/map_3.scn")
