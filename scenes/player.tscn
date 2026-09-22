@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://dov8abymctmg1" path="res://assets/sounds/impressive1.mp3" id="8_smehm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(22, 17)
+size = Vector2(18, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=1048355818 groups=["Player"]]
 collision_layer = 3
@@ -21,7 +21,7 @@ script = ExtResource("1_3vyb7")
 texture = ExtResource("3_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=634553446]
-position = Vector2(0, 2.5)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_fjrip")
 
 [node name="NameLabel" type="Label" parent="." unique_id=338090993]

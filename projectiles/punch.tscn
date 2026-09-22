@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bh751jo6u3b80"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_58rc5"]
+
+[node name="Punch" unique_id=791496552 instance=ExtResource("1_58rc5")]
+damage = 5
+size = 5
+gravity = 0
+timer = 0.1

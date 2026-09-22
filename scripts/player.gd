@@ -17,16 +17,16 @@ extends CharacterBody2D
 @export var team_name: String
 @export var team_color: Color
 
-const SPEED: int = 6
-const JUMP: Vector2 = Vector2(90, -350)
+const SPEED: int = 4
+const JUMP: Vector2 = Vector2(90, -300)
 const PLAYER_GRAVITY: int = 30
-const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "pumkin_grenade", "destroyer_of_games"]
+const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","pumkin_grenade","destroyer_of_games","punch"]
 const NAMES: Array[String] = ["","Good", "Bad", "Cool", "Best", "Dumb", "Not", "Dead", "Red", "Blue", "Green"]
 
 var projectile_speed: float = 0.0
 var hp: int = 100
 var weapon: int = 0
-var dir: int = 0
+var dir: float = 0
 var player_turn_part: int = 0
 var dead: bool = false
 
@@ -83,9 +83,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 				if weapon < 0:
-					weapon = 8
+					weapon = 9
 			
-			weapon %= 9
+			weapon %= 10
 			Mouse.weapon_left = Globals.teams_weapons[team_number][weapon]
 			Mouse.weapon = weapon
 		
@@ -131,7 +131,7 @@ func shot_projectile(projectile: NodePath, pos : Vector2):
 	new_projectile = load(projectile).instantiate()
 	new_projectile.global_position = pos
 	new_projectile.look_at(Mouse.global_position)
-	new_projectile.speed *= projectile_speed
+	new_projectile.speed *= int(projectile_speed)
 	call_deferred("add_child", new_projectile)
 	
 	projectile_speed = 0.0

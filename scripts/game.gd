@@ -21,13 +21,16 @@ func _process(delta: float) -> void:
 
 func load_map(level: int = 1):
 	if int(weapons_h_slider.value) == 1:
-		Globals.teams_weapons = [[-1,-1,2,4,1,1,1,1,0],[],[]]
+		Globals.teams_weapons = [[-1,-1,2,4,1,1,1,1,0,-1]]
 	elif int(weapons_h_slider.value) == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1],[],[]]
+		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
 	elif int(weapons_h_slider.value) == 3:
-		Globals.teams_weapons = [[0,-1,1,2,0,2,2,2,0],[],[]]
+		Globals.teams_weapons = [[1,1,1,1,1,1,1,1,1,1]]
+	elif int(weapons_h_slider.value) == 4:
+		Globals.teams_weapons = [[-1,-1,0,0,0,0,0,0,0,-1]]
 	
 	for i in range(Globals.number_of_teams-1):
+		Globals.teams_weapons.append([])
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
