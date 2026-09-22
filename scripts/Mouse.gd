@@ -8,13 +8,13 @@ const WEAPONS: Array[String] = ["Rocket Launcher", "Grenade", "Drill Rocket", "B
 
 var moving: bool = false
 var shake_amount: float = 0.0
-var weapon_left: String
+var weapon_left: int
 var weapon: int
 
 
 func _process(delta: float) -> void:
-	if int(weapon_left) >= 0:
-		weapon_label.text = WEAPONS[weapon]+" "+weapon_left
+	if weapon_left >= 0:
+		weapon_label.text = WEAPONS[weapon]+" "+str(weapon_left)
 	else:
 		weapon_label.text = WEAPONS[weapon]
 	

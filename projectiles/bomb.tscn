@@ -7,12 +7,11 @@
 radius = 5.0
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
-damage = 12.0
+damage = 12
 size = 5
 knockback = 200
 projectile_hp = 5
 spawn = true
-hit_stun_time = 0.05
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_3xfjl")

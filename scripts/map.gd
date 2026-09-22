@@ -10,8 +10,14 @@ func _ready() -> void:
 	Globals.next_player()
 
 
-func remove_tile(tile_position: Vector2):
-	var map_tile = map.get_cell_atlas_coords(tile_position)
+func explode_tile(target_position: Vector2, power: int):
+	var tile_position: Vector2 = round(target_position / 4.0)
+	var explosion_accuracy: float = PI * 2
 	
-	if map_tile.y < 3:
-		map.set_cell(tile_position, 0, map_tile + Vector2i(0, 3))
+	for explosion_size in range(power):
+		for number in range(explosion_accuracy * 8 * explosion_size):
+			var tile = tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size)
+			var tile_type = map.get_cell_atlas_coords(tile)
+			
+			if tile_type.y < 3:
+				map.set_cell(tile, 0, tile_type + Vector2i(0, 3))

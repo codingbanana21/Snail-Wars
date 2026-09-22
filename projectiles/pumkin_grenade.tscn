@@ -7,13 +7,13 @@
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_upu3b"]
-radius = 6.0
+radius = 5.0
 
 [node name="PumkinGrenade" unique_id=791496552 instance=ExtResource("1_upu3b")]
-damage = 3.0
+damage = 1
 size = 4
 knockback = 600
-projectile_hp = -1
+projectile_hp = 50
 timer = 5.0
 bounce = true
 spawn = true

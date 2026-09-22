@@ -17,16 +17,16 @@ extends CharacterBody2D
 @export var team_name: String
 @export var team_color: Color
 
-const SPEED: float = 6.0
-const JUMP: Vector2 = Vector2(90, -350.0)
-const PLAYER_GRAVITY: float = 30.0
+const SPEED: int = 6
+const JUMP: Vector2 = Vector2(90, -350)
+const PLAYER_GRAVITY: int = 30
 const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "pumkin_grenade", "destroyer_of_games"]
 const NAMES: Array[String] = ["","Good", "Bad", "Cool", "Best", "Dumb", "Not", "Dead", "Red", "Blue", "Green"]
 
 var projectile_speed: float = 0.0
-var hp: float = 100.0
+var hp: int = 100
 var weapon: int = 0
-var dir: float = 0
+var dir: int = 0
 var player_turn_part: int = 0
 var dead: bool = false
 
@@ -39,8 +39,7 @@ func _ready() -> void:
 	hp_label.modulate = team_color
 	
 	if Globals.players_in_team <= player_number or Globals.number_of_teams <= team_number:
-		global_position.y = -10000
-		hp = 0
+		die()
 
 
 func _process(delta: float) -> void:
@@ -87,15 +86,13 @@ func _process(delta: float) -> void:
 					weapon = 8
 			
 			weapon %= 9
-			Mouse.weapon_left = str(Globals.teams_weapons[team_number][weapon])
+			Mouse.weapon_left = Globals.teams_weapons[team_number][weapon]
 			Mouse.weapon = weapon
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
 			Input.action_release("attack")
 			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
 			Globals.teams_weapons[team_number][weapon] -= 1
-			projectile_speed = 0.0
-			shot_bar.value = 0
 			player_turn_part = 2
 			Mouse.hide()
 
@@ -136,14 +133,17 @@ func shot_projectile(projectile: NodePath, pos : Vector2):
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= projectile_speed
 	call_deferred("add_child", new_projectile)
+	
+	projectile_speed = 0.0
+	shot_bar.value = 0
 
 
-func damage(hurt_damage: float):
+func damage(hurt_damage: int):
 	hp -= hurt_damage
-	hp_label.text = str(int(hp))
+	hp_label.text = str(hp)
 	
 	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
-	hit_text.text = str(int(hurt_damage))
+	hit_text.text = str(hurt_damage)
 	add_child(hit_text)
 	
 	if player_turn_part != 0 and hp < 1:
@@ -158,16 +158,22 @@ func damage(hurt_damage: float):
 		next_player_timer.start(3.0)
 
 
+func die():
+	dead = true
+	set_physics_process(false)
+	global_position.y = -10000
+
+
 func next_player():
 	if hp < 1 and !dead:
-		dead = true
 		shot_projectile("res://projectiles/snail.tscn", global_position)
-		set_physics_process(false)
-		global_position.y = -10000
+		die()
 	
 	if Globals.player_turn == player_number and team_number == Globals.team_turn:
 		player_turn_part = 1
-		Mouse.global_position = global_position
+		
+		if !dead:
+			Mouse.global_position = global_position
 
 
 func _on_next_player_timer_timeout() -> void:
