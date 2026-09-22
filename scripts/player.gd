@@ -14,14 +14,14 @@ extends CharacterBody2D
 
 @export var player_number: int = 0
 @export var team_number: int = 0
-@export var player_name: String
-@export var team: String
+@export var team_name: String
 @export var team_color: Color
 
 const SPEED: float = 6.0
 const JUMP: Vector2 = Vector2(90, -350.0)
 const PLAYER_GRAVITY: float = 30.0
 const WEAPONS: Array[String] = ["rocket", "grenade", "drill", "bomb", "air_strike", "drill_strike", "tnt", "pumkin_grenade", "destroyer_of_games"]
+const NAMES: Array[String] = ["","Good", "Bad", "Cool", "Best", "Dumb", "Not", "Dead", "Red", "Blue", "Green"]
 
 var projectile_speed: float = 0.0
 var hp: float = 100.0
@@ -32,9 +32,9 @@ var dead: bool = false
 
 
 func _ready() -> void:
-	name_label.text = player_name
+	name_label.text = NAMES.pick_random() +" "+ team_name
 	name_label.modulate = team_color
-	team_label.text = "Team " + team
+	team_label.text = "Team " + team_name
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
 	

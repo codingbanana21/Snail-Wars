@@ -8,10 +8,10 @@ extends Node2D
 
 
 func _process(delta: float) -> void:
-	per_team_label.text = str(int(per_team_h_slider.value)) + " Player"
+	per_team_label.text = str(int(per_team_h_slider.value)) + " players per team"
 	Globals.players_in_team = int(per_team_h_slider.value)
 	
-	weapons_label.text = "Weapon per set "+str(int(weapons_h_slider.value))
+	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
 func load_map(level: int = 1):
@@ -38,3 +38,7 @@ func _on_map_button_3_pressed() -> void:
 
 func _on_map_button_4_pressed() -> void:
 	load_map(4)
+
+
+func _on_map_button_5_pressed() -> void:
+	load_map(5)
