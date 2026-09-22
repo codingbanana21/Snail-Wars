@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="2_h2h75"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h2h75"]
-radius = 6.0
+radius = 4.0
 
 [node name="Fragment" unique_id=791496552 instance=ExtResource("1_1ak3v")]
 scale = Vector2(0.5, 0.5)
-damage = 3.0
+damage = 4.0
 size = 4
 knockback = 200
 speed = 0.0
-projectile_hp = 4
+projectile_hp = 5
 not_players = true
 hit_stun_time = 0.05
 

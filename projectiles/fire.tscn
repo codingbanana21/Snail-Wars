@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="2_ispoe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlca0"]
-radius = 4.0
+radius = 3.0
 
 [node name="Fire" unique_id=791496552 instance=ExtResource("1_6ypq2")]
 damage = 1.0
 size = 3
-knockback = 400
+knockback = 600
 speed = 0.0
-gravity = 30
-projectile_hp = 4
+gravity = 250
+projectile_hp = 5
 timer = 30.0
 not_players = true
 hit_stun_time = 2.0

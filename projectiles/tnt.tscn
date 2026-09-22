@@ -3,21 +3,22 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_2ywih"]
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="2_gjjih"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gjjih"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7exph"]
+radius = 3.0
+height = 12.0
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
 damage = 75.0
 size = 16
 knockback = 1600
-speed = 12.0
+speed = 10.0
 bounce = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_gjjih")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
-shape = SubResource("CircleShape2D_gjjih")
+shape = SubResource("CapsuleShape2D_7exph")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
 position = Vector2(0, 0)
