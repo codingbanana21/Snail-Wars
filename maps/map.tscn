@@ -278,51 +278,66 @@ offset_bottom = 686.0
 color = Color(0.6509804, 0.79607844, 0.81960785, 1)
 
 [node name="Team1Player1" parent="." unique_id=1048355818 instance=ExtResource("3_c3pkw")]
-position = Vector2(-96, -30)
 team_name = "Barry"
 team_color = Color(0, 0.3372549, 1, 1)
 
 [node name="Team1Player2" parent="." unique_id=1787517263 instance=ExtResource("3_c3pkw")]
-position = Vector2(587, -332)
 player_number = 1
 team_name = "Barry"
 team_color = Color(0, 0.3372549, 1, 1)
 
 [node name="Team1Player3" parent="." unique_id=241396977 instance=ExtResource("3_c3pkw")]
-position = Vector2(652, -98)
 player_number = 2
 team_name = "Barry"
 team_color = Color(0, 0.3372549, 1, 1)
 
 [node name="Team2Player1" parent="." unique_id=1723384383 instance=ExtResource("3_c3pkw")]
-position = Vector2(628, -565)
 player_number = 3
 team_name = "Barry"
 team_color = Color(0, 0.3372549, 1, 1)
 
 [node name="Team2Player" parent="." unique_id=412980946 instance=ExtResource("3_c3pkw")]
-position = Vector2(-142, -436)
 team_number = 1
 team_name = "Sam"
 team_color = Color(1, 0.039215688, 0, 1)
 
 [node name="Team2Player2" parent="." unique_id=1637733370 instance=ExtResource("3_c3pkw")]
-position = Vector2(-237, -239)
 player_number = 1
 team_number = 1
 team_name = "Sam"
 team_color = Color(1, 0.039215688, 0, 1)
 
 [node name="Team2Player3" parent="." unique_id=2107232913 instance=ExtResource("3_c3pkw")]
-position = Vector2(167, -406)
 player_number = 2
 team_number = 1
 team_name = "Sam"
 team_color = Color(1, 0.039215688, 0, 1)
 
 [node name="Team2Player4" parent="." unique_id=524377717 instance=ExtResource("3_c3pkw")]
-position = Vector2(180, -113)
 player_number = 3
 team_number = 1
 team_name = "Sam"
 team_color = Color(1, 0.039215688, 0, 1)
+
+[node name="Team3Player1" parent="." unique_id=1298123192 instance=ExtResource("3_c3pkw")]
+team_number = 2
+team_name = "Jim"
+team_color = Color(0.16470589, 1, 0, 1)
+
+[node name="Team3Player2" parent="." unique_id=1639018782 instance=ExtResource("3_c3pkw")]
+player_number = 1
+team_number = 2
+team_name = "Jim"
+team_color = Color(0.16470589, 1, 0, 1)
+
+[node name="Team3Player3" parent="." unique_id=1495768489 instance=ExtResource("3_c3pkw")]
+player_number = 2
+team_number = 2
+team_name = "Jim"
+team_color = Color(0.16470589, 1, 0, 1)
+
+[node name="Team3Player4" parent="." unique_id=872305750 instance=ExtResource("3_c3pkw")]
+player_number = 3
+team_number = 2
+team_name = "Jim"
+team_color = Color(0.16470589, 1, 0, 1)

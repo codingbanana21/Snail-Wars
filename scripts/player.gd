@@ -38,7 +38,8 @@ func _ready() -> void:
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
 	
-	if Globals.players_in_team <= player_number:
+	if Globals.players_in_team <= player_number or Globals.number_of_teams <= team_number:
+		global_position.y = -10000
 		hp = 0
 
 
@@ -162,7 +163,7 @@ func next_player():
 		dead = true
 		shot_projectile("res://projectiles/snail.tscn", global_position)
 		set_physics_process(false)
-		global_position.y = 10000
+		global_position.y = -10000
 	
 	if Globals.player_turn == player_number and team_number == Globals.team_turn:
 		player_turn_part = 1

@@ -13,16 +13,18 @@
 [node name="Game" type="Node2D" unique_id=2137944541]
 script = ExtResource("1_uwrxv")
 
-[node name="MapLabel" type="Label" parent="." unique_id=2111666030]
+[node name="Maps" type="Node" parent="." unique_id=965240370]
+
+[node name="MapLabel" type="Label" parent="Maps" unique_id=2111666030]
 offset_left = -85.0
 offset_top = -163.0
-offset_right = 263.0
+offset_right = 279.0
 offset_bottom = -147.0
 scale = Vector2(0.5, 0.5)
-text = "Big maps (Max players 8)"
+text = "Big maps (Max players 16)"
 label_settings = ExtResource("2_yqjtg")
 
-[node name="MapButton" type="Button" parent="." unique_id=367210282]
+[node name="MapButton" type="Button" parent="Maps" unique_id=367210282]
 offset_left = -113.0
 offset_top = -150.0
 offset_right = -3.0
@@ -31,7 +33,7 @@ theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 1"
 icon = ExtResource("6_p57ef")
 
-[node name="MapButton2" type="Button" parent="." unique_id=534044815]
+[node name="MapButton2" type="Button" parent="Maps" unique_id=534044815]
 offset_left = 7.0
 offset_top = -150.0
 offset_right = 117.0
@@ -40,16 +42,16 @@ theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 2"
 icon = ExtResource("4_p57ef")
 
-[node name="MapLabel2" type="Label" parent="." unique_id=498424789]
+[node name="MapLabel2" type="Label" parent="Maps" unique_id=498424789]
 offset_left = -93.0
 offset_top = -99.0
-offset_right = 285.0
+offset_right = 323.0
 offset_bottom = -83.0
 scale = Vector2(0.5, 0.5)
-text = "Medium maps (Max players 6)"
+text = "Medium maps (Max players 12)"
 label_settings = ExtResource("2_yqjtg")
 
-[node name="MapButton3" type="Button" parent="." unique_id=1759142092]
+[node name="MapButton3" type="Button" parent="Maps" unique_id=1759142092]
 offset_left = -113.0
 offset_top = -86.0
 offset_right = -3.0
@@ -58,16 +60,16 @@ theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 3"
 icon = ExtResource("5_gee14")
 
-[node name="MapLabel3" type="Label" parent="." unique_id=218978788]
+[node name="MapLabel3" type="Label" parent="Maps" unique_id=218978788]
 offset_left = -93.0
 offset_top = -35.0
 offset_right = 285.0
 offset_bottom = -19.0
 scale = Vector2(0.5, 0.5)
-text = "Small maps (Max players 4)"
+text = "Small maps (Max players 8)"
 label_settings = ExtResource("2_yqjtg")
 
-[node name="MapButton4" type="Button" parent="." unique_id=1242686351]
+[node name="MapButton4" type="Button" parent="Maps" unique_id=1242686351]
 offset_left = -113.0
 offset_top = -22.0
 offset_right = -3.0
@@ -76,7 +78,7 @@ theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Map 4"
 icon = ExtResource("6_0tnpc")
 
-[node name="MapButton5" type="Button" parent="." unique_id=2026222464]
+[node name="MapButton5" type="Button" parent="Maps" unique_id=2026222464]
 offset_left = 7.0
 offset_top = -22.0
 offset_right = 117.0
@@ -95,11 +97,14 @@ offset_right = 1190.0
 offset_bottom = 686.0
 color = Color(0.6509804, 0.79607844, 0.81960785, 1)
 
-[node name="PerTeamHSlider" type="HSlider" parent="." unique_id=2044711407]
+[node name="Settings" type="Node" parent="." unique_id=1713896030]
+
+[node name="PerTeamHSlider" type="HSlider" parent="Settings" unique_id=2044711407]
+unique_name_in_owner = true
 offset_left = -48.0
 offset_top = 25.0
 offset_right = 49.0
-offset_bottom = 41.0
+offset_bottom = 49.0
 theme_override_icons/grabber = ExtResource("3_lbhrr")
 theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
 min_value = 1.0
@@ -107,7 +112,8 @@ max_value = 4.0
 value = 4.0
 rounded = true
 
-[node name="PerTeamLabel" type="Label" parent="." unique_id=911952572]
+[node name="PerTeamLabel" type="Label" parent="Settings" unique_id=911952572]
+unique_name_in_owner = true
 offset_left = -65.0
 offset_top = 29.0
 offset_right = 195.0
@@ -116,11 +122,12 @@ scale = Vector2(0.5, 0.5)
 text = "4 players per team"
 label_settings = ExtResource("2_yqjtg")
 
-[node name="WeaponsHSlider" type="HSlider" parent="." unique_id=858606506]
+[node name="WeaponsHSlider" type="HSlider" parent="Settings" unique_id=858606506]
+unique_name_in_owner = true
 offset_left = -48.0
 offset_top = 49.0
 offset_right = 49.0
-offset_bottom = 65.0
+offset_bottom = 73.0
 theme_override_icons/grabber = ExtResource("3_lbhrr")
 theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
 min_value = 1.0
@@ -128,7 +135,8 @@ max_value = 3.0
 value = 1.0
 rounded = true
 
-[node name="WeaponsLabel" type="Label" parent="." unique_id=1362672685]
+[node name="WeaponsLabel" type="Label" parent="Settings" unique_id=1362672685]
+unique_name_in_owner = true
 offset_left = -45.0
 offset_top = 53.0
 offset_right = 131.0
@@ -137,8 +145,31 @@ scale = Vector2(0.5, 0.5)
 text = "Weapon set 1"
 label_settings = ExtResource("2_yqjtg")
 
-[connection signal="pressed" from="MapButton" to="." method="_on_map_button_pressed"]
-[connection signal="pressed" from="MapButton2" to="." method="_on_map_button_2_pressed"]
-[connection signal="pressed" from="MapButton3" to="." method="_on_map_button_3_pressed"]
-[connection signal="pressed" from="MapButton4" to="." method="_on_map_button_4_pressed"]
-[connection signal="pressed" from="MapButton5" to="." method="_on_map_button_5_pressed"]
+[node name="TeamsHSlider" type="HSlider" parent="Settings" unique_id=1112265823]
+unique_name_in_owner = true
+offset_left = -48.0
+offset_top = 81.0
+offset_right = 49.0
+offset_bottom = 105.0
+theme_override_icons/grabber = ExtResource("3_lbhrr")
+theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
+min_value = 1.0
+max_value = 3.0
+value = 2.0
+rounded = true
+
+[node name="TeamsLabel" type="Label" parent="Settings" unique_id=1984247566]
+unique_name_in_owner = true
+offset_left = -25.0
+offset_top = 85.0
+offset_right = 79.0
+offset_bottom = 101.0
+scale = Vector2(0.5, 0.5)
+text = "2 teams"
+label_settings = ExtResource("2_yqjtg")
+
+[connection signal="pressed" from="Maps/MapButton" to="." method="_on_map_button_pressed"]
+[connection signal="pressed" from="Maps/MapButton2" to="." method="_on_map_button_2_pressed"]
+[connection signal="pressed" from="Maps/MapButton3" to="." method="_on_map_button_3_pressed"]
+[connection signal="pressed" from="Maps/MapButton4" to="." method="_on_map_button_4_pressed"]
+[connection signal="pressed" from="Maps/MapButton5" to="." method="_on_map_button_5_pressed"]
