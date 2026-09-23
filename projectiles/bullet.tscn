@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bs2ktoo37b5mc"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_4ambd"]
+[ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="2_cqswp"]
+
+[node name="Bullet" unique_id=791496552 instance=ExtResource("1_4ambd")]
+damage = 30
+size = 5
+knockback = 400
+speed = 120
+gravity = 0
+
+[node name="Image" parent="." index="0" unique_id=2045045234]
+texture = ExtResource("2_cqswp")

@@ -1,9 +1,14 @@
 [gd_scene format=3 uid="uid://bh751jo6u3b80"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_58rc5"]
+[ext_resource type="Texture2D" uid="uid://5ymlmsygagmv" path="res://assets/images/punch.png" id="2_n2x71"]
 
 [node name="Punch" unique_id=791496552 instance=ExtResource("1_58rc5")]
 damage = 5
-size = 5
+size = 6
+speed = 120
 gravity = 0
-timer = 0.1
+timer = 0.05
+
+[node name="Image" parent="." index="0" unique_id=2045045234]
+texture = ExtResource("2_n2x71")
