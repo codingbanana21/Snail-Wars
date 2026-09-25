@@ -7,11 +7,11 @@
 size = Vector2(5, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4n3"]
-size = Vector2(7.5, 18.75)
+size = Vector2(6, 18.75)
 
 [node name="Mine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
 damage = 30.0
-size = 6
+size = 3
 knockback = 600
 speed = 0.0
 min_speed = 0
@@ -27,5 +27,5 @@ position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_lbhrr")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-position = Vector2(1.75, 0.375)
+position = Vector2(1, 0.375)
 shape = SubResource("RectangleShape2D_1y4n3")

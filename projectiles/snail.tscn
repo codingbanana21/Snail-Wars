@@ -6,8 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa71f"]
 
 [node name="Snail" unique_id=791496552 instance=ExtResource("1_3a5e7")]
-damage = 35.0
-size = 10
+damage = 30
+size = 4
 knockback = 500
 speed = 0.0
 timer = 1.0

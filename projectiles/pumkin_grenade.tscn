@@ -11,7 +11,7 @@ radius = 5.0
 
 [node name="PumkinGrenade" unique_id=791496552 instance=ExtResource("1_upu3b")]
 damage = 1
-size = 4
+size = 2
 knockback = 600
 projectile_hp = 50
 timer = 5.0

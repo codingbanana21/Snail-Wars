@@ -33,7 +33,7 @@ func _ready() -> void:
 	#spawn type
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
-		global_position.y = -1040.0
+		global_position.y = -1200.0
 		velocity.y += speed
 	else:
 		global_position += transform.x * 16.0

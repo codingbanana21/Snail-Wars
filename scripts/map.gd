@@ -12,7 +12,7 @@ func _ready() -> void:
 	Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
 	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	Globals.next_player()
-	make_map()
+	#make_map()
 
 
 func make_map():

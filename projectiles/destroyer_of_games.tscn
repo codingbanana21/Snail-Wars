@@ -4,8 +4,8 @@
 
 [node name="DestroyerOfGames" unique_id=791496552 instance=ExtResource("1_cudxu")]
 scale = Vector2(2, 2)
-damage = 999.0
-size = 100
+damage = 1000
+size = 50
 knockback = 2000
 gravity = 300
 timer = 5.0
