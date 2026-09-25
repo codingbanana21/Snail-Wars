@@ -6,7 +6,7 @@ extends CharacterBody2D
 @onready var hit_timer: Timer = $HitTimer
 
 @export var damage: int = 45
-@export var size: int = 8
+@export var size: int = 5
 @export var knockback: int = 800
 @export var speed: int = 60
 @export var min_speed: int = 100
@@ -33,7 +33,7 @@ func _ready() -> void:
 	#spawn type
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
-		global_position.y = -1040.0
+		global_position.y = -1200.0
 		velocity.y += speed
 	else:
 		global_position += transform.x * 16.0
@@ -102,7 +102,7 @@ func explode(end_explode: bool = false):
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
-		if dis_to < (4.0 * size) + 8.0:
+		if dis_to < (8.0 * size) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			player.damage(int(hit_power * damage))
 			player.velocity = -transform.x * hit_power * knockback

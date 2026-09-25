@@ -8,8 +8,8 @@ radius = 4.0
 
 [node name="Fragment" unique_id=791496552 instance=ExtResource("1_1ak3v")]
 scale = Vector2(0.5, 0.5)
-damage = 4.0
-size = 4
+damage = 3
+size = 2
 knockback = 600
 speed = 0.0
 projectile_hp = 5

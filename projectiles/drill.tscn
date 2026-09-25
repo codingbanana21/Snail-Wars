@@ -5,7 +5,7 @@
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 damage = 10
-size = 6
+size = 3
 knockback = 600
 gravity = 300
 projectile_hp = 7
