@@ -9,9 +9,10 @@ extends CharacterBody2D
 @export var size: int = 8
 @export var knockback: int = 800
 @export var speed: int = 60
+@export var min_speed: int = 100
 @export var gravity: int = 500
 @export var projectile_hp: int = 1
-@export var hit_stun_time: float = 0.05
+@export var hit_stun_time: float = 0.0
 @export var timer: float = 3.0
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
@@ -23,6 +24,9 @@ extends CharacterBody2D
 func _ready() -> void:
 	if timer > 0:
 		explosion_timer.start(timer)
+	
+	if min_speed > speed:
+		speed = min_speed
 	
 	#spawn type
 	if spawn_at_mouse:
@@ -65,8 +69,10 @@ func _physics_process(delta: float) -> void:
 
 func explode(end_explode: bool = false):
 	projectile_hp -= 1
-	hit_timer.start(hit_stun_time)
 	Mouse.shake(damage / 5.0)
+	
+	if hit_stun_time > 0:
+		hit_timer.start(hit_stun_time)
 	
 	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 	hit_particle.global_position = global_position
@@ -93,7 +99,7 @@ func explode(end_explode: bool = false):
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
-		if dis_to < (4.0 * size):
+		if dis_to < (4.0 * size) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			player.damage(int(hit_power * damage))
 			player.velocity = -transform.x * hit_power * knockback
