@@ -8,8 +8,10 @@ extends CharacterBody2D
 @onready var shot_bar: TextureProgressBar = $ShotBar
 @onready var arrow: Sprite2D = $Arrow
 @onready var ooff: AudioStreamPlayer = $Ooff
+@onready var ooff_2: AudioStreamPlayer = $Ooff2
 @onready var looser: AudioStreamPlayer = $Looser
 @onready var impressive: AudioStreamPlayer = $Impressive
+@onready var bomb: AudioStreamPlayer = $Bomb
 @onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 0
@@ -151,7 +153,10 @@ func damage(hurt_damage: int):
 	elif player_turn_part != 0:
 		looser.play()
 	else:
-		ooff.play()
+		if randf() >= 0.8:
+			ooff.play()
+		else:
+			ooff_2.play()
 	
 	if player_turn_part != 0:
 		player_turn_part = 4

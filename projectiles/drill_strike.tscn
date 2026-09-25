@@ -6,12 +6,12 @@
 [node name="DrillStrike" unique_id=791496552 instance=ExtResource("1_qlak5")]
 damage = 10.0
 size = 6
-knockback = 200
+knockback = 600
 gravity = 300
 projectile_hp = 7
+hit_stun_time = 0.15
 timer = 5.0
 spawn_at_mouse = true
-hit_stun_time = 0.15
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_u8o3f")

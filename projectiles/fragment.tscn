@@ -10,11 +10,11 @@ radius = 4.0
 scale = Vector2(0.5, 0.5)
 damage = 4.0
 size = 4
-knockback = 200
+knockback = 600
 speed = 0.0
 projectile_hp = 5
-not_players = true
 hit_stun_time = 0.05
+not_players = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_h2h75")

@@ -20,6 +20,8 @@ extends CharacterBody2D
 @export var spawn: bool = false
 @export var spawn_type: String = "fragment"
 
+@onready var parent: Player = get_parent()
+
 
 func _ready() -> void:
 	if timer > 0:
@@ -69,6 +71,7 @@ func _physics_process(delta: float) -> void:
 
 func explode(end_explode: bool = false):
 	projectile_hp -= 1
+	parent.bomb.play()
 	Mouse.shake(damage / 5.0)
 	
 	if hit_stun_time > 0:
@@ -78,10 +81,10 @@ func explode(end_explode: bool = false):
 	hit_particle.global_position = global_position
 	hit_particle.emitting = true
 	hit_particle.amount = clampi(int(damage), 1, 200)
-	get_parent().add_child(hit_particle)
+	parent.add_child(hit_particle)
 	
 	if spawn:
-		get_parent().shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)
+		parent.shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)
 	
 	if projectile_hp == 0 or end_explode:
 		end_explode = true
@@ -89,9 +92,9 @@ func explode(end_explode: bool = false):
 		
 		if !not_players:
 			set_physics_process(false)
-			get_parent().next_player_timer.start()
-			get_parent().player_turn_part = 3
-			Mouse.global_position = get_parent().global_position
+			parent.next_player_timer.start()
+			parent.player_turn_part = 3
+			Mouse.global_position = parent.global_position
 	
 	# destroy map
 	get_tree().current_scene.explode_tile(global_position, size)
