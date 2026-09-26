@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(level: int = 1):
+func load_map(level: String = "1m"):
 	if int(weapons_h_slider.value) == 1:
 		Globals.teams_weapons = [[-1,-1,2,4,1,1,1,1,0,-1,3]]
 	elif int(weapons_h_slider.value) == 2:
@@ -35,24 +35,24 @@ func load_map(level: int = 1):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://maps/map_"+str(level)+".scn")
+	get_tree().change_scene_to_file("res://maps/map_"+level+".scn")
 
 
-func _on_map_button_pressed() -> void:
-	load_map(1)
+func _on_map_1b_button_pressed() -> void:
+	load_map("1b")
 
 
-func _on_map_button_2_pressed() -> void:
-	load_map(2)
+func _on_map_2b_button_pressed() -> void:
+	load_map("2b")
 
 
-func _on_map_button_3_pressed() -> void:
-	load_map(3)
+func _on_map_1m_button_pressed() -> void:
+	load_map("1m")
 
 
-func _on_map_button_4_pressed() -> void:
-	load_map(4)
+func _on_map_1s_button_pressed() -> void:
+	load_map("1s")
 
 
-func _on_map_button_5_pressed() -> void:
-	load_map(5)
+func _on_map_2s_button_pressed() -> void:
+	load_map("2s")

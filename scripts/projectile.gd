@@ -18,6 +18,7 @@ extends CharacterBody2D
 @export var spawn_at_mouse: bool = false
 @export var not_players: bool = false
 @export var spawn: bool = false
+@export var sound: bool = true
 @export var spawn_type: String = "fragment"
 
 @onready var parent: Player = get_parent()
@@ -71,8 +72,10 @@ func _physics_process(delta: float) -> void:
 
 func explode(end_explode: bool = false):
 	projectile_hp -= 1
-	parent.bomb.play()
 	Mouse.shake(damage / 5.0)
+	
+	if sound:
+		parent.bomb.play()
 	
 	if hit_stun_time > 0:
 		hit_timer.start(hit_stun_time)

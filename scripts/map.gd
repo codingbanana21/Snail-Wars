@@ -21,17 +21,29 @@ func make_map():
 	for x in image.texture.get_width():
 		for y in image.texture.get_height():
 			var pixelColor = data.get_pixel(x,y)
+			var offset: Vector2i = Vector2i(x -128, y -256)
 			
 			if pixelColor == Color(0.0, 1.0, 0.0, 1.0):
-				map.set_cell(Vector2i(x -128, y -256),0 ,Vector2i(0, 0))
+				map.set_cell(offset, 0 ,Vector2i(0, 0))
+				
 			elif pixelColor == Color(1.0, 0.0, 0.0, 1.0):
-				map.set_cell(Vector2i(x -128, y -256),0 ,Vector2i(1, 0))
+				map.set_cell(offset, 0 ,Vector2i(1, 0))
+				
 			elif pixelColor == Color(0.0, 0.0, 1.0, 1.0):
-				map.set_cell(Vector2i(x -128, y -256),0 ,Vector2i(2, 0))
+				map.set_cell(offset, 0 ,Vector2i(2, 0))
+				
 			elif pixelColor == Color(1.0, 0.0, 1.0, 1.0):
-				map.set_cell(Vector2i(x -128, y -256),0 ,Vector2i(3, 0))
+				map.set_cell(offset, 0 ,Vector2i(3, 0))
+				
+			elif pixelColor == Color(1.0, 1.0, 1.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(6, 0))
+				
+			elif pixelColor == Color(0.0, 0.0, 0.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(5, 0))
+				
 			else:
-				map.set_cell(Vector2i(x -128, y -256),0 ,Vector2i(0, 7))
+				map.set_cell(offset, 0 ,Vector2i(0, 7))
+				
 
 
 func explode_tile(target_position: Vector2, power: int):
