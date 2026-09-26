@@ -11,7 +11,6 @@ size = Vector2(10, 15)
 
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 top_level = true
-collision_layer = 0
 script = ExtResource("1_q3m7n")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=2045045234]
@@ -25,7 +24,7 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
-position = Vector2(5, -0.5)
+position = Vector2(6, -0.5)
 shape = SubResource("RectangleShape2D_7nr1q")
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]

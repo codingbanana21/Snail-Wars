@@ -153,7 +153,7 @@ func damage(hurt_damage: int):
 	elif player_turn_part != 0:
 		looser.play()
 	else:
-		if randf() >= 0.8:
+		if randf() >= 0.35:
 			ooff.play()
 		else:
 			ooff_2.play()

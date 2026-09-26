@@ -10,6 +10,7 @@ radius = 4.0
 radius = 5.0
 
 [node name="PumkinGrenade" unique_id=791496552 instance=ExtResource("1_upu3b")]
+collision_layer = 0
 damage = 0
 size = 3
 knockback = 600

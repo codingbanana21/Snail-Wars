@@ -5,12 +5,12 @@
 
 [node name="Punch" unique_id=791496552 instance=ExtResource("1_58rc5")]
 damage = 5
-size = 2
+size = 3
 speed = 0
-min_speed = 1000
+min_speed = 500
 gravity = 0
 projectile_hp = -1
-timer = 0.05
+timer = 0.1
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_n2x71")

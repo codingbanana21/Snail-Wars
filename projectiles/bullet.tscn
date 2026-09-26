@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="2_cqswp"]
 
 [node name="Bullet" unique_id=791496552 instance=ExtResource("1_4ambd")]
-damage = 30
-size = 2
+damage = 35
+size = 3
 knockback = 600
 speed = 0
 min_speed = 1000
