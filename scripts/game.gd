@@ -31,7 +31,7 @@ func load_map(level: String = "1m"):
 	elif int(weapons_h_slider.value) == 5:
 		Globals.teams_weapons = [[-1,-1,2,3,0,0,2,2,0,-1,4]]
 	
-	for i in range(Globals.number_of_teams-1):
+	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
@@ -66,3 +66,7 @@ func _on_map_2s_button_pressed() -> void:
 
 func _on_map_1g_button_pressed() -> void:
 	load_map("1g")
+
+
+func _on_map_2g_button_pressed() -> void:
+	load_map("2g")

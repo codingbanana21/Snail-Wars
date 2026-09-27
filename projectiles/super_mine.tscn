@@ -10,7 +10,7 @@ size = Vector2(5, 14)
 size = Vector2(6, 18.75)
 
 [node name="SuperMine" unique_id=791496552 instance=ExtResource("1_mw335")]
-scale = Vector2(2, 2)
+scale = Vector2(1.5, 1.5)
 collision_layer = 0
 damage = 1000
 size = 50

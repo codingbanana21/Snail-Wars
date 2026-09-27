@@ -6,17 +6,19 @@ extends Node2D
 @onready var image: Sprite2D = $Image
 
 
-@export_tool_button("Make Map") var my_action := Callable(self, "make_map")
-
 func _ready() -> void:
-	Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
-	Globals.team_turn = randi_range(0, Globals.number_of_teams)
+	#Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
+	#Globals.team_turn = randi_range(0, Globals.number_of_teams)
+	make_map()
 	Globals.next_player()
-	#make_map()
 
 
 func make_map():
 	var data = image.get_texture().get_image()
+	var player_number: int = 0
+	var team_number: int = 0
+	var team_colors: Array[Color]
+	var teams: Array[int]
 	
 	for x in image.texture.get_width():
 		for y in image.texture.get_height():
@@ -25,25 +27,43 @@ func make_map():
 			
 			if pixelColor == Color(0.0, 1.0, 0.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(0, 0))
-				
 			elif pixelColor == Color(1.0, 0.0, 0.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(1, 0))
-				
 			elif pixelColor == Color(0.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(2, 0))
-				
 			elif pixelColor == Color(1.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
-				
 			elif pixelColor == Color(1.0, 1.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(6, 0))
-				
 			elif pixelColor == Color(0.0, 0.0, 0.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(5, 0))
+			elif pixelColor.a != 0:
+				if team_colors.find(pixelColor) == -1:
+					team_colors.append(pixelColor)
+					teams.append(-1)
 				
+				team_number = team_colors.find(pixelColor)
+				
+				if teams[team_number] >= Globals.players_in_team - 1:
+					return
+				
+				teams[team_number] += 1
+				player_number = teams[team_number]
+				
+				#print(teams)
+				
+				
+				var player: Player = load("res://scenes/player.tscn").instantiate()
+				player.global_position = offset * 8
+				player.team_color = pixelColor
+				player.player_number = player_number
+				player.team_number = team_number
+				player.add_to_group("Player")
+				add_child(player)
+				
+				player.team_label.text = "Team "+str(team_number)
 			else:
-				map.set_cell(offset, 0 ,Vector2i(0, 7))
-				
+				map.set_cell(offset, 0 ,Vector2i(0, 2))
 
 
 func explode_tile(target_position: Vector2, power: int):

@@ -39,9 +39,6 @@ func _ready() -> void:
 	team_label.text = "Team " + team_name
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
-	
-	if Globals.players_in_team <= player_number or Globals.number_of_teams <= team_number:
-		die()
 
 
 func _process(delta: float) -> void:
@@ -129,8 +126,7 @@ func _physics_process(delta: float) -> void:
 
 
 func shot_projectile(projectile: NodePath, pos : Vector2):
-	var new_projectile: Projectile
-	new_projectile = load(projectile).instantiate()
+	var new_projectile: Projectile = load(projectile).instantiate()
 	new_projectile.global_position = pos
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= int(projectile_speed)

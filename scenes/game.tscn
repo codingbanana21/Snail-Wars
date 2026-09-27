@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="8_0tnpc"]
 [ext_resource type="Texture2D" uid="uid://5ymlmsygagmv" path="res://assets/images/punch.png" id="8_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="10_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="11_dinhu"]
 
 [node name="Game" type="Node2D" unique_id=2137944541]
 script = ExtResource("1_uwrxv")
@@ -107,13 +108,34 @@ text = "Over"
 icon = ExtResource("7_vtaks")
 metadata/_edit_use_anchors_ = true
 
+[node name="MapLabel4" type="Label" parent="Maps" unique_id=913343943]
+offset_left = 315.0
+offset_top = -212.0
+offset_right = 693.0
+offset_bottom = -196.0
+scale = Vector2(0.5, 0.5)
+text = "Gimmick maps"
+label_settings = ExtResource("2_yqjtg")
+metadata/_edit_use_anchors_ = true
+
 [node name="Map1gButton" type="Button" parent="Maps" unique_id=212432245]
-offset_left = 504.0
+offset_left = 272.0
 offset_top = -198.0
-offset_right = 614.0
+offset_right = 466.0
 offset_bottom = -166.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
+text = "Super mines"
 icon = ExtResource("10_kvpfn")
+metadata/_edit_use_anchors_ = true
+
+[node name="Map2gButton" type="Button" parent="Maps" unique_id=1620950837]
+offset_left = 272.0
+offset_top = -158.0
+offset_right = 466.0
+offset_bottom = -126.0
+theme_override_fonts/font = ExtResource("2_lnu2h")
+text = "Mine time"
+icon = ExtResource("11_dinhu")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1758057930]
@@ -188,7 +210,7 @@ offset_bottom = -55.0
 theme_override_icons/grabber = ExtResource("3_lbhrr")
 theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
 min_value = 1.0
-max_value = 3.0
+max_value = 4.0
 value = 2.0
 rounded = true
 metadata/_edit_use_anchors_ = true
@@ -211,3 +233,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Maps/Map1sButton" to="." method="_on_map_1s_button_pressed"]
 [connection signal="pressed" from="Maps/Map2sButton" to="." method="_on_map_2s_button_pressed"]
 [connection signal="pressed" from="Maps/Map1gButton" to="." method="_on_map_1g_button_pressed"]
+[connection signal="pressed" from="Maps/Map2gButton" to="." method="_on_map_2g_button_pressed"]
