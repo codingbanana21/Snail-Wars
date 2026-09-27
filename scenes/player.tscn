@@ -93,7 +93,7 @@ pitch_scale = 1.6
 stream = ExtResource("9_ur7pv")
 
 [node name="NextPlayerTimer" type="Timer" parent="." unique_id=968713583]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="NextPlayerTimer" to="." method="_on_next_player_timer_timeout"]

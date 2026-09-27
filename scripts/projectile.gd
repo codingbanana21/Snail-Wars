@@ -74,14 +74,17 @@ func _physics_process(delta: float) -> void:
 
 
 func explode(end_explode: bool = false):
+	if !hit_timer.is_stopped():
+		return
+	
+	if hit_stun_time > 0:
+		hit_timer.start(hit_stun_time)
+	
 	projectile_hp -= 1
 	Mouse.shake(damage / 5.0)
 	
 	if sound and !not_players:
 		parent.bomb.play()
-	
-	if hit_stun_time > 0:
-		hit_timer.start(hit_stun_time)
 	
 	if !not_players:
 		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()

@@ -60,7 +60,7 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("skip"):
 		player_turn_part = 4
-		next_player_timer.start(0.5)
+		next_player_timer.start(0.1)
 	
 	arrow.show()
 	arrow.position.y = sin(Engine.get_physics_frames() / 5.0) * 3.0 - 16.0
@@ -155,8 +155,9 @@ func damage(hurt_damage: int):
 			ooff_2.play()
 	
 	if player_turn_part != 0:
+		Mouse.hide()
 		player_turn_part = 4
-		next_player_timer.start(3.0)
+		next_player_timer.start(1.0)
 
 
 func die():
@@ -181,7 +182,7 @@ func _on_next_player_timer_timeout() -> void:
 	if player_turn_part != 0:
 		if player_turn_part != 4:
 			player_turn_part = 4
-			next_player_timer.start(1.5)
+			next_player_timer.start(1.0)
 		else:
 			player_turn_part = 0
 			Globals.next_player()

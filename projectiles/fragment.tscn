@@ -12,7 +12,8 @@ damage = 3
 size = 2
 knockback = 600
 speed = 0.0
-projectile_hp = 5
+min_speed = 0
+projectile_hp = 4
 hit_stun_time = 0.05
 not_players = true
 

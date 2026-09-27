@@ -7,10 +7,12 @@
 radius = 3.0
 
 [node name="Fire" unique_id=791496552 instance=ExtResource("1_6ypq2")]
+collision_layer = 0
 damage = 1.0
 size = 2
 knockback = 600
 speed = 0.0
+min_speed = 50
 gravity = 250
 projectile_hp = 5
 hit_stun_time = 2.0
