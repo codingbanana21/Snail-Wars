@@ -5,6 +5,7 @@ var team_turn: int = -1
 var players_in_team: int = 4
 var number_of_teams: int = 2
 var teams_weapons: Array[Array]
+var map: String
 
 
 func next_player(skip_player: bool = false):

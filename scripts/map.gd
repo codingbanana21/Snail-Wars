@@ -9,6 +9,7 @@ extends Node2D
 func _ready() -> void:
 	#Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
 	#Globals.team_turn = randi_range(0, Globals.number_of_teams)
+	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
 	Globals.next_player()
 
@@ -20,8 +21,8 @@ func make_map():
 	var team_colors: Array[Color]
 	var teams: Array[int]
 	
-	for x in image.texture.get_width():
-		for y in image.texture.get_height():
+	for y in image.texture.get_width():
+		for x in image.texture.get_height():
 			var pixelColor = data.get_pixel(x,y)
 			var offset: Vector2i = Vector2i(x -128, y -256)
 			
@@ -39,19 +40,19 @@ func make_map():
 				map.set_cell(offset, 0 ,Vector2i(5, 0))
 			elif pixelColor.a != 0:
 				if team_colors.find(pixelColor) == -1:
+					if len(teams) >= Globals.number_of_teams:
+						continue
+					
 					team_colors.append(pixelColor)
 					teams.append(-1)
 				
 				team_number = team_colors.find(pixelColor)
 				
 				if teams[team_number] >= Globals.players_in_team - 1:
-					return
+					continue
 				
 				teams[team_number] += 1
 				player_number = teams[team_number]
-				
-				#print(teams)
-				
 				
 				var player: Player = load("res://scenes/player.tscn").instantiate()
 				player.global_position = offset * 8

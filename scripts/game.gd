@@ -19,7 +19,9 @@ func _process(delta: float) -> void:
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(level: String = "1m"):
+func load_map(map: String = "1b"):
+	Globals.map = map
+	
 	if int(weapons_h_slider.value) == 1:
 		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,0,-1,2]]
 	elif int(weapons_h_slider.value) == 2:
@@ -37,7 +39,7 @@ func load_map(level: String = "1m"):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().change_scene_to_file("res://maps/map_"+level+".scn")
+	get_tree().change_scene_to_file("res://maps/map.tscn")
 
 
 func _on_map_1b_button_pressed() -> void:

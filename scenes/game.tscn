@@ -24,7 +24,7 @@ offset_top = -323.0
 offset_right = 279.0
 offset_bottom = -307.0
 scale = Vector2(0.5, 0.5)
-text = "Big maps (Max players 18)"
+text = "Big maps (Max players 32)"
 label_settings = ExtResource("2_yqjtg")
 metadata/_edit_use_anchors_ = true
 
@@ -160,7 +160,7 @@ offset_bottom = -111.0
 theme_override_icons/grabber = ExtResource("3_lbhrr")
 theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
 min_value = 1.0
-max_value = 6.0
+max_value = 8.0
 value = 4.0
 rounded = true
 metadata/_edit_use_anchors_ = true
