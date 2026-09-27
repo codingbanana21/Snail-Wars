@@ -21,10 +21,13 @@ extends CharacterBody2D
 @export var sound: bool = true
 @export var spawn_type: String = "fragment"
 
-@onready var parent: Player = get_parent()
+var parent: Player
 
 
 func _ready() -> void:
+	if !not_players:
+		parent = get_parent()
+	
 	if timer > 0:
 		explosion_timer.start(timer)
 	
@@ -74,17 +77,18 @@ func explode(end_explode: bool = false):
 	projectile_hp -= 1
 	Mouse.shake(damage / 5.0)
 	
-	if sound:
+	if sound and !not_players:
 		parent.bomb.play()
 	
 	if hit_stun_time > 0:
 		hit_timer.start(hit_stun_time)
 	
-	var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-	hit_particle.global_position = global_position
-	hit_particle.emitting = true
-	hit_particle.amount = clampi(int(damage), 1, 200)
-	parent.add_child(hit_particle)
+	if !not_players:
+		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+		hit_particle.global_position = global_position
+		hit_particle.emitting = true
+		hit_particle.amount = clampi(int(damage), 1, 200)
+		parent.add_child(hit_particle)
 	
 	if spawn:
 		parent.shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)

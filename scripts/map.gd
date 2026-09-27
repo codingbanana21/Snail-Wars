@@ -1,4 +1,3 @@
-@tool
 class_name Map
 extends Node2D
 
@@ -7,8 +6,8 @@ extends Node2D
 
 
 func _ready() -> void:
-	#Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
-	#Globals.team_turn = randi_range(0, Globals.number_of_teams)
+	Globals.player_turn = randi_range(0, Globals.players_in_team - 1)
+	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
 	Globals.next_player()
@@ -38,6 +37,10 @@ func make_map():
 				map.set_cell(offset, 0 ,Vector2i(6, 0))
 			elif pixelColor == Color(0.0, 0.0, 0.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(5, 0))
+			elif pixelColor == Color(1.0, 1.0, 0.0, 1.0):
+				var mine: Projectile = load("res://projectiles/super_mine.tscn").instantiate()
+				mine.global_position = offset * 8
+				add_child(mine)
 			elif pixelColor.a != 0:
 				if team_colors.find(pixelColor) == -1:
 					if len(teams) >= Globals.number_of_teams:
