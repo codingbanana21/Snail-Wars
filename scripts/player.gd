@@ -23,7 +23,8 @@ const SPEED: int = 4
 const JUMP: Vector2 = Vector2(90, -300)
 const PLAYER_GRAVITY: int = 30
 const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","pumkin_grenade","destroyer_of_games","punch","bullet"]
-const NAMES: Array[String] = ["","Good", "Bad", "Cool", "Best", "Dumb", "Not", "Dead", "Red", "Blue", "Green"]
+const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
+const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
 
 var projectile_speed: float = 0.0
 var hp: int = 100
@@ -34,7 +35,7 @@ var dead: bool = false
 
 
 func _ready() -> void:
-	name_label.text = NAMES.pick_random() +" "+ team_name
+	name_label.text = NAMES2.pick_random() +" "+ NAMES.pick_random()
 	name_label.modulate = team_color
 	team_label.text = "Team " + team_name
 	team_label.modulate = team_color

@@ -35,6 +35,7 @@ func load_map(map: String = "1b"):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Mouse.can_move = true
 	get_tree().change_scene_to_file("res://maps/map.tscn")
 
 

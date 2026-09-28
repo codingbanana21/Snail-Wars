@@ -154,7 +154,7 @@ offset_top = -307.0
 offset_right = 451.0
 offset_bottom = -291.0
 scale = Vector2(0.5, 0.5)
-text = "Medium maps (Max players 12)"
+text = "Medium maps (Max players 16)"
 label_settings = ExtResource("2_yqjtg")
 metadata/_edit_use_anchors_ = true
 

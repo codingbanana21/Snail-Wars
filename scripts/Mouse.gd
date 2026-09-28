@@ -7,6 +7,7 @@ extends Node2D
 const WEAPONS: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Pumkin Grenade","The Destroyer Of Games","Punch","Gun"]
 
 var moving: bool = false
+var can_move: bool = false
 var shake_amount: float = 0.0
 var weapon_left: int
 var weapon: int
@@ -30,7 +31,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion:
+	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion and can_move:
 		global_position += event.relative
 		moving = true
 	else:
