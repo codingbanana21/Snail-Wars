@@ -10,12 +10,9 @@ size = Vector2(6, 12)
 size = Vector2(8, 16)
 
 [node name="Mine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
-collision_layer = 3
-collision_mask = 3
-damage = 30.0
-size = 3
-knockback = 600
-speed = 0.0
+damage = 35
+size = 4
+speed = 0
 min_speed = 0
 timer = 0.0
 not_players = true

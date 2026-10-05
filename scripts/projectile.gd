@@ -7,10 +7,10 @@ extends CharacterBody2D
 
 @export var damage: int = 45
 @export var size: int = 5
-@export var knockback: int = 800
+@export var knockback: int = 600
 @export var speed: int = 60
 @export var min_speed: int = 100
-@export var gravity: int = 500
+@export var gravity: int = 450
 @export var projectile_hp: int = 1
 @export var hit_stun_time: float = 0.0
 @export var timer: float = 3.0
