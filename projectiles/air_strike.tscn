@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_y44nj"]
 
 [node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
+collision_layer = 3
+collision_mask = 3
 size = 8
 knockback = 1000
 gravity = 300

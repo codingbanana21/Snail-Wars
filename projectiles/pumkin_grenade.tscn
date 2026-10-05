@@ -6,16 +6,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ispoe"]
 radius = 4.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_upu3b"]
-radius = 5.0
-
 [node name="PumkinGrenade" unique_id=791496552 instance=ExtResource("1_upu3b")]
-collision_layer = 0
-damage = 1
-size = 3
-knockback = 600
-projectile_hp = 50
-timer = 5.0
+collision_layer = 3
+collision_mask = 3
+knockback = 400
+timer = 1.5
 bounce = true
 spawn = true
 spawn_type = "fire"
@@ -27,5 +22,4 @@ texture = ExtResource("2_ssk2y")
 shape = SubResource("CircleShape2D_ispoe")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-position = Vector2(0, 0)
-shape = SubResource("CircleShape2D_upu3b")
+shape = null

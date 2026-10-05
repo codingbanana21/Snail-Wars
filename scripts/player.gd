@@ -20,9 +20,9 @@ extends CharacterBody2D
 @export var team_color: Color
 
 const SPEED: int = 4
-const JUMP: Vector2 = Vector2(90, -300)
+const JUMP: Vector2 = Vector2(80, -300)
 const PLAYER_GRAVITY: int = 30
-const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","pumkin_grenade","destroyer_of_games","punch","bullet"]
+const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","pumkin_grenade","bullet"]
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
 
@@ -83,9 +83,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 				if weapon < 0:
-					weapon = 10
+					weapon = 8
 			
-			weapon %= 11
+			weapon %= 9
 			Mouse.weapon_left = Globals.teams_weapons[team_number][weapon]
 			Mouse.weapon = weapon
 		
@@ -98,7 +98,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	velocity.y += PLAYER_GRAVITY
+	if velocity.y < 2500.0:
+		velocity.y += PLAYER_GRAVITY
 	
 	if (player_turn_part == 1 or player_turn_part == 3) and !Input.is_action_pressed("attack"):
 		if is_on_floor():
@@ -110,7 +111,7 @@ func _physics_process(delta: float) -> void:
 				velocity.y = JUMP.y
 		else:
 			if Input.is_action_pressed("jump"):
-				velocity.x += dir * JUMP.x * 2.0 * delta
+				velocity.x += dir * JUMP.x * delta
 	
 	var temp_velocity: Vector2 = velocity
 	move_and_slide()
@@ -119,9 +120,9 @@ func _physics_process(delta: float) -> void:
 		Mouse.global_position += velocity * delta
 	
 	if is_on_floor():
-		if temp_velocity.y > 800:
-			var fall_damage = (temp_velocity.y - 800) / 40.0
-			Mouse.shake(fall_damage / 5.0)
+		if temp_velocity.y > 750:
+			var fall_damage = (temp_velocity.y - 750) / 40.0
+			Mouse.shake(fall_damage / 4.0)
 			damage(fall_damage)
 		velocity.x *= 0.8
 

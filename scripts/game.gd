@@ -23,11 +23,11 @@ func load_map(map: String = "1b"):
 	Globals.map = map
 	
 	if int(weapons_h_slider.value) == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,0,-1,2]]
+		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,2]]
 	elif int(weapons_h_slider.value) == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
+		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1]]
 	elif int(weapons_h_slider.value) == 3:
-		Globals.teams_weapons = [[-1,-1,2,3,0,0,2,3,0,-1,4]]
+		Globals.teams_weapons = [[-1,-1,2,3,0,0,-1,3,4]]
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
@@ -69,3 +69,7 @@ func _on_map_1g_button_pressed() -> void:
 
 func _on_map_2g_button_pressed() -> void:
 	load_map("2g")
+
+
+func _on_map_3g_button_pressed() -> void:
+	load_map("3g")

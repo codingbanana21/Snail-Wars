@@ -12,18 +12,18 @@
 [ext_resource type="AudioStream" uid="uid://ca6ny0aoftjrj" path="res://assets/sounds/bang_01.ogg" id="9_ur7pv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
-size = Vector2(16, 15)
+size = Vector2(14, 14)
 
 [node name="Player" type="CharacterBody2D" unique_id=1048355818 groups=["Player"]]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_3vyb7")
 
 [node name="Snail" type="Sprite2D" parent="." unique_id=1069079524]
 texture = ExtResource("3_dqkch")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=634553446]
-position = Vector2(0, 3.5)
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_fjrip")
 
 [node name="NameLabel" type="Label" parent="." unique_id=338090993]

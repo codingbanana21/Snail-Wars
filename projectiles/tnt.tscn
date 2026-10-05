@@ -8,10 +8,13 @@ radius = 3.0
 height = 12.0
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
-damage = 75.0
+collision_layer = 3
+collision_mask = 3
+damage = 80
 size = 8
 knockback = 1600
 speed = 10.0
+min_speed = 0
 bounce = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]

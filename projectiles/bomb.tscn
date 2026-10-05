@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_8u238"]
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="2_3xfjl"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_tpgjy"]
+radius = 2.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_dlca0"]
 radius = 5.0
 
@@ -17,7 +20,7 @@ spawn = true
 texture = ExtResource("2_3xfjl")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
-shape = null
+shape = SubResource("CircleShape2D_tpgjy")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
 position = Vector2(0, 0)

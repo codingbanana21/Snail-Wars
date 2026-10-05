@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="2_rn17a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
-size = Vector2(5, 14)
+size = Vector2(6, 14.000001)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4n3"]
-size = Vector2(6, 18.75)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mw335"]
+size = Vector2(6, 16)
 
 [node name="SuperMine" unique_id=791496552 instance=ExtResource("1_mw335")]
 scale = Vector2(1.5, 1.5)
-collision_layer = 0
+collision_layer = 3
+collision_mask = 3
 damage = 1000
 size = 50
 knockback = 2000
-speed = 0.0
 min_speed = 0
 timer = 0.0
 not_players = true
@@ -25,9 +25,9 @@ rotation = -1.5707964
 texture = ExtResource("2_rn17a")
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
-position = Vector2(4.5, 0)
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_lbhrr")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-position = Vector2(1, 0.375)
-shape = SubResource("RectangleShape2D_1y4n3")
+position = Vector2(2.3333335, -2.3841858e-07)
+shape = SubResource("RectangleShape2D_mw335")

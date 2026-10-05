@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="10_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="11_dinhu"]
 [ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://maps/world_tileset.png" id="12_kvuet"]
+[ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="13_trtic"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trtic"]
 texture = ExtResource("12_kvuet")
@@ -120,9 +121,9 @@ tile_set = SubResource("TileSet_ir15t")
 
 [node name="MapLabel" type="Label" parent="Maps" unique_id=2111666030]
 offset_left = -205.0
-offset_top = -307.0
+offset_top = -323.0
 offset_right = 159.0
-offset_bottom = -291.0
+offset_bottom = -307.0
 scale = Vector2(0.5, 0.5)
 text = "Big maps (Max players 32)"
 label_settings = ExtResource("2_yqjtg")
@@ -130,9 +131,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map1bButton" type="Button" parent="Maps" unique_id=367210282]
 offset_left = -192.0
-offset_top = -295.0
+offset_top = -311.0
 offset_right = -48.0
-offset_bottom = -263.0
+offset_bottom = -279.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Original"
 icon = ExtResource("6_p57ef")
@@ -140,9 +141,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map2bButton" type="Button" parent="Maps" unique_id=534044815]
 offset_left = -175.0
-offset_top = -255.0
+offset_top = -271.0
 offset_right = -65.0
-offset_bottom = -223.0
+offset_bottom = -239.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Split"
 icon = ExtResource("4_p57ef")
@@ -150,9 +151,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel2" type="Label" parent="Maps" unique_id=498424789]
 offset_left = 35.0
-offset_top = -307.0
+offset_top = -323.0
 offset_right = 451.0
-offset_bottom = -291.0
+offset_bottom = -307.0
 scale = Vector2(0.5, 0.5)
 text = "Medium maps (Max players 16)"
 label_settings = ExtResource("2_yqjtg")
@@ -160,9 +161,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map1mButton" type="Button" parent="Maps" unique_id=1759142092]
 offset_left = 79.0
-offset_top = -294.0
+offset_top = -310.0
 offset_right = 189.0
-offset_bottom = -262.0
+offset_bottom = -278.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Rock"
 icon = ExtResource("6_0tnpc")
@@ -170,9 +171,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map2mButton" type="Button" parent="Maps" unique_id=1900387889]
 offset_left = 54.0
-offset_top = -254.0
+offset_top = -270.0
 offset_right = 216.0
-offset_bottom = -222.0
+offset_bottom = -238.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Mine Land"
 icon = ExtResource("8_0tnpc")
@@ -180,9 +181,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel3" type="Label" parent="Maps" unique_id=218978788]
 offset_left = -201.0
-offset_top = -204.0
+offset_top = -220.0
 offset_right = 177.0
-offset_bottom = -188.0
+offset_bottom = -204.0
 scale = Vector2(0.5, 0.5)
 text = "Small maps (Max players 8)"
 label_settings = ExtResource("2_yqjtg")
@@ -190,9 +191,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map1sButton" type="Button" parent="Maps" unique_id=1242686351]
 offset_left = -184.0
-offset_top = -191.0
+offset_top = -207.0
 offset_right = -52.0
-offset_bottom = -159.0
+offset_bottom = -175.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Islands"
 icon = ExtResource("8_kvpfn")
@@ -200,9 +201,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map2sButton" type="Button" parent="Maps" unique_id=2026222464]
 offset_left = -177.0
-offset_top = -152.0
+offset_top = -168.0
 offset_right = -67.0
-offset_bottom = -120.0
+offset_bottom = -136.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Over"
 icon = ExtResource("7_vtaks")
@@ -211,9 +212,9 @@ metadata/_edit_use_anchors_ = true
 [node name="MapLabel4" type="Label" parent="Maps" unique_id=913343943]
 anchors_preset = -1
 offset_left = 80.0
-offset_top = -208.0
+offset_top = -224.0
 offset_right = 458.0
-offset_bottom = -192.0
+offset_bottom = -208.0
 scale = Vector2(0.5, 0.5)
 text = "Gimmick maps"
 label_settings = ExtResource("2_yqjtg")
@@ -221,9 +222,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map1gButton" type="Button" parent="Maps" unique_id=212432245]
 offset_left = 30.0
-offset_top = -192.0
+offset_top = -208.0
 offset_right = 224.0
-offset_bottom = -160.0
+offset_bottom = -176.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Super mines"
 icon = ExtResource("10_kvpfn")
@@ -231,12 +232,22 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Map2gButton" type="Button" parent="Maps" unique_id=1620950837]
 offset_left = 30.0
-offset_top = -154.0
+offset_top = -170.0
 offset_right = 224.0
-offset_bottom = -122.0
+offset_bottom = -138.0
 theme_override_fonts/font = ExtResource("2_lnu2h")
 text = "Mine time"
 icon = ExtResource("11_dinhu")
+metadata/_edit_use_anchors_ = true
+
+[node name="Map3gButton" type="Button" parent="Maps" unique_id=1985594625]
+offset_left = 30.0
+offset_top = -132.0
+offset_right = 224.0
+offset_bottom = -100.0
+theme_override_fonts/font = ExtResource("2_lnu2h")
+text = "Small"
+icon = ExtResource("13_trtic")
 metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="Node" parent="." unique_id=1713896030]
@@ -335,3 +346,4 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Maps/Map2sButton" to="." method="_on_map_2s_button_pressed"]
 [connection signal="pressed" from="Maps/Map1gButton" to="." method="_on_map_1g_button_pressed"]
 [connection signal="pressed" from="Maps/Map2gButton" to="." method="_on_map_2g_button_pressed"]
+[connection signal="pressed" from="Maps/Map3gButton" to="." method="_on_map_3g_button_pressed"]

@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		explode(true)
 		return
 	
-	if len(detect_box.get_overlapping_bodies()) > 0:
+	if len(detect_box.get_overlapping_bodies()) > 1:
 		explode()
 	
 	if !hit_timer.is_stopped():
@@ -66,10 +66,10 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor() and bounce:
 		velocity.x = temp_velocity.x * 0.95
-		velocity.y = temp_velocity.y * -0.65
+		velocity.y = temp_velocity.y * -0.6
 	
 	if is_on_wall() and bounce:
-		velocity.x = temp_velocity.x * -0.65
+		velocity.x = temp_velocity.x * -0.6
 		velocity.y = temp_velocity.y * 0.95
 
 
@@ -81,7 +81,7 @@ func explode(end_explode: bool = false):
 		hit_timer.start(hit_stun_time)
 	
 	projectile_hp -= 1
-	Mouse.shake(damage / 5.0)
+	Mouse.shake(damage / 4.0)
 	
 	if sound and !not_players:
 		parent.bomb.play()

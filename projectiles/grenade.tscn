@@ -7,6 +7,8 @@
 radius = 4.0
 
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
+collision_layer = 3
+collision_mask = 3
 bounce = true
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
