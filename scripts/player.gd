@@ -173,7 +173,7 @@ func next_player():
 		shot_projectile("res://projectiles/snail.tscn", global_position)
 		die()
 	
-	if Globals.player_turn == player_number and team_number == Globals.team_turn:
+	if Globals.teams_turns[Globals.team_turn] == player_number and team_number == Globals.team_turn:
 		player_turn_part = 1
 		
 		if !dead:

@@ -1,6 +1,6 @@
 extends Node2D
 
-var player_turn: int = 0
+var teams_turns: Array[int]
 var team_turn: int = -1
 var players_in_team: int = 4
 var number_of_teams: int = 2
@@ -11,22 +11,10 @@ var map: String
 func next_player(skip_player: bool = false):
 	Mouse.show()
 	
-	#player turn and teams picking
-	if skip_player:
-		player_turn += 1
-		
-		if player_turn >= players_in_team:
-			player_turn = 0
-	else:
-		team_turn += 1
-		
-		if team_turn >= number_of_teams:
-			if player_turn >= players_in_team - 1:
-				team_turn = 0
-				player_turn = 0
-			else:
-				team_turn = 0
-				player_turn += 1
+	if !skip_player:
+		team_turn = (team_turn + 1) % number_of_teams
+	
+	teams_turns[team_turn] = (teams_turns[team_turn] + 1) % players_in_team
 	
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		player.next_player()

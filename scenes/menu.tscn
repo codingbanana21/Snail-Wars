@@ -1,22 +1,22 @@
 [gd_scene format=4 uid="uid://dbu738lf8tcco"]
 
-[ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scripts/game.gd" id="1_uwrxv"]
-[ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_lnu2h"]
-[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="2_yqjtg"]
-[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="3_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="4_p57ef"]
-[ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="6_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="6_p57ef"]
-[ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="7_vtaks"]
-[ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="8_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://5ymlmsygagmv" path="res://assets/images/punch.png" id="8_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="10_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="11_dinhu"]
-[ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://maps/world_tileset.png" id="12_kvuet"]
-[ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="13_trtic"]
+[ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scripts/menu.gd" id="1_i42df"]
+[ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://maps/world_tileset.png" id="2_7jp70"]
+[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_mxgkd"]
+[ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="5_3dmrc"]
+[ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="6_81l6r"]
+[ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="7_rsfmq"]
+[ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="8_oi1it"]
+[ext_resource type="Texture2D" uid="uid://5ymlmsygagmv" path="res://assets/images/punch.png" id="9_fy8yy"]
+[ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_6wigr"]
+[ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="11_lnf0i"]
+[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="12_ffqrc"]
+[ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="13_x16fv"]
+[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="14_g54pe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trtic"]
-texture = ExtResource("12_kvuet")
+texture = ExtResource("2_7jp70")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -102,8 +102,8 @@ terrain_set_0/terrain_2/name = "Stone"
 terrain_set_0/terrain_2/color = Color(0.22352941, 0.5019608, 0.5764706, 1)
 sources/0 = SubResource("TileSetAtlasSource_trtic")
 
-[node name="Game" type="Node2D" unique_id=2137944541]
-script = ExtResource("1_uwrxv")
+[node name="Menu" type="Node2D" unique_id=2137944541]
+script = ExtResource("1_i42df")
 
 [node name="Background2" type="ColorRect" parent="." unique_id=620597901]
 z_index = -1
@@ -126,7 +126,7 @@ offset_right = 159.0
 offset_bottom = -307.0
 scale = Vector2(0.5, 0.5)
 text = "Big maps (Max players 32)"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map1bButton" type="Button" parent="Maps" unique_id=367210282]
@@ -134,9 +134,9 @@ offset_left = -192.0
 offset_top = -311.0
 offset_right = -48.0
 offset_bottom = -279.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Original"
-icon = ExtResource("6_p57ef")
+icon = ExtResource("5_3dmrc")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map2bButton" type="Button" parent="Maps" unique_id=534044815]
@@ -144,9 +144,9 @@ offset_left = -175.0
 offset_top = -271.0
 offset_right = -65.0
 offset_bottom = -239.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Split"
-icon = ExtResource("4_p57ef")
+icon = ExtResource("6_81l6r")
 metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel2" type="Label" parent="Maps" unique_id=498424789]
@@ -156,7 +156,7 @@ offset_right = 451.0
 offset_bottom = -307.0
 scale = Vector2(0.5, 0.5)
 text = "Medium maps (Max players 16)"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map1mButton" type="Button" parent="Maps" unique_id=1759142092]
@@ -164,9 +164,9 @@ offset_left = 79.0
 offset_top = -310.0
 offset_right = 189.0
 offset_bottom = -278.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Rock"
-icon = ExtResource("6_0tnpc")
+icon = ExtResource("7_rsfmq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map2mButton" type="Button" parent="Maps" unique_id=1900387889]
@@ -174,9 +174,9 @@ offset_left = 54.0
 offset_top = -270.0
 offset_right = 216.0
 offset_bottom = -238.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Mine Land"
-icon = ExtResource("8_0tnpc")
+icon = ExtResource("8_oi1it")
 metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel3" type="Label" parent="Maps" unique_id=218978788]
@@ -186,7 +186,7 @@ offset_right = 177.0
 offset_bottom = -204.0
 scale = Vector2(0.5, 0.5)
 text = "Small maps (Max players 8)"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map1sButton" type="Button" parent="Maps" unique_id=1242686351]
@@ -194,9 +194,9 @@ offset_left = -184.0
 offset_top = -207.0
 offset_right = -52.0
 offset_bottom = -175.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Islands"
-icon = ExtResource("8_kvpfn")
+icon = ExtResource("9_fy8yy")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map2sButton" type="Button" parent="Maps" unique_id=2026222464]
@@ -204,9 +204,9 @@ offset_left = -177.0
 offset_top = -168.0
 offset_right = -67.0
 offset_bottom = -136.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Over"
-icon = ExtResource("7_vtaks")
+icon = ExtResource("10_6wigr")
 metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel4" type="Label" parent="Maps" unique_id=913343943]
@@ -217,7 +217,7 @@ offset_right = 458.0
 offset_bottom = -208.0
 scale = Vector2(0.5, 0.5)
 text = "Gimmick maps"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map1gButton" type="Button" parent="Maps" unique_id=212432245]
@@ -225,9 +225,9 @@ offset_left = 30.0
 offset_top = -208.0
 offset_right = 224.0
 offset_bottom = -176.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Super mines"
-icon = ExtResource("10_kvpfn")
+icon = ExtResource("11_lnf0i")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map2gButton" type="Button" parent="Maps" unique_id=1620950837]
@@ -235,9 +235,9 @@ offset_left = 30.0
 offset_top = -170.0
 offset_right = 224.0
 offset_bottom = -138.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Mine time"
-icon = ExtResource("11_dinhu")
+icon = ExtResource("12_ffqrc")
 metadata/_edit_use_anchors_ = true
 
 [node name="Map3gButton" type="Button" parent="Maps" unique_id=1985594625]
@@ -245,9 +245,9 @@ offset_left = 30.0
 offset_top = -132.0
 offset_right = 224.0
 offset_bottom = -100.0
-theme_override_fonts/font = ExtResource("2_lnu2h")
+theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Small"
-icon = ExtResource("13_trtic")
+icon = ExtResource("13_x16fv")
 metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="Node" parent="." unique_id=1713896030]
@@ -258,8 +258,8 @@ offset_left = -48.0
 offset_top = -87.0
 offset_right = 49.0
 offset_bottom = -63.0
-theme_override_icons/grabber = ExtResource("3_lbhrr")
-theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
+theme_override_icons/grabber = ExtResource("14_g54pe")
+theme_override_icons/grabber_highlight = ExtResource("5_3dmrc")
 min_value = 1.0
 max_value = 8.0
 value = 4.0
@@ -274,7 +274,7 @@ offset_right = 195.0
 offset_bottom = -67.0
 scale = Vector2(0.5, 0.5)
 text = "4 players per team"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="WeaponsHSlider" type="HSlider" parent="Settings" unique_id=858606506]
@@ -283,8 +283,8 @@ offset_left = -48.0
 offset_top = -63.0
 offset_right = 49.0
 offset_bottom = -39.0
-theme_override_icons/grabber = ExtResource("3_lbhrr")
-theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
+theme_override_icons/grabber = ExtResource("14_g54pe")
+theme_override_icons/grabber_highlight = ExtResource("5_3dmrc")
 min_value = 1.0
 max_value = 3.0
 value = 1.0
@@ -299,7 +299,7 @@ offset_right = 131.0
 offset_bottom = -43.0
 scale = Vector2(0.5, 0.5)
 text = "Weapon set 1"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="TeamsHSlider" type="HSlider" parent="Settings" unique_id=1112265823]
@@ -308,8 +308,8 @@ offset_left = -48.0
 offset_top = -31.0
 offset_right = 49.0
 offset_bottom = -7.0
-theme_override_icons/grabber = ExtResource("3_lbhrr")
-theme_override_icons/grabber_highlight = ExtResource("6_p57ef")
+theme_override_icons/grabber = ExtResource("14_g54pe")
+theme_override_icons/grabber_highlight = ExtResource("5_3dmrc")
 min_value = 1.0
 max_value = 4.0
 value = 2.0
@@ -324,7 +324,7 @@ offset_right = 79.0
 offset_bottom = -11.0
 scale = Vector2(0.5, 0.5)
 text = "2 teams"
-label_settings = ExtResource("2_yqjtg")
+label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1758057930]

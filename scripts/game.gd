@@ -1,75 +1,82 @@
-class_name Game
+class_name Map
 extends Node2D
 
-@onready var per_team_h_slider: HSlider = %PerTeamHSlider
-@onready var per_team_label: Label = %PerTeamLabel
-@onready var weapons_h_slider: HSlider = %WeaponsHSlider
-@onready var weapons_label: Label = %WeaponsLabel
-@onready var teams_h_slider: HSlider = %TeamsHSlider
-@onready var teams_label: Label = %TeamsLabel
+@onready var map: TileMapLayer = $Map
+@onready var image: Sprite2D = $Image
 
 
-func _process(delta: float) -> void:
-	per_team_label.text = str(int(per_team_h_slider.value)) + " players per team"
-	Globals.players_in_team = int(per_team_h_slider.value)
+func _ready() -> void:
+	Globals.team_turn = randi_range(0, Globals.number_of_teams)
+	image.texture = load("res://maps/map_"+Globals.map+".png") 
+	make_map()
+	Globals.next_player()
+
+
+func make_map():
+	var data = image.get_texture().get_image()
+	var player_number: int = 0
+	var team_colors: Array[Color]
+	var teams: Array[int]
 	
-	teams_label.text = str(int(teams_h_slider.value)) + " Teams"
-	Globals.number_of_teams = int(teams_h_slider.value)
+	for y in image.texture.get_width():
+		for x in image.texture.get_height():
+			var pixelColor = data.get_pixel(x,y)
+			var offset: Vector2i = Vector2i(x -128, y -256)
+			
+			if pixelColor == Color(0.0, 1.0, 0.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(0, 0))
+			elif pixelColor == Color(1.0, 0.0, 0.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(1, 0))
+			elif pixelColor == Color(0.0, 0.0, 1.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(2, 0))
+			elif pixelColor == Color(1.0, 0.0, 1.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(3, 0))
+			elif pixelColor == Color(1.0, 1.0, 1.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(6, 0))
+			elif pixelColor == Color(0.0, 0.0, 0.0, 1.0):
+				map.set_cell(offset, 0 ,Vector2i(5, 0))
+			elif pixelColor == Color(1.0, 1.0, 0.0, 1.0):
+				var mine: Projectile = load("res://projectiles/super_mine.tscn").instantiate()
+				mine.global_position = offset * 8
+				add_child(mine)
+			elif pixelColor.a != 0:
+				if team_colors.find(pixelColor) == -1:
+					if len(teams) >= Globals.number_of_teams:
+						continue
+					
+					team_colors.append(pixelColor)
+					teams.append(-1)
+					Globals.teams_turns.append(0)
+				
+				var team_number: int = team_colors.find(pixelColor)
+				
+				if teams[team_number] >= Globals.players_in_team - 1:
+					continue
+				
+				teams[team_number] += 1
+				player_number = teams[team_number]
+				
+				var player: Player = load("res://scenes/player.tscn").instantiate()
+				player.global_position = offset * 8
+				player.team_color = pixelColor
+				player.player_number = player_number
+				player.team_number = team_number
+				player.add_to_group("Player")
+				add_child(player)
+				
+				player.team_label.text = "Team "+str(team_number)
+			else:
+				map.set_cell(offset, 0 ,Vector2i(0, 2))
+
+
+func explode_tile(target_position: Vector2, power: int):
+	var tile_position: Vector2 = round(target_position / 8.0)
+	var explosion_accuracy: float = PI * 2
 	
-	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
-
-
-func load_map(map: String = "1b"):
-	Globals.map = map
-	
-	if int(weapons_h_slider.value) == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,2]]
-	elif int(weapons_h_slider.value) == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1]]
-	elif int(weapons_h_slider.value) == 3:
-		Globals.teams_weapons = [[-1,-1,2,3,0,0,-1,3,4]]
-	
-	for i in range(Globals.number_of_teams -1):
-		Globals.teams_weapons.append([])
-		for k in range(len(Globals.teams_weapons[0])):
-			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
-	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	Mouse.can_move = true
-	get_tree().change_scene_to_file("res://maps/map.tscn")
-
-
-func _on_map_1b_button_pressed() -> void:
-	load_map("1b")
-
-
-func _on_map_2b_button_pressed() -> void:
-	load_map("2b")
-
-
-func _on_map_1m_button_pressed() -> void:
-	load_map("1m")
-
-
-func _on_map_2m_button_pressed() -> void:
-	load_map("2m")
-
-
-func _on_map_1s_button_pressed() -> void:
-	load_map("1s")
-
-
-func _on_map_2s_button_pressed() -> void:
-	load_map("2s")
-
-
-func _on_map_1g_button_pressed() -> void:
-	load_map("1g")
-
-
-func _on_map_2g_button_pressed() -> void:
-	load_map("2g")
-
-
-func _on_map_3g_button_pressed() -> void:
-	load_map("3g")
+	for explosion_size in range(power):
+		for number in range(explosion_accuracy * 16 * explosion_size):
+			var tile: Vector2 = tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size)
+			var tile_type: Vector2i = map.get_cell_atlas_coords(tile)
+			
+			if tile_type.y == 0:
+				map.set_cell(tile, 0, tile_type + Vector2i(0, 1))

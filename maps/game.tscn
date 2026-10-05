@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://baxuf5v76y51l"]
 
-[ext_resource type="Script" uid="uid://fcqmls4eg5v3" path="res://scripts/map.gd" id="1_paxxb"]
+[ext_resource type="Script" uid="uid://fcqmls4eg5v3" path="res://scripts/game.gd" id="1_paxxb"]
 [ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://maps/world_tileset.png" id="2_gldc4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ers5l"]
