@@ -39,37 +39,33 @@ func load_map(map: String = "1b"):
 	get_tree().change_scene_to_file("res://maps/game.tscn")
 
 
-func _on_map_1b_button_pressed() -> void:
-	load_map("1b")
+func _on_b_1_button_pressed() -> void:
+	load_map("b1")
 
 
-func _on_map_2b_button_pressed() -> void:
-	load_map("2b")
+func _on_m_1_button_pressed() -> void:
+	load_map("m1")
 
 
-func _on_map_1m_button_pressed() -> void:
-	load_map("1m")
+func _on_m_2_button_pressed() -> void:
+	load_map("m2")
 
 
-func _on_map_2m_button_pressed() -> void:
-	load_map("2m")
+func _on_b_2_button_pressed() -> void:
+	load_map("b2")
 
 
-func _on_map_1s_button_pressed() -> void:
-	load_map("1s")
+func _on_m_3_button_pressed() -> void:
+	load_map("m3")
 
 
-func _on_map_2s_button_pressed() -> void:
-	load_map("2s")
+func _on_s_1_button_pressed() -> void:
+	load_map("s1")
 
 
-func _on_map_1g_button_pressed() -> void:
-	load_map("1g")
+func _on_s_2_button_pressed() -> void:
+	load_map("s2")
 
 
-func _on_map_2g_button_pressed() -> void:
-	load_map("2g")
-
-
-func _on_map_3g_button_pressed() -> void:
-	load_map("3g")
+func _on_g_1_button_pressed() -> void:
+	load_map("g1")

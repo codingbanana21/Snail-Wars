@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="7_rsfmq"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="8_oi1it"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_6wigr"]
-[ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="11_lnf0i"]
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="12_ffqrc"]
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="13_x16fv"]
 [ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="14_g54pe"]
@@ -36,62 +35,72 @@ polygon = PackedVector2Array(-1283, -74, -1192, -47, -1088, -65, -970, -37, -843
 
 [node name="MapLabel" type="Label" parent="Maps" unique_id=2111666030]
 offset_left = -205.0
-offset_top = -323.0
+offset_top = -363.0
 offset_right = 159.0
-offset_bottom = -307.0
+offset_bottom = -347.0
 scale = Vector2(0.5, 0.5)
-text = "Big maps (Max players 32)"
+text = "Big maps (Players 18-32)"
 label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Map1bButton" type="Button" parent="Maps" unique_id=367210282]
-offset_left = -192.0
-offset_top = -311.0
-offset_right = -48.0
-offset_bottom = -279.0
+[node name="b1Button" type="Button" parent="Maps" unique_id=1620950837]
+offset_left = -215.0
+offset_top = -348.0
+offset_right = -21.0
+offset_bottom = -316.0
+theme_override_fonts/font = ExtResource("4_g6gyw")
+text = "Mine time"
+icon = ExtResource("13_x16fv")
+metadata/_edit_use_anchors_ = true
+
+[node name="b2Button" type="Button" parent="Maps" unique_id=1389105482]
+offset_left = -215.0
+offset_top = -308.0
+offset_right = -21.0
+offset_bottom = -276.0
+theme_override_fonts/font = ExtResource("4_g6gyw")
+text = "Cave"
+icon = ExtResource("14_g54pe")
+metadata/_edit_use_anchors_ = true
+
+[node name="MapLabel2" type="Label" parent="Maps" unique_id=498424789]
+offset_left = 35.0
+offset_top = -363.0
+offset_right = 451.0
+offset_bottom = -347.0
+scale = Vector2(0.5, 0.5)
+text = "Medium maps (Players 8-18)"
+label_settings = ExtResource("3_mxgkd")
+metadata/_edit_use_anchors_ = true
+
+[node name="m1Button" type="Button" parent="Maps" unique_id=367210282]
+offset_left = 64.0
+offset_top = -351.0
+offset_right = 208.0
+offset_bottom = -319.0
 theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Original"
 icon = ExtResource("5_3dmrc")
 metadata/_edit_use_anchors_ = true
 
-[node name="Map2bButton" type="Button" parent="Maps" unique_id=534044815]
-offset_left = -175.0
-offset_top = -271.0
-offset_right = -65.0
-offset_bottom = -239.0
+[node name="m2Button" type="Button" parent="Maps" unique_id=534044815]
+offset_left = 81.0
+offset_top = -311.0
+offset_right = 191.0
+offset_bottom = -279.0
 theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Split"
 icon = ExtResource("6_81l6r")
 metadata/_edit_use_anchors_ = true
 
-[node name="MapLabel2" type="Label" parent="Maps" unique_id=498424789]
-offset_left = 35.0
-offset_top = -323.0
-offset_right = 451.0
-offset_bottom = -307.0
-scale = Vector2(0.5, 0.5)
-text = "Medium maps (Max players 16)"
-label_settings = ExtResource("3_mxgkd")
-metadata/_edit_use_anchors_ = true
-
-[node name="Map1mButton" type="Button" parent="Maps" unique_id=1759142092]
+[node name="m3Button" type="Button" parent="Maps" unique_id=1759142092]
 offset_left = 79.0
-offset_top = -310.0
+offset_top = -270.0
 offset_right = 189.0
-offset_bottom = -278.0
+offset_bottom = -238.0
 theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Rock"
 icon = ExtResource("7_rsfmq")
-metadata/_edit_use_anchors_ = true
-
-[node name="Map2mButton" type="Button" parent="Maps" unique_id=1900387889]
-offset_left = 54.0
-offset_top = -270.0
-offset_right = 216.0
-offset_bottom = -238.0
-theme_override_fonts/font = ExtResource("4_g6gyw")
-text = "Mine Land"
-icon = ExtResource("8_oi1it")
 metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel3" type="Label" parent="Maps" unique_id=218978788]
@@ -100,11 +109,11 @@ offset_top = -220.0
 offset_right = 177.0
 offset_bottom = -204.0
 scale = Vector2(0.5, 0.5)
-text = "Small maps (Max players 8)"
+text = "Small maps (Players 2-8)"
 label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Map1sButton" type="Button" parent="Maps" unique_id=1242686351]
+[node name="s1Button" type="Button" parent="Maps" unique_id=1242686351]
 offset_left = -184.0
 offset_top = -207.0
 offset_right = -52.0
@@ -114,7 +123,7 @@ text = "Islands"
 icon = ExtResource("10_6wigr")
 metadata/_edit_use_anchors_ = true
 
-[node name="Map2sButton" type="Button" parent="Maps" unique_id=2026222464]
+[node name="s2Button" type="Button" parent="Maps" unique_id=2026222464]
 offset_left = -177.0
 offset_top = -168.0
 offset_right = -67.0
@@ -126,43 +135,23 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MapLabel4" type="Label" parent="Maps" unique_id=913343943]
 anchors_preset = -1
-offset_left = 80.0
+offset_left = 40.0
 offset_top = -224.0
-offset_right = 458.0
+offset_right = 418.0
 offset_bottom = -208.0
 scale = Vector2(0.5, 0.5)
-text = "Gimmick maps"
+text = "Gimmick maps (Players 16-32)"
 label_settings = ExtResource("3_mxgkd")
 metadata/_edit_use_anchors_ = true
 
-[node name="Map1gButton" type="Button" parent="Maps" unique_id=212432245]
+[node name="g1Button" type="Button" parent="Maps" unique_id=212432245]
 offset_left = 30.0
 offset_top = -208.0
 offset_right = 224.0
 offset_bottom = -176.0
 theme_override_fonts/font = ExtResource("4_g6gyw")
 text = "Super mines"
-icon = ExtResource("11_lnf0i")
-metadata/_edit_use_anchors_ = true
-
-[node name="Map2gButton" type="Button" parent="Maps" unique_id=1620950837]
-offset_left = 30.0
-offset_top = -170.0
-offset_right = 224.0
-offset_bottom = -138.0
-theme_override_fonts/font = ExtResource("4_g6gyw")
-text = "Mine time"
-icon = ExtResource("12_ffqrc")
-metadata/_edit_use_anchors_ = true
-
-[node name="Map3gButton" type="Button" parent="Maps" unique_id=1985594625]
-offset_left = 30.0
-offset_top = -132.0
-offset_right = 224.0
-offset_bottom = -100.0
-theme_override_fonts/font = ExtResource("4_g6gyw")
-text = "Small"
-icon = ExtResource("13_x16fv")
+icon = ExtResource("8_oi1it")
 metadata/_edit_use_anchors_ = true
 
 [node name="Settings" type="Node" parent="." unique_id=1713896030]
@@ -253,12 +242,11 @@ offset_bottom = 686.0
 color = Color(0.6509804, 0.79607844, 0.81960785, 1)
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Maps/Map1bButton" to="." method="_on_map_1b_button_pressed"]
-[connection signal="pressed" from="Maps/Map2bButton" to="." method="_on_map_2b_button_pressed"]
-[connection signal="pressed" from="Maps/Map1mButton" to="." method="_on_map_1m_button_pressed"]
-[connection signal="pressed" from="Maps/Map2mButton" to="." method="_on_map_2m_button_pressed"]
-[connection signal="pressed" from="Maps/Map1sButton" to="." method="_on_map_1s_button_pressed"]
-[connection signal="pressed" from="Maps/Map2sButton" to="." method="_on_map_2s_button_pressed"]
-[connection signal="pressed" from="Maps/Map1gButton" to="." method="_on_map_1g_button_pressed"]
-[connection signal="pressed" from="Maps/Map2gButton" to="." method="_on_map_2g_button_pressed"]
-[connection signal="pressed" from="Maps/Map3gButton" to="." method="_on_map_3g_button_pressed"]
+[connection signal="pressed" from="Maps/b1Button" to="." method="_on_b_1_button_pressed"]
+[connection signal="pressed" from="Maps/b2Button" to="." method="_on_b_2_button_pressed"]
+[connection signal="pressed" from="Maps/m1Button" to="." method="_on_m_1_button_pressed"]
+[connection signal="pressed" from="Maps/m2Button" to="." method="_on_m_2_button_pressed"]
+[connection signal="pressed" from="Maps/m3Button" to="." method="_on_m_3_button_pressed"]
+[connection signal="pressed" from="Maps/s1Button" to="." method="_on_s_1_button_pressed"]
+[connection signal="pressed" from="Maps/s2Button" to="." method="_on_s_2_button_pressed"]
+[connection signal="pressed" from="Maps/g1Button" to="." method="_on_g_1_button_pressed"]
