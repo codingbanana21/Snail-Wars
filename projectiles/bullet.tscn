@@ -9,7 +9,7 @@ radius = 7.5
 [node name="Bullet" unique_id=791496552 instance=ExtResource("1_4ambd")]
 damage = 35
 size = 3
-knockback = 600
+knockback = 30
 speed = 0
 min_speed = 1000
 gravity = 0

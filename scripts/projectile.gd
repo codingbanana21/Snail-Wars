@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 @export var damage: int = 45
 @export var size: int = 5
-@export var knockback: int = 600
+@export var knockback: int = 50
 @export var speed: int = 60
 @export var min_speed: int = 100
 @export var gravity: int = 450
@@ -115,7 +115,7 @@ func explode(end_explode: bool = false):
 		if dis_to < (8.0 * size) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			player.damage(int(hit_power * damage))
-			player.velocity = -transform.x * hit_power * knockback
+			player.velocity += (player.global_position - global_position) * hit_power * knockback
 
 
 func _on_explosion_timer_timeout() -> void:

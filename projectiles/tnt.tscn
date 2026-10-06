@@ -10,7 +10,7 @@ height = 12.0
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
 damage = 80
 size = 8
-knockback = 1400
+knockback = 100
 speed = 10.0
 min_speed = 0
 bounce = true
