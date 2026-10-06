@@ -18,7 +18,7 @@ speed = 0.0
 min_speed = 0
 projectile_hp = 4
 hit_stun_time = 0.05
-not_players = true
+players_projectile = false
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_h2h75")

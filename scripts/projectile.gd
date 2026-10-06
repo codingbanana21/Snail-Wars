@@ -2,6 +2,7 @@ class_name Projectile
 extends CharacterBody2D
 
 @onready var detect_box: Area2D = $DetectBox
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 @onready var hit_timer: Timer = $HitTimer
 
@@ -16,17 +17,17 @@ extends CharacterBody2D
 @export var timer: float = 3.0
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
-@export var not_players: bool = false
+@export var players_projectile: bool = true
 @export var spawn: bool = false
-@export var sound: bool = true
 @export var spawn_type: String = "fragment"
 
 var parent: Player
 
 
 func _ready() -> void:
-	if !not_players:
+	if players_projectile:
 		parent = get_parent()
+		gpu_particles_2d.show()
 	
 	if timer > 0:
 		explosion_timer.start(timer)
@@ -55,7 +56,7 @@ func _physics_process(delta: float) -> void:
 	if !hit_timer.is_stopped():
 		return
 	
-	if !not_players:
+	if players_projectile:
 		Mouse.global_position = global_position
 	
 	velocity.y += gravity * delta
@@ -83,10 +84,8 @@ func explode(end_explode: bool = false):
 	projectile_hp -= 1
 	Mouse.shake(damage / 4.0)
 	
-	if sound and !not_players:
+	if players_projectile:
 		parent.bomb.play()
-	
-	if !not_players:
 		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 		hit_particle.global_position = global_position
 		hit_particle.emitting = true
@@ -100,8 +99,7 @@ func explode(end_explode: bool = false):
 		end_explode = true
 		queue_free()
 		
-		if !not_players:
-			set_physics_process(false)
+		if players_projectile and parent.player_turn_part != 0:
 			parent.next_player_timer.start()
 			parent.player_turn_part = 3
 			Mouse.global_position = parent.global_position
