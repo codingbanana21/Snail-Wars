@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_d7knd"]
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="2_tpgjy"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikx2j"]
+radius = 2.0
+
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 damage = 15
 size = 4
@@ -13,3 +16,6 @@ hit_stun_time = 0.15
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_tpgjy")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
+shape = SubResource("CircleShape2D_ikx2j")

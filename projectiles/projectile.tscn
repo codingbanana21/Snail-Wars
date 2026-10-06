@@ -9,6 +9,20 @@ radius = 3.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
 size = Vector2(11, 8)
 
+[sub_resource type="Curve" id="Curve_7nr1q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ighsu"]
+curve = SubResource("Curve_7nr1q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fo7mc"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+scale_min = 4.0
+scale_max = 6.0
+alpha_curve = SubResource("CurveTexture_ighsu")
+
 [node name="Projectile" type="CharacterBody2D" unique_id=791496552]
 top_level = true
 collision_layer = 3
@@ -28,6 +42,9 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_7nr1q")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1779728857]
+process_material = SubResource("ParticleProcessMaterial_fo7mc")
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]
 one_shot = true

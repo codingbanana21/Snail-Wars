@@ -45,7 +45,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if global_position.y >= 200:
+	if global_position.y >= 0:
 		explode(true)
 		return
 	

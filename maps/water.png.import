@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5ymlmsygagmv"
-path="res://.godot/imported/punch.png-dfa24583bd2b881b432d134165f1c9d0.ctex"
+uid="uid://drlmc4vi0ri0h"
+path="res://.godot/imported/water.png-b4c30558c662617d3bd9a0c39ba831a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/punch.png"
-dest_files=["res://.godot/imported/punch.png-dfa24583bd2b881b432d134165f1c9d0.ctex"]
+source_file="res://maps/water.png"
+dest_files=["res://.godot/imported/water.png-b4c30558c662617d3bd9a0c39ba831a7.ctex"]
 
 [params]
 
