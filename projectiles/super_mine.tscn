@@ -7,7 +7,7 @@
 size = Vector2(6, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mw335"]
-size = Vector2(10, 16)
+size = Vector2(10.333334, 17.333334)
 
 [node name="SuperMine" unique_id=791496552 instance=ExtResource("1_mw335")]
 scale = Vector2(1.5, 1.5)
@@ -31,5 +31,5 @@ shape = SubResource("RectangleShape2D_lbhrr")
 collision_mask = 6
 
 [node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
-position = Vector2(2, 0)
+position = Vector2(1.8333334, -4.7683716e-07)
 shape = SubResource("RectangleShape2D_mw335")

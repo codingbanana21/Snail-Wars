@@ -7,7 +7,7 @@
 size = Vector2(6, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1y4n3"]
-size = Vector2(9, 16)
+size = Vector2(10, 18)
 
 [node name="Mine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
 damage = 35
@@ -30,5 +30,5 @@ shape = SubResource("RectangleShape2D_lbhrr")
 collision_mask = 6
 
 [node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
-position = Vector2(2.5, 0)
+position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_1y4n3")

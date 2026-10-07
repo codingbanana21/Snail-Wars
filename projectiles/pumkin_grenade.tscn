@@ -19,4 +19,5 @@ texture = ExtResource("2_ssk2y")
 shape = SubResource("CircleShape2D_ispoe")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+position = Vector2(0, 0)
 shape = null

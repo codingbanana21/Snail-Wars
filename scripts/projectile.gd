@@ -1,6 +1,7 @@
 class_name Projectile
 extends CharacterBody2D
 
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var detect_box: Area2D = $DetectBox
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var explosion_timer: Timer = $ExplosionTimer
@@ -22,6 +23,7 @@ extends CharacterBody2D
 @export var spawn_type: String = "fragment"
 
 var parent: Player
+var bodys_needed: int = 2
 
 
 func _ready() -> void:
@@ -31,6 +33,10 @@ func _ready() -> void:
 	
 	if timer > 0:
 		explosion_timer.start(timer)
+	
+	if projectile_hp > 1:
+		collision_shape_2d.disabled = true
+		bodys_needed = 1
 	
 	if min_speed > speed:
 		speed = min_speed
@@ -50,7 +56,7 @@ func _physics_process(delta: float) -> void:
 		explode(true)
 		return
 	
-	if len(detect_box.get_overlapping_bodies()) > 1:
+	if len(detect_box.get_overlapping_bodies()) >= bodys_needed:
 		explode()
 	
 	if !hit_timer.is_stopped():

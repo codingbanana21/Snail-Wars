@@ -37,7 +37,7 @@ func make_map():
 				map.set_cell(offset, 0 ,Vector2i(5, 0))
 			elif pixelColor == Color(1.0, 1.0, 0.0, 1.0):
 				var mine: Projectile
-				if Globals.map == "1g":
+				if Globals.map == "g1":
 					mine = load("res://projectiles/super_mine.tscn").instantiate()
 				else:
 					mine = load("res://projectiles/mine.tscn").instantiate()
