@@ -19,6 +19,7 @@ extends CharacterBody2D
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var players_projectile: bool = true
+@export var teleports_player: bool = false
 @export var spawn: bool = false
 @export var spawn_type: String = "fragment"
 
@@ -90,14 +91,6 @@ func explode(end_explode: bool = false):
 	projectile_hp -= 1
 	Mouse.shake(damage / 4.0)
 	
-	if players_projectile:
-		parent.bomb.play()
-		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-		hit_particle.global_position = global_position
-		hit_particle.emitting = true
-		hit_particle.amount = clampi(int(damage), 1, 200)
-		parent.add_child(hit_particle)
-	
 	if spawn:
 		parent.shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)
 	
@@ -120,6 +113,17 @@ func explode(end_explode: bool = false):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			player.damage(int(hit_power * damage))
 			player.velocity += (player.global_position - global_position) * hit_power * knockback
+	
+	if players_projectile:
+		if teleports_player:
+			parent.global_position = global_position
+		
+		parent.bomb.play()
+		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+		hit_particle.global_position = global_position
+		hit_particle.emitting = true
+		hit_particle.amount = clampi(int(damage), 1, 200)
+		parent.add_child(hit_particle)
 
 
 func _on_explosion_timer_timeout() -> void:

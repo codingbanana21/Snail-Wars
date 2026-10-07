@@ -7,6 +7,8 @@ extends Node2D
 @onready var weapons_label: Label = %WeaponsLabel
 @onready var teams_h_slider: HSlider = %TeamsHSlider
 @onready var teams_label: Label = %TeamsLabel
+@onready var player_hph_slider: HSlider = %PlayerHPHSlider
+@onready var player_hp_label: Label = %PlayerHPLabel
 
 
 func _process(delta: float) -> void:
@@ -16,18 +18,21 @@ func _process(delta: float) -> void:
 	teams_label.text = str(int(teams_h_slider.value)) + " Teams"
 	Globals.number_of_teams = int(teams_h_slider.value)
 	
+	player_hp_label.text = str(int(player_hph_slider.value)) + " Player HP"
+	Globals.player_hp = int(player_hph_slider.value)
+	
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(map: String = "1b"):
+func load_map(map: String = "b1"):
 	Globals.map = map
 	
 	if int(weapons_h_slider.value) == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,2]]
+		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,2,1]]
 	elif int(weapons_h_slider.value) == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1]]
+		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
 	elif int(weapons_h_slider.value) == 3:
-		Globals.teams_weapons = [[-1,-1,2,3,0,0,-1,3,4]]
+		Globals.teams_weapons = [[-1,-1,2,3,0,0,-1,3,4,2]]
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])

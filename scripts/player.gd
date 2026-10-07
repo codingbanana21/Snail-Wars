@@ -22,7 +22,7 @@ extends CharacterBody2D
 const SPEED: int = 4
 const JUMP: Vector2 = Vector2(80, -300)
 const PLAYER_GRAVITY: int = 30
-const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","pumkin_grenade","bullet"]
+const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","pumkin_grenade","bullet","teleporta"]
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
 
@@ -35,6 +35,8 @@ var dead: bool = false
 
 
 func _ready() -> void:
+	hp = Globals.player_hp
+	hp_label.text = str(hp)
 	name_label.text = NAMES2.pick_random() +" "+ NAMES.pick_random()
 	name_label.modulate = team_color
 	team_label.text = "Team " + team_name
@@ -83,9 +85,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 				if weapon < 0:
-					weapon = 8
+					weapon = 9
 			
-			weapon %= 9
+			weapon %= 10
 			Mouse.weapon_left = Globals.teams_weapons[team_number][weapon]
 			Mouse.weapon = weapon
 		

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="2_ighsu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xfjl"]
-radius = 3.0
+radius = 2.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
 size = Vector2(11, 8)
