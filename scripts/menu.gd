@@ -9,10 +9,12 @@ extends Node2D
 @onready var teams_label: Label = %TeamsLabel
 @onready var player_hph_slider: HSlider = %PlayerHPHSlider
 @onready var player_hp_label: Label = %PlayerHPLabel
+@onready var water_level_h_slider: HSlider = %WaterLevelHSlider
+@onready var water_level_label: Label = %WaterLevelLabel
 
 
 func _process(delta: float) -> void:
-	per_team_label.text = str(int(per_team_h_slider.value)) + " players per team"
+	per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
 	Globals.players_in_team = int(per_team_h_slider.value)
 	
 	teams_label.text = str(int(teams_h_slider.value)) + " Teams"
@@ -20,6 +22,9 @@ func _process(delta: float) -> void:
 	
 	player_hp_label.text = str(int(player_hph_slider.value)) + " Player HP"
 	Globals.player_hp = int(player_hph_slider.value)
+	
+	water_level_label.text = str(int(water_level_h_slider.value)) + " Water Level"
+	Globals.water_level = -int(water_level_h_slider.value)
 	
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 

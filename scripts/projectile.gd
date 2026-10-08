@@ -53,7 +53,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if global_position.y >= 0:
+	if global_position.y >= Globals.water_level:
 		explode(true)
 		return
 	

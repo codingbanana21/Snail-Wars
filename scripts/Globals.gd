@@ -5,6 +5,7 @@ var team_turn: int = -1
 var players_in_team: int = 4
 var number_of_teams: int = 2
 var player_hp: int = 100
+var water_level: int = -100
 var teams_weapons: Array[Array]
 var map: String
 

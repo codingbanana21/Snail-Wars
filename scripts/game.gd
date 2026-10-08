@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
+@onready var water: Polygon2D = $Water
 
 
 func _ready() -> void:
@@ -10,6 +11,10 @@ func _ready() -> void:
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
 	Globals.next_player()
+
+
+func _process(delta: float) -> void:
+	water.global_position.y = Globals.water_level
 
 
 func make_map():

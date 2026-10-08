@@ -95,6 +95,7 @@ sources/0 = SubResource("TileSetAtlasSource_ers5l")
 script = ExtResource("1_paxxb")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=2045054409]
+visible = false
 position = Vector2(0, 112)
 
 [node name="Map" type="TileMapLayer" parent="." unique_id=1448595652]
@@ -108,11 +109,11 @@ offset_right = 1251.0
 offset_bottom = 103.0
 color = Color(0.6007436, 0.75808835, 0.7835647, 0.5411765)
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=699509189]
+[node name="Water" type="Polygon2D" parent="." unique_id=699509189]
 texture_repeat = 2
 color = Color(1, 1, 1, 0.60784316)
 texture = ExtResource("3_uwjdf")
-polygon = PackedVector2Array(-1283, -74, -1192, -47, -1088, -65, -970, -37, -843, -59, -759, -27, -632, -65, -533, -29, -399, -74, -269, -40, -127, -72, -8, -48, 109, -80, 236, -52, 318, -74, 441, -39, 537, -89, 658, -48, 745, -72, 859, -67, 972, -34, 1070, -78, 1175, -52, 1215, -16, 1254, 679, -1315, 693)
+polygon = PackedVector2Array(-1277, -27, -1185, 10, -1098, -22, -983, 10, -859, -20, -730, 13, -618, -24, -528, 6, -393, -45, -274, 1, -127, -43, -23, 1, 105, -43, 206, -15, 312, -42, 440, -6, 541, -61, 661, -10, 739, -59, 851, -15, 955, -66, 1083, -12, 1175, -56, 1215, -16, 1254, 679, -1315, 693)
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=234260886]
 layer = -100
