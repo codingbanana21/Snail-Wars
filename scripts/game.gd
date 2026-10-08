@@ -16,7 +16,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	wind.value = Globals.wind
-	water.global_position.y = Globals.water_level
+	water.global_position.y = Globals.water_level + cos(Engine.get_physics_frames() / 100.0) * 20
+	water.global_position.x = sin(Engine.get_physics_frames() / 100.0) * 50
 
 
 func make_map():

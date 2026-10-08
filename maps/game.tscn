@@ -110,6 +110,7 @@ offset_bottom = 103.0
 color = Color(0.6007436, 0.75808835, 0.7835647, 0.5411765)
 
 [node name="Water" type="Polygon2D" parent="." unique_id=699509189]
+z_index = 1
 texture_repeat = 2
 color = Color(1, 1, 1, 0.60784316)
 texture = ExtResource("3_uwjdf")
