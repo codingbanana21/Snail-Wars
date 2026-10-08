@@ -4,6 +4,7 @@ extends Node2D
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
 @onready var water: Polygon2D = $Water
+@onready var wind: HScrollBar = %Wind
 
 
 func _ready() -> void:
@@ -14,6 +15,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	wind.value = Globals.wind
 	water.global_position.y = Globals.water_level
 
 

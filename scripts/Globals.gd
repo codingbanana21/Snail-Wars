@@ -6,11 +6,13 @@ var players_in_team: int = 4
 var number_of_teams: int = 2
 var player_hp: int = 100
 var water_level: int = -100
+var wind: int = 0
 var teams_weapons: Array[Array]
 var map: String
 
 
 func next_player(skip_player: bool = false):
+	wind = randi_range(-5,5)
 	Mouse.show()
 	
 	if !skip_player:

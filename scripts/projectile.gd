@@ -21,6 +21,7 @@ extends CharacterBody2D
 @export var players_projectile: bool = true
 @export var teleports_player: bool = false
 @export var spawn: bool = false
+@export var effect_by_wind: bool = true
 @export var spawn_type: String = "fragment"
 
 var parent: Player
@@ -65,6 +66,9 @@ func _physics_process(delta: float) -> void:
 	
 	if players_projectile:
 		Mouse.global_position = global_position
+	
+	if effect_by_wind:
+		velocity.x += Globals.wind * 16 * delta
 	
 	velocity.y += gravity * delta
 	rotation = velocity.angle()
