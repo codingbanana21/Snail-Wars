@@ -7,10 +7,14 @@
 radius = 4.0
 
 [node name="PumkinGrenade" unique_id=791496552 instance=ExtResource("1_upu3b")]
-timer = 1.5
+damage = 15
+size = 4
+knockback = 30
+timer = 1.0
 bounce = true
+end_player_turn = false
 spawn = true
-spawn_type = "fire"
+spawns = Array[String](["grenade", "pumkin_grenade", "pumkin_grenade"])
 
 [node name="Image" parent="." index="0" unique_id=2045045234]
 texture = ExtResource("2_ssk2y")

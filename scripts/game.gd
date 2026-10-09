@@ -32,17 +32,13 @@ func make_map():
 			var offset: Vector2i = Vector2i(x -128, y -256)
 			
 			if pixelColor == Color(0.0, 1.0, 0.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(0, 0))
+				map.set_cell(offset, 0 ,Vector2i(4 * randi_range(0,1), 0))
 			elif pixelColor == Color(1.0, 0.0, 0.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(1, 0))
+				map.set_cell(offset, 0 ,Vector2i(1 + 4 * randi_range(0,1), 0))
 			elif pixelColor == Color(0.0, 0.0, 1.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(2, 0))
+				map.set_cell(offset, 0 ,Vector2i(2 + 4 * randi_range(0,1), 0))
 			elif pixelColor == Color(1.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
-			elif pixelColor == Color(1.0, 1.0, 1.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(6, 0))
-			elif pixelColor == Color(0.0, 0.0, 0.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(5, 0))
 			elif pixelColor == Color(1.0, 1.0, 0.0, 1.0):
 				var mine: Projectile
 				if Globals.map == "g1":

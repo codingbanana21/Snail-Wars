@@ -19,10 +19,10 @@ extends CharacterBody2D
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var players_projectile: bool = true
+@export var end_player_turn: bool = true
 @export var teleports_player: bool = false
-@export var spawn: bool = false
 @export var effect_by_wind: bool = true
-@export var spawn_type: String = "fragment"
+@export var spawns: Array[String]
 
 var parent: Player
 var bodys_needed: int = 2
@@ -95,14 +95,14 @@ func explode(end_explode: bool = false):
 	projectile_hp -= 1
 	Mouse.shake(damage / 4.0)
 	
-	if spawn:
-		parent.shot_projectile("res://projectiles/"+spawn_type+".tscn", global_position)
+	if len(spawns) > 0:
+		parent.shot_projectile("res://projectiles/"+spawns.pick_random()+".tscn", global_position)
 	
 	if projectile_hp == 0 or end_explode:
 		end_explode = true
 		queue_free()
 		
-		if players_projectile and parent.player_turn_part != 0:
+		if end_player_turn and players_projectile and parent.player_turn_part != 0:
 			parent.next_player_timer.start()
 			parent.player_turn_part = 3
 			Mouse.global_position = parent.global_position

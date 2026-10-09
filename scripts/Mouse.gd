@@ -4,7 +4,7 @@ extends Node2D
 @onready var shake_timer: Timer = $ShakeTimer
 @onready var camera_2d: Camera2D = $Camera2D
 
-const WEAPONS: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Pumkin Grenade","Gun","Teleporta"]
+const WEAPONS: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present"]
 
 var moving: bool = false
 var can_move: bool = false
