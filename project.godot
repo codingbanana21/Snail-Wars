@@ -14,7 +14,8 @@ config/name="Snail Wars"
 config/tags=PackedStringArray("2d", "multplayer")
 run/main_scene="uid://dbu738lf8tcco"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cvhxdli1mcl6m"
+config/icon="uid://cvhxdli1mcl6m"
 
 [autoload]
 
