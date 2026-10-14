@@ -141,7 +141,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if temp_velocity.y > 750:
 			var fall_damage = (temp_velocity.y - 750) / 40.0
-			Mouse.shake(fall_damage / 4.0)
+			Mouse.shake.rpc(fall_damage / 4.0)
 			damage(fall_damage)
 		velocity.x *= 0.8
 

@@ -100,7 +100,7 @@ func explode(end_explode: bool = false):
 		hit_timer.start(hit_stun_time)
 	
 	projectile_hp -= 1
-	Mouse.shake(damage / 4.0)
+	Mouse.shake.rpc(damage / 4.0)
 	
 	#if len(spawns) > 0:
 		#parent.shot_projectile("res://projectiles/"+spawns.pick_random()+".tscn", global_position)
@@ -116,7 +116,7 @@ func explode(end_explode: bool = false):
 	
 	# destroy map
 	for map in get_tree().get_nodes_in_group("Map"):
-		map.explode_tile(global_position, size)
+		map.explode_tile.rpc(global_position, size)
 	
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
@@ -139,4 +139,5 @@ func explode(end_explode: bool = false):
 
 
 func _on_explosion_timer_timeout() -> void:
+	if !is_multiplayer_authority(): return
 	explode(true)

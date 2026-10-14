@@ -40,6 +40,7 @@ func _input(event: InputEvent) -> void:
 		moving = false
 
 
+@rpc("any_peer","reliable","call_local")
 func shake(amount: float = 3.0, time: float = 0.15):
 	shake_amount = amount
 	shake_timer.start(time)

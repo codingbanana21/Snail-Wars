@@ -106,6 +106,7 @@ func add_player(inputs: Dictionary = {"id":1,
 	#player.team_label.text = "Team "+str(team_number)
 
 
+@rpc("any_peer","reliable","call_local")
 func explode_tile(target_position: Vector2, power: int):
 	var tile_position: Vector2 = round(target_position / 8.0)
 	var explosion_accuracy: float = PI * 2
