@@ -11,7 +11,7 @@ var teams_weapons: Array[Array]
 var map: String
 
 
-@rpc("any_peer","reliable","call_local")
+@rpc("any_peer", "call_local", "reliable")
 func next_player(skip_player: bool = false):
 	wind = randi_range(-5,5)
 	Mouse.show()
@@ -22,4 +22,4 @@ func next_player(skip_player: bool = false):
 	teams_turns[team_turn] = (teams_turns[team_turn] + 1) % players_in_team
 	
 	for player: Player in get_tree().get_nodes_in_group("Player"):
-		player.next_player()
+		player.next_player.rpc()

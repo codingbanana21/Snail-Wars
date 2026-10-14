@@ -7,20 +7,24 @@ extends Node2D
 @onready var water: Polygon2D = $Water
 @onready var wind: HScrollBar = %Wind
 
-var id
+var id: int
+var remote_id: int
 
 
 func _enter_tree() -> void:
-	set_multiplayer_authority(int(id))
+	set_multiplayer_authority(id)
 
 
 func _ready() -> void:
 	multiplayer_spawner.spawn_function = add_player
 	
+	if is_multiplayer_authority():
+		remote_id = multiplayer.get_peers()[0]
+		print(multiplayer.get_peers())
+	
 	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
-	Globals.next_player()
 
 
 func _process(delta: float) -> void:
@@ -78,7 +82,7 @@ func make_map():
 				
 				if !is_multiplayer_authority(): continue
 				
-				multiplayer_spawner.spawn({"id":id,
+				multiplayer_spawner.spawn({"id":remote_id,
 					"global_position":offset,
 					"team_color":pixel_color,
 					"player_number":player_number,
@@ -118,3 +122,7 @@ func explode_tile(target_position: Vector2, power: int):
 			
 			if tile_type.y == 0:
 				map.set_cell(tile, 0, tile_type + Vector2i(0, 1))
+
+
+func _on_timer_timeout() -> void:
+	Globals.next_player()

@@ -26,11 +26,11 @@ extends CharacterBody2D
 
 var parent: Player
 var bodys_needed: int = 2
-var id
+var id: int
 
 
 func _enter_tree() -> void:
-	set_multiplayer_authority(int(id))
+	set_multiplayer_authority(id)
 
 
 func _ready() -> void:

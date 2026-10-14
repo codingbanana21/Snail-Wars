@@ -27,7 +27,7 @@ const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
 
-var id
+var id: int
 var projectile_speed: float = 0.0
 var hp: int = 100
 var weapon: int = 0
@@ -37,7 +37,7 @@ var dead: bool = false
 
 
 func _enter_tree() -> void:
-	set_multiplayer_authority(int(id))
+	set_multiplayer_authority(id)
 
 
 func _ready() -> void:
@@ -194,6 +194,7 @@ func die():
 	global_position.y = -10000
 
 
+@rpc("any_peer", "call_local", "reliable")
 func next_player():
 	if hp < 1 and !dead:
 		#shot_projectile("res://projectiles/snail.tscn", global_position,id)
