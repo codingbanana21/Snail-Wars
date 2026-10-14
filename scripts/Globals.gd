@@ -11,6 +11,7 @@ var teams_weapons: Array[Array]
 var map: String
 
 
+@rpc("any_peer","reliable","call_local")
 func next_player(skip_player: bool = false):
 	wind = randi_range(-5,5)
 	Mouse.show()

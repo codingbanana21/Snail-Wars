@@ -26,12 +26,17 @@ const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
 
+var id
 var projectile_speed: float = 0.0
 var hp: int = 100
 var weapon: int = 0
 var dir: float = 0
 var player_turn_part: int = 0
 var dead: bool = false
+
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(id))
 
 
 func _ready() -> void:
@@ -45,6 +50,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if velocity.x < 0:
 		snail.flip_h = true
 	elif velocity.x > 0:
@@ -100,6 +107,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if velocity.y < 2500.0:
 		velocity.y += PLAYER_GRAVITY
 	
@@ -130,6 +139,8 @@ func _physics_process(delta: float) -> void:
 
 
 func shot_projectile(projectile: NodePath, pos : Vector2):
+	if !is_multiplayer_authority(): return
+	
 	var new_projectile: Projectile = load(projectile).instantiate()
 	new_projectile.global_position = pos
 	new_projectile.look_at(Mouse.global_position)
@@ -140,6 +151,7 @@ func shot_projectile(projectile: NodePath, pos : Vector2):
 	shot_bar.value = 0
 
 
+@rpc("any_peer","reliable","call_local")
 func damage(hurt_damage: int):
 	hp -= hurt_damage
 	hp_label.text = str(hp)
@@ -164,6 +176,7 @@ func damage(hurt_damage: int):
 		next_player_timer.start(1.0)
 
 
+@rpc("any_peer","reliable","call_local")
 func die():
 	dead = true
 	set_physics_process(false)
@@ -173,7 +186,7 @@ func die():
 func next_player():
 	if hp < 1 and !dead:
 		shot_projectile("res://projectiles/snail.tscn", global_position)
-		die()
+		die.rpc()
 	
 	if Globals.teams_turns[Globals.team_turn] == player_number and team_number == Globals.team_turn:
 		player_turn_part = 1
@@ -189,4 +202,4 @@ func _on_next_player_timer_timeout() -> void:
 			next_player_timer.start(1.0)
 		else:
 			player_turn_part = 0
-			Globals.next_player()
+			Globals.next_player.rpc()

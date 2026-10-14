@@ -35,6 +35,8 @@ func _input(event: InputEvent) -> void:
 		global_position += event.relative
 		moving = true
 	else:
+		if Input.is_action_just_pressed("mouse_lock"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		moving = false
 
 

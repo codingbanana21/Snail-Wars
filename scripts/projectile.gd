@@ -108,14 +108,15 @@ func explode(end_explode: bool = false):
 			Mouse.global_position = parent.global_position
 	
 	# destroy map
-	get_tree().current_scene.explode_tile(global_position, size)
+	for map in get_tree().get_nodes_in_group("Map"):
+		map.explode_tile(global_position, size)
 	
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
 		if dis_to < (8.0 * size) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
-			player.damage(int(hit_power * damage))
+			player.damage.rpc(int(hit_power * damage))
 			player.velocity += (player.global_position - global_position) * hit_power * knockback
 	
 	if players_projectile:

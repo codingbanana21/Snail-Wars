@@ -11,6 +11,26 @@
 [ext_resource type="AudioStream" uid="uid://dov8abymctmg1" path="res://assets/sounds/impressive1.mp3" id="8_smehm"]
 [ext_resource type="AudioStream" uid="uid://ca6ny0aoftjrj" path="res://assets/sounds/bang_01.ogg" id="9_ur7pv"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y4r1p"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:player_number")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+properties/2/path = NodePath(".:team_number")
+properties/2/spawn = true
+properties/2/replication_mode = 2
+properties/3/path = NodePath(".:team_name")
+properties/3/spawn = true
+properties/3/replication_mode = 2
+properties/4/path = NodePath(".:team_color")
+properties/4/spawn = true
+properties/4/replication_mode = 2
+properties/5/path = NodePath("Snail:flip_h")
+properties/5/spawn = true
+properties/5/replication_mode = 2
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
 size = Vector2(14, 14)
 
@@ -18,6 +38,9 @@ size = Vector2(14, 14)
 collision_layer = 5
 collision_mask = 5
 script = ExtResource("1_3vyb7")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1716998312]
+replication_config = SubResource("SceneReplicationConfig_y4r1p")
 
 [node name="Snail" type="Sprite2D" parent="." unique_id=1069079524]
 texture = ExtResource("3_dqkch")

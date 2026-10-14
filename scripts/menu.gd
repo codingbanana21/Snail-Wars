@@ -1,6 +1,7 @@
-class_name Game
+class_name MainMenu
 extends Node2D
 
+@onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
 @onready var per_team_label: Label = %PerTeamLabel
 @onready var weapons_h_slider: HSlider = %WeaponsHSlider
@@ -11,6 +12,14 @@ extends Node2D
 @onready var player_hp_label: Label = %PlayerHPLabel
 @onready var water_level_h_slider: HSlider = %WaterLevelHSlider
 @onready var water_level_label: Label = %WaterLevelLabel
+
+const PORT = 3100
+
+var peer = ENetMultiplayerPeer.new()
+
+
+func _ready() -> void:
+	multiplayer_spawner.spawn_function = load_map
 
 
 func _process(delta: float) -> void:
@@ -29,8 +38,8 @@ func _process(delta: float) -> void:
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(map: String = "b1"):
-	Globals.map = map
+func load_map(id):
+	Globals.map = "b1"
 	
 	if int(weapons_h_slider.value) == 1:
 		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,2,1,1]]
@@ -44,9 +53,35 @@ func load_map(map: String = "b1"):
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Mouse.can_move = true
-	get_tree().change_scene_to_file("res://maps/game.tscn")
+	var map_file = preload("res://maps/map.tscn").instantiate()
+	map_file.id = id
+	return map_file
+
+
+func _on_server_pressed() -> void:
+	#push_warning("server")
+	
+	peer.create_server(PORT,1)
+	multiplayer.multiplayer_peer = peer
+	multiplayer.peer_connected.connect(
+		func(id):
+			#multiplayer_spawner.spawn(id)
+			multiplayer_spawner.spawn(multiplayer.get_unique_id())
+	)
+
+
+func _on_client_pressed() -> void:
+	#push_warning("clint")
+	
+	var IP_ADDRESS = IP.get_local_addresses()[1]
+	if IP_ADDRESS == "":
+		IP_ADDRESS = "localhost"
+	
+	if IP_ADDRESS.is_valid_ip_address() or IP_ADDRESS == "localhost":
+		peer.create_client(IP_ADDRESS, PORT)
+		multiplayer.multiplayer_peer = peer
 
 
 func _on_b_1_button_pressed() -> void:

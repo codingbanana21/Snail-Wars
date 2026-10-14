@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://baxuf5v76y51l"]
 
-[ext_resource type="Script" uid="uid://fcqmls4eg5v3" path="res://scripts/game.gd" id="1_paxxb"]
+[ext_resource type="Script" uid="uid://fcqmls4eg5v3" path="res://scripts/map.gd" id="1_paxxb"]
 [ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://maps/world_tileset.png" id="2_gldc4"]
 [ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://maps/water.png" id="3_uwjdf"]
 
@@ -91,8 +91,12 @@ terrain_set_0/terrain_2/name = "Stone"
 terrain_set_0/terrain_2/color = Color(0.22352941, 0.5019608, 0.5764706, 1)
 sources/0 = SubResource("TileSetAtlasSource_ers5l")
 
-[node name="Map" type="Node2D" unique_id=1199139245]
+[node name="Map" type="Node2D" unique_id=1199139245 groups=["Map"]]
 script = ExtResource("1_paxxb")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1428590550]
+_spawnable_scenes = PackedStringArray("uid://ctdjq1dj1itqd")
+spawn_path = NodePath("..")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=2045054409]
 visible = false
