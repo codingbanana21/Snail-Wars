@@ -89,7 +89,7 @@ func make_map():
 
 
 func add_player(inputs: Dictionary = {"id":1,
-		"global_position":Vector2(0,0),
+		"global_position":Vector2.ZERO,
 		"team_color":Color(),
 		"player_number":0,
 		"team_number":0,

@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://01gbgpgohfiy" path="res://scripts/projectile.gd" id="1_q3m7n"]
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="2_ighsu"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ighsu"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_3xfjl"]
 radius = 2.0
 
@@ -28,6 +33,9 @@ top_level = true
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_q3m7n")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1237340460]
+replication_config = SubResource("SceneReplicationConfig_ighsu")
 
 [node name="Image" type="Sprite2D" parent="." unique_id=2045045234]
 texture = ExtResource("2_ighsu")

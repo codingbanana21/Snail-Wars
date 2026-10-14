@@ -26,6 +26,11 @@ extends CharacterBody2D
 
 var parent: Player
 var bodys_needed: int = 2
+var id
+
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(int(id))
 
 
 func _ready() -> void:
@@ -54,6 +59,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if global_position.y >= Globals.water_level:
 		explode(true)
 		return
@@ -95,8 +102,8 @@ func explode(end_explode: bool = false):
 	projectile_hp -= 1
 	Mouse.shake(damage / 4.0)
 	
-	if len(spawns) > 0:
-		parent.shot_projectile("res://projectiles/"+spawns.pick_random()+".tscn", global_position)
+	#if len(spawns) > 0:
+		#parent.shot_projectile("res://projectiles/"+spawns.pick_random()+".tscn", global_position)
 	
 	if projectile_hp == 0 or end_explode:
 		end_explode = true

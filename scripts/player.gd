@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var snail: Sprite2D = $Snail
 @onready var name_label: Label = $NameLabel
 @onready var team_label: Label = $TeamLabel
@@ -40,6 +41,8 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	multiplayer_spawner.spawn_function = shot_projectile
+	
 	hp = Globals.player_hp
 	hp_label.text = str(hp)
 	name_label.text = NAMES2.pick_random() +" "+ NAMES.pick_random()
@@ -100,9 +103,14 @@ func _process(delta: float) -> void:
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
 			Input.action_release("attack")
-			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
+			multiplayer_spawner.spawn({"id":id,
+					"global_position":global_position,
+					"projectile":"res://projectiles/"+WEAPONS[weapon]})
+			#shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position, id)
 			Globals.teams_weapons[team_number][weapon] -= 1
 			player_turn_part = 2
+			projectile_speed = 0.0
+			shot_bar.value = 0
 			Mouse.hide()
 
 
@@ -138,17 +146,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x *= 0.8
 
 
-func shot_projectile(projectile: NodePath, pos : Vector2):
-	if !is_multiplayer_authority(): return
+func shot_projectile(inputs: Dictionary = {"id":1,
+		"global_position":Vector2.ZERO,
+		"projectile":"res://projectiles/rocket.tscn"
+		}):
+	var new_projectile: Projectile = load("res://projectiles/rocket.tscn").instantiate()
 	
-	var new_projectile: Projectile = load(projectile).instantiate()
-	new_projectile.global_position = pos
+	new_projectile.id = inputs["id"]
+	new_projectile.global_position = inputs["global_position"]
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= int(projectile_speed)
-	call_deferred("add_child", new_projectile)
 	
-	projectile_speed = 0.0
-	shot_bar.value = 0
+	return new_projectile
 
 
 @rpc("any_peer","reliable","call_local")
@@ -185,7 +194,7 @@ func die():
 
 func next_player():
 	if hp < 1 and !dead:
-		shot_projectile("res://projectiles/snail.tscn", global_position)
+		#shot_projectile("res://projectiles/snail.tscn", global_position,id)
 		die.rpc()
 	
 	if Globals.teams_turns[Globals.team_turn] == player_number and team_number == Globals.team_turn:
