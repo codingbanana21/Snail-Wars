@@ -179,6 +179,8 @@ func damage(hurt_damage: int):
 		else:
 			ooff_2.play()
 	
+	if !is_multiplayer_authority(): return
+	
 	if player_turn_part != 0:
 		Mouse.hide()
 		player_turn_part = 4
