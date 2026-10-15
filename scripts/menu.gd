@@ -64,7 +64,7 @@ func _on_server_pressed() -> void:
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
 		func(_id):
-			multiplayer_spawner.spawn({"map":"b1"})
+			multiplayer_spawner.spawn({"map":"m1"})
 	)
 
 

@@ -103,10 +103,12 @@ func _process(delta: float) -> void:
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
 			Input.action_release("attack")
-			multiplayer_spawner.spawn({"id":id,
-					"global_position":global_position,
-					"projectile":"res://projectiles/"+WEAPONS[weapon]})
-			#shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position, id)
+			multiplayer_spawner.spawn({
+				"id": id,
+				"global_position": global_position,
+				"projectile": "res://projectiles/" + WEAPONS[weapon] + ".tscn"
+			})
+			
 			Globals.teams_weapons[team_number][weapon] -= 1
 			player_turn_part = 2
 			projectile_speed = 0.0
@@ -150,7 +152,8 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 		"global_position":Vector2.ZERO,
 		"projectile":"res://projectiles/rocket.tscn"
 		}):
-	var new_projectile: Projectile = load("res://projectiles/rocket.tscn").instantiate()
+	var scene: PackedScene = load(inputs["projectile"])
+	var new_projectile: Projectile = scene.instantiate()
 	
 	new_projectile.id = inputs["id"]
 	new_projectile.global_position = inputs["global_position"]
