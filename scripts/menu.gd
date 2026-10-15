@@ -2,6 +2,7 @@ class_name MainMenu
 extends Node2D
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
+@onready var menu: Node2D = $Menu
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
 @onready var per_team_label: Label = %PerTeamLabel
 @onready var weapons_h_slider: HSlider = %WeaponsHSlider
@@ -54,6 +55,7 @@ func load_map(inputs: Dictionary = {"map":"m1"}):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	menu.hide()
 	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
 	return map_file

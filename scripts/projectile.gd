@@ -104,8 +104,12 @@ func explode(end_explode: bool = false):
 	projectile_hp -= 1
 	Mouse.shake.rpc(damage / 4.0)
 	
-	#if len(spawns) > 0:
-		#parent.shot_projectile("res://projectiles/"+spawns.pick_random()+".tscn", global_position)
+	if len(spawns) > 0:
+		parent.multiplayer_spawner.spawn({
+			"id": id,
+			"global_position": global_position,
+			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
+		})
 	
 	if projectile_hp == 0 or end_explode:
 		end_explode = true

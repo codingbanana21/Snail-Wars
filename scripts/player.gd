@@ -199,8 +199,12 @@ func die():
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(teams_turns, team_turn):
-	if hp < 1 and !dead:
-		#shot_projectile("res://projectiles/snail.tscn", global_position,id)
+	if hp < 1 and !dead and is_multiplayer_authority():
+		multiplayer_spawner.spawn({
+			"id": id,
+			"global_position": global_position,
+			"projectile": "res://projectiles/snail.tscn"
+		})
 		die.rpc()
 	
 	if teams_turns[team_turn] == player_number and team_number == team_turn:
