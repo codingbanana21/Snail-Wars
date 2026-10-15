@@ -47,7 +47,7 @@ func _ready() -> void:
 	hp_label.text = str(hp)
 	name_label.text = NAMES2.pick_random() +" "+ NAMES.pick_random()
 	name_label.modulate = team_color
-	team_label.text = "Team " + team_name
+	team_label.text = "Team "+str(team_number)
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
 
@@ -196,8 +196,6 @@ func die():
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(teams_turns, team_turn):
-	#if !is_multiplayer_authority(): return
-	
 	if hp < 1 and !dead:
 		#shot_projectile("res://projectiles/snail.tscn", global_position,id)
 		die.rpc()

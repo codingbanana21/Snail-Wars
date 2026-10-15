@@ -24,9 +24,9 @@ extends CharacterBody2D
 @export var effect_by_wind: bool = true
 @export var spawns: Array[String]
 
+var id: int
 var parent: Player
 var bodys_needed: int = 2
-var id: int
 
 
 func _enter_tree() -> void:
@@ -93,6 +93,8 @@ func _physics_process(delta: float) -> void:
 
 
 func explode(end_explode: bool = false):
+	if !is_multiplayer_authority(): return
+	
 	if !hit_timer.is_stopped():
 		return
 	
@@ -140,4 +142,5 @@ func explode(end_explode: bool = false):
 
 func _on_explosion_timer_timeout() -> void:
 	if !is_multiplayer_authority(): return
+	
 	explode(true)

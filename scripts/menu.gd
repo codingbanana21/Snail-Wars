@@ -22,7 +22,7 @@ func _ready() -> void:
 	multiplayer_spawner.spawn_function = load_map
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
 	Globals.players_in_team = int(per_team_h_slider.value)
 	
@@ -38,9 +38,8 @@ func _process(delta: float) -> void:
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(inputs: Dictionary = {"id":1,
-		"map":"m1"}):
-	Globals.map = "b1"
+func load_map(inputs: Dictionary = {"map":"m1"}):
+	Globals.map = inputs["map"]
 	
 	if int(weapons_h_slider.value) == 1:
 		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,1,2,1,1]]
@@ -57,7 +56,6 @@ func load_map(inputs: Dictionary = {"id":1,
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
-	map_file.id = inputs["id"]
 	return map_file
 
 
@@ -65,9 +63,8 @@ func _on_server_pressed() -> void:
 	peer.create_server(PORT,1)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
-		func(id):
-			#multiplayer_spawner.spawn(id)
-			multiplayer_spawner.spawn({"id":multiplayer.get_unique_id(),"map":"b1"})
+		func(_id):
+			multiplayer_spawner.spawn({"map":"b1"})
 	)
 
 
@@ -82,7 +79,7 @@ func _on_client_pressed() -> void:
 
 
 func _on_b_1_button_pressed() -> void:
-	load_map({"id":1,"map":"b1"})
+	load_map({"map":"b1"})
 
 
 #func _on_m_1_button_pressed() -> void:

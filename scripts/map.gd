@@ -7,12 +7,11 @@ extends Node2D
 @onready var water: Polygon2D = $Water
 @onready var wind: HScrollBar = %Wind
 
-var id: int
 var remote_id: int
 
 
 func _enter_tree() -> void:
-	set_multiplayer_authority(id)
+	set_multiplayer_authority(1)
 
 
 func _ready() -> void:
@@ -20,14 +19,13 @@ func _ready() -> void:
 	
 	if is_multiplayer_authority():
 		remote_id = multiplayer.get_peers()[0]
-		print(multiplayer.get_peers())
 	
 	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	wind.value = Globals.wind
@@ -83,7 +81,7 @@ func make_map():
 				if !is_multiplayer_authority(): continue
 				
 				if team_number == 0:
-					multiplayer_spawner.spawn({"id":id,
+					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"team_color":pixel_color,
 						"player_number":player_number,
@@ -114,8 +112,6 @@ func add_player(inputs: Dictionary = {"id":1,
 	player.team_number = inputs["team_number"]
 	player.add_to_group("Player")
 	return player
-	
-	#player.team_label.text = "Team "+str(team_number)
 
 
 @rpc("any_peer","reliable","call_local")

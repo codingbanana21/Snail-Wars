@@ -13,7 +13,7 @@ var weapon_left: int
 var weapon: int
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if weapon_left >= 0:
 		weapon_label.text = WEAPONS[weapon]+" "+str(weapon_left)
 	else:
