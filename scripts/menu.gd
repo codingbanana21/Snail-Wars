@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(inputs: Dictionary = {"map":"m1"}):
+func load_map(inputs: Dictionary = {"multiplayer":false,"map":"m1"}):
 	Globals.map = inputs["map"]
 	
 	if int(weapons_h_slider.value) == 1:
@@ -58,7 +58,12 @@ func load_map(inputs: Dictionary = {"map":"m1"}):
 	menu.hide()
 	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
-	return map_file
+	
+	if inputs["multiplayer"]:
+		Globals.is_multiplayer = true
+		return map_file
+	else:
+		add_child(map_file)
 
 
 func _on_server_pressed() -> void:
@@ -66,7 +71,7 @@ func _on_server_pressed() -> void:
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
 		func(_id):
-			multiplayer_spawner.spawn({"map":"m1"})
+			multiplayer_spawner.spawn({"multiplayer":true,"map":"m1"})
 	)
 
 
@@ -81,32 +86,31 @@ func _on_client_pressed() -> void:
 
 
 func _on_b_1_button_pressed() -> void:
-	load_map({"map":"b1"})
+	load_map({"multiplayer":false,"map":"b1"})
 
 
-#func _on_m_1_button_pressed() -> void:
-	#load_map("m1")
-#
-#
-#func _on_m_2_button_pressed() -> void:
-	#load_map("m2")
-#
-#
-#func _on_b_2_button_pressed() -> void:
-	#load_map("b2")
-#
-#
-#func _on_m_3_button_pressed() -> void:
-	#load_map("m3")
-#
-#
-#func _on_s_1_button_pressed() -> void:
-	#load_map("s1")
-#
-#
-#func _on_s_2_button_pressed() -> void:
-	#load_map("s2")
-#
-#
-#func _on_g_1_button_pressed() -> void:
-	#load_map("g1")
+func _on_b_2_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"b2"})
+
+
+func _on_m_1_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"m1"})
+
+func _on_m_2_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"m2"})
+
+
+func _on_m_3_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"m3"})
+
+
+func _on_s_1_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"s1"})
+
+
+func _on_s_2_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"s2"})
+
+
+func _on_g_1_button_pressed() -> void:
+	load_map({"multiplayer":false,"map":"g1"})

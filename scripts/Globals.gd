@@ -6,9 +6,10 @@ var players_in_team: int = 4
 var number_of_teams: int = 2
 var player_hp: int = 100
 var water_level: int = -100
+var is_multiplayer: bool = false
 var wind: int = 0
 var teams_weapons: Array[Array]
-var map: String
+var map: String = "1m"
 
 
 @rpc("any_peer", "call_local", "reliable")

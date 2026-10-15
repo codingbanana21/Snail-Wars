@@ -18,7 +18,10 @@ func _ready() -> void:
 	multiplayer_spawner.spawn_function = add_player
 	
 	if is_multiplayer_authority():
-		remote_id = multiplayer.get_peers()[0]
+		if Globals.is_multiplayer:
+			remote_id = multiplayer.get_peers()[0]
+		else:
+			remote_id = 1
 	
 	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
