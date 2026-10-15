@@ -309,6 +309,15 @@ offset_bottom = -20.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "Join Server"
 
+[node name="IP" type="TextEdit" parent="Menu/Multiplayer" unique_id=25057402]
+unique_name_in_owner = true
+offset_left = 68.0
+offset_top = -16.0
+offset_right = 229.0
+offset_bottom = 11.0
+theme_override_fonts/font = ExtResource("4_7b55j")
+placeholder_text = "Ip address"
+
 [node name="Background" type="CanvasLayer" parent="Menu" unique_id=1758057930]
 layer = -100
 

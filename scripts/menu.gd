@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var menu: Node2D = $Menu
+@onready var ip: TextEdit = %IP
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
 @onready var per_team_label: Label = %PerTeamLabel
 @onready var weapons_h_slider: HSlider = %WeaponsHSlider
@@ -67,6 +68,8 @@ func load_map(inputs: Dictionary = {"multiplayer":false,"map":"m1"}):
 
 
 func _on_server_pressed() -> void:
+	ip.text = str(get_upnp())
+	
 	peer.create_server(PORT,1)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
@@ -76,13 +79,27 @@ func _on_server_pressed() -> void:
 
 
 func _on_client_pressed() -> void:
-	var IP_ADDRESS = IP.get_local_addresses()[1]
-	if IP_ADDRESS == "":
-		IP_ADDRESS = "localhost"
+	var ip_address = ip.text
 	
-	if IP_ADDRESS.is_valid_ip_address() or IP_ADDRESS == "localhost":
-		peer.create_client(IP_ADDRESS, PORT)
+	if ip_address == "":
+		ip_address = "localhost"
+	
+	if ip_address.is_valid_ip_address() or ip_address == "localhost":
+		peer.create_client(ip_address, PORT)
 		multiplayer.multiplayer_peer = peer
+
+
+func get_upnp():
+	var upnp = UPNP.new()
+	var discorer_result = upnp.discover()
+	if discorer_result == UPNP.UPNP_RESULT_SUCCESS:
+		if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
+			var map_result = upnp.add_port_mapping(9999,0,"SnailWars","UDP", 10800)
+			if map_result == UPNP.UPNP_RESULT_SUCCESS:
+				upnp.add_port_mapping(9999,0,"")
+	
+	upnp.delete_port_mapping(9999,"UDP")
+	return upnp.query_external_address()
 
 
 func _on_b_1_button_pressed() -> void:
