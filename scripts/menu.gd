@@ -15,9 +15,10 @@ extends Node2D
 @onready var water_level_h_slider: HSlider = %WaterLevelHSlider
 @onready var water_level_label: Label = %WaterLevelLabel
 
-const PORT = 3100
+const SERVER_PORT = 3100
 
 var peer = ENetMultiplayerPeer.new()
+var upnp
 
 
 func _ready() -> void:
@@ -68,9 +69,17 @@ func load_map(inputs: Dictionary = {"multiplayer":false,"map":"m1"}):
 
 
 func _on_server_pressed() -> void:
-	ip.text = str(get_upnp())
+	var ip_address = upnp_setup(SERVER_PORT)
+	#var ip_address = IP.get_local_addresses()[1]
 	
-	peer.create_server(PORT,1)
+	if !ip_address.is_valid_ip_address():
+		push_error("There was a error when creating the server ", ip_address)
+		ip.text = "There was a error when creating the server " + str(ip_address)
+		return
+	else:
+		ip.text = ip_address 
+	
+	peer.create_server(SERVER_PORT,1)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
 		func(_id):
@@ -85,21 +94,42 @@ func _on_client_pressed() -> void:
 		ip_address = "localhost"
 	
 	if ip_address.is_valid_ip_address() or ip_address == "localhost":
-		peer.create_client(ip_address, PORT)
+		peer.create_client(ip_address, SERVER_PORT)
 		multiplayer.multiplayer_peer = peer
+	else:
+		#push_error("Can't connect to ", ip_address)
+		push_error("IP address is invalid ", ip_address)
 
 
-func get_upnp():
-	var upnp = UPNP.new()
-	var discorer_result = upnp.discover()
-	if discorer_result == UPNP.UPNP_RESULT_SUCCESS:
-		if upnp.get_gateway() and upnp.get_gateway().is_valid_gateway():
-			var map_result = upnp.add_port_mapping(9999,0,"SnailWars","UDP", 10800)
-			if map_result == UPNP.UPNP_RESULT_SUCCESS:
-				upnp.add_port_mapping(9999,0,"")
+func upnp_setup(server_port):
+	upnp = UPNP.new()
 	
-	upnp.delete_port_mapping(9999,"UDP")
-	return upnp.query_external_address()
+	var err = upnp.discover(2000, 2, "InternetGatewayDevice")
+	
+	if err != UPNP.UPNP_RESULT_SUCCESS:
+		push_error("UPNP discover failed ", err)
+		return ""
+	
+	var gatway = upnp.get_gateway()
+	if !upnp.get_gateway() or !gatway.is_valid_gateway():
+		push_error("UPNP: no valid gateway")
+		return ""
+	
+	var map_err = upnp.add_port_mapping(server_port, server_port, "snailwars", "UDP", 0)
+	if map_err != UPNP.UPNP_RESULT_SUCCESS:
+		push_warning("Permanent mapping failed, retrying with non-permanent")
+		map_err = upnp.add_port_mapping(server_port, server_port, "snailwars", "UDP", 3600)
+		
+		if map_err != UPNP.UPNP_RESULT_SUCCESS:
+			push_error("UPNP mapping failed")
+	
+	var addr = upnp.query_external_address()
+	return addr
+
+
+func _exit_tree() -> void:
+	if upnp:
+		upnp.delete_port_mapping(SERVER_PORT, "UDP")
 
 
 func _on_b_1_button_pressed() -> void:
