@@ -64,7 +64,7 @@ func _process(delta: float) -> void:
 	if (dead or global_position.y >= Globals.water_level) and player_turn_part != 0:
 		player_turn_part = 0
 		hp = 0
-		Globals.next_player(true)
+		Globals.next_player.rpc(true)
 		return
 	
 	if player_turn_part == 0 or player_turn_part == 4:
@@ -187,7 +187,7 @@ func damage(hurt_damage: int):
 		next_player_timer.start(1.0)
 
 
-@rpc("any_peer","reliable","call_local")
+@rpc("any_peer","call_local","reliable")
 func die():
 	dead = true
 	set_physics_process(false)

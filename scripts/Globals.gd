@@ -13,6 +13,8 @@ var map: String
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(skip_player: bool = false):
+	if multiplayer.is_server(): return
+	
 	wind = randi_range(-5,5)
 	Mouse.show()
 	

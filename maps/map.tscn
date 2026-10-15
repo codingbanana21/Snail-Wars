@@ -98,6 +98,10 @@ script = ExtResource("1_paxxb")
 _spawnable_scenes = PackedStringArray("uid://ctdjq1dj1itqd")
 spawn_path = NodePath("..")
 
+[node name="Timer" type="Timer" parent="." unique_id=989865850]
+one_shot = true
+autostart = true
+
 [node name="Image" type="Sprite2D" parent="." unique_id=2045054409]
 visible = false
 position = Vector2(0, 112)
@@ -140,9 +144,5 @@ offset_right = 136.0
 offset_bottom = 350.0
 min_value = -5.0
 max_value = 5.0
-
-[node name="Timer" type="Timer" parent="." unique_id=989865850]
-one_shot = true
-autostart = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

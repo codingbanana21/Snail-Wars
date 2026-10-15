@@ -38,7 +38,8 @@ func _process(delta: float) -> void:
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
 
 
-func load_map(id):
+func load_map(inputs: Dictionary = {"id":1,
+		"map":"m1"}):
 	Globals.map = "b1"
 	
 	if int(weapons_h_slider.value) == 1:
@@ -56,25 +57,21 @@ func load_map(id):
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
-	map_file.id = id
+	map_file.id = inputs["id"]
 	return map_file
 
 
 func _on_server_pressed() -> void:
-	#push_warning("server")
-	
 	peer.create_server(PORT,1)
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
 		func(id):
 			#multiplayer_spawner.spawn(id)
-			multiplayer_spawner.spawn(multiplayer.get_unique_id())
+			multiplayer_spawner.spawn({"id":multiplayer.get_unique_id(),"map":"b1"})
 	)
 
 
 func _on_client_pressed() -> void:
-	#push_warning("clint")
-	
 	var IP_ADDRESS = IP.get_local_addresses()[1]
 	if IP_ADDRESS == "":
 		IP_ADDRESS = "localhost"
@@ -85,32 +82,32 @@ func _on_client_pressed() -> void:
 
 
 func _on_b_1_button_pressed() -> void:
-	load_map("b1")
-
-
-func _on_m_1_button_pressed() -> void:
-	load_map("m1")
-
-
-func _on_m_2_button_pressed() -> void:
-	load_map("m2")
-
-
-func _on_b_2_button_pressed() -> void:
-	load_map("b2")
-
-
-func _on_m_3_button_pressed() -> void:
-	load_map("m3")
-
-
-func _on_s_1_button_pressed() -> void:
-	load_map("s1")
-
-
-func _on_s_2_button_pressed() -> void:
-	load_map("s2")
-
-
-func _on_g_1_button_pressed() -> void:
-	load_map("g1")
+	load_map({"id":1,"map":"b1"})
+#
+#
+#func _on_m_1_button_pressed() -> void:
+	#load_map("m1")
+#
+#
+#func _on_m_2_button_pressed() -> void:
+	#load_map("m2")
+#
+#
+#func _on_b_2_button_pressed() -> void:
+	#load_map("b2")
+#
+#
+#func _on_m_3_button_pressed() -> void:
+	#load_map("m3")
+#
+#
+#func _on_s_1_button_pressed() -> void:
+	#load_map("s1")
+#
+#
+#func _on_s_2_button_pressed() -> void:
+	#load_map("s2")
+#
+#
+#func _on_g_1_button_pressed() -> void:
+	#load_map("g1")
