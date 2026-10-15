@@ -83,8 +83,8 @@ func _on_client_pressed() -> void:
 
 func _on_b_1_button_pressed() -> void:
 	load_map({"id":1,"map":"b1"})
-#
-#
+
+
 #func _on_m_1_button_pressed() -> void:
 	#load_map("m1")
 #

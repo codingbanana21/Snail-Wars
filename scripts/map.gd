@@ -82,12 +82,20 @@ func make_map():
 				
 				if !is_multiplayer_authority(): continue
 				
-				multiplayer_spawner.spawn({"id":remote_id,
-					"global_position":offset,
-					"team_color":pixel_color,
-					"player_number":player_number,
-					"team_number":team_number,
-					})
+				if team_number == 0:
+					multiplayer_spawner.spawn({"id":id,
+						"global_position":offset,
+						"team_color":pixel_color,
+						"player_number":player_number,
+						"team_number":team_number,
+						})
+				else:
+					multiplayer_spawner.spawn({"id":remote_id,
+						"global_position":offset,
+						"team_color":pixel_color,
+						"player_number":player_number,
+						"team_number":team_number,
+						})
 			else:
 				map.set_cell(offset, 0 ,Vector2i(0, 2))
 

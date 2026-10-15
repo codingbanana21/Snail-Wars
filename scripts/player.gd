@@ -195,12 +195,14 @@ func die():
 
 
 @rpc("any_peer", "call_local", "reliable")
-func next_player():
+func next_player(teams_turns, team_turn):
+	if !is_multiplayer_authority(): return
+	
 	if hp < 1 and !dead:
 		#shot_projectile("res://projectiles/snail.tscn", global_position,id)
 		die.rpc()
 	
-	if Globals.teams_turns[Globals.team_turn] == player_number and team_number == Globals.team_turn:
+	if teams_turns[team_turn] == player_number and team_number == team_turn:
 		player_turn_part = 1
 		
 		if !dead:
