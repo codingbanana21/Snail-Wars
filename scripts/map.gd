@@ -15,7 +15,7 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	multiplayer_spawner.spawn_function = add_player
+	multiplayer_spawner.spawn_function = spawn
 	
 	if is_multiplayer_authority():
 		if Globals.is_multiplayer:
@@ -56,14 +56,18 @@ func make_map():
 			elif pixel_color == Color(1.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
 			elif pixel_color == Color(1.0, 1.0, 0.0, 1.0):
-				var mine: Projectile
-				if Globals.map == "g1":
-					mine = load("res://projectiles/super_mine.tscn").instantiate()
-				else:
-					mine = load("res://projectiles/mine.tscn").instantiate()
-				
-				mine.global_position = offset * 8
-				add_child(mine)
+				if Globals.map == "g1" and is_multiplayer_authority():
+					multiplayer_spawner.spawn({"id":1,
+						"global_position":offset,
+						"node_path":"res://projectiles/super_mine.tscn",
+						"team_color":pixel_color,
+						})
+				elif is_multiplayer_authority():
+					multiplayer_spawner.spawn({"id":1,
+						"global_position":offset,
+						"node_path":"res://projectiles/mine.tscn",
+						"team_color":pixel_color,
+						})
 			elif pixel_color.a != 0:
 				if team_colors.find(pixel_color) == -1:
 					if len(teams) >= Globals.number_of_teams:
@@ -86,6 +90,7 @@ func make_map():
 				if team_number == 0:
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
+						"node_path":"res://scenes/player.tscn",
 						"team_color":pixel_color,
 						"player_number":player_number,
 						"team_number":team_number,
@@ -93,6 +98,7 @@ func make_map():
 				else:
 					multiplayer_spawner.spawn({"id":remote_id,
 						"global_position":offset,
+						"node_path":"res://scenes/player.tscn",
 						"team_color":pixel_color,
 						"player_number":player_number,
 						"team_number":team_number,
@@ -101,20 +107,24 @@ func make_map():
 				map.set_cell(offset, 0 ,Vector2i(0, 2))
 
 
-func add_player(inputs: Dictionary = {"id":1,
+func spawn(inputs: Dictionary = {"id":1,
 		"global_position":Vector2.ZERO,
+		"node_path":"res://scenes/player.tscn",
 		"team_color":Color(),
 		"player_number":0,
 		"team_number":0,
 		}):
-	var player: Player = load("res://scenes/player.tscn").instantiate()
-	player.id = inputs["id"]
-	player.global_position = inputs["global_position"] * 8
-	player.team_color = inputs["team_color"]
-	player.player_number = inputs["player_number"]
-	player.team_number = inputs["team_number"]
-	player.add_to_group("Player")
-	return player
+	
+	var new_node = load(inputs["node_path"]).instantiate()
+	new_node.id = inputs["id"]
+	new_node.global_position = inputs["global_position"] * 8
+	
+	if inputs["node_path"] == "res://scenes/player.tscn":
+		new_node.team_color = inputs["team_color"]
+		new_node.player_number = inputs["player_number"]
+		new_node.team_number = inputs["team_number"]
+		new_node.add_to_group("Player")
+	return new_node
 
 
 @rpc("any_peer","reliable","call_local")
