@@ -99,6 +99,7 @@ _spawnable_scenes = PackedStringArray("uid://ctdjq1dj1itqd")
 spawn_path = NodePath("..")
 
 [node name="Timer" type="Timer" parent="." unique_id=989865850]
+wait_time = 0.5
 one_shot = true
 autostart = true
 

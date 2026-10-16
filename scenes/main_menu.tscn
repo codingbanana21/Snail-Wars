@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="11_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="12_1dfpl"]
+[ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="13_1ajci"]
+[ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="14_7b55j"]
 
 [node name="MainMenu" type="Node2D" unique_id=2137944541]
 script = ExtResource("1_flqon")
@@ -54,7 +56,7 @@ offset_top = -348.0
 offset_right = -21.0
 offset_bottom = -316.0
 theme_override_fonts/font = ExtResource("4_7b55j")
-text = "Mine time"
+text = "Mine Time"
 icon = ExtResource("5_5pajh")
 metadata/_edit_use_anchors_ = true
 
@@ -80,9 +82,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="m1Button" type="Button" parent="Menu/Maps" unique_id=367210282]
 offset_left = 64.0
-offset_top = -351.0
+offset_top = -349.0
 offset_right = 208.0
-offset_bottom = -319.0
+offset_bottom = -317.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "Original"
 icon = ExtResource("7_a8gd2")
@@ -155,7 +157,7 @@ offset_top = -208.0
 offset_right = 224.0
 offset_bottom = -176.0
 theme_override_fonts/font = ExtResource("4_7b55j")
-text = "Super mines"
+text = "Super Mines"
 icon = ExtResource("12_1dfpl")
 metadata/_edit_use_anchors_ = true
 
@@ -163,10 +165,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PerTeamHSlider" type="HSlider" parent="Menu/Settings" unique_id=2044711407]
 unique_name_in_owner = true
-offset_left = -48.0
-offset_top = -87.0
-offset_right = 49.0
-offset_bottom = -63.0
+offset_left = -136.0
+offset_top = -118.0
+offset_right = -39.0
+offset_bottom = -94.0
 theme_override_icons/grabber = ExtResource("6_j7ex8")
 theme_override_icons/grabber_highlight = ExtResource("7_a8gd2")
 min_value = 1.0
@@ -177,10 +179,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PerTeamLabel" type="Label" parent="Menu/Settings" unique_id=911952572]
 unique_name_in_owner = true
-offset_left = -65.0
-offset_top = -83.0
-offset_right = 195.0
-offset_bottom = -67.0
+offset_left = -153.0
+offset_top = -114.0
+offset_right = 109.0
+offset_bottom = -98.0
 scale = Vector2(0.5, 0.5)
 text = "4 Players Per Team"
 label_settings = ExtResource("3_1ajci")
@@ -188,10 +190,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="WeaponsHSlider" type="HSlider" parent="Menu/Settings" unique_id=858606506]
 unique_name_in_owner = true
-offset_left = -48.0
-offset_top = -63.0
-offset_right = 49.0
-offset_bottom = -39.0
+offset_left = -136.0
+offset_top = -94.0
+offset_right = -39.0
+offset_bottom = -70.0
 theme_override_icons/grabber = ExtResource("6_j7ex8")
 theme_override_icons/grabber_highlight = ExtResource("7_a8gd2")
 min_value = 1.0
@@ -202,10 +204,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="WeaponsLabel" type="Label" parent="Menu/Settings" unique_id=1362672685]
 unique_name_in_owner = true
-offset_left = -45.0
-offset_top = -59.0
-offset_right = 131.0
-offset_bottom = -43.0
+offset_left = -133.0
+offset_top = -90.0
+offset_right = 43.0
+offset_bottom = -74.0
 scale = Vector2(0.5, 0.5)
 text = "Weapon set 1"
 label_settings = ExtResource("3_1ajci")
@@ -213,10 +215,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TeamsHSlider" type="HSlider" parent="Menu/Settings" unique_id=1112265823]
 unique_name_in_owner = true
-offset_left = -48.0
-offset_top = -31.0
-offset_right = 49.0
-offset_bottom = -7.0
+offset_left = -136.0
+offset_top = -62.0
+offset_right = -39.0
+offset_bottom = -38.0
 theme_override_icons/grabber = ExtResource("6_j7ex8")
 theme_override_icons/grabber_highlight = ExtResource("7_a8gd2")
 min_value = 1.0
@@ -227,10 +229,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="TeamsLabel" type="Label" parent="Menu/Settings" unique_id=1984247566]
 unique_name_in_owner = true
-offset_left = -25.0
-offset_top = -27.0
-offset_right = 79.0
-offset_bottom = -11.0
+offset_left = -113.0
+offset_top = -58.0
+offset_right = -9.0
+offset_bottom = -42.0
 scale = Vector2(0.5, 0.5)
 text = "2 teams"
 label_settings = ExtResource("3_1ajci")
@@ -238,10 +240,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHPHSlider" type="HSlider" parent="Menu/Settings" unique_id=1590794834]
 unique_name_in_owner = true
-offset_left = -48.0
-offset_top = -2.0
-offset_right = 49.0
-offset_bottom = 22.0
+offset_left = -136.0
+offset_top = -33.0
+offset_right = -39.0
+offset_bottom = -9.0
 theme_override_icons/grabber = ExtResource("6_j7ex8")
 theme_override_icons/grabber_highlight = ExtResource("7_a8gd2")
 min_value = 1.0
@@ -252,10 +254,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PlayerHPLabel" type="Label" parent="Menu/Settings" unique_id=1672681100]
 unique_name_in_owner = true
-offset_left = -49.0
-offset_top = 2.0
-offset_right = 139.0
-offset_bottom = 18.0
+offset_left = -137.0
+offset_top = -29.0
+offset_right = 51.0
+offset_bottom = -13.0
 scale = Vector2(0.5, 0.5)
 text = "100 Player HP"
 label_settings = ExtResource("3_1ajci")
@@ -263,10 +265,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="WaterLevelHSlider" type="HSlider" parent="Menu/Settings" unique_id=1434262133]
 unique_name_in_owner = true
-offset_left = -48.0
-offset_top = 30.0
-offset_right = 49.0
-offset_bottom = 54.0
+offset_left = -136.0
+offset_top = -1.0
+offset_right = -39.0
+offset_bottom = 23.0
 theme_override_icons/grabber = ExtResource("6_j7ex8")
 theme_override_icons/grabber_highlight = ExtResource("7_a8gd2")
 max_value = 500.0
@@ -276,10 +278,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="WaterLevelLabel" type="Label" parent="Menu/Settings" unique_id=428435350]
 unique_name_in_owner = true
-offset_left = -49.0
-offset_top = 34.0
-offset_right = 139.0
-offset_bottom = 50.0
+offset_left = -137.0
+offset_top = 3.0
+offset_right = 51.0
+offset_bottom = 19.0
 scale = Vector2(0.5, 0.5)
 text = "0 Water Level"
 label_settings = ExtResource("3_1ajci")
@@ -287,34 +289,47 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Multiplayer" type="Node2D" parent="Menu" unique_id=2022603963]
 
-[node name="Server" type="Button" parent="Menu/Multiplayer" unique_id=281650061]
+[node name="LocalServer" type="Button" parent="Menu/Multiplayer" unique_id=281650061]
 anchors_preset = -1
 anchor_left = -0.1875
 anchor_right = -0.1875
-offset_left = 68.0
-offset_top = -92.0
-offset_right = 246.0
-offset_bottom = -60.0
+offset_left = 44.0
+offset_top = -76.0
+offset_right = 334.0
+offset_bottom = -44.0
+theme_override_fonts/font = ExtResource("4_7b55j")
+text = "Make Local Server"
+icon = ExtResource("6_j7ex8")
+
+[node name="OnlineServer" type="Button" parent="Menu/Multiplayer" unique_id=270750038]
+anchors_preset = -1
+anchor_left = -0.1875
+anchor_right = -0.1875
+offset_left = 44.0
+offset_top = -116.0
+offset_right = 242.0
+offset_bottom = -84.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "Make Server"
+icon = ExtResource("13_1ajci")
 
 [node name="Client" type="Button" parent="Menu/Multiplayer" unique_id=36848596]
 anchors_preset = -1
 anchor_left = -0.1875
 anchor_right = -0.1875
-offset_left = 68.0
-offset_top = -52.0
-offset_right = 240.0
-offset_bottom = -20.0
+offset_left = 44.0
+offset_top = -36.0
+offset_right = 236.0
+offset_bottom = -4.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "Join Server"
+icon = ExtResource("14_7b55j")
 
 [node name="IP" type="TextEdit" parent="Menu/Multiplayer" unique_id=25057402]
 unique_name_in_owner = true
-offset_left = 68.0
-offset_top = -16.0
-offset_right = 229.0
-offset_bottom = 11.0
+offset_left = 44.0
+offset_right = 336.0
+offset_bottom = 27.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 placeholder_text = "Ip address"
 
@@ -337,5 +352,6 @@ metadata/_edit_use_anchors_ = true
 [connection signal="pressed" from="Menu/Maps/s1Button" to="." method="_on_s_1_button_pressed"]
 [connection signal="pressed" from="Menu/Maps/s2Button" to="." method="_on_s_2_button_pressed"]
 [connection signal="pressed" from="Menu/Maps/g1Button" to="." method="_on_g_1_button_pressed"]
-[connection signal="pressed" from="Menu/Multiplayer/Server" to="." method="_on_server_pressed"]
+[connection signal="pressed" from="Menu/Multiplayer/LocalServer" to="." method="_on_local_server_pressed"]
+[connection signal="pressed" from="Menu/Multiplayer/OnlineServer" to="." method="_on_online_server_pressed"]
 [connection signal="pressed" from="Menu/Multiplayer/Client" to="." method="_on_client_pressed"]
