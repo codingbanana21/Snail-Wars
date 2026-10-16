@@ -8,10 +8,12 @@ extends Node2D
 @onready var wind: HScrollBar = %Wind
 
 var remote_id: int
+var rng = RandomNumberGenerator.new()
 
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(1)
+	rng.seed = 1000
 
 
 func _ready() -> void:
@@ -48,11 +50,11 @@ func make_map():
 			var offset: Vector2i = Vector2i(x -128, y -256)
 			
 			if pixel_color == Color(0.0, 1.0, 0.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(4 * randi_range(0,1), 0))
+				map.set_cell(offset, 0 ,Vector2i(4 * rng.randi_range(0,1), 0))
 			elif pixel_color == Color(1.0, 0.0, 0.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(1 + 4 * randi_range(0,1), 0))
+				map.set_cell(offset, 0 ,Vector2i(1 + 4 * rng.randi_range(0,1), 0))
 			elif pixel_color == Color(0.0, 0.0, 1.0, 1.0):
-				map.set_cell(offset, 0 ,Vector2i(2 + 4 * randi_range(0,1), 0))
+				map.set_cell(offset, 0 ,Vector2i(2 + 4 * rng.randi_range(0,1), 0))
 			elif pixel_color == Color(1.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
 			elif pixel_color == Color(1.0, 1.0, 0.0, 1.0):

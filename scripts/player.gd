@@ -17,27 +17,28 @@ extends CharacterBody2D
 
 @export var player_number: int = 0
 @export var team_number: int = 0
-@export var team_name: String
-@export var team_color: Color
 
 const SPEED: int = 4
 const JUMP: Vector2 = Vector2(80, -300)
 const PLAYER_GRAVITY: int = 30
 const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present"]
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
-const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
+const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super","The","Just"]
 
 var id: int
+var rng = RandomNumberGenerator.new()
 var projectile_speed: float = 0.0
 var hp: int = 100
 var weapon: int = 0
 var dir: float = 0
 var player_turn_part: int = 0
 var dead: bool = false
+var team_color: Color
 
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(id)
+	rng.seed = player_number + (team_number * 10)
 
 
 func _ready() -> void:
@@ -45,7 +46,7 @@ func _ready() -> void:
 	
 	hp = Globals.player_hp
 	hp_label.text = str(hp)
-	name_label.text = NAMES2.pick_random() +" "+ NAMES.pick_random()
+	name_label.text = NAMES2[rng.randi_range(0, NAMES2.size() - 1)] +" "+ NAMES[rng.randi_range(0, NAMES.size() - 1)]
 	name_label.modulate = team_color
 	team_label.text = "Team "+str(team_number)
 	team_label.modulate = team_color
