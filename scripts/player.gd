@@ -1,6 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var snail: Sprite2D = $Snail
 @onready var name_label: Label = $NameLabel
 @onready var team_label: Label = $TeamLabel
@@ -26,6 +27,7 @@ const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super"]
 
+var id: int
 var projectile_speed: float = 0.0
 var hp: int = 100
 var weapon: int = 0
@@ -34,17 +36,25 @@ var player_turn_part: int = 0
 var dead: bool = false
 
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(id)
+
+
 func _ready() -> void:
+	multiplayer_spawner.spawn_function = shot_projectile
+	
 	hp = Globals.player_hp
 	hp_label.text = str(hp)
 	name_label.text = NAMES2.pick_random() +" "+ NAMES.pick_random()
 	name_label.modulate = team_color
-	team_label.text = "Team " + team_name
+	team_label.text = "Team "+str(team_number)
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
 
 
 func _process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if velocity.x < 0:
 		snail.flip_h = true
 	elif velocity.x > 0:
@@ -54,7 +64,7 @@ func _process(delta: float) -> void:
 	if (dead or global_position.y >= Globals.water_level) and player_turn_part != 0:
 		player_turn_part = 0
 		hp = 0
-		Globals.next_player(true)
+		Globals.next_player.rpc(true)
 		return
 	
 	if player_turn_part == 0 or player_turn_part == 4:
@@ -93,13 +103,22 @@ func _process(delta: float) -> void:
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
 			Input.action_release("attack")
-			shot_projectile("res://projectiles/"+WEAPONS[weapon]+".tscn", global_position)
+			multiplayer_spawner.spawn({
+				"id": id,
+				"global_position": global_position,
+				"projectile": "res://projectiles/" + WEAPONS[weapon] + ".tscn"
+			})
+			
 			Globals.teams_weapons[team_number][weapon] -= 1
 			player_turn_part = 2
+			projectile_speed = 0.0
+			shot_bar.value = 0
 			Mouse.hide()
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if velocity.y < 2500.0:
 		velocity.y += PLAYER_GRAVITY
 	
@@ -124,22 +143,27 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if temp_velocity.y > 750:
 			var fall_damage = (temp_velocity.y - 750) / 40.0
-			Mouse.shake(fall_damage / 4.0)
+			Mouse.shake.rpc(fall_damage / 4.0)
 			damage(fall_damage)
 		velocity.x *= 0.8
 
 
-func shot_projectile(projectile: NodePath, pos : Vector2):
-	var new_projectile: Projectile = load(projectile).instantiate()
-	new_projectile.global_position = pos
+func shot_projectile(inputs: Dictionary = {"id":1,
+		"global_position":Vector2.ZERO,
+		"projectile":"res://projectiles/rocket.tscn"
+		}):
+	var scene: PackedScene = load(inputs["projectile"])
+	var new_projectile: Projectile = scene.instantiate()
+	
+	new_projectile.id = inputs["id"]
+	new_projectile.global_position = inputs["global_position"]
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= int(projectile_speed)
-	call_deferred("add_child", new_projectile)
 	
-	projectile_speed = 0.0
-	shot_bar.value = 0
+	return new_projectile
 
 
+@rpc("any_peer","reliable","call_local")
 func damage(hurt_damage: int):
 	hp -= hurt_damage
 	hp_label.text = str(hp)
@@ -158,25 +182,34 @@ func damage(hurt_damage: int):
 		else:
 			ooff_2.play()
 	
+	if !is_multiplayer_authority(): return
+	
 	if player_turn_part != 0:
 		Mouse.hide()
 		player_turn_part = 4
 		next_player_timer.start(1.0)
 
 
+@rpc("any_peer","call_local","reliable")
 func die():
 	dead = true
 	set_physics_process(false)
 	global_position.y = -10000
 
 
-func next_player():
-	if hp < 1 and !dead:
-		shot_projectile("res://projectiles/snail.tscn", global_position)
-		die()
+@rpc("any_peer", "call_local", "reliable")
+func next_player(teams_turns, team_turn):
+	if hp < 1 and !dead and is_multiplayer_authority():
+		multiplayer_spawner.spawn({
+			"id": id,
+			"global_position": global_position,
+			"projectile": "res://projectiles/snail.tscn"
+		})
+		die.rpc()
 	
-	if Globals.teams_turns[Globals.team_turn] == player_number and team_number == Globals.team_turn:
+	if teams_turns[team_turn] == player_number and team_number == team_turn:
 		player_turn_part = 1
+		Mouse.show()
 		
 		if !dead:
 			Mouse.global_position = global_position
@@ -189,4 +222,4 @@ func _on_next_player_timer_timeout() -> void:
 			next_player_timer.start(1.0)
 		else:
 			player_turn_part = 0
-			Globals.next_player()
+			Globals.next_player.rpc()

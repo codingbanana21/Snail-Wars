@@ -13,7 +13,7 @@ var weapon_left: int
 var weapon: int
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if weapon_left >= 0:
 		weapon_label.text = WEAPONS[weapon]+" "+str(weapon_left)
 	else:
@@ -35,9 +35,12 @@ func _input(event: InputEvent) -> void:
 		global_position += event.relative
 		moving = true
 	else:
+		if Input.is_action_just_pressed("mouse_lock"):
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		moving = false
 
 
+@rpc("any_peer","reliable","call_local")
 func shake(amount: float = 3.0, time: float = 0.15):
 	shake_amount = amount
 	shake_timer.start(time)

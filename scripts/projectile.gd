@@ -24,8 +24,13 @@ extends CharacterBody2D
 @export var effect_by_wind: bool = true
 @export var spawns: Array[String]
 
+var id: int
 var parent: Player
 var bodys_needed: int = 2
+
+
+func _enter_tree() -> void:
+	set_multiplayer_authority(id)
 
 
 func _ready() -> void:
@@ -54,6 +59,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if !is_multiplayer_authority(): return
+	
 	if global_position.y >= Globals.water_level:
 		explode(true)
 		return
@@ -86,6 +93,8 @@ func _physics_process(delta: float) -> void:
 
 
 func explode(end_explode: bool = false):
+	if !is_multiplayer_authority(): return
+	
 	if !hit_timer.is_stopped():
 		return
 	
@@ -93,10 +102,14 @@ func explode(end_explode: bool = false):
 		hit_timer.start(hit_stun_time)
 	
 	projectile_hp -= 1
-	Mouse.shake(damage / 4.0)
+	Mouse.shake.rpc(damage / 4.0)
 	
 	if len(spawns) > 0:
-		parent.shot_projectile("res://projectiles/"+spawns.pick_random()+".tscn", global_position)
+		parent.multiplayer_spawner.spawn({
+			"id": id,
+			"global_position": global_position,
+			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
+		})
 	
 	if projectile_hp == 0 or end_explode:
 		end_explode = true
@@ -108,14 +121,15 @@ func explode(end_explode: bool = false):
 			Mouse.global_position = parent.global_position
 	
 	# destroy map
-	get_tree().current_scene.explode_tile(global_position, size)
+	for map in get_tree().get_nodes_in_group("Map"):
+		map.explode_tile.rpc(global_position, size)
 	
 	# hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
 		if dis_to < (8.0 * size) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
-			player.damage(int(hit_power * damage))
+			player.damage.rpc(int(hit_power * damage))
 			player.velocity += (player.global_position - global_position) * hit_power * knockback
 	
 	if players_projectile:
@@ -131,4 +145,6 @@ func explode(end_explode: bool = false):
 
 
 func _on_explosion_timer_timeout() -> void:
+	if !is_multiplayer_authority(): return
+	
 	explode(true)
