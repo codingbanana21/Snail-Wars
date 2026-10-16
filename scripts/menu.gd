@@ -16,6 +16,7 @@ extends Node2D
 @onready var water_level_label: Label = %WaterLevelLabel
 
 const SERVER_PORT = 3100
+const CONNECT_TIMEOUT: float = 5.0
 
 var peer = ENetMultiplayerPeer.new()
 var upnp
@@ -79,7 +80,12 @@ func _on_server_pressed() -> void:
 	else:
 		ip.text = ip_address 
 	
-	peer.create_server(SERVER_PORT,1)
+	var serr = peer.create_server(SERVER_PORT, 1)
+	
+	if serr != OK:
+		push_error("create_server failed: ", serr)
+		return
+	
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
 		func(_id):
@@ -88,17 +94,43 @@ func _on_server_pressed() -> void:
 
 
 func _on_client_pressed() -> void:
-	var ip_address = ip.text
-	
+	var ip_address = ip.text.strip_edges()
 	if ip_address == "":
 		ip_address = "localhost"
 	
-	if ip_address.is_valid_ip_address() or ip_address == "localhost":
-		peer.create_client(ip_address, SERVER_PORT)
-		multiplayer.multiplayer_peer = peer
-	else:
-		#push_error("Can't connect to ", ip_address)
+	if !ip_address.is_valid_ip_address() and !ip_address == "localhost":
 		push_error("IP address is invalid ", ip_address)
+		return
+	
+	var new_peer = ENetMultiplayerPeer.new()
+	var cerr = new_peer.create_client(ip_address, SERVER_PORT)
+	
+	if cerr != OK:
+		push_error("create_client failed: ", cerr)
+		return
+	
+	if !multiplayer.connected_to_server.is_connected(_on_connected):
+		multiplayer.connected_to_server.connect(_on_connected)
+		multiplayer.connection_failed.connect(_on_connection_failed)
+	
+	peer = new_peer
+	multiplayer.multiplayer_peer = new_peer
+	print("trying to connect to ", ip_address)
+	
+	await get_tree().create_timer(CONNECT_TIMEOUT).timeout
+	if new_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTING:
+		push_error("Connection timed out after %d seconds" % CONNECT_TIMEOUT)
+		new_peer.close()
+		if multiplayer.multiplayer_peer == new_peer:
+			multiplayer.multiplayer_peer = null
+
+
+func _on_connected() -> void:
+	print("connected")
+
+
+func _on_connection_failed() -> void:
+	push_error("Can't connect to ", ip.text)
 
 
 func upnp_setup(server_port):
@@ -122,6 +154,7 @@ func upnp_setup(server_port):
 		
 		if map_err != UPNP.UPNP_RESULT_SUCCESS:
 			push_error("UPNP mapping failed")
+			return
 	
 	var addr = upnp.query_external_address()
 	return addr
