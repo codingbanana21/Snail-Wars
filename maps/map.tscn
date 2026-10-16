@@ -143,7 +143,7 @@ offset_left = 22.0
 offset_top = 342.0
 offset_right = 136.0
 offset_bottom = 350.0
-min_value = -5.0
-max_value = 5.0
+min_value = -4.0
+max_value = 4.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

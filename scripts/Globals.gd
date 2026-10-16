@@ -16,7 +16,7 @@ var map: String = "1m"
 func next_player(skip_player: bool = false):
 	if !multiplayer.is_server(): return
 	
-	wind = randi_range(-5,5)
+	wind = randi_range(-4,4)
 	Mouse.show()
 	
 	if !skip_player:
