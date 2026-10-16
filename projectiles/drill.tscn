@@ -7,15 +7,15 @@
 radius = 2.0
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
-damage = 15
-size = 4
+damage = 10
+size = 3
 knockback = 30
 gravity = 300
-projectile_hp = 6
+projectile_hp = 7
 hit_stun_time = 0.15
 
-[node name="Image" parent="." index="0" unique_id=2045045234]
+[node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_tpgjy")
 
-[node name="CollisionShape2D" parent="." index="1" unique_id=679883136]
+[node name="CollisionShape2D" parent="." index="2" unique_id=679883136]
 shape = SubResource("CircleShape2D_ikx2j")

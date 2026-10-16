@@ -13,9 +13,9 @@ knockback = 30
 speed = 0
 min_speed = 1000
 gravity = 0
-timer = 1.0
+timer = 1.5
 
-[node name="Image" parent="." index="0" unique_id=2045045234]
+[node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_cqswp")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
