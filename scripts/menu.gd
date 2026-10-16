@@ -136,7 +136,7 @@ func _on_connection_failed() -> void:
 func upnp_setup(server_port):
 	upnp = UPNP.new()
 	
-	var err = upnp.discover(2000, 2, "InternetGatewayDevice")
+	var err = upnp.discover(5000, 2, "InternetGatewayDevice")
 	
 	if err != UPNP.UPNP_RESULT_SUCCESS:
 		push_error("UPNP discover failed ", err)
