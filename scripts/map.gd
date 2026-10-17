@@ -11,12 +11,9 @@ var remote_id: int
 var rng = RandomNumberGenerator.new()
 
 
-func _enter_tree() -> void:
-	rng.seed = 1000
-
-
 func _ready() -> void:
 	multiplayer_spawner.spawn_function = spawn
+	rng.seed = 1000
 	
 	if multiplayer.is_server():
 		if Globals.is_multiplayer:
@@ -24,14 +21,14 @@ func _ready() -> void:
 		else:
 			remote_id = 1
 	
-	Globals.team_turn = randi_range(0, Globals.number_of_teams)
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
+	
+	Globals.team_turn = randi_range(0, Globals.number_of_teams)
+	Globals.teams_turns[Globals.team_turn - 1] = randi_range(0, Globals.players_in_team)
 
 
 func _process(_delta: float) -> void:
-	if !multiplayer.is_server(): return
-	
 	wind.value = Globals.wind
 	water.global_position.y = Globals.water_level + cos(Engine.get_physics_frames() / 100.0) * 20
 	water.global_position.x = sin(Engine.get_physics_frames() / 100.0) * 50
