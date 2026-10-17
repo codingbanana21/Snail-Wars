@@ -11,11 +11,8 @@ properties/1/path = NodePath(".:rotation")
 properties/1/spawn = true
 properties/1/replication_mode = 2
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3xfjl"]
-radius = 2.0
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7nr1q"]
-size = Vector2(11, 8)
+size = Vector2(10, 6)
 
 [sub_resource type="Curve" id="Curve_7nr1q"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -44,14 +41,12 @@ replication_config = SubResource("SceneReplicationConfig_ighsu")
 texture = ExtResource("2_ighsu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=679883136]
-shape = SubResource("CircleShape2D_3xfjl")
 
 [node name="DetectBox" type="Area2D" parent="." unique_id=289666369]
-collision_layer = 0
-collision_mask = 7
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectBox" unique_id=1905896826]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_7nr1q")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1779728857]

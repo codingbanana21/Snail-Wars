@@ -26,7 +26,7 @@ extends CharacterBody2D
 
 var id: int
 var parent: Player
-var bodys_needed: int = 2
+var bodys_needed: int = 1
 
 
 func _enter_tree() -> void:
@@ -41,9 +41,8 @@ func _ready() -> void:
 	if timer > 0:
 		explosion_timer.start(timer)
 	
-	if projectile_hp > 1:
-		collision_shape_2d.disabled = true
-		bodys_needed = 1
+	if collision_shape_2d.shape != null:
+		bodys_needed = 2
 	
 	if min_speed > speed:
 		speed = min_speed
@@ -65,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		explode(true)
 		return
 	
-	if len(detect_box.get_overlapping_bodies()) >= bodys_needed:
+	if len(detect_box.get_overlapping_bodies()) + len(detect_box.get_overlapping_areas()) >= bodys_needed:
 		explode()
 	
 	if !hit_timer.is_stopped():
