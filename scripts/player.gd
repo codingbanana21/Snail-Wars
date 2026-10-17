@@ -19,7 +19,8 @@ extends CharacterBody2D
 @export var team_number: int = 0
 
 const SPEED: int = 4
-const JUMP: Vector2 = Vector2(80, -300)
+const JUMP: Vector2 = Vector2(120, -300)
+const BACK_JUMP: Vector2 = Vector2(-50, -400)
 const PLAYER_GRAVITY: int = 30
 const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present"]
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
@@ -131,9 +132,14 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("jump"):
 				velocity.x += dir * JUMP.x
 				velocity.y = JUMP.y
+			elif Input.is_action_just_pressed("back_jump"):
+				velocity.x += dir * BACK_JUMP.x
+				velocity.y = BACK_JUMP.y
 		else:
 			if Input.is_action_pressed("jump"):
 				velocity.x += dir * JUMP.x * delta
+			elif Input.is_action_pressed("back_jump"):
+				velocity.x += dir * BACK_JUMP.x * delta
 	
 	var temp_velocity: Vector2 = velocity
 	move_and_slide()
@@ -143,10 +149,12 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		if temp_velocity.y > 750:
-			var fall_damage = (temp_velocity.y - 750) / 40.0
+			var fall_damage = (temp_velocity.y - 750) / 50.0
 			Mouse.shake.rpc(fall_damage / 4.0)
 			damage(fall_damage)
-		velocity.x *= 0.8
+		velocity.x *= 0.75
+	else:
+		velocity.x *= 0.98
 
 
 func shot_projectile(inputs: Dictionary = {"id":1,
