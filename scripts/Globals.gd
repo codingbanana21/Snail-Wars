@@ -2,10 +2,10 @@ extends Node2D
 
 var teams_turns: Array[int]
 var team_turn: int = -1
-var players_in_team: int = 4
-var number_of_teams: int = 2
-var player_hp: int = 100
-var water_level: int = -100
+var players_in_team: int
+var number_of_teams: int
+var player_hp: int
+var water_level: int
 var is_multiplayer: bool = false
 var wind: int = 0
 var teams_weapons: Array[Array]

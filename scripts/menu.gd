@@ -20,6 +20,7 @@ const CONNECT_TIMEOUT: float = 5.0
 
 var peer = ENetMultiplayerPeer.new()
 var upnp
+var teams_weapons: int
 
 
 func _ready() -> void:
@@ -40,20 +41,37 @@ func _process(_delta: float) -> void:
 	Globals.water_level = -int(water_level_h_slider.value)
 	
 	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
+	teams_weapons = int(weapons_h_slider.value)
 
 
-func load_map(inputs: Dictionary = {"multiplayer":false,"map":"m1"}):
+func load_map(inputs: Dictionary = {"multiplayer":false,
+		"map":"m1",
+		"players_in_team":1,
+		"teams_weapons":[],
+		"number_of_teams":1,
+		"player_hp":1,
+		"water_level":1,
+		}):
+	
 	Globals.map = inputs["map"]
 	
-	if int(weapons_h_slider.value) == 1:
+	if inputs["multiplayer"]:
+		Globals.players_in_team = inputs["players_in_team"]
+		teams_weapons = inputs["teams_weapons"]
+		Globals.number_of_teams = inputs["number_of_teams"]
+		Globals.player_hp = inputs["player_hp"]
+		Globals.water_level = inputs["water_level"]
+	
+	if int(teams_weapons) == 1:
 		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,2,2,2,1]]
-	elif int(weapons_h_slider.value) == 2:
+	elif int(teams_weapons) == 2:
 		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
-	elif int(weapons_h_slider.value) == 3:
+	elif int(teams_weapons) == 3:
 		Globals.teams_weapons = [[-1,-1,2,3,0,0,3,3,3,3,0]]
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
+		
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
@@ -94,7 +112,13 @@ func make_server(ip_address):
 	multiplayer.multiplayer_peer = peer
 	multiplayer.peer_connected.connect(
 		func(_id):
-			multiplayer_spawner.spawn({"multiplayer":true,"map":"m1"})
+			multiplayer_spawner.spawn({"multiplayer":true,
+				"map":"m1",
+				"players_in_team":Globals.players_in_team,
+				"teams_weapons":teams_weapons,
+				"number_of_teams":Globals.number_of_teams,
+				"player_hp":Globals.player_hp,
+				"water_level":Globals.water_level})
 	)
 
 
@@ -180,6 +204,7 @@ func _on_b_2_button_pressed() -> void:
 
 func _on_m_1_button_pressed() -> void:
 	load_map({"multiplayer":false,"map":"m1"})
+
 
 func _on_m_2_button_pressed() -> void:
 	load_map({"multiplayer":false,"map":"m2"})

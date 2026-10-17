@@ -12,14 +12,13 @@ var rng = RandomNumberGenerator.new()
 
 
 func _enter_tree() -> void:
-	set_multiplayer_authority(1)
 	rng.seed = 1000
 
 
 func _ready() -> void:
 	multiplayer_spawner.spawn_function = spawn
 	
-	if is_multiplayer_authority():
+	if multiplayer.is_server():
 		if Globals.is_multiplayer:
 			remote_id = multiplayer.get_peers()[0]
 		else:
@@ -31,7 +30,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if !is_multiplayer_authority(): return
+	if !multiplayer.is_server(): return
 	
 	wind.value = Globals.wind
 	water.global_position.y = Globals.water_level + cos(Engine.get_physics_frames() / 100.0) * 20
@@ -58,13 +57,13 @@ func make_map():
 			elif pixel_color == Color(1.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
 			elif pixel_color == Color(1.0, 1.0, 0.0, 1.0):
-				if Globals.map == "g1" and is_multiplayer_authority():
+				if Globals.map == "g1" and multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/super_mine.tscn",
 						"team_color":pixel_color,
 						})
-				elif is_multiplayer_authority():
+				elif multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/mine.tscn",
@@ -87,7 +86,7 @@ func make_map():
 				teams[team_number] += 1
 				player_number = teams[team_number]
 				
-				if !is_multiplayer_authority(): continue
+				if !multiplayer.is_server(): continue
 				
 				if team_number == 0:
 					multiplayer_spawner.spawn({"id":1,
