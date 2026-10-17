@@ -4,6 +4,7 @@ extends Node2D
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var menu: Node2D = $Menu
 @onready var ip: TextEdit = %IP
+
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
 @onready var per_team_label: Label = %PerTeamLabel
 @onready var weapons_h_slider: HSlider = %WeaponsHSlider
@@ -14,6 +15,8 @@ extends Node2D
 @onready var player_hp_label: Label = %PlayerHPLabel
 @onready var water_level_h_slider: HSlider = %WaterLevelHSlider
 @onready var water_level_label: Label = %WaterLevelLabel
+@onready var water_rise_h_slide: HSlider = %WaterRiseHSlide
+@onready var water_rise_label: Label = %WaterRiseLabel
 
 const SERVER_PORT = 3100
 const CONNECT_TIMEOUT: float = 5.0
@@ -32,6 +35,9 @@ func _process(_delta: float) -> void:
 		per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
 		Globals.players_in_team = int(per_team_h_slider.value)
 		
+		weapons_label.text = "Weapon set " + str(int(weapons_h_slider.value))
+		teams_weapons = int(weapons_h_slider.value)
+		
 		teams_label.text = str(int(teams_h_slider.value)) + " Teams"
 		Globals.number_of_teams = int(teams_h_slider.value)
 		
@@ -41,8 +47,8 @@ func _process(_delta: float) -> void:
 		water_level_label.text = str(int(water_level_h_slider.value)) + " Water Level"
 		Globals.water_level = -int(water_level_h_slider.value)
 		
-		weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
-		teams_weapons = int(weapons_h_slider.value)
+		water_rise_label.text = str(int(water_rise_h_slide.value)) + " Water Rise Amount"
+		Globals.water_rise = -int(water_rise_h_slide.value)
 
 
 func load_map(inputs: Dictionary = {"multiplayer":false,
@@ -52,6 +58,7 @@ func load_map(inputs: Dictionary = {"multiplayer":false,
 		"number_of_teams":1,
 		"player_hp":1,
 		"water_level":1,
+		"water_rise":1
 		}):
 	
 	Globals.map = inputs["map"]
@@ -62,6 +69,7 @@ func load_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.number_of_teams = inputs["number_of_teams"]
 		Globals.player_hp = inputs["player_hp"]
 		Globals.water_level = inputs["water_level"]
+		Globals.water_rise = inputs["water_rise"]
 	
 	if int(teams_weapons) == 1:
 		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,2,2,2,1]]
@@ -119,7 +127,8 @@ func make_server(ip_address):
 				"teams_weapons":teams_weapons,
 				"number_of_teams":Globals.number_of_teams,
 				"player_hp":Globals.player_hp,
-				"water_level":Globals.water_level})
+				"water_level":Globals.water_level,
+				"water_rise":Globals.water_rise})
 	)
 
 

@@ -6,6 +6,7 @@ var players_in_team: int
 var number_of_teams: int
 var player_hp: int
 var water_level: int
+var water_rise: int
 var is_multiplayer: bool = false
 var wind: int = 0
 var teams_weapons: Array[Array]
@@ -21,7 +22,7 @@ func next_player(skip_player: bool = false):
 	if !skip_player:
 		team_turn = (team_turn + 1) % number_of_teams
 		wind = randi_range(-4,4)
-		#water_level -= 25
+		water_level += water_rise
 		
 	
 	teams_turns[team_turn] = (teams_turns[team_turn] + 1) % players_in_team
