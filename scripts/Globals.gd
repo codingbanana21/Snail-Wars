@@ -16,11 +16,13 @@ var map: String = "1m"
 func next_player(skip_player: bool = false):
 	if !multiplayer.is_server(): return
 	
-	wind = randi_range(-4,4)
 	Mouse.show()
 	
 	if !skip_player:
 		team_turn = (team_turn + 1) % number_of_teams
+		wind = randi_range(-4,4)
+		#water_level -= 25
+		
 	
 	teams_turns[team_turn] = (teams_turns[team_turn] + 1) % players_in_team
 	

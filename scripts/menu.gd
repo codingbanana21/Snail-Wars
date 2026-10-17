@@ -28,20 +28,21 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
-	Globals.players_in_team = int(per_team_h_slider.value)
-	
-	teams_label.text = str(int(teams_h_slider.value)) + " Teams"
-	Globals.number_of_teams = int(teams_h_slider.value)
-	
-	player_hp_label.text = str(int(player_hph_slider.value)) + " Player HP"
-	Globals.player_hp = int(player_hph_slider.value)
-	
-	water_level_label.text = str(int(water_level_h_slider.value)) + " Water Level"
-	Globals.water_level = -int(water_level_h_slider.value)
-	
-	weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
-	teams_weapons = int(weapons_h_slider.value)
+	if menu.is_visible_in_tree():
+		per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
+		Globals.players_in_team = int(per_team_h_slider.value)
+		
+		teams_label.text = str(int(teams_h_slider.value)) + " Teams"
+		Globals.number_of_teams = int(teams_h_slider.value)
+		
+		player_hp_label.text = str(int(player_hph_slider.value)) + " Player HP"
+		Globals.player_hp = int(player_hph_slider.value)
+		
+		water_level_label.text = str(int(water_level_h_slider.value)) + " Water Level"
+		Globals.water_level = -int(water_level_h_slider.value)
+		
+		weapons_label.text = "Weapon set "+str(int(weapons_h_slider.value))
+		teams_weapons = int(weapons_h_slider.value)
 
 
 func load_map(inputs: Dictionary = {"multiplayer":false,
