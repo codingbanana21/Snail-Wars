@@ -10,6 +10,7 @@ extends CharacterBody2D
 @export var damage: int = 45
 @export var size: int = 5
 @export var knockback: int = 50
+@export var life_steel: int = 0
 @export var speed: int = 60
 @export var min_speed: int = 100
 @export var gravity: int = 450
@@ -134,6 +135,9 @@ func explode(end_explode: bool = false):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
 			player.damage.rpc(int(hit_power * damage))
 			player.velocity += (player.global_position - global_position) * hit_power * knockback
+			
+			if players_projectile:
+				parent.heal(int(life_steel * hit_power))
 	
 	if players_projectile:
 		if teleports_player:

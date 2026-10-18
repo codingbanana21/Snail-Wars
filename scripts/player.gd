@@ -22,7 +22,7 @@ const SPEED: int = 4
 const JUMP: Vector2 = Vector2(120, -300)
 const BACK_JUMP: Vector2 = Vector2(-50, -400)
 const PLAYER_GRAVITY: int = 30
-const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present"]
+const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf"]
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super","The","Just"]
 
@@ -97,9 +97,9 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 				if weapon < 0:
-					weapon = 10
+					weapon = 12
 			
-			weapon %= 11
+			weapon %= 13
 			Mouse.weapon_left = Globals.teams_weapons[team_number][weapon]
 			Mouse.weapon = weapon
 		
@@ -199,6 +199,16 @@ func damage(hurt_damage: int):
 		Mouse.hide()
 		player_turn_part = 4
 		next_player_timer.start(1.0)
+
+
+@rpc("any_peer","reliable","call_local")
+func heal(heal_amount: int):
+	hp += heal_amount
+	hp_label.text = str(hp)
+	
+	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
+	hit_text.text = "+" + str(heal_amount)
+	add_child(hit_text)
 
 
 @rpc("any_peer","call_local","reliable")

@@ -72,11 +72,11 @@ func load_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.water_rise = inputs["water_rise"]
 	
 	if int(teams_weapons) == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,2,2,2,1]]
+		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,2,2,1,1,1,1]]
 	elif int(teams_weapons) == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
+		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
 	elif int(teams_weapons) == 3:
-		Globals.teams_weapons = [[-1,-1,2,3,0,0,3,3,3,3,0]]
+		Globals.teams_weapons = [[-1,-1,2,3,0,0,3,3,3,3,0,2,0]]
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])

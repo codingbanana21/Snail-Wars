@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="2_cqswp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4r1p"]
-radius = 7.5
+radius = 5.0990195
 
 [node name="Bullet" unique_id=791496552 instance=ExtResource("1_4ambd")]
 damage = 35
@@ -19,5 +19,4 @@ timer = 1.5
 texture = ExtResource("2_cqswp")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-position = Vector2(0, 0)
 shape = SubResource("CircleShape2D_y4r1p")
