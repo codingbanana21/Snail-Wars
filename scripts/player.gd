@@ -124,7 +124,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y < 2500.0:
 		velocity.y += PLAYER_GRAVITY
 	
-	if (player_turn_part == 1 or player_turn_part == 3) and !Input.is_action_pressed("attack"):
+	if (player_turn_part != 0) and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED
