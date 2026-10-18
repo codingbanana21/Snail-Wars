@@ -36,7 +36,9 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	if players_projectile:
 		parent = get_parent()
-		gpu_particles_2d.show()
+		
+		if !Globals.high_fps_mode:
+			gpu_particles_2d.show()
 	
 	if timer > 0:
 		explosion_timer.start(timer)
@@ -101,7 +103,9 @@ func explode(end_explode: bool = false):
 		hit_timer.start(hit_stun_time)
 	
 	projectile_hp -= 1
-	Mouse.shake.rpc(damage / 4.0)
+	
+	if !Globals.high_fps_mode:
+		Mouse.shake.rpc(damage / 3.0)
 	
 	if len(spawns) > 0:
 		parent.multiplayer_spawner.spawn({
@@ -136,11 +140,13 @@ func explode(end_explode: bool = false):
 			parent.global_position = global_position
 		
 		parent.bomb.play()
-		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-		hit_particle.global_position = global_position
-		hit_particle.emitting = true
-		hit_particle.amount = clampi(int(damage), 1, 200)
-		parent.add_child(hit_particle)
+		
+		if !Globals.high_fps_mode:
+			var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+			hit_particle.global_position = global_position
+			hit_particle.emitting = true
+			hit_particle.amount = clampi(int(damage), 1, 200)
+			parent.add_child(hit_particle)
 
 
 func _on_explosion_timer_timeout() -> void:

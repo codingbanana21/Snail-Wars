@@ -150,8 +150,10 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if temp_velocity.y > 750:
 			var fall_damage = (temp_velocity.y - 750) / 50.0
-			Mouse.shake.rpc(fall_damage / 4.0)
 			damage(fall_damage)
+			
+			if !Globals.high_fps_mode:
+				Mouse.shake.rpc(fall_damage / 4.0)
 		velocity.x *= 0.75
 	else:
 		velocity.x *= 0.98
@@ -208,6 +210,10 @@ func die():
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(teams_turns, team_turn):
+	for child: Node in get_children():
+		if child is GPUParticles2D:
+			child.queue_free()
+	
 	if hp < 1 and !dead and is_multiplayer_authority():
 		multiplayer_spawner.spawn({
 			"id": id,

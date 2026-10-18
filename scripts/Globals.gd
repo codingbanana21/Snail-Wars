@@ -1,5 +1,6 @@
 extends Node2D
 
+var high_fps_mode: bool = false
 var teams_turns: Array[int]
 var team_turn: int = -1
 var players_in_team: int
