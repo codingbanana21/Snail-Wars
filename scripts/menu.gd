@@ -71,12 +71,14 @@ func load_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.water_level = inputs["water_level"]
 		Globals.water_rise = inputs["water_rise"]
 	
-	if int(teams_weapons) == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,2,2,1,1,1,1]]
-	elif int(teams_weapons) == 2:
+	if teams_weapons == 1:
+		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,3,2,1,1,1,1]]
+	elif teams_weapons == 2:
 		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
-	elif int(teams_weapons) == 3:
-		Globals.teams_weapons = [[-1,-1,2,3,0,0,3,3,3,3,0,2,0]]
+	elif teams_weapons == 3:
+		Globals.teams_weapons = [[-1,-1,3,4,0,0,2,4,3,2,0,2,0]]
+	elif teams_weapons == 4:
+		Globals.teams_weapons = [[0,0,0,0,0,0,0,0,0,-1,-1,-1,-1]]
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
@@ -84,7 +86,6 @@ func load_map(inputs: Dictionary = {"multiplayer":false,
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	menu.hide()
 	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
