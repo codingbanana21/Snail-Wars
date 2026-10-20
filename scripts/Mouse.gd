@@ -11,6 +11,7 @@ var can_move: bool = false
 var shake_amount: float = 0.0
 var weapon_left: int
 var weapon: int
+var ecs_mode: int = 0
 
 
 func _process(_delta: float) -> void:
@@ -26,8 +27,12 @@ func _process(_delta: float) -> void:
 		camera_2d.offset = Vector2.ZERO
 	
 	if Input.is_action_just_pressed("esc"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		hide()
+		if ecs_mode == 1:
+			get_tree().quit()
+		else:
+			ecs_mode = 1
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			hide()
 
 
 func _input(event: InputEvent) -> void:
@@ -36,7 +41,9 @@ func _input(event: InputEvent) -> void:
 		moving = true
 	else:
 		if Input.is_action_just_pressed("mouse_lock"):
+			ecs_mode = 0
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			show()
 		moving = false
 
 
