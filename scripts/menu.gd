@@ -4,6 +4,7 @@ extends Node2D
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var menu: Node2D = $Menu
 @onready var ip: TextEdit = %IP
+@onready var ip_check_box: CheckBox = %IPCheckBox
 
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
 @onready var per_team_label: Label = %PerTeamLabel
@@ -28,6 +29,7 @@ var teams_weapons: int
 
 func _ready() -> void:
 	multiplayer_spawner.spawn_function = make_map
+	ip.text = Globals.saved_ip_address
 
 
 func _process(_delta: float) -> void:
@@ -162,6 +164,12 @@ func upnp_setup(server_port):
 
 func _on_client_pressed() -> void:
 	var ip_address = ip.text.strip_edges()
+	
+	if ip_check_box.button_pressed:
+		Globals.saved_ip_address = ip_address
+	
+	Globals.save_game()
+	
 	if ip_address == "":
 		ip_address = "localhost"
 	

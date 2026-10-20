@@ -346,6 +346,15 @@ offset_bottom = -4.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 placeholder_text = "Ip address"
 
+[node name="IPCheckBox" type="CheckBox" parent="Menu/Multiplayer" unique_id=1401204926]
+unique_name_in_owner = true
+offset_left = 43.0
+offset_right = 239.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("4_7b55j")
+button_pressed = true
+text = "Remember IP"
+
 [node name="Background" type="CanvasLayer" parent="Menu" unique_id=1758057930]
 layer = -100
 
