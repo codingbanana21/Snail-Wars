@@ -84,6 +84,7 @@ func make_map():
 				player_number = teams[team_number]
 				
 				if !multiplayer.is_server(): continue
+				#print(pixel_color)
 				
 				if team_number == 0:
 					multiplayer_spawner.spawn({"id":1,
@@ -103,6 +104,8 @@ func make_map():
 						})
 			else:
 				map.set_cell(offset, 0 ,Vector2i(0, 2))
+	
+	#print(teams)
 
 
 func spawn(inputs: Dictionary = {"id":1,
