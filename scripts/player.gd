@@ -23,8 +23,8 @@ const JUMP: Vector2 = Vector2(120, -300)
 const BACK_JUMP: Vector2 = Vector2(-50, -400)
 const PLAYER_GRAVITY: int = 30
 const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf"]
-const NAMES: Array[String] = ["Barry","Bob","Jim","Dave"]
-const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Red","Blue","Green","Super","The","Just"]
+const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nick","Leo"]
+const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Same","Super","The","Just","I am"]
 
 var id: int
 var rng = RandomNumberGenerator.new()
