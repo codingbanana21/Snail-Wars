@@ -6,10 +6,12 @@
 [ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="5_5pajh"]
 [ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="6_j7ex8"]
+[ext_resource type="PackedScene" uid="uid://d13cid3q1ddw8" path="res://scenes/map_button.tscn" id="7_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="7_a8gd2"]
 [ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="8_hstxw"]
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="9_8egab"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_gw5y6"]
+[ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="11_5pajh"]
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="11_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="12_1dfpl"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="13_1ajci"]
@@ -50,25 +52,23 @@ text = "Big maps (Players 18-32)"
 label_settings = ExtResource("3_1ajci")
 metadata/_edit_use_anchors_ = true
 
-[node name="b1Button" type="Button" parent="Menu/Maps" unique_id=1620950837]
-offset_left = -215.0
-offset_top = -348.0
-offset_right = -21.0
-offset_bottom = -316.0
-theme_override_fonts/font = ExtResource("4_7b55j")
-text = "Mine Time"
+[node name="B1MapButton" parent="Menu/Maps" unique_id=132146067 instance=ExtResource("7_7b55j")]
+offset_left = -192.0
+offset_top = -347.0
+offset_right = -34.0
+offset_bottom = -323.0
+text = "Mine time"
 icon = ExtResource("5_5pajh")
-metadata/_edit_use_anchors_ = true
+map = "b1"
 
-[node name="b2Button" type="Button" parent="Menu/Maps" unique_id=1389105482]
-offset_left = -215.0
-offset_top = -308.0
-offset_right = -21.0
-offset_bottom = -276.0
-theme_override_fonts/font = ExtResource("4_7b55j")
-text = "Cave"
-icon = ExtResource("6_j7ex8")
-metadata/_edit_use_anchors_ = true
+[node name="B2MapButton" parent="Menu/Maps" unique_id=2026389007 instance=ExtResource("7_7b55j")]
+offset_left = -192.0
+offset_top = -315.0
+offset_right = -44.0
+offset_bottom = -291.0
+text = "The cave"
+icon = ExtResource("11_svtp6")
+map = "b2"
 
 [node name="MapLabel2" type="Label" parent="Menu/Maps" unique_id=498424789]
 offset_left = 35.0
@@ -80,35 +80,31 @@ text = "Medium maps (Players 8-18)"
 label_settings = ExtResource("3_1ajci")
 metadata/_edit_use_anchors_ = true
 
-[node name="m1Button" type="Button" parent="Menu/Maps" unique_id=367210282]
+[node name="M1MapButton" parent="Menu/Maps" unique_id=2021083051 instance=ExtResource("7_7b55j")]
 offset_left = 64.0
-offset_top = -349.0
+offset_top = -347.0
 offset_right = 208.0
-offset_bottom = -317.0
-theme_override_fonts/font = ExtResource("4_7b55j")
+offset_bottom = -323.0
 text = "Original"
 icon = ExtResource("7_a8gd2")
-metadata/_edit_use_anchors_ = true
 
-[node name="m2Button" type="Button" parent="Menu/Maps" unique_id=534044815]
-offset_left = 81.0
-offset_top = -311.0
-offset_right = 191.0
-offset_bottom = -279.0
-theme_override_fonts/font = ExtResource("4_7b55j")
+[node name="M2MapButton" parent="Menu/Maps" unique_id=1499827498 instance=ExtResource("7_7b55j")]
+offset_left = 64.0
+offset_top = -315.0
+offset_right = 208.0
+offset_bottom = -291.0
 text = "Split"
 icon = ExtResource("8_hstxw")
-metadata/_edit_use_anchors_ = true
+map = "m2"
 
-[node name="m3Button" type="Button" parent="Menu/Maps" unique_id=1759142092]
-offset_left = 79.0
-offset_top = -270.0
-offset_right = 189.0
-offset_bottom = -238.0
-theme_override_fonts/font = ExtResource("4_7b55j")
-text = "Rock"
+[node name="M3MapButton" parent="Menu/Maps" unique_id=421375843 instance=ExtResource("7_7b55j")]
+offset_left = 64.0
+offset_top = -283.0
+offset_right = 212.0
+offset_bottom = -259.0
+text = "The rock"
 icon = ExtResource("9_8egab")
-metadata/_edit_use_anchors_ = true
+map = "m3"
 
 [node name="MapLabel3" type="Label" parent="Menu/Maps" unique_id=218978788]
 offset_left = -201.0
@@ -120,25 +116,23 @@ text = "Small maps (Players 2-8)"
 label_settings = ExtResource("3_1ajci")
 metadata/_edit_use_anchors_ = true
 
-[node name="s1Button" type="Button" parent="Menu/Maps" unique_id=1242686351]
-offset_left = -184.0
-offset_top = -207.0
-offset_right = -52.0
-offset_bottom = -175.0
-theme_override_fonts/font = ExtResource("4_7b55j")
+[node name="S1MapButton" parent="Menu/Maps" unique_id=1199257575 instance=ExtResource("7_7b55j")]
+offset_left = -192.0
+offset_top = -203.0
+offset_right = -44.0
+offset_bottom = -179.0
 text = "Islands"
 icon = ExtResource("10_gw5y6")
-metadata/_edit_use_anchors_ = true
+map = "s1"
 
-[node name="s2Button" type="Button" parent="Menu/Maps" unique_id=2026222464]
-offset_left = -177.0
-offset_top = -168.0
-offset_right = -67.0
-offset_bottom = -136.0
-theme_override_fonts/font = ExtResource("4_7b55j")
-text = "Over"
-icon = ExtResource("11_svtp6")
-metadata/_edit_use_anchors_ = true
+[node name="S2MapButton" parent="Menu/Maps" unique_id=279227966 instance=ExtResource("7_7b55j")]
+offset_left = -192.0
+offset_top = -171.0
+offset_right = -44.0
+offset_bottom = -147.0
+text = "Over it"
+icon = ExtResource("11_5pajh")
+map = "s2"
 
 [node name="MapLabel4" type="Label" parent="Menu/Maps" unique_id=913343943]
 anchors_preset = -1
@@ -151,15 +145,14 @@ text = "Gimmick maps (Players 16-32)"
 label_settings = ExtResource("3_1ajci")
 metadata/_edit_use_anchors_ = true
 
-[node name="g1Button" type="Button" parent="Menu/Maps" unique_id=212432245]
-offset_left = 30.0
-offset_top = -208.0
-offset_right = 224.0
-offset_bottom = -176.0
-theme_override_fonts/font = ExtResource("4_7b55j")
+[node name="G1MapButton" parent="Menu/Maps" unique_id=1936396846 instance=ExtResource("7_7b55j")]
+offset_left = 48.0
+offset_top = -203.0
+offset_right = 242.0
+offset_bottom = -179.0
 text = "Super Mines"
 icon = ExtResource("12_1dfpl")
-metadata/_edit_use_anchors_ = true
+map = "g1"
 
 [node name="Settings" type="Node2D" parent="Menu" unique_id=1465944648]
 
@@ -361,14 +354,14 @@ offset_bottom = 686.0
 color = Color(0.6509804, 0.79607844, 0.81960785, 1)
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="Menu/Maps/b1Button" to="." method="_on_b_1_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/b2Button" to="." method="_on_b_2_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/m1Button" to="." method="_on_m_1_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/m2Button" to="." method="_on_m_2_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/m3Button" to="." method="_on_m_3_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/s1Button" to="." method="_on_s_1_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/s2Button" to="." method="_on_s_2_button_pressed"]
-[connection signal="pressed" from="Menu/Maps/g1Button" to="." method="_on_g_1_button_pressed"]
+[connection signal="make_map" from="Menu/Maps/B1MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/B2MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/M1MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/M2MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/M3MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/S1MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/S2MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/G1MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="pressed" from="Menu/Multiplayer/LocalServer" to="." method="_on_local_server_pressed"]
 [connection signal="pressed" from="Menu/Multiplayer/OnlineServer" to="." method="_on_online_server_pressed"]
 [connection signal="pressed" from="Menu/Multiplayer/Client" to="." method="_on_client_pressed"]

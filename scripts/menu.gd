@@ -27,7 +27,7 @@ var teams_weapons: int
 
 
 func _ready() -> void:
-	multiplayer_spawner.spawn_function = load_map
+	multiplayer_spawner.spawn_function = make_map
 
 
 func _process(_delta: float) -> void:
@@ -51,7 +51,7 @@ func _process(_delta: float) -> void:
 		Globals.water_rise = -int(water_rise_h_slide.value)
 
 
-func load_map(inputs: Dictionary = {"multiplayer":false,
+func make_map(inputs: Dictionary = {"multiplayer":false,
 		"map":"m1",
 		"players_in_team":1,
 		"teams_weapons":[],
@@ -205,33 +205,5 @@ func _exit_tree() -> void:
 		upnp.delete_port_mapping(SERVER_PORT, "UDP")
 
 
-func _on_b_1_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"b1"})
-
-
-func _on_b_2_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"b2"})
-
-
-func _on_m_1_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"m1"})
-
-
-func _on_m_2_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"m2"})
-
-
-func _on_m_3_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"m3"})
-
-
-func _on_s_1_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"s1"})
-
-
-func _on_s_2_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"s2"})
-
-
-func _on_g_1_button_pressed() -> void:
-	load_map({"multiplayer":false,"map":"g1"})
+func _on_map_button_make_map(map: Variant) -> void:
+	make_map({"multiplayer":false,"map":map})
