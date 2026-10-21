@@ -133,8 +133,7 @@ func explode(end_explode: bool = false):
 		var dis_to: float = global_position.distance_to(player.global_position)
 		if dis_to < (8.0 * size) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
-			player.damage.rpc(int(hit_power * damage))
-			player.velocity += (player.global_position - global_position) * hit_power * knockback
+			player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
 			
 			if players_projectile and life_steel > 0:
 				parent.heal.rpc(int(life_steel * hit_power))

@@ -10,14 +10,14 @@ size = Vector2(8, 7)
 size = Vector2(12, 11)
 
 [node name="Present" unique_id=791496552 instance=ExtResource("1_s7eb1")]
-damage = 20
-size = 4
-knockback = 20
+damage = 15
+size = 3
+knockback = 0
 gravity = 300
 spawn_at_mouse = true
 end_player_turn = false
 effect_by_wind = false
-spawns = Array[String](["air_strike", "drill_strike", "pumkin_grenade", "teleporta", "tnt"])
+spawns = Array[String](["air_strike", "pumkin_grenade", "teleporta", "tnt", "cake_tnt"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_hm0fc")

@@ -150,7 +150,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		if temp_velocity.y > 750:
 			var fall_damage = (temp_velocity.y - 750) / 50.0
-			damage(fall_damage)
+			hit(fall_damage)
 			
 			if !Globals.high_fps_mode:
 				Mouse.shake.rpc(fall_damage / 4.0)
@@ -175,8 +175,9 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 
 
 @rpc("any_peer","reliable","call_local")
-func damage(hurt_damage: int):
+func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 	hp -= hurt_damage
+	velocity += knockback
 	hp_label.text = str(hp)
 	
 	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
