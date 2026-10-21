@@ -137,7 +137,7 @@ func explode(end_explode: bool = false):
 			player.velocity += (player.global_position - global_position) * hit_power * knockback
 			
 			if players_projectile and life_steel > 0:
-				parent.heal(int(life_steel * hit_power))
+				parent.heal.rpc(int(life_steel * hit_power))
 	
 	if players_projectile:
 		if teleports_player:

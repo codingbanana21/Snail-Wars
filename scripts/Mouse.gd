@@ -15,6 +15,8 @@ var ecs_mode: int = 0
 
 
 func _process(_delta: float) -> void:
+	camera_2d.limit_bottom = Globals.water_level + 64
+	
 	if weapon_left >= 0:
 		weapon_label.text = WEAPONS[weapon]+" "+str(weapon_left)
 	else:

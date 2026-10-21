@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var menu: Node2D = $Menu
-@onready var ip: TextEdit = %IP
+@onready var ip: LineEdit = %IP
 @onready var ip_check_box: CheckBox = %IPCheckBox
 
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
@@ -12,12 +12,9 @@ extends Node2D
 @onready var weapons_label: Label = %WeaponsLabel
 @onready var teams_h_slider: HSlider = %TeamsHSlider
 @onready var teams_label: Label = %TeamsLabel
-@onready var player_hph_slider: HSlider = %PlayerHPHSlider
-@onready var player_hp_label: Label = %PlayerHPLabel
-@onready var water_level_h_slider: HSlider = %WaterLevelHSlider
-@onready var water_level_label: Label = %WaterLevelLabel
-@onready var water_rise_h_slide: HSlider = %WaterRiseHSlide
-@onready var water_rise_label: Label = %WaterRiseLabel
+@onready var player_hp: LineEdit = %PlayerHP
+@onready var water_level: LineEdit = %WaterLevel
+@onready var water_rise: LineEdit = %WaterRise
 
 const SERVER_PORT = 3100
 const CONNECT_TIMEOUT: float = 5.0
@@ -43,14 +40,9 @@ func _process(_delta: float) -> void:
 		teams_label.text = str(int(teams_h_slider.value)) + " Teams"
 		Globals.number_of_teams = int(teams_h_slider.value)
 		
-		player_hp_label.text = str(int(player_hph_slider.value)) + " Player HP"
-		Globals.player_hp = int(player_hph_slider.value)
-		
-		water_level_label.text = str(int(water_level_h_slider.value)) + " Water Level"
-		Globals.water_level = -int(water_level_h_slider.value)
-		
-		water_rise_label.text = str(int(water_rise_h_slide.value)) + " Water Rise Amount"
-		Globals.water_rise = -int(water_rise_h_slide.value)
+		Globals.player_hp = int(player_hp.text)
+		Globals.water_level = -int(water_level.text)
+		Globals.water_rise = -int(water_rise.text)
 
 
 func make_map(inputs: Dictionary = {"multiplayer":false,
