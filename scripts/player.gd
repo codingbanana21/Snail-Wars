@@ -222,12 +222,12 @@ func next_player(teams_turns, team_turn):
 			child.queue_free()
 	
 	if hp < 1 and !dead and is_multiplayer_authority():
-		die.rpc()
 		multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
 			"projectile": "res://projectiles/snail.tscn"
 		})
+		die.rpc()
 	
 	if teams_turns[team_turn] == player_number and team_number == team_turn:
 		player_turn_part = 1
