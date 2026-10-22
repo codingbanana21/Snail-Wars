@@ -1,10 +1,9 @@
 extends Node2D
 
 @onready var weapon_label: Label = $WeaponLabel
+@onready var weapon_image: Sprite2D = $WeaponImage
 @onready var shake_timer: Timer = $ShakeTimer
 @onready var camera_2d: Camera2D = $Camera2D
-
-const WEAPONS: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present Strike","Cake TNT","Healing Leaf"]
 
 var moving: bool = false
 var can_move: bool = false
@@ -17,10 +16,15 @@ var ecs_mode: int = 0
 func _process(_delta: float) -> void:
 	camera_2d.limit_bottom = Globals.water_level + 64
 	
-	if weapon_left >= 0:
-		weapon_label.text = WEAPONS[weapon]+" "+str(weapon_left)
+	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[weapon]+".png"):
+		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS[weapon]+".png")
 	else:
-		weapon_label.text = WEAPONS[weapon]
+		weapon_image.texture = load("res://assets/images/rocket.png")
+	
+	if weapon_left >= 0:
+		weapon_label.text = Globals.WEAPONS_NAMES[weapon]+" "+str(weapon_left)
+	else:
+		weapon_label.text = Globals.WEAPONS_NAMES[weapon]
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)

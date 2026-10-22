@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="2_3xfjl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tpgjy"]
-radius = 2.0
+radius = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dlca0"]
-radius = 5.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_h2h75"]
+radius = 4.1231055
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
 damage = 5
@@ -23,5 +23,4 @@ texture = ExtResource("2_3xfjl")
 shape = SubResource("CircleShape2D_tpgjy")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-position = Vector2(0, 0)
-shape = SubResource("CircleShape2D_dlca0")
+shape = SubResource("CircleShape2D_h2h75")

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="2_46nel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nw1eu"]
-radius = 5.59017
+radius = 5.0
 
 [node name="Teleporta" unique_id=791496552 instance=ExtResource("1_4dcfj")]
 damage = 25

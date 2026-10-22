@@ -3,7 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_3a5e7"]
 [ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="2_csbni"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xa71f"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_f4elh"]
+radius = 7.566373
 
 [node name="Snail" unique_id=791496552 instance=ExtResource("1_3a5e7")]
 damage = 20
@@ -21,7 +22,8 @@ rotation = -1.5707964
 texture = ExtResource("2_csbni")
 
 [node name="CollisionShape2D" parent="." index="2" unique_id=679883136]
-shape = SubResource("RectangleShape2D_xa71f")
+position = Vector2(0.5, 0)
+shape = SubResource("CircleShape2D_f4elh")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
 shape = null

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="2_cqswp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y4r1p"]
-radius = 5.0990195
+radius = 4.0
 
 [node name="Bullet" unique_id=791496552 instance=ExtResource("1_4ambd")]
 damage = 35

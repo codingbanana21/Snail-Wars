@@ -1,5 +1,8 @@
 extends Node2D
 
+const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf"]
+const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present Strike","Cake TNT","Healing Leaf"]
+
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.4
 

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d7rmm3hgmhlx" path="res://assets/images/cake_tnt.png" id="2_2v8i0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gjjih"]
-size = Vector2(14, 8)
+size = Vector2(12, 6)
 
 [node name="CakeTNT" unique_id=791496552 instance=ExtResource("1_ipt5o")]
 damage = 100

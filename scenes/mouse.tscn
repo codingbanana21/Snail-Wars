@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dq5pcpy5obcn6" path="res://scripts/Mouse.gd" id="1_ouscy"]
 [ext_resource type="Texture2D" uid="uid://3tydmbpohdgr" path="res://assets/images/cross.png" id="2_xa71f"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_xa71f"]
+[ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="4_iog6k"]
 
 [node name="Mouse" type="Node2D" unique_id=444797727]
-visible = false
 z_index = 100
 script = ExtResource("1_ouscy")
 
@@ -14,13 +14,18 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_xa71f")
 
 [node name="WeaponLabel" type="Label" parent="." unique_id=1462468472]
-offset_left = -17.0
-offset_top = 17.0
-offset_right = 49.0
-offset_bottom = 40.0
+offset_left = -55.0
+offset_top = 18.0
+offset_right = 163.0
+offset_bottom = 41.0
 scale = Vector2(0.5, 0.5)
+text = "weapon"
 label_settings = ExtResource("3_xa71f")
 horizontal_alignment = 1
+
+[node name="WeaponImage" type="Sprite2D" parent="." unique_id=2033482063]
+position = Vector2(0, 34)
+texture = ExtResource("4_iog6k")
 
 [node name="ShakeTimer" type="Timer" parent="." unique_id=1389379614]
 one_shot = true

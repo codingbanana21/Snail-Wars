@@ -4,11 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="2_gjjih"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7exph"]
-radius = 3.0
+radius = 4.0
 height = 12.0
 
 [node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
-damage = 70
+damage = 65
 size = 7
 knockback = 70
 speed = 0

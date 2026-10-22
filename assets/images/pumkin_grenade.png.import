@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd6j10f3xc22c"
-path="res://.godot/imported/pumkin_grenad.png-e545352fd7b5c54f0c22c36e20c76b7d.ctex"
+path="res://.godot/imported/pumkin_grenade.png-26c78e36c075dc38ce239821ab2c6440.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/pumkin_grenad.png"
-dest_files=["res://.godot/imported/pumkin_grenad.png-e545352fd7b5c54f0c22c36e20c76b7d.ctex"]
+source_file="res://assets/images/pumkin_grenade.png"
+dest_files=["res://.godot/imported/pumkin_grenade.png-26c78e36c075dc38ce239821ab2c6440.ctex"]
 
 [params]
 

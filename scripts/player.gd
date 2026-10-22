@@ -22,7 +22,6 @@ const SPEED: int = 4
 const JUMP: Vector2 = Vector2(120, -300)
 const BACK_JUMP: Vector2 = Vector2(-50, -400)
 const PLAYER_GRAVITY: int = 30
-const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf"]
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nick","Leo"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Same","Super","The","Just","I am"]
 
@@ -108,7 +107,7 @@ func _process(delta: float) -> void:
 			multiplayer_spawner.spawn({
 				"id": id,
 				"global_position": global_position,
-				"projectile": "res://projectiles/" + WEAPONS[weapon] + ".tscn"
+				"projectile": "res://projectiles/" + Globals.WEAPONS[weapon] + ".tscn"
 			})
 			
 			Globals.teams_weapons[team_number][weapon] -= 1
