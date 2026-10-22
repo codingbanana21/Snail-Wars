@@ -8,9 +8,13 @@ extends Node2D
 var moving: bool = false
 var can_move: bool = false
 var shake_amount: float = 0.0
-var weapon_left: int
+var weapon_amount: int
 var weapon: int
 var ecs_mode: int = 0
+
+
+func _ready() -> void:
+	hide()
 
 
 func _process(_delta: float) -> void:
@@ -21,8 +25,8 @@ func _process(_delta: float) -> void:
 	else:
 		weapon_image.texture = load("res://assets/images/rocket.png")
 	
-	if weapon_left >= 0:
-		weapon_label.text = Globals.WEAPONS_NAMES[weapon]+" "+str(weapon_left)
+	if weapon_amount >= 0:
+		weapon_label.text = Globals.WEAPONS_NAMES[weapon]+" "+str(weapon_amount)
 	else:
 		weapon_label.text = Globals.WEAPONS_NAMES[weapon]
 	
@@ -43,14 +47,14 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion and can_move:
-		global_position += event.relative
 		moving = true
+		global_position += event.relative
 	else:
+		moving = false
 		if Input.is_action_just_pressed("mouse_lock"):
 			ecs_mode = 0
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 			show()
-		moving = false
 
 
 @rpc("any_peer","reliable","call_local")

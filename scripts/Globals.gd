@@ -2,20 +2,22 @@ extends Node2D
 
 const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf"]
 const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present Strike","Cake TNT","Healing Leaf"]
-
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.4
 
+#save data
 var save_data: SaveDataResource = SaveDataResource.new()
-
 var save_version: float
 var saved_ip_address: String
 var high_fps_mode: bool = false
 
+#teams
 var teams_turns: Array[int]
 var team_turn: int = -1
 var players_in_team: int
 var number_of_teams: int
+
+#settings
 var player_hp: int
 var water_level: int
 var water_rise: int

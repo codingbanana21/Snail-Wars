@@ -7,13 +7,15 @@ extends CharacterBody2D
 @onready var team_label: Label = $TeamLabel
 @onready var hp_label: Label = $HpLabel
 @onready var shot_bar: TextureProgressBar = $ShotBar
-@onready var arrow: Sprite2D = $Arrow
+@onready var turn_arrow: Sprite2D = $TurnArrow
+@onready var next_player_timer: Timer = $NextPlayerTimer
+
+#sound effects
 @onready var ooff: AudioStreamPlayer = $Ooff
 @onready var ooff_2: AudioStreamPlayer = $Ooff2
 @onready var looser: AudioStreamPlayer = $Looser
 @onready var impressive: AudioStreamPlayer = $Impressive
 @onready var bomb: AudioStreamPlayer = $Bomb
-@onready var next_player_timer: Timer = $NextPlayerTimer
 
 @export var player_number: int = 0
 @export var team_number: int = 0
@@ -43,7 +45,6 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	multiplayer_spawner.spawn_function = shot_projectile
-	
 	hp = Globals.player_hp
 	hp_label.text = str(hp)
 	name_label.text = NAMES2[rng.randi_range(0, NAMES2.size() - 1)] +" "+ NAMES[rng.randi_range(0, NAMES.size() - 1)]
@@ -56,11 +57,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
-	if velocity.x < 0:
-		snail.flip_h = true
-	elif velocity.x > 0:
-		snail.flip_h = false
-	
 	# skip dead player
 	if (dead or global_position.y >= Globals.water_level) and player_turn_part != 0:
 		player_turn_part = 0
@@ -69,61 +65,61 @@ func _process(delta: float) -> void:
 		return
 	
 	if player_turn_part == 0 or player_turn_part == 4:
-		arrow.hide()
+		turn_arrow.hide()
 		return
+	
+	turn_arrow.show()
+	turn_arrow.position.y = sin(Engine.get_physics_frames() / 5.0) * 3.0 - 16.0
+	
+	if (global_position > Mouse.global_position and Mouse.moving) or velocity.x < 0:
+		snail.flip_h = true
+	elif Mouse.moving or velocity.x > 0:
+		snail.flip_h = false
 	
 	if Input.is_action_just_pressed("skip"):
 		player_turn_part = 4
 		next_player_timer.start(0.1)
 	
-	arrow.show()
-	arrow.position.y = sin(Engine.get_physics_frames() / 5.0) * 3.0 - 16.0
-	
 	if player_turn_part == 1:
-		if Input.is_action_pressed("attack"):
+		if Input.is_action_pressed("attack") and Globals.teams_weapons[team_number][weapon] != 0:
 			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 			shot_bar.value = projectile_speed
 			projectile_speed += 8.0 * delta
 		else:
-			if global_position > Mouse.global_position and Mouse.moving:
-				snail.flip_h = true
-			elif Mouse.moving:
-				snail.flip_h = false
-			
 			if Input.is_action_just_pressed("next_weapon"):
 				weapon += 1
-			
-			if Input.is_action_just_pressed("last_weapon"):
+			elif Input.is_action_just_pressed("last_weapon"):
 				weapon -= 1
 				if weapon < 0:
 					weapon = 12
 			
 			weapon %= 13
-			Mouse.weapon_left = Globals.teams_weapons[team_number][weapon]
+			Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
 			Mouse.weapon = weapon
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
-			Input.action_release("attack")
 			multiplayer_spawner.spawn({
 				"id": id,
 				"global_position": global_position,
 				"projectile": "res://projectiles/" + Globals.WEAPONS[weapon] + ".tscn"
 			})
 			
+			Input.action_release("attack")
 			Globals.teams_weapons[team_number][weapon] -= 1
-			player_turn_part = 2
 			projectile_speed = 0.0
+			player_turn_part = 2
 			shot_bar.value = 0
 			Mouse.hide()
+			
 
 
 func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
-	if velocity.y < 2500.0:
+	if velocity.y <= 2500.0:
 		velocity.y += PLAYER_GRAVITY
 	
-	if (player_turn_part != 0) and !Input.is_action_pressed("attack"):
+	if player_turn_part != 0 and player_turn_part != 4 and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED
@@ -147,7 +143,7 @@ func _physics_process(delta: float) -> void:
 		Mouse.global_position += velocity * delta
 	
 	if is_on_floor():
-		if temp_velocity.y > 750:
+		if temp_velocity.y >= 750:
 			var fall_damage = (temp_velocity.y - 750) / 50.0
 			hit(fall_damage)
 			
@@ -162,6 +158,7 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 		"global_position":Vector2.ZERO,
 		"projectile":"res://projectiles/rocket.tscn"
 		}):
+	
 	var scene: PackedScene = load(inputs["projectile"])
 	var new_projectile: Projectile = scene.instantiate()
 	
@@ -169,7 +166,6 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	new_projectile.global_position = inputs["global_position"]
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= int(projectile_speed)
-	
 	return new_projectile
 
 
@@ -177,8 +173,8 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 	hp -= hurt_damage
 	velocity += knockback
-	hp_label.text = str(hp)
 	
+	hp_label.text = str(hp)
 	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
 	hit_text.text = str(hurt_damage)
 	add_child(hit_text)
@@ -204,8 +200,8 @@ func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 @rpc("any_peer","reliable","call_local")
 func heal(heal_amount: int):
 	hp += heal_amount
-	hp_label.text = str(hp)
 	
+	hp_label.text = str(hp)
 	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
 	hit_text.text = "+" + str(heal_amount)
 	add_child(hit_text)
@@ -220,17 +216,18 @@ func die():
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(teams_turns, team_turn):
+	#remove particles
 	for child: Node in get_children():
 		if child is GPUParticles2D:
 			child.queue_free()
 	
 	if hp < 1 and !dead and is_multiplayer_authority():
+		die.rpc()
 		multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
 			"projectile": "res://projectiles/snail.tscn"
 		})
-		die.rpc()
 	
 	if teams_turns[team_turn] == player_number and team_number == team_turn:
 		player_turn_part = 1

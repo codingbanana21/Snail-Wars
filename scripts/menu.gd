@@ -6,6 +6,7 @@ extends Node2D
 @onready var ip: LineEdit = %IP
 @onready var ip_check_box: CheckBox = %IPCheckBox
 
+#map settings
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
 @onready var per_team_label: Label = %PerTeamLabel
 @onready var weapons_h_slider: HSlider = %WeaponsHSlider
@@ -65,6 +66,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.water_level = inputs["water_level"]
 		Globals.water_rise = inputs["water_rise"]
 	
+	#team weapon sets
 	if teams_weapons == 1:
 		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,3,2,1,1,1,1]]
 	elif teams_weapons == 2:
@@ -76,7 +78,6 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
-		
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
@@ -91,12 +92,42 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		add_child(map_file)
 
 
-func _on_local_server_pressed() -> void:
-	make_server(IP.get_local_addresses()[1])
-
-
-func _on_online_server_pressed() -> void:
-	make_server(upnp_setup(SERVER_PORT))
+func _on_client_pressed() -> void:
+	var ip_address = ip.text.strip_edges()
+	
+	if ip_check_box.button_pressed:
+		Globals.saved_ip_address = ip_address
+	
+	Globals.save_game()
+	
+	if ip_address == "":
+		ip_address = "localhost"
+	
+	if !ip_address.is_valid_ip_address() and !ip_address == "localhost":
+		push_error("IP address is invalid ", ip_address)
+		return
+	
+	var new_peer = ENetMultiplayerPeer.new()
+	var cerr = new_peer.create_client(ip_address, SERVER_PORT)
+	
+	if cerr != OK:
+		push_error("create_client failed: ", cerr)
+		return
+	
+	if !multiplayer.connected_to_server.is_connected(_on_connected):
+		multiplayer.connected_to_server.connect(_on_connected)
+		multiplayer.connection_failed.connect(_on_connection_failed)
+	
+	peer = new_peer
+	multiplayer.multiplayer_peer = new_peer
+	print("trying to connect to ", ip_address)
+	
+	await get_tree().create_timer(CONNECT_TIMEOUT).timeout
+	if new_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTING:
+		push_error("Connection timed out after %d seconds" % CONNECT_TIMEOUT)
+		new_peer.close()
+		if multiplayer.multiplayer_peer == new_peer:
+			multiplayer.multiplayer_peer = null
 
 
 func make_server(ip_address):
@@ -154,44 +185,6 @@ func upnp_setup(server_port):
 	return addr
 
 
-func _on_client_pressed() -> void:
-	var ip_address = ip.text.strip_edges()
-	
-	if ip_check_box.button_pressed:
-		Globals.saved_ip_address = ip_address
-	
-	Globals.save_game()
-	
-	if ip_address == "":
-		ip_address = "localhost"
-	
-	if !ip_address.is_valid_ip_address() and !ip_address == "localhost":
-		push_error("IP address is invalid ", ip_address)
-		return
-	
-	var new_peer = ENetMultiplayerPeer.new()
-	var cerr = new_peer.create_client(ip_address, SERVER_PORT)
-	
-	if cerr != OK:
-		push_error("create_client failed: ", cerr)
-		return
-	
-	if !multiplayer.connected_to_server.is_connected(_on_connected):
-		multiplayer.connected_to_server.connect(_on_connected)
-		multiplayer.connection_failed.connect(_on_connection_failed)
-	
-	peer = new_peer
-	multiplayer.multiplayer_peer = new_peer
-	print("trying to connect to ", ip_address)
-	
-	await get_tree().create_timer(CONNECT_TIMEOUT).timeout
-	if new_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTING:
-		push_error("Connection timed out after %d seconds" % CONNECT_TIMEOUT)
-		new_peer.close()
-		if multiplayer.multiplayer_peer == new_peer:
-			multiplayer.multiplayer_peer = null
-
-
 func _on_connected() -> void:
 	print("connected")
 
@@ -203,6 +196,14 @@ func _on_connection_failed() -> void:
 func _exit_tree() -> void:
 	if upnp:
 		upnp.delete_port_mapping(SERVER_PORT, "UDP")
+
+
+func _on_local_server_pressed() -> void:
+	make_server(IP.get_local_addresses()[1])
+
+
+func _on_online_server_pressed() -> void:
+	make_server(upnp_setup(SERVER_PORT))
 
 
 func _on_map_button_make_map(map: Variant) -> void:

@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var explosion_timer: Timer = $ExplosionTimer
 @onready var hit_timer: Timer = $HitTimer
 
+#projectile stats
 @export var damage: int = 45
 @export var size: int = 5
 @export var knockback: int = 50
@@ -50,7 +51,7 @@ func _ready() -> void:
 	if min_speed > speed:
 		speed = min_speed
 	
-	#spawn type
+	#spawn type normal or strike
 	if spawn_at_mouse:
 		global_position.x = Mouse.global_position.x
 		global_position.y = -2148.0
@@ -66,39 +67,35 @@ func _physics_process(delta: float) -> void:
 	if global_position.y >= Globals.water_level:
 		explode(true)
 		return
-	
-	if len(detect_box.get_overlapping_bodies()) + len(detect_box.get_overlapping_areas()) >= bodys_needed:
+	elif len(detect_box.get_overlapping_bodies()) + len(detect_box.get_overlapping_areas()) >= bodys_needed:
 		explode()
 	
-	if !hit_timer.is_stopped():
-		return
+	if !hit_timer.is_stopped(): return
 	
 	if players_projectile:
 		Mouse.global_position = global_position
 	
+	velocity.y += gravity * delta
 	if effect_by_wind:
 		velocity.x += Globals.wind * 16 * delta
 	
-	velocity.y += gravity * delta
 	rotation = velocity.angle()
 	
 	var temp_velocity: Vector2 = velocity
 	move_and_slide()
 	
-	if is_on_floor() and bounce:
-		velocity.x = temp_velocity.x * 0.95
-		velocity.y = temp_velocity.y * -0.6
-	
-	if is_on_wall() and bounce:
-		velocity.x = temp_velocity.x * -0.6
-		velocity.y = temp_velocity.y * 0.95
+	if bounce:
+		if is_on_floor():
+			velocity.x = temp_velocity.x * 0.95
+			velocity.y = temp_velocity.y * -0.6
+		
+		if is_on_wall():
+			velocity.x = temp_velocity.x * -0.6
+			velocity.y = temp_velocity.y * 0.95
 
 
 func explode(end_explode: bool = false):
-	if !is_multiplayer_authority(): return
-	
-	if !hit_timer.is_stopped():
-		return
+	if !is_multiplayer_authority() or !hit_timer.is_stopped(): return
 	
 	if hit_stun_time > 0:
 		hit_timer.start(hit_stun_time)
@@ -119,16 +116,17 @@ func explode(end_explode: bool = false):
 		end_explode = true
 		queue_free()
 		
+		#if the projectile is a players end player turn
 		if end_player_turn and players_projectile and parent.player_turn_part != 0:
 			parent.next_player_timer.start()
 			parent.player_turn_part = 3
 			Mouse.global_position = parent.global_position
 	
-	# destroy map
+	#get map and explode it
 	for map in get_tree().get_nodes_in_group("Map"):
 		map.explode_tile.rpc(global_position, size)
 	
-	# hit players
+	#hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
 		if dis_to < (8.0 * size) + 8.0:
@@ -139,10 +137,10 @@ func explode(end_explode: bool = false):
 				parent.heal.rpc(int(life_steel * hit_power))
 	
 	if players_projectile:
+		parent.bomb.play()
+		
 		if teleports_player:
 			parent.global_position = global_position
-		
-		parent.bomb.play()
 		
 		if !Globals.high_fps_mode:
 			var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
@@ -154,5 +152,4 @@ func explode(end_explode: bool = false):
 
 func _on_explosion_timer_timeout() -> void:
 	if !is_multiplayer_authority(): return
-	
 	explode(true)
