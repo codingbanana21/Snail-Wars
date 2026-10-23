@@ -82,6 +82,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
 	menu.hide()
+	Mouse.ui.show()
 	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
 	

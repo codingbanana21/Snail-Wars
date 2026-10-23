@@ -231,7 +231,6 @@ func next_player(teams_turns, team_turn):
 	
 	if teams_turns[team_turn] == player_number and team_number == team_turn:
 		player_turn_part = 1
-		Mouse.show()
 		
 		if !dead:
 			Mouse.global_position = global_position

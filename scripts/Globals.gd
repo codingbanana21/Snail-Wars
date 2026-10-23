@@ -30,7 +30,6 @@ var rng = RandomNumberGenerator.new()
 
 
 func _ready() -> void:
-	
 	rng.seed = 1000
 	load_game()
 

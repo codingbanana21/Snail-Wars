@@ -5,7 +5,6 @@ extends Node2D
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
 @onready var water: Polygon2D = $Water
-@onready var wind: HScrollBar = %Wind
 
 var remote_id: int
 var rng = RandomNumberGenerator.new()
@@ -29,7 +28,6 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	wind.value = Globals.wind
 	water.global_position.y = Globals.water_level + cos(Engine.get_physics_frames() / 100.0) * 20
 	water.global_position.x = sin(Engine.get_physics_frames() / 100.0) * 50
 

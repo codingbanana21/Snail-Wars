@@ -1,7 +1,9 @@
 extends Node2D
 
-@onready var weapon_label: Label = $WeaponLabel
 @onready var weapon_image: Sprite2D = $WeaponImage
+@onready var weapon_label: Label = $WeaponLabel
+@onready var ui: CanvasLayer = $UI
+@onready var wind: HScrollBar = %Wind
 @onready var shake_timer: Timer = $ShakeTimer
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -15,10 +17,28 @@ var ecs_mode: int = 0
 
 func _ready() -> void:
 	hide()
+	ui.hide()
+	
+	for x in range(4):
+		for y in range(4):
+			var new_sprite = Sprite2D.new()
+			var sprite_weapon: int = y * 4 + x
+			
+			if sprite_weapon >= len(Globals.WEAPONS):
+				continue
+			
+			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png"):
+				new_sprite.texture = load("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png")
+			else:
+				new_sprite.texture = load("res://assets/images/rocket.png")
+			
+			new_sprite.global_position = Vector2(512 + x * 18, 256 + y * 18)
+			ui.add_child(new_sprite)
 
 
 func _process(_delta: float) -> void:
 	camera_2d.limit_bottom = Globals.water_level + 64
+	wind.value = Globals.wind
 	
 	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[weapon]+".png"):
 		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS[weapon]+".png")
@@ -46,7 +66,7 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion and can_move:
+	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion and can_move and visible:
 		moving = true
 		global_position += event.relative
 	else:
