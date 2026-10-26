@@ -57,7 +57,10 @@ process_material = SubResource("ParticleProcessMaterial_fo7mc")
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]
 one_shot = true
 
+[node name="SpawnTimer" type="Timer" parent="." unique_id=988676118]
+
 [node name="HitTimer" type="Timer" parent="." unique_id=1294282225]
 one_shot = true
 
 [connection signal="timeout" from="ExplosionTimer" to="." method="_on_explosion_timer_timeout"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

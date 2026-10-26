@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var detect_box: Area2D = $DetectBox
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var explosion_timer: Timer = $ExplosionTimer
+@onready var spawn_timer: Timer = $SpawnTimer
 @onready var hit_timer: Timer = $HitTimer
 
 #projectile stats
@@ -25,6 +26,7 @@ extends CharacterBody2D
 @export var teleports_player: bool = false
 @export var effect_by_wind: bool = true
 @export var spawns: Array[String]
+@export var spawn_time = 0.0
 
 var id: int
 var parent: Player
@@ -41,6 +43,9 @@ func _ready() -> void:
 		
 		if !Globals.high_fps_mode:
 			gpu_particles_2d.show()
+	
+	if spawn_time > 0:
+		spawn_timer.start(spawn_time)
 	
 	if timer > 0:
 		explosion_timer.start(timer)
@@ -153,3 +158,12 @@ func explode(end_explode: bool = false):
 func _on_explosion_timer_timeout() -> void:
 	if !is_multiplayer_authority(): return
 	explode(true)
+
+
+func _on_spawn_timer_timeout() -> void:
+	if len(spawns) > 0:
+		parent.multiplayer_spawner.spawn({
+			"id": id,
+			"global_position": global_position,
+			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
+		})

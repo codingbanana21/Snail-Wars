@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cpkrha345pqke"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_3yjh5"]
+[ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="2_77rtt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdgog"]
+size = Vector2(14, 11)
+
+[node name="Chicken" unique_id=791496552 instance=ExtResource("1_3yjh5")]
+damage = 30
+gravity = 300
+spawns = Array[String](["egg"])
+spawn_time = 0.65
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_77rtt")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_bdgog")

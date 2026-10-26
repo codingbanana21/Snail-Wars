@@ -7,8 +7,10 @@
 damage = 10
 size = 3
 knockback = 30
+speed = 45
+min_speed = 60
 gravity = 300
-projectile_hp = 7
+projectile_hp = 8
 hit_stun_time = 0.15
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
