@@ -68,13 +68,13 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	
 	#team weapon sets
 	if teams_weapons == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,3,2,1,1,0,1,1]]
+		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,3,2,1,1,0,1,1,0]]
 	elif teams_weapons == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
+		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
 	elif teams_weapons == 3:
-		Globals.teams_weapons = [[-1,-1,3,4,0,0,2,4,3,2,0,1,0,3]]
+		Globals.teams_weapons = [[-1,-1,3,4,0,0,2,4,3,2,0,1,0,3,0]]
 	elif teams_weapons == 4:
-		Globals.teams_weapons = [[-1,-1,0,0,0,0,0,0,0,-1,-1,-1,-1,0]]
+		Globals.teams_weapons = [[-1,-1,0,0,0,0,0,0,0,-1,-1,-1,-1,0,-1]]
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])

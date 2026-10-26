@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	
 	if !hit_timer.is_stopped(): return
 	
-	if players_projectile:
+	if players_projectile and end_player_turn:
 		Mouse.global_position = global_position
 	
 	velocity.y += gravity * delta

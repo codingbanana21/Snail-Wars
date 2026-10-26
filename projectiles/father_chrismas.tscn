@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dbf0v4h637xdn"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_5crrp"]
+[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_chrismas.png" id="2_2nj0q"]
+
+[node name="FatherChrismas" unique_id=791496552 instance=ExtResource("1_5crrp")]
+damage = 0
+size = 0
+knockback = 0
+speed = 0
+min_speed = 500
+gravity = 100
+timer = 2.0
+effect_by_wind = false
+spawns = Array[String](["chrismas_present"])
+spawn_time = 0.35
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_2nj0q")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+shape = null
