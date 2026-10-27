@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 		per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
 		Globals.players_in_team = int(per_team_h_slider.value)
 		
-		weapons_label.text = "Weapon set " + str(int(weapons_h_slider.value))
+		weapons_label.text = "Weapon set " + Globals.WEAPON_SET_NAMES[weapons_h_slider.value]
 		teams_weapons = int(weapons_h_slider.value)
 		
 		teams_label.text = str(int(teams_h_slider.value)) + " Teams"
@@ -67,14 +67,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.water_rise = inputs["water_rise"]
 	
 	#team weapon sets
-	if teams_weapons == 1:
-		Globals.teams_weapons = [[-1,-1,2,3,1,1,1,3,2,1,1,0,1,1,0]]
-	elif teams_weapons == 2:
-		Globals.teams_weapons = [[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]]
-	elif teams_weapons == 3:
-		Globals.teams_weapons = [[-1,-1,3,4,0,0,2,4,3,2,0,1,0,3,0]]
-	elif teams_weapons == 4:
-		Globals.teams_weapons = [[-1,-1,0,0,0,0,0,0,0,-1,-1,-1,-1,0,-1]]
+	Globals.teams_weapons.append_array(Globals.WEAPON_SET.duplicate(true)[teams_weapons])
 	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
@@ -83,7 +76,6 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	
 	menu.hide()
 	Mouse.ui.show()
-	Mouse.can_move = true
 	var map_file = preload("res://maps/map.tscn").instantiate()
 	
 	if inputs["multiplayer"]:

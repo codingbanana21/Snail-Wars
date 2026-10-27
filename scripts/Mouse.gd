@@ -8,7 +8,6 @@ extends Node2D
 @onready var camera_2d: Camera2D = $Camera2D
 
 var moving: bool = false
-var can_move: bool = false
 var shake_amount: float = 0.0
 var weapon_amount: int
 var weapon: int
@@ -66,7 +65,7 @@ func _process(_delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion and can_move and visible:
+	if !Input.is_action_pressed("attack") and event is InputEventMouseMotion:
 		moving = true
 		global_position += event.relative
 	else:

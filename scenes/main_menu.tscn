@@ -221,20 +221,19 @@ offset_right = -42.0
 offset_bottom = -79.0
 theme_override_icons/grabber = ExtResource("6_j7ex8")
 theme_override_icons/grabber_highlight = ExtResource("7_a8gd2")
-min_value = 1.0
-max_value = 4.0
-value = 1.0
+max_value = 3.0
 rounded = true
 
 [node name="WeaponsLabel" type="Label" parent="Menu/Settings" unique_id=1362672685]
 unique_name_in_owner = true
-offset_left = -157.0
+offset_left = -189.0
 offset_top = -99.0
-offset_right = 19.0
+offset_right = 101.0
 offset_bottom = -83.0
 scale = Vector2(0.5, 0.5)
-text = "Weapon set 1"
+text = "Weapon set"
 label_settings = ExtResource("3_1ajci")
+horizontal_alignment = 1
 
 [node name="TeamsHSlider" type="HSlider" parent="Menu/Settings" unique_id=1112265823]
 unique_name_in_owner = true

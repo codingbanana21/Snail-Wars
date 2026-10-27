@@ -42,6 +42,9 @@ func _ready() -> void:
 	if players_projectile:
 		parent = get_parent()
 		
+		if end_player_turn:
+			Mouse.global_position = global_position
+		
 		if !Globals.high_fps_mode:
 			gpu_particles_2d.show()
 	
@@ -78,9 +81,6 @@ func _physics_process(delta: float) -> void:
 	
 	if !hit_timer.is_stopped(): return
 	
-	if players_projectile and end_player_turn:
-		Mouse.global_position = global_position
-	
 	velocity.y += gravity * delta
 	if effect_by_wind:
 		velocity.x += Globals.wind * 16 * delta
@@ -98,6 +98,9 @@ func _physics_process(delta: float) -> void:
 		if is_on_wall():
 			velocity.x = temp_velocity.x * -0.6
 			velocity.y = temp_velocity.y * 0.95
+	
+	if players_projectile and end_player_turn:
+		Mouse.global_position += velocity * delta
 
 
 func explode(end_explode: bool = false):
@@ -167,7 +170,7 @@ func _on_explosion_timer_timeout() -> void:
 
 
 func _on_spawn_timer_timeout() -> void:
-	if len(spawns) > 0:
+	if len(spawns) > 0 and is_multiplayer_authority():
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
