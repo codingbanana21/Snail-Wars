@@ -8,8 +8,8 @@ radius = 7.0
 
 [node name="Leaf" unique_id=791496552 instance=ExtResource("1_acmeg")]
 damage = 35
-size = 3
-knockback = 80
+size = 3.5
+knockback = 70
 life_steel = 30
 gravity = 300
 timer = 1.5

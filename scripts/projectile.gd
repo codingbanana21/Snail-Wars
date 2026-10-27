@@ -11,7 +11,7 @@ extends CharacterBody2D
 #projectile stats
 @export var damage: int = 45
 @export var size: int = 5
-@export var knockback: int = 50
+@export var knockback: int = 40
 @export var life_steel: int = 0
 @export var speed: int = 60
 @export var min_speed: int = 80
@@ -39,6 +39,18 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	if min_speed > speed:
+		speed = min_speed
+	
+	#spawn type normal or strike
+	if spawn_at_mouse:
+		global_position.x = Mouse.global_position.x
+		global_position.y = -2148.0
+		velocity.y += speed
+	else:
+		global_position += transform.x * 16.0
+		velocity += transform.x * speed
+	
 	if players_projectile:
 		parent = get_parent()
 		
@@ -56,18 +68,6 @@ func _ready() -> void:
 	
 	if collision_shape_2d.shape != null:
 		bodys_needed = 2
-	
-	if min_speed > speed:
-		speed = min_speed
-	
-	#spawn type normal or strike
-	if spawn_at_mouse:
-		global_position.x = Mouse.global_position.x
-		global_position.y = -2148.0
-		velocity.y += speed
-	else:
-		global_position += transform.x * 16.0
-		velocity += transform.x * speed
 
 
 func _physics_process(delta: float) -> void:
@@ -133,13 +133,13 @@ func explode(end_explode: bool = false):
 	
 	#get map and explode it
 	for map in get_tree().get_nodes_in_group("Map"):
-		map.explode_tile.rpc(global_position, size)
+		map.explode_tile.rpc(global_position, size * Globals.explosion_power)
 	
 	#hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):
 		var dis_to: float = global_position.distance_to(player.global_position)
-		if dis_to < (8.0 * size) + 8.0:
-			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0)
+		if dis_to < (8.0 * size * Globals.explosion_power) + 8.0:
+			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0) * Globals.explosion_power
 			player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
 			
 			if players_projectile and life_steel > 0:

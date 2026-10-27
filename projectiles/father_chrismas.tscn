@@ -13,7 +13,7 @@ gravity = 100
 timer = 2.0
 effect_by_wind = false
 spawns = Array[String](["chrismas_present"])
-spawn_time = 0.35
+spawn_time = 0.25
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_2nj0q")

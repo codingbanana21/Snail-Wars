@@ -10,9 +10,9 @@ size = Vector2(6, 12)
 size = Vector2(9, 16)
 
 [node name="Mine" unique_id=791496552 instance=ExtResource("1_1y4n3")]
-damage = 35
-size = 4
-knockback = 30
+damage = 30
+size = 3.5
+knockback = 25
 speed = 0
 min_speed = 0
 timer = 0.0

@@ -8,8 +8,8 @@ size = Vector2(12, 6)
 
 [node name="CakeTNT" unique_id=791496552 instance=ExtResource("1_ipt5o")]
 damage = 100
-size = 10
-knockback = 100
+size = 9.0
+knockback = 80
 speed = 0
 min_speed = 0
 timer = 1.0

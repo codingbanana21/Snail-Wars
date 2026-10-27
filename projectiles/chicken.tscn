@@ -7,10 +7,12 @@
 size = Vector2(14, 11)
 
 [node name="Chicken" unique_id=791496552 instance=ExtResource("1_3yjh5")]
-damage = 30
+damage = 25
+size = 3
+knockback = 20
 gravity = 300
 spawns = Array[String](["egg"])
-spawn_time = 0.65
+spawn_time = 0.5
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_77rtt")
