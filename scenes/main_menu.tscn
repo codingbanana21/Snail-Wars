@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/leaf.png" id="12_a8gd2"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="13_1ajci"]
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="14_7b55j"]
+[ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_8egab"]
 [ext_resource type="Texture2D" uid="uid://cd6j10f3xc22c" path="res://assets/images/pumkin_grenade.png" id="16_j7ex8"]
 
 [node name="MainMenu" type="Node2D" unique_id=2137944541]
@@ -27,7 +28,7 @@ script = ExtResource("1_flqon")
 _spawnable_scenes = PackedStringArray("uid://baxuf5v76y51l")
 spawn_path = NodePath("..")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=828849114]
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=828849114]
 stream = ExtResource("2_hstxw")
 volume_db = -10.0
 autoplay = true
@@ -52,30 +53,39 @@ polygon = PackedVector2Array(-1277, -27, -1185, 10, -1098, -22, -983, 10, -859, 
 
 [node name="MapLabel" type="Label" parent="Menu/Maps" unique_id=2111666030]
 offset_left = -205.0
-offset_top = -323.0
+offset_top = -355.0
 offset_right = 159.0
-offset_bottom = -307.0
+offset_bottom = -339.0
 scale = Vector2(0.5, 0.5)
 text = "Big maps (Players 18-32)"
 label_settings = ExtResource("3_1ajci")
 
 [node name="B1MapButton" parent="Menu/Maps" unique_id=132146067 instance=ExtResource("7_7b55j")]
 offset_left = -192.0
-offset_top = -307.0
+offset_top = -339.0
 offset_right = -34.0
-offset_bottom = -283.0
+offset_bottom = -315.0
 text = "Mine time"
 icon = ExtResource("5_5pajh")
 map = "b1"
 
 [node name="B2MapButton" parent="Menu/Maps" unique_id=2026389007 instance=ExtResource("7_7b55j")]
 offset_left = -192.0
-offset_top = -275.0
+offset_top = -307.0
 offset_right = -44.0
-offset_bottom = -251.0
+offset_bottom = -283.0
 text = "The cave"
 icon = ExtResource("11_svtp6")
 map = "b2"
+
+[node name="B3MapButton" parent="Menu/Maps" unique_id=421375843 instance=ExtResource("7_7b55j")]
+offset_left = -192.0
+offset_top = -275.0
+offset_right = -44.0
+offset_bottom = -251.0
+text = "Climb"
+icon = ExtResource("13_1ajci")
+map = "b3"
 
 [node name="MapLabel2" type="Label" parent="Menu/Maps" unique_id=498424789]
 offset_left = 35.0
@@ -103,7 +113,7 @@ text = "Split"
 icon = ExtResource("8_hstxw")
 map = "m2"
 
-[node name="M3MapButton" parent="Menu/Maps" unique_id=421375843 instance=ExtResource("7_7b55j")]
+[node name="M3MapButton" parent="Menu/Maps" unique_id=1270339665 instance=ExtResource("7_7b55j")]
 offset_left = 64.0
 offset_top = -243.0
 offset_right = 212.0
@@ -167,6 +177,15 @@ offset_bottom = -163.0
 text = "Super Mines"
 icon = ExtResource("12_1dfpl")
 map = "g1"
+
+[node name="G2MapButton" parent="Menu/Maps" unique_id=507976408 instance=ExtResource("7_7b55j")]
+offset_left = 48.0
+offset_top = -155.0
+offset_right = 242.0
+offset_bottom = -131.0
+text = "Spring"
+icon = ExtResource("16_8egab")
+map = "g2"
 
 [node name="Settings" type="Node2D" parent="Menu" unique_id=1465944648]
 
@@ -369,6 +388,7 @@ metadata/_edit_use_anchors_ = true
 
 [connection signal="make_map" from="Menu/Maps/B1MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/Maps/B2MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/B3MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/Maps/M1MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/Maps/M2MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/Maps/M3MapButton" to="." method="_on_map_button_make_map"]
@@ -376,6 +396,7 @@ metadata/_edit_use_anchors_ = true
 [connection signal="make_map" from="Menu/Maps/S2MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/Maps/S3MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/Maps/G1MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/Maps/G2MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="pressed" from="Menu/Multiplayer/OnlineServer" to="." method="_on_online_server_pressed"]
 [connection signal="pressed" from="Menu/Multiplayer/LocalServer" to="." method="_on_local_server_pressed"]
 [connection signal="pressed" from="Menu/Multiplayer/Client" to="." method="_on_client_pressed"]

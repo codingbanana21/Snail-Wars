@@ -58,6 +58,12 @@ func make_map():
 						"node_path":"res://projectiles/super_mine.tscn",
 						"team_color":pixel_color,
 						})
+				elif Globals.map == "g2" and multiplayer.is_server():
+					multiplayer_spawner.spawn({"id":1,
+						"global_position":offset,
+						"node_path":"res://projectiles/spring.tscn",
+						"team_color":pixel_color,
+						})
 				elif multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,

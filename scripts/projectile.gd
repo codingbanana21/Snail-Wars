@@ -26,7 +26,8 @@ extends CharacterBody2D
 @export var teleports_player: bool = false
 @export var effect_by_wind: bool = true
 @export var spawns: Array[String]
-@export var spawn_time = 0.0
+@export var spawn_time: float = 0.0
+@export var flag_number: int = -1
 
 var id: int
 var parent: Player
@@ -140,6 +141,11 @@ func explode(end_explode: bool = false):
 			
 			if players_projectile and life_steel > 0:
 				parent.heal.rpc(int(life_steel * hit_power))
+	
+	if flag_number != -1:
+		for player: Player in get_tree().get_nodes_in_group("Player"):
+			if player.team_number == flag_number:
+				player.die.rpc(true)
 	
 	if players_projectile:
 		parent.bomb.play()

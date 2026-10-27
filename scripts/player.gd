@@ -174,27 +174,28 @@ func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 	hp -= hurt_damage
 	velocity += knockback
 	
-	hp_label.text = str(hp)
-	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
-	hit_text.text = str(hurt_damage)
-	add_child(hit_text)
-	
-	if player_turn_part != 0 and hp < 1:
-		impressive.play()
-	elif player_turn_part != 0:
-		looser.play()
-	else:
-		if randf() >= 0.35:
-			ooff.play()
+	if hurt_damage > 0:
+		hp_label.text = str(hp)
+		var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
+		hit_text.text = str(hurt_damage)
+		add_child(hit_text)
+		
+		if player_turn_part != 0 and hp < 1:
+			impressive.play()
+		elif player_turn_part != 0:
+			looser.play()
 		else:
-			ooff_2.play()
-	
-	if !is_multiplayer_authority(): return
-	
-	if player_turn_part != 0:
-		Mouse.hide()
-		player_turn_part = 4
-		next_player_timer.start(1.0)
+			if randf() >= 0.35:
+				ooff.play()
+			else:
+				ooff_2.play()
+		
+		if !is_multiplayer_authority(): return
+		
+		if player_turn_part != 0:
+			Mouse.hide()
+			player_turn_part = 4
+			next_player_timer.start(1.0)
 
 
 @rpc("any_peer","reliable","call_local")
@@ -208,7 +209,14 @@ func heal(heal_amount: int):
 
 
 @rpc("any_peer","call_local","reliable")
-func die():
+func die(spawn: bool = false):
+	if spawn and is_multiplayer_authority():
+		multiplayer_spawner.spawn({
+			"id": id,
+			"global_position": global_position,
+			"projectile": "res://projectiles/snail.tscn"
+		})
+	
 	dead = true
 	set_physics_process(false)
 	global_position.y = -10000
@@ -222,12 +230,7 @@ func next_player(teams_turns, team_turn):
 			child.queue_free()
 	
 	if hp < 1 and !dead and is_multiplayer_authority():
-		multiplayer_spawner.spawn({
-			"id": id,
-			"global_position": global_position,
-			"projectile": "res://projectiles/snail.tscn"
-		})
-		die.rpc()
+		die.rpc(true)
 	
 	if teams_turns[team_turn] == player_number and team_number == team_turn:
 		player_turn_part = 1
