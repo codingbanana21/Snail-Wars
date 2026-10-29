@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://6kba5togvlgl" path="res://assets/sounds/battleThemeA.mp3" id="2_hstxw"]
 [ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://maps/water.png" id="2_rcqid"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/main_label_theme.tres" id="3_1ajci"]
+[ext_resource type="Shader" uid="uid://c4wgxq1we7anv" path="res://assets/fonts/gradient.gdshader" id="3_8egab"]
 [ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="5_5pajh"]
 [ext_resource type="PackedScene" uid="uid://d13cid3q1ddw8" path="res://scenes/map_button.tscn" id="7_7b55j"]
@@ -19,6 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="14_7b55j"]
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_8egab"]
 [ext_resource type="Texture2D" uid="uid://cd6j10f3xc22c" path="res://assets/images/pumkin_grenade.png" id="16_j7ex8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fo7mc"]
+shader = ExtResource("3_8egab")
+shader_parameter/color_up = Color(0.6509804, 0.79607844, 0.81960785, 1)
+shader_parameter/color_down = Color(0.81960785, 0.6313726, 0.23529412, 1)
 
 [node name="MainMenu" type="Node2D" unique_id=2137944541]
 script = ExtResource("1_flqon")
@@ -36,11 +42,11 @@ autoplay = true
 
 [node name="Background2" type="ColorRect" parent="Menu" unique_id=620597901]
 z_index = -1
+material = SubResource("ShaderMaterial_fo7mc")
 offset_left = -1287.0
 offset_top = -238.0
 offset_right = 1217.0
 offset_bottom = 162.0
-color = Color(0.6007436, 0.75808835, 0.7835647, 0.5411765)
 
 [node name="Water" type="Polygon2D" parent="Menu" unique_id=194337542]
 texture_repeat = 2
