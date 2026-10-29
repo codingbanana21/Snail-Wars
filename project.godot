@@ -37,6 +37,11 @@ window/stretch/scale_mode="integer"
 Player=""
 Map=""
 
+[gui]
+
+theme/custom="uid://cy710muqjabve"
+theme/custom_font="uid://beb0vnnahy1kh"
+
 [input]
 
 attack={

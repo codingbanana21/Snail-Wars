@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://hfqqlcskect6"]
 
-[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="1_a8mxf"]
+[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/main_label_theme.tres" id="1_a8mxf"]
 
 [sub_resource type="Animation" id="Animation_3df7e"]
 length = 0.001

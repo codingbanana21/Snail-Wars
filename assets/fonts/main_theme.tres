@@ -1,0 +1,65 @@
+[gd_resource type="Theme" format=3 uid="uid://cy710muqjabve"]
+
+[ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_gvjhl"]
+[ext_resource type="StyleBox" uid="uid://c1fx71c3uvh0q" path="res://assets/fonts/main_theme_normal.tres" id="2_5qjb8"]
+[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="2_oktg4"]
+[ext_resource type="StyleBox" uid="uid://cxq1swgpn5s88" path="res://assets/fonts/main_theme_pressed.tres" id="3_kfeqf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfeqf"]
+bg_color = Color(0, 0.5058824, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yn8vo"]
+bg_color = Color(0, 1, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8ch2"]
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.24705882, 0.16470589, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/colors/font_hover_color = Color(0, 1, 0, 1)
+Button/colors/font_pressed_color = Color(0, 1, 0, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/fonts/font = ExtResource("1_gvjhl")
+Button/styles/hover = ExtResource("3_kfeqf")
+Button/styles/hover_pressed = ExtResource("2_5qjb8")
+Button/styles/normal = ExtResource("2_5qjb8")
+Button/styles/pressed = ExtResource("3_kfeqf")
+HSlider/icons/grabber = ExtResource("2_oktg4")
+HSlider/icons/grabber_highlight = ExtResource("2_oktg4")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_kfeqf")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_yn8vo")
+HSlider/styles/slider = SubResource("StyleBoxFlat_w8ch2")
+LineEdit/fonts/font = ExtResource("1_gvjhl")
+LineEdit/styles/focus = ExtResource("3_kfeqf")
+LineEdit/styles/normal = ExtResource("2_5qjb8")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dq5pcpy5obcn6" path="res://scripts/Mouse.gd" id="1_ouscy"]
 [ext_resource type="Texture2D" uid="uid://3tydmbpohdgr" path="res://assets/images/cross.png" id="2_xa71f"]
-[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/label_settings.tres" id="3_xa71f"]
+[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/main_label_theme.tres" id="3_xa71f"]
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="4_iog6k"]
 
 [node name="Mouse" type="Node2D" unique_id=444797727]
