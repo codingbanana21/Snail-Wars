@@ -12,7 +12,7 @@ size = Vector2(9.666667, 16)
 [node name="SuperMine" unique_id=791496552 instance=ExtResource("1_mw335")]
 scale = Vector2(1.5, 1.5)
 damage = 300
-size = 50
+size = 45
 knockback = 200
 speed = 0
 min_speed = 0
