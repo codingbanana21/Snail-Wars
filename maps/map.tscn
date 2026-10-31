@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://baxuf5v76y51l"]
 
 [ext_resource type="Script" uid="uid://fcqmls4eg5v3" path="res://scripts/map.gd" id="1_paxxb"]
-[ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://maps/world_tileset.png" id="2_gldc4"]
+[ext_resource type="Texture2D" uid="uid://gtooojic0pkn" path="res://assets/images/world_tileset.png" id="2_gldc4"]
 [ext_resource type="Shader" uid="uid://c4wgxq1we7anv" path="res://assets/fonts/gradient.gdshader" id="3_d6q2c"]
-[ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://maps/water.png" id="3_uwjdf"]
+[ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://assets/images/water.png" id="3_uwjdf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ers5l"]
 texture = ExtResource("2_gldc4")

@@ -156,11 +156,11 @@ func explode(end_explode: bool = false):
 		if teleports_player:
 			parent.global_position = global_position
 		
-		if !Globals.high_fps_mode:
+		if !Globals.high_fps_mode and damage > 0:
 			var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
 			hit_particle.global_position = global_position
 			hit_particle.emitting = true
-			hit_particle.amount = clampi(int(damage), 1, 200)
+			hit_particle.amount = clampi(int(damage), 1, 100)
 			parent.add_child(hit_particle)
 
 

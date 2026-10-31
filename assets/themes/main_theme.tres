@@ -1,9 +1,9 @@
 [gd_resource type="Theme" format=3 uid="uid://cy710muqjabve"]
 
 [ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_gvjhl"]
-[ext_resource type="StyleBox" uid="uid://c1fx71c3uvh0q" path="res://assets/fonts/main_theme_normal.tres" id="2_5qjb8"]
+[ext_resource type="StyleBox" uid="uid://c1fx71c3uvh0q" path="res://assets/themes/main_theme_normal.tres" id="2_5qjb8"]
 [ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="2_oktg4"]
-[ext_resource type="StyleBox" uid="uid://cxq1swgpn5s88" path="res://assets/fonts/main_theme_pressed.tres" id="3_kfeqf"]
+[ext_resource type="StyleBox" uid="uid://cxq1swgpn5s88" path="res://assets/themes/main_theme_pressed.tres" id="3_kfeqf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kfeqf"]
 bg_color = Color(0, 0.5058824, 0, 1)

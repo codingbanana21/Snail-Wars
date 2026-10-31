@@ -7,9 +7,9 @@
 size = Vector2(14, 11)
 
 [node name="Chicken" unique_id=791496552 instance=ExtResource("1_3yjh5")]
-damage = 25
-size = 3
-knockback = 20
+damage = 35
+size = 4
+knockback = 25
 gravity = 300
 spawns = Array[String](["egg"])
 spawn_time = 0.5

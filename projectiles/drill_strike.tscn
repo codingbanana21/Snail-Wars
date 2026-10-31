@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_qlak5"]
 [ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="2_u8o3f"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpgjy"]
+size = Vector2(8, 4)
+
 [node name="DrillStrike" unique_id=791496552 instance=ExtResource("1_qlak5")]
 damage = 10
 size = 3.5
@@ -17,3 +20,6 @@ spawn_at_mouse = true
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_u8o3f")
+
+[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+shape = SubResource("RectangleShape2D_tpgjy")

@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scripts/menu.gd" id="1_flqon"]
 [ext_resource type="AudioStream" uid="uid://6kba5togvlgl" path="res://assets/sounds/battleThemeA.mp3" id="2_hstxw"]
-[ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://maps/water.png" id="2_rcqid"]
-[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/fonts/main_label_theme.tres" id="3_1ajci"]
+[ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://assets/images/water.png" id="2_rcqid"]
+[ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/themes/main_label_theme.tres" id="3_1ajci"]
 [ext_resource type="Shader" uid="uid://c4wgxq1we7anv" path="res://assets/fonts/gradient.gdshader" id="3_8egab"]
 [ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="5_5pajh"]

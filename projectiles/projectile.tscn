@@ -51,7 +51,7 @@ shape = SubResource("RectangleShape2D_7nr1q")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1779728857]
 visible = false
-amount = 5
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_fo7mc")
 
 [node name="ExplosionTimer" type="Timer" parent="." unique_id=1551289240]

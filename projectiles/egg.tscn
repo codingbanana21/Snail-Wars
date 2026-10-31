@@ -8,9 +8,9 @@ radius = 5.0
 height = 12.0
 
 [node name="Egg" unique_id=791496552 instance=ExtResource("1_1jwhj")]
-damage = 25
-size = 3.5
-knockback = 20
+damage = 35
+size = 4
+knockback = 25
 speed = 0
 min_speed = 0
 players_projectile = false

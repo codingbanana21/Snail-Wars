@@ -7,9 +7,9 @@
 radius = 4.1231055
 
 [node name="Bomb" unique_id=791496552 instance=ExtResource("1_8u238")]
-damage = 10
+damage = 8
 size = 3
-knockback = 20
+knockback = 15
 speed = 75
 projectile_hp = 4
 spawns = Array[String](["fragment"])
