@@ -34,6 +34,8 @@ var wind: int = 0
 var teams_weapons: Array[Array]
 var map: String = "1m"
 var explosion_power: float = 1.0
+var map_size_x: float = 1.0
+var map_size_y: float = 1.0
 
 var rng = RandomNumberGenerator.new()
 

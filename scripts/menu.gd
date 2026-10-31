@@ -57,6 +57,8 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		"water_level":1,
 		"water_rise":1,
 		"explosion_power":1,
+		"map_size_x":1.0,
+		"map_size_y":1.0,
 		}):
 	
 	Globals.map = inputs["map"]
@@ -70,6 +72,8 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.water_level = inputs["water_level"]
 		Globals.water_rise = inputs["water_rise"]
 		Globals.explosion_power = inputs["explosion_power"]
+		Globals.map_size_x = inputs["map_size_x"]
+		Globals.map_size_y = inputs["map_size_y"]
 	
 	#team weapon sets
 	Globals.teams_weapons.append_array(Globals.WEAPON_SET.duplicate(true)[teams_weapons])
@@ -153,7 +157,10 @@ func make_server(ip_address):
 				"player_hp":Globals.player_hp,
 				"water_level":Globals.water_level,
 				"water_rise":Globals.water_rise,
-				"explosion_power":Globals.explosion_power})
+				"explosion_power":Globals.explosion_power,
+				"map_size_x":Globals.map_size_x,
+				"map_size_y":Globals.map_size_y,
+				})
 	)
 
 

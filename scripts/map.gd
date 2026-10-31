@@ -41,7 +41,7 @@ func make_map():
 	for y in image.texture.get_width():
 		for x in image.texture.get_height():
 			var pixel_color = data.get_pixel(x,y)
-			var offset: Vector2i = Vector2i(x -128, y -256)
+			var offset: Vector2i = Vector2i(int(x * Globals.map_size_x -128), int(y * Globals.map_size_y -256))
 			
 			if pixel_color == Color(0.0, 1.0, 0.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(4 * rng.randi_range(0,1), 0))
