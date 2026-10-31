@@ -52,13 +52,15 @@ func make_map():
 			elif pixel_color == Color(1.0, 0.0, 1.0, 1.0):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
 			elif pixel_color == Color(1.0, 1.0, 0.0, 1.0):
-				if Globals.map == "g1" and multiplayer.is_server():
+				if !multiplayer.is_server(): continue
+				
+				if Globals.map == "g1":
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/super_mine.tscn",
 						"team_color":pixel_color,
 						})
-				elif Globals.map == "g2" and multiplayer.is_server():
+				elif Globals.map == "g2":
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/spring.tscn",

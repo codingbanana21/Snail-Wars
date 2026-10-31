@@ -259,18 +259,18 @@ label_settings = ExtResource("3_1ajci")
 
 [node name="PlayerHP" type="LineEdit" parent="Menu/Settings" unique_id=774327031]
 unique_name_in_owner = true
-offset_left = -162.0
+offset_left = -210.0
 offset_top = -43.0
-offset_right = -82.0
+offset_right = -130.0
 offset_bottom = -19.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "100"
 
 [node name="PlayerHPLabel" type="Label" parent="Menu/Settings" unique_id=1266939834]
 unique_name_in_owner = true
-offset_left = -189.0
+offset_left = -237.0
 offset_top = -50.0
-offset_right = 87.0
+offset_right = 39.0
 offset_bottom = -34.0
 scale = Vector2(0.5, 0.5)
 text = "Player HP"
@@ -279,18 +279,18 @@ horizontal_alignment = 1
 
 [node name="WaterLevel" type="LineEdit" parent="Menu/Settings" unique_id=1655597267]
 unique_name_in_owner = true
-offset_left = -162.0
+offset_left = -210.0
 offset_top = -8.0
-offset_right = -82.0
+offset_right = -130.0
 offset_bottom = 16.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "0"
 
 [node name="LevelLabel" type="Label" parent="Menu/Settings" unique_id=513843222]
 unique_name_in_owner = true
-offset_left = -189.0
+offset_left = -237.0
 offset_top = -15.0
-offset_right = 87.0
+offset_right = 39.0
 offset_bottom = 1.0
 scale = Vector2(0.5, 0.5)
 text = "Water Level"
@@ -299,21 +299,41 @@ horizontal_alignment = 1
 
 [node name="WaterRise" type="LineEdit" parent="Menu/Settings" unique_id=216585441]
 unique_name_in_owner = true
-offset_left = -162.0
+offset_left = -210.0
 offset_top = 27.0
-offset_right = -82.0
+offset_right = -130.0
 offset_bottom = 51.0
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "5"
 
 [node name="WaterRiseLabel" type="Label" parent="Menu/Settings" unique_id=2110826948]
 unique_name_in_owner = true
-offset_left = -189.0
+offset_left = -237.0
 offset_top = 20.0
-offset_right = 87.0
+offset_right = 39.0
 offset_bottom = 36.0
 scale = Vector2(0.5, 0.5)
 text = "Water Rise Amount"
+label_settings = ExtResource("3_1ajci")
+horizontal_alignment = 1
+
+[node name="ExplosionPower" type="LineEdit" parent="Menu/Settings" unique_id=12197908]
+unique_name_in_owner = true
+offset_left = -106.0
+offset_top = -43.0
+offset_right = -26.0
+offset_bottom = -19.0
+theme_override_fonts/font = ExtResource("4_7b55j")
+text = "1.0"
+
+[node name="ExplosionPowerLabel" type="Label" parent="Menu/Settings" unique_id=1715046951]
+unique_name_in_owner = true
+offset_left = -133.0
+offset_top = -50.0
+offset_right = 143.0
+offset_bottom = -34.0
+scale = Vector2(0.5, 0.5)
+text = "Explosion Power"
 label_settings = ExtResource("3_1ajci")
 horizontal_alignment = 1
 

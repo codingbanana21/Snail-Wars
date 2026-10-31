@@ -16,6 +16,7 @@ extends Node2D
 @onready var player_hp: LineEdit = %PlayerHP
 @onready var water_level: LineEdit = %WaterLevel
 @onready var water_rise: LineEdit = %WaterRise
+@onready var explosion_power: LineEdit = %ExplosionPower
 
 const SERVER_PORT = 3100
 const CONNECT_TIMEOUT: float = 5.0
@@ -44,6 +45,7 @@ func _process(_delta: float) -> void:
 		Globals.player_hp = int(player_hp.text)
 		Globals.water_level = -int(water_level.text)
 		Globals.water_rise = -int(water_rise.text)
+		Globals.explosion_power = float(explosion_power.text)
 
 
 func make_map(inputs: Dictionary = {"multiplayer":false,
@@ -53,11 +55,13 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		"number_of_teams":1,
 		"player_hp":1,
 		"water_level":1,
-		"water_rise":1
+		"water_rise":1,
+		"explosion_power":1,
 		}):
 	
 	Globals.map = inputs["map"]
 	
+	#set variables for multiplayer
 	if inputs["multiplayer"]:
 		Globals.players_in_team = inputs["players_in_team"]
 		teams_weapons = inputs["teams_weapons"]
@@ -65,6 +69,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.player_hp = inputs["player_hp"]
 		Globals.water_level = inputs["water_level"]
 		Globals.water_rise = inputs["water_rise"]
+		Globals.explosion_power = inputs["explosion_power"]
 	
 	#team weapon sets
 	Globals.teams_weapons.append_array(Globals.WEAPON_SET.duplicate(true)[teams_weapons])
@@ -147,7 +152,8 @@ func make_server(ip_address):
 				"number_of_teams":Globals.number_of_teams,
 				"player_hp":Globals.player_hp,
 				"water_level":Globals.water_level,
-				"water_rise":Globals.water_rise})
+				"water_rise":Globals.water_rise,
+				"explosion_power":Globals.explosion_power})
 	)
 
 
