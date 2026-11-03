@@ -147,7 +147,7 @@ func _physics_process(delta: float) -> void:
 			var fall_damage = (temp_velocity.y - 750) / 50.0
 			hit(fall_damage)
 			
-			if !Globals.high_fps_mode:
+			if Globals.high_graphics:
 				Mouse.shake.rpc(fall_damage / 4.0)
 		velocity.x *= 0.75
 	else:

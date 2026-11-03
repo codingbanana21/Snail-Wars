@@ -14,7 +14,9 @@ knockback = 10
 speed = 0
 min_speed = 0
 projectile_hp = 3
+camera_follow = false
 players_projectile = false
+end_player_turn = false
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_h2h75")

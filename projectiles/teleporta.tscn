@@ -10,7 +10,8 @@ radius = 5.0
 damage = 25
 size = 3.5
 knockback = 20
-gravity = 300
+gravity = 250
+effect_by_wind = false
 teleports_player = true
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

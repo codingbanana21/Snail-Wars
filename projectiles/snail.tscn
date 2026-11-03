@@ -8,14 +8,15 @@ radius = 7.566373
 
 [node name="Snail" unique_id=791496552 instance=ExtResource("1_3a5e7")]
 damage = 30
-size = 3.5
 knockback = 10
 speed = 0
 min_speed = 0
 timer = 1.0
 bounce = true
-players_projectile = false
 effect_by_wind = false
+camera_follow = false
+players_projectile = false
+end_player_turn = false
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 rotation = -1.5707964
