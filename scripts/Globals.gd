@@ -6,12 +6,13 @@ const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket"
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.5
 const WEAPON_SET: Array[Array] = [
-	[[-1,-1,2,3,1,1,1,3,2,1,1,0,1,1,0]],
+	[[-1,-1,2,5,1,1,1,4,2,3,0,0,2,1,0]],
 	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
-	[[-1,-1,3,5,0,0,2,4,3,2,0,1,0,3,0]],
-	[[-1,-1,0,0,0,0,0,0,0,-1,-1,-1,-1,0,-1]]
+	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+	[[-1,-1,3,5,0,0,2,4,3,3,0,1,0,3,0]],
+	[[-1,-1,3,5,1,1,2,4,3,3,1,2,3,3,1]],
 	]
-const WEAPON_SET_NAMES: Array = ["Original","All","No Air","Seasons"]
+const WEAPON_SET_NAMES: Array = ["Original","All","One of everthing","No Air","Crazy"]
 
 #save data
 var save_data: SaveDataResource = SaveDataResource.new()
