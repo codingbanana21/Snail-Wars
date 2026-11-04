@@ -10,8 +10,8 @@ radius = 4.1231055
 damage = 8
 size = 3
 knockback = 15
-speed = 75
 projectile_hp = 4
+speed = 75
 spawns = Array[String](["fragment"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

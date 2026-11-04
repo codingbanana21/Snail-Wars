@@ -8,30 +8,35 @@ extends CharacterBody2D
 @onready var spawn_timer: Timer = $SpawnTimer
 @onready var hit_timer: Timer = $HitTimer
 
-#projectile stats
+#projectile states
+@export_group("Hit")
 @export var damage: int = 45
 @export var size: int = 5
 @export var knockback: int = 40
-@export var life_steel: int = 0
+@export var projectile_hp: int = 1
+@export var hit_stun_time: float = 0.0
+
+@export_group("Movement")
 @export var speed: int = 60
 @export var min_speed: int = 60
 @export var gravity: int = 400
-@export var projectile_hp: int = 1
-@export var hit_stun_time: float = 0.0
-@export var timer: float = 3.0
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var effect_by_wind: bool = true
+
+@export_group("Other")
+@export var timer: float = 3.0
+@export var flag_number: int = -1
 @export var particles: bool = true
 @export var camera_follow: bool = true
 
-#player projectile stats
+@export_group("Player")
 @export var players_projectile: bool = true
+@export var life_steel: int = 0
 @export var end_player_turn: bool = true
 @export var teleports_player: bool = false
-@export var spawns: Array[String]
 @export var spawn_time: float = 0.0
-@export var flag_number: int = -1
+@export var spawns: Array[String]
 
 var id: int
 var parent: Player

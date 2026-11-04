@@ -12,8 +12,9 @@ size = 9.0
 knockback = 80
 speed = 0
 min_speed = 0
-timer = 1.0
+bounce = true
 effect_by_wind = false
+timer = 1.0
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_2v8i0")
