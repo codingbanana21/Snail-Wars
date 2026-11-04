@@ -5,6 +5,7 @@ extends Node2D
 @onready var menu: Node2D = $Menu
 @onready var ip: LineEdit = %IP
 @onready var ip_check_box: CheckBox = %IPCheckBox
+@onready var file_dialog: FileDialog = %FileDialog
 
 #map settings
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
@@ -224,4 +225,12 @@ func _on_online_server_pressed() -> void:
 
 
 func _on_map_button_make_map(map: Variant) -> void:
-	make_map({"multiplayer":false,"map":map})
+	if map == "c":
+		file_dialog.show()
+		file_dialog.file_selected.connect(
+			func(path):
+			print(path)
+			make_map({"multiplayer":false,"map":path})
+		)
+	else:
+		make_map({"multiplayer":false,"map":"res://maps/map_"+map+".png"})

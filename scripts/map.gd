@@ -20,7 +20,12 @@ func _ready() -> void:
 		else:
 			remote_id = 1
 	
-	image.texture = load("res://maps/map_"+Globals.map+".png") 
+	var img := Image.load_from_file(Globals.map)
+	if img == null or img.is_empty():
+		push_error("Couldn't load image: " + Globals.map)
+		return
+	
+	image.texture = ImageTexture.create_from_image(img) 
 	make_map()
 
 
