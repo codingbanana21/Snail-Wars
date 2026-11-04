@@ -22,9 +22,6 @@ func _ready() -> void:
 	
 	image.texture = load("res://maps/map_"+Globals.map+".png") 
 	make_map()
-	
-	Globals.team_turn = randi_range(0, Globals.number_of_teams)
-	Globals.teams_turns[Globals.team_turn - 1] = randi_range(0, Globals.players_in_team)
 
 
 func _process(_delta: float) -> void:
@@ -34,9 +31,9 @@ func _process(_delta: float) -> void:
 
 func make_map():
 	var data = image.get_texture().get_image()
-	var player_number: int = 0
 	var team_colors: Array[Color]
 	var teams: Array[int]
+	var player_number: int = 0
 	
 	for y in image.texture.get_width():
 		for x in image.texture.get_height():
@@ -80,15 +77,12 @@ func make_map():
 					
 					team_colors.append(pixel_color)
 					teams.append(-1)
-					Globals.teams_turns.append(0)
-					Globals.alive_in_teams.append(0)
 				
 				var team_number: int = team_colors.find(pixel_color)
 				
 				if teams[team_number] >= Globals.players_in_team - 1:
 					continue
 				
-				Globals.alive_in_teams[team_number] += 1
 				teams[team_number] += 1
 				player_number = teams[team_number]
 				

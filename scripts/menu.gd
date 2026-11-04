@@ -82,6 +82,16 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
+	var temp_array: Array
+	
+	for x in range(Globals.players_in_team):
+		temp_array.append(true)
+	
+	for y in range(Globals.number_of_teams):
+		Globals.alive_players.append(temp_array.duplicate())
+	
+	#Globals.turn = Vector2i(randi_range(0, Globals.number_of_teams), randi_range(0, Globals.players_in_team))
+	
 	menu.hide()
 	Mouse.ui.show()
 	var map_file = preload("res://maps/map.tscn").instantiate()

@@ -51,10 +51,15 @@ func _ready() -> void:
 	team_label.text = "Team "+str(team_number)
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
+	
+	print(team_number, player_number)
 
 
 func _process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
+	
+	if hp < 1 and !dead:
+		die.rpc(true)
 	
 	if global_position.y >= Globals.water_level:
 		die.rpc(false)
@@ -213,7 +218,7 @@ func die(spawn: bool = false):
 			"projectile": "res://projectiles/snail.tscn"
 		})
 	
-	Globals.alive_in_teams[team_number] -= 1
+	Globals.alive_players[team_number][player_number] = false
 	
 	if player_turn_part != 0:
 		Globals.next_player.rpc()
@@ -225,20 +230,15 @@ func die(spawn: bool = false):
 
 
 @rpc("any_peer", "call_local", "reliable")
-func next_player(teams_turns, team_turn):
+func next_player(turn):
 	#remove particles
 	for child: Node in get_children():
 		if child is GPUParticles2D:
 			child.queue_free()
 	
-	if hp < 1 and !dead and is_multiplayer_authority():
-		die.rpc(true)
-	elif teams_turns[team_turn] == player_number and team_number == team_turn:
-		if dead:
-			Globals.next_player(true)
-		else:
-			player_turn_part = 1
-			Mouse.global_position = global_position
+	if turn.x == team_number and turn.y == player_number:
+		player_turn_part = 1
+		Mouse.global_position = global_position
 
 
 func _on_next_player_timer_timeout() -> void:

@@ -21,11 +21,10 @@ var saved_ip_address: String
 var high_graphics: bool = true
 
 #teams
-var teams_turns: Array[int]
-var team_turn: int = -1
-var alive_in_teams: Array[int]
 var players_in_team: int
 var number_of_teams: int
+var alive_players: Array[Array]
+var turn: Vector2i = Vector2i.ZERO
 
 #settings
 var player_hp: int
@@ -57,16 +56,27 @@ func next_player(skip_player: bool = false):
 	
 	if !multiplayer.is_server(): return
 	
-	if !skip_player:
-		team_turn = (team_turn + 1) % number_of_teams
+	turn.x += 1
+	if turn.x >= number_of_teams:
+		turn.x = 0
 		
-		while alive_in_teams[team_turn] == 0:
-			team_turn = (team_turn + 1) % number_of_teams
+		turn.y += 1
+		if turn.y >= players_in_team:
+			turn.y = 0
+	var temp_turn: Vector2i = turn
 	
-	teams_turns[team_turn] = (teams_turns[team_turn] + 1) % players_in_team
+	while alive_players[turn.x][turn.y] == false:
+		turn.y += 1
+		if turn.y >= players_in_team:
+			turn.y = 0
+		
+		if turn.y == temp_turn.y:
+			turn.x += 1
+			if turn.x >= number_of_teams:
+				turn.x = 0
 	
 	for player: Player in get_tree().get_nodes_in_group("Player"):
-		player.next_player.rpc(teams_turns, team_turn)
+		player.next_player.rpc(turn)
 
 
 func save_game(force_save: bool = false):
