@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b6xq62iwa8ut1"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_y44nj"]
+[ext_resource type="Texture2D" uid="uid://daignqypyvx5m" path="res://assets/images/air_strike.png" id="2_0vh5p"]
 
 [node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
 damage = 55
@@ -11,3 +12,6 @@ min_speed = 300
 gravity = 250
 spawn_at_mouse = true
 timer = 5.0
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_0vh5p")

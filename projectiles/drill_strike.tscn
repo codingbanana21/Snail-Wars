@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cg3b8gda2b1sh"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_qlak5"]
-[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="2_u8o3f"]
+[ext_resource type="Texture2D" uid="uid://yl7vun0yvpj" path="res://assets/images/drill_strike.png" id="2_u8o3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpgjy"]
 size = Vector2(6, 4)
