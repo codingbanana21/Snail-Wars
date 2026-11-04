@@ -19,7 +19,7 @@ func _ready() -> void:
 	ui.hide()
 	
 	for x in range(4):
-		for y in range(4):
+		for y in range(5):
 			var new_weapon_button: WeaponButton = load("res://scenes/weapon_button.tscn").instantiate()
 			var sprite_weapon: int = y * 4 + x
 			

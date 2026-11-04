@@ -4,20 +4,20 @@
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="2_6ecwi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ecwi"]
-size = Vector2(8, 16)
+size = Vector2(8, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoaoa"]
-size = Vector2(8, 20)
+size = Vector2(7, 14)
 
 [node name="Spring" unique_id=791496552 instance=ExtResource("1_wuu3o")]
 damage = 0
 size = 1
 knockback = 75
+projectile_hp = -1
 speed = 0
 min_speed = 0
-projectile_hp = -1
-timer = 0.0
 effect_by_wind = false
+timer = 0.0
 particles = false
 camera_follow = false
 players_projectile = false
@@ -36,5 +36,5 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
-position = Vector2(-3, 0)
+position = Vector2(-2.5, 0)
 shape = SubResource("RectangleShape2D_hoaoa")

@@ -83,7 +83,7 @@ func _process(delta: float) -> void:
 	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
 	
 	if player_turn_part == 1 and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
-		if Input.is_action_pressed("attack") and Globals.teams_weapons[team_number][weapon] != 0:
+		if Input.is_action_pressed("attack"):
 			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 			shot_bar.value = projectile_speed
 			projectile_speed += 8.0 * delta
@@ -98,10 +98,7 @@ func _process(delta: float) -> void:
 			Input.action_release("attack")
 			Globals.teams_weapons[team_number][weapon] -= 1
 			projectile_speed = 0.0
-			player_turn_part = 2
 			shot_bar.value = 0
-			Mouse.hide()
-			
 
 
 func _physics_process(delta: float) -> void:
@@ -157,6 +154,11 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	new_projectile.global_position = inputs["global_position"]
 	new_projectile.look_at(Mouse.global_position)
 	new_projectile.speed *= int(projectile_speed)
+	
+	if new_projectile.end_player_turn:
+		player_turn_part = 2
+		Mouse.hide()
+	
 	return new_projectile
 
 
