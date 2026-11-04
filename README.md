@@ -5,7 +5,7 @@ A game made in Godot about snails using weapons to destroy each other.
 Controls:
 WASD or arrow keys to move.
 Left mouse button to shot.
-Scroll or Q and R or page up and page down or scroll wheel to change weapon.
+Chanage weapons with right click then select the weapon.
 Mouse to move the camera.
 
 The link to the assests I used:

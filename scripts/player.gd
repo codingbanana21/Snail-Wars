@@ -51,8 +51,6 @@ func _ready() -> void:
 	team_label.text = "Team "+str(team_number)
 	team_label.modulate = team_color
 	hp_label.modulate = team_color
-	
-	print(team_number, player_number)
 
 
 func _process(delta: float) -> void:
@@ -81,24 +79,16 @@ func _process(delta: float) -> void:
 		player_turn_part = 4
 		next_player_timer.start(0.1)
 	
-	if player_turn_part == 1:
+	weapon = Mouse.weapon
+	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
+	
+	if player_turn_part == 1 and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
 		if Input.is_action_pressed("attack") and Globals.teams_weapons[team_number][weapon] != 0:
 			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 			shot_bar.value = projectile_speed
 			projectile_speed += 8.0 * delta
-		else:
-			if Input.is_action_just_pressed("next_weapon"):
-				weapon += 1
-			elif Input.is_action_just_pressed("last_weapon"):
-				weapon -= 1
-				if weapon < 0:
-					weapon = 14
-			
-			weapon %= 15
-			Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
-			Mouse.weapon = weapon
 		
-		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0) and Globals.teams_weapons[team_number][weapon] != 0:
+		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0):
 			multiplayer_spawner.spawn({
 				"id": id,
 				"global_position": global_position,

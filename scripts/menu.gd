@@ -90,7 +90,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	for y in range(Globals.number_of_teams):
 		Globals.alive_players.append(temp_array.duplicate())
 	
-	#Globals.turn = Vector2i(randi_range(0, Globals.number_of_teams), randi_range(0, Globals.players_in_team))
+	Globals.turn = Vector2i(randi_range(0, Globals.number_of_teams -1 ), randi_range(0, Globals.players_in_team -1))
 	
 	menu.hide()
 	Mouse.ui.show()

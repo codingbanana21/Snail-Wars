@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dfpfjh5w5t5wp"]
+
+[ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="1_cqxos"]
+[ext_resource type="Script" uid="uid://eks4nwg0odgf" path="res://scenes/weapon_button.gd" id="2_xeo6w"]
+
+[node name="WeaponButton" type="Button" unique_id=167998217]
+z_index = 1
+icon = ExtResource("1_cqxos")
+script = ExtResource("2_xeo6w")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

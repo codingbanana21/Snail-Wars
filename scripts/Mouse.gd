@@ -10,8 +10,8 @@ extends Node2D
 var moving: bool = false
 var shake_amount: float = 0.0
 var weapon_amount: int
-var weapon: int
-var ecs_mode: int = 0
+var weapon: int = 0
+var mouse_mode: int = 0
 
 
 func _ready() -> void:
@@ -20,19 +20,20 @@ func _ready() -> void:
 	
 	for x in range(4):
 		for y in range(4):
-			var new_sprite = Sprite2D.new()
+			var new_weapon_button: WeaponButton = load("res://scenes/weapon_button.tscn").instantiate()
 			var sprite_weapon: int = y * 4 + x
 			
 			if sprite_weapon >= len(Globals.WEAPONS):
 				continue
 			
-			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png"):
-				new_sprite.texture = load("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png")
-			else:
-				new_sprite.texture = load("res://assets/images/rocket.png")
+			new_weapon_button.weapon = sprite_weapon
+			new_weapon_button.change_weapon.connect(change_weapon)
 			
-			new_sprite.global_position = Vector2(512 + x * 18, 256 + y * 18)
-			ui.add_child(new_sprite)
+			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png"):
+				new_weapon_button.icon = load("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png")
+			
+			new_weapon_button.global_position = Vector2(512 + x * 20, 256 + y * 20)
+			ui.add_child(new_weapon_button)
 
 
 func _process(_delta: float) -> void:
@@ -56,12 +57,16 @@ func _process(_delta: float) -> void:
 		camera_2d.offset = Vector2.ZERO
 	
 	if Input.is_action_just_pressed("esc"):
-		if ecs_mode == 1:
+		if mouse_mode == 0:
 			get_tree().quit()
 		else:
-			ecs_mode = 1
+			mouse_mode = 0
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			hide()
+
+
+func change_weapon(new_weapon: int):
+	weapon = new_weapon
 
 
 func _input(event: InputEvent) -> void:
@@ -71,9 +76,14 @@ func _input(event: InputEvent) -> void:
 	else:
 		moving = false
 		if Input.is_action_just_pressed("mouse_lock"):
-			ecs_mode = 0
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			show()
+			if mouse_mode != 1:
+				mouse_mode = 1
+				Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+				show()
+			else:
+				mouse_mode = 2
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				hide()
 
 
 @rpc("any_peer","reliable","call_local")
