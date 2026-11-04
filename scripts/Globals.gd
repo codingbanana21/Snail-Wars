@@ -23,6 +23,7 @@ var high_graphics: bool = true
 #teams
 var teams_turns: Array[int]
 var team_turn: int = -1
+var alive_in_teams: Array[int]
 var players_in_team: int
 var number_of_teams: int
 
@@ -48,16 +49,19 @@ func _ready() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(skip_player: bool = false):
+	Mouse.show()
+	
 	if !skip_player:
 		wind = rng.randi_range(-4,4)
 		water_level += water_rise
 	
 	if !multiplayer.is_server(): return
 	
-	Mouse.show()
-	
 	if !skip_player:
 		team_turn = (team_turn + 1) % number_of_teams
+		
+		while alive_in_teams[team_turn] == 0:
+			team_turn = (team_turn + 1) % number_of_teams
 	
 	teams_turns[team_turn] = (teams_turns[team_turn] + 1) % players_in_team
 	

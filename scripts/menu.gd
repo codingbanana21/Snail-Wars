@@ -77,7 +77,6 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	
 	#team weapon sets
 	Globals.teams_weapons.append_array(Globals.WEAPON_SET.duplicate(true)[teams_weapons])
-	
 	for i in range(Globals.number_of_teams -1):
 		Globals.teams_weapons.append([])
 		for k in range(len(Globals.teams_weapons[0])):

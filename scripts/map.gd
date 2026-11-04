@@ -54,6 +54,7 @@ func make_map():
 			elif pixel_color == Color(1.0, 1.0, 0.0, 1.0):
 				if !multiplayer.is_server(): continue
 				
+				#spawn mines and stuff
 				if Globals.map == "g1":
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
@@ -80,12 +81,14 @@ func make_map():
 					team_colors.append(pixel_color)
 					teams.append(-1)
 					Globals.teams_turns.append(0)
+					Globals.alive_in_teams.append(0)
 				
 				var team_number: int = team_colors.find(pixel_color)
 				
 				if teams[team_number] >= Globals.players_in_team - 1:
 					continue
 				
+				Globals.alive_in_teams[team_number] += 1
 				teams[team_number] += 1
 				player_number = teams[team_number]
 				

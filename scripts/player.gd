@@ -17,9 +17,6 @@ extends CharacterBody2D
 @onready var impressive: AudioStreamPlayer = $Impressive
 @onready var bomb: AudioStreamPlayer = $Bomb
 
-@export var player_number: int = 0
-@export var team_number: int = 0
-
 const SPEED: int = 4
 const JUMP: Vector2 = Vector2(120, -300)
 const BACK_JUMP: Vector2 = Vector2(-50, -400)
@@ -28,6 +25,8 @@ const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nic
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Same","Super","The","Just","I am"]
 
 var id: int
+var player_number: int = 0
+var team_number: int = 0
 var rng = RandomNumberGenerator.new()
 var projectile_speed: float = 0.0
 var hp: int = 100
@@ -57,11 +56,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
-	# skip dead player
-	if (dead or global_position.y >= Globals.water_level) and player_turn_part != 0:
-		player_turn_part = 0
-		hp = 0
-		Globals.next_player.rpc(true)
+	if global_position.y >= Globals.water_level:
+		die.rpc(false)
 		return
 	
 	if player_turn_part == 0 or player_turn_part == 4:
@@ -217,6 +213,12 @@ func die(spawn: bool = false):
 			"projectile": "res://projectiles/snail.tscn"
 		})
 	
+	Globals.alive_in_teams[team_number] -= 1
+	
+	if player_turn_part != 0:
+		Globals.next_player.rpc()
+	
+	player_turn_part = 0
 	dead = true
 	set_physics_process(false)
 	global_position.y = -10000
@@ -231,11 +233,11 @@ func next_player(teams_turns, team_turn):
 	
 	if hp < 1 and !dead and is_multiplayer_authority():
 		die.rpc(true)
-	
-	if teams_turns[team_turn] == player_number and team_number == team_turn:
-		player_turn_part = 1
-		
-		if !dead:
+	elif teams_turns[team_turn] == player_number and team_number == team_turn:
+		if dead:
+			Globals.next_player(true)
+		else:
+			player_turn_part = 1
 			Mouse.global_position = global_position
 
 
