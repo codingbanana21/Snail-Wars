@@ -24,6 +24,7 @@ var high_graphics: bool = true
 var players_in_team: int
 var number_of_teams: int
 var alive_players: Array[Array]
+var team_turns: Array[int]
 var turn: Vector2i = Vector2i.ZERO
 
 #settings
@@ -56,7 +57,11 @@ func next_player(skip_player: bool = false):
 	
 	if !multiplayer.is_server(): return
 	
+	turn.y = team_turns[turn.x]
+	#print(team_turns)
+	#print(turn.x)
 	turn.x += 1
+	
 	if turn.x >= number_of_teams:
 		turn.x = 0
 		
@@ -64,6 +69,8 @@ func next_player(skip_player: bool = false):
 		if turn.y >= players_in_team:
 			turn.y = 0
 	var temp_turn: Vector2i = turn
+	
+	team_turns[turn.x] = turn.y
 	
 	while alive_players[turn.x][turn.y] == false:
 		turn.y += 1
