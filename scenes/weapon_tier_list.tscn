@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="1_8tgcj"]
 [ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="2_a86gk"]
-[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill.png" id="3_p0c8s"]
+[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill_rocket.png" id="3_p0c8s"]
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="4_tfcsd"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="5_ic8ko"]
 [ext_resource type="Texture2D" uid="uid://daignqypyvx5m" path="res://assets/images/air_strike.png" id="6_p5k33"]
@@ -10,12 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="8_kqyj4"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="9_oih76"]
 [ext_resource type="Texture2D" uid="uid://cd6j10f3xc22c" path="res://assets/images/pumkin_grenade.png" id="10_1jwd0"]
-[ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="11_v1wdc"]
+[ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present_strike.png" id="11_v1wdc"]
 [ext_resource type="Texture2D" uid="uid://d7rmm3hgmhlx" path="res://assets/images/cake_tnt.png" id="12_85va0"]
-[ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/leaf.png" id="13_2cxr1"]
+[ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/healing_leaf.png" id="13_2cxr1"]
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="14_53epr"]
 [ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_chrismas.png" id="15_gjupt"]
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_40fht"]
+[ext_resource type="Texture2D" uid="uid://4amp0cn08tly" path="res://assets/images/pan.png" id="17_1luql"]
+[ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="18_jppr5"]
+[ext_resource type="Texture2D" uid="uid://dicpprurh2or3" path="res://assets/images/blow_torch.png" id="19_oyhex"]
 
 [node name="Node2D" type="Node2D" unique_id=933490339]
 
@@ -164,3 +167,15 @@ texture = ExtResource("15_gjupt")
 [node name="Spring" type="Sprite2D" parent="." unique_id=1484725089]
 position = Vector2(115, 139)
 texture = ExtResource("16_40fht")
+
+[node name="Pan" type="Sprite2D" parent="." unique_id=187238098]
+position = Vector2(109, 181)
+texture = ExtResource("17_1luql")
+
+[node name="PickHammer" type="Sprite2D" parent="." unique_id=1189850938]
+position = Vector2(141, 138)
+texture = ExtResource("18_jppr5")
+
+[node name="BlowTorch" type="Sprite2D" parent="." unique_id=2019101113]
+position = Vector2(170, 66)
+texture = ExtResource("19_oyhex")

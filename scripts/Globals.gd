@@ -1,16 +1,24 @@
 extends Node2D
 
 #const
-const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf","chicken","father_chrismas","spring","pan"]
-const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present Strike","Cake TNT","Healing Leaf","Chicken","Father Chrismas","Spring","The Pan"]
+const WEAPONS: Array[String] = ["rocket","grenade","bomb","drill_rocket",
+	"pumkin_grenade","healing_leaf","bullet","pan",
+	"air_strike","drill_strike","present_strike","chicken",
+	"father_chrismas","tnt","cake_tnt","teleporta",
+	"spring","pick_hammer","blow_torch"]
+const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Bomb","Drill Rocket",
+	"Pumkin Grenade","Healing Leaf","Gun","The Pan",
+	"Air Strike","Drill Strike","Present Strike","Chicken",
+	"Father Chrismas","TNT","Cake TNT","Teleporta",
+	"Spring","Pick Hammer","Blow Torch"]
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.5
 const WEAPON_SET: Array[Array] = [
-	[[-1,-1,2,5,1,1,1,4,2,3,0,0,2,1,0,1,2]],
-	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
-	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-	[[-1,-1,3,5,0,0,2,4,3,3,0,1,0,2,0,2,3]],
-	[[-1,-1,3,5,1,1,2,4,3,3,1,2,3,3,1,3,4]],
+	[[-1,-1,5,2,2,1,3,2,1,1,0,1,0,1,0,2,2,2,3]],
+	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
+	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+	[[-1,-1,5,3,3,0,4,3,0,0,0,2,0,2,1,3,3,0,0]],
+	[[-1,-1,5,3,3,2,4,3,1,1,1,2,1,2,1,3,3,2,3]],
 	]
 const WEAPON_SET_NAMES: Array = ["Original","All","One of everthing","No Air","Crazy"]
 

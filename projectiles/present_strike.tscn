@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5s70cvfixvep"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_s7eb1"]
-[ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="2_hm0fc"]
+[ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present_strike.png" id="2_hm0fc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j484f"]
 size = Vector2(12, 11)

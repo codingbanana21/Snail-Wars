@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://coh6qeray0ti0"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_ogm8m"]
+[ext_resource type="Texture2D" uid="uid://dicpprurh2or3" path="res://assets/images/blow_torch.png" id="2_asiny"]
+
+[node name="BlowTorch" unique_id=791496552 instance=ExtResource("1_ogm8m")]
+damage = 0
+size = 2
+knockback = 0
+projectile_hp = -1
+speed = 5
+min_speed = 30
+gravity = 0
+effect_by_wind = false
+teleports_player = true
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_asiny")

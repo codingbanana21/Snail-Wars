@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bug2waxs7ycy8"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_acmeg"]
-[ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/leaf.png" id="2_3yxug"]
+[ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/healing_leaf.png" id="2_3yxug"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8hw32"]
 radius = 5.0

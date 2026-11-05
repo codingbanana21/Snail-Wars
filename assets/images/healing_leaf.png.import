@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x4hcewvk3glh"
-path="res://.godot/imported/drill.png-dec36bf2c3b4b7ded6545f1ce7050eae.ctex"
+uid="uid://ffe73y1go1j4"
+path="res://.godot/imported/healing_leaf.png-e0bc104ea229b07a571013a57ccf0697.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/drill.png"
-dest_files=["res://.godot/imported/drill.png-dec36bf2c3b4b7ded6545f1ce7050eae.ctex"]
+source_file="res://assets/images/healing_leaf.png"
+dest_files=["res://.godot/imported/healing_leaf.png-e0bc104ea229b07a571013a57ccf0697.ctex"]
 
 [params]
 

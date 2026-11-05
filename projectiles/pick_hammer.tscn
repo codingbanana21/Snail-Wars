@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://6okausect43i"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_75yps"]
+[ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="2_gg673"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snta2"]
+size = Vector2(6, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gg673"]
+size = Vector2(12, 4)
+
+[node name="PickHammer" unique_id=791496552 instance=ExtResource("1_75yps")]
+damage = 0
+size = 3
+knockback = 0
+projectile_hp = 11
+hit_stun_time = 0.25
+speed = 0
+min_speed = 0
+effect_by_wind = false
+timer = 5.0
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+rotation = -1.5707964
+texture = ExtResource("2_gg673")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=679883136]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_snta2")
+
+[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_gg673")
