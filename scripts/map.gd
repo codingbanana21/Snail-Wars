@@ -4,7 +4,6 @@ extends Node2D
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
-@onready var water: Polygon2D = $Water
 
 var remote_id: int
 var rng = RandomNumberGenerator.new()
@@ -27,11 +26,6 @@ func _ready() -> void:
 	
 	image.texture = ImageTexture.create_from_image(img) 
 	make_map()
-
-
-func _process(_delta: float) -> void:
-	water.global_position.y = Globals.water_level + cos(Engine.get_physics_frames() / 100.0) * 20
-	water.global_position.x = sin(Engine.get_physics_frames() / 100.0) * 50
 
 
 func make_map():

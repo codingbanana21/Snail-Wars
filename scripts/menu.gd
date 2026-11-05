@@ -2,7 +2,8 @@ class_name MainMenu
 extends Node2D
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
-@onready var menu: Node2D = $Menu
+@onready var menu: CanvasLayer = $Menu
+@onready var water: Polygon2D = $Water
 @onready var ip: LineEdit = %IP
 @onready var ip_check_box: CheckBox = %IPCheckBox
 @onready var file_dialog: FileDialog = %FileDialog
@@ -33,7 +34,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if menu.is_visible_in_tree():
+	water.global_position.y = Globals.water_level + cos(Engine.get_physics_frames() / 100.0) * 20
+	water.global_position.x = sin(Engine.get_physics_frames() / 100.0) * 50
+	
+	if menu.visible:
 		per_team_label.text = str(int(per_team_h_slider.value)) + " Players Per Team"
 		Globals.players_in_team = int(per_team_h_slider.value)
 		
