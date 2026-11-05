@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://daignqypyvx5m" path="res://assets/images/air_strike.png" id="2_0vh5p"]
 
 [node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
-damage = 55
+damage = 60
 size = 6
 knockback = 50
 speed = 0

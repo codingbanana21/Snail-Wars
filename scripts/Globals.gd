@@ -1,16 +1,16 @@
 extends Node2D
 
 #const
-const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf","chicken","father_chrismas","spring"]
-const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present Strike","Cake TNT","Healing Leaf","Chicken","Father Chrismas","Spring"]
+const WEAPONS: Array[String] = ["rocket","grenade","drill","bomb","air_strike","drill_strike","tnt","bullet","teleporta","pumkin_grenade","present","cake_tnt","leaf","chicken","father_chrismas","spring","pan"]
+const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Drill Rocket","Bomb","Air Strike","Drill Strike","TNT","Gun","Teleporta","Pumkin Grenade","Present Strike","Cake TNT","Healing Leaf","Chicken","Father Chrismas","Spring","The Pan"]
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.5
 const WEAPON_SET: Array[Array] = [
-	[[-1,-1,2,5,1,1,1,4,2,3,0,0,2,1,0,1]],
-	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
-	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-	[[-1,-1,3,5,0,0,2,4,3,3,0,1,0,2,0,2]],
-	[[-1,-1,3,5,1,1,2,4,3,3,1,2,3,3,1,3]],
+	[[-1,-1,2,5,1,1,1,4,2,3,0,0,2,1,0,1,2]],
+	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
+	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+	[[-1,-1,3,5,0,0,2,4,3,3,0,1,0,2,0,2,3]],
+	[[-1,-1,3,5,1,1,2,4,3,3,1,2,3,3,1,3,4]],
 	]
 const WEAPON_SET_NAMES: Array = ["Original","All","One of everthing","No Air","Crazy"]
 
@@ -32,7 +32,7 @@ var player_hp: int
 var water_level: int
 var water_rise: int
 var is_multiplayer: bool = false
-var wind: int = 0
+var wind: float = 0.0
 var teams_weapons: Array[Array]
 var map: String = "1m"
 var explosion_power: float = 1.0
@@ -52,7 +52,7 @@ func next_player(skip_player: bool = false):
 	Mouse.show()
 	
 	if !skip_player:
-		wind = rng.randi_range(-4,4)
+		wind = snapped(rng.randf_range(-5.0, 5.0), 0.5)
 		water_level += water_rise
 	
 	if !multiplayer.is_server(): return

@@ -7,12 +7,10 @@
 damage = 0
 size = 0
 knockback = 0
-speed = 0
-min_speed = 500
 gravity = 250
 effect_by_wind = false
 spawn_time = 0.35
-spawns = Array[String](["chrismas_present"])
+spawns = Array[String](["pumkin_grenade", "teleporta", "tnt", "spring", "mine", "chicken"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_2nj0q")

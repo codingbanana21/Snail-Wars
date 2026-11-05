@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	if !hit_timer.is_stopped(): return
 	
 	velocity.y += gravity * delta
-	if effect_by_wind:
+	if effect_by_wind and !is_on_floor():
 		velocity.x += Globals.wind * 16 * delta
 	
 	rotation = velocity.angle()

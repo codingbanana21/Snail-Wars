@@ -4,6 +4,7 @@ extends Node2D
 @onready var weapon_label: Label = $WeaponLabel
 @onready var ui: CanvasLayer = $UI
 @onready var wind: HScrollBar = %Wind
+@onready var wind_label: Label = $UI/WindLabel
 @onready var shake_timer: Timer = $ShakeTimer
 @onready var camera_2d: Camera2D = $Camera2D
 
@@ -39,6 +40,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	camera_2d.limit_bottom = Globals.water_level + 64
 	wind.value = Globals.wind
+	wind_label.text = "Wind " + str(Globals.wind)
 	
 	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[weapon]+".png"):
 		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS[weapon]+".png")
