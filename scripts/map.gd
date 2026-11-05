@@ -57,13 +57,13 @@ func make_map():
 				if !multiplayer.is_server(): continue
 				
 				#spawn mines and stuff
-				if Globals.map == "g1":
+				if Globals.map == "res://maps/map_g1.png":
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/super_mine.tscn",
 						"team_color":pixel_color,
 						})
-				elif Globals.map == "g2":
+				elif Globals.map == "res://maps/map_g2.png":
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/spring.tscn",
