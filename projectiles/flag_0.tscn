@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://bu8ome71xpn84"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_alavo"]
+[ext_resource type="Texture2D" uid="uid://t26pyg36d317" path="res://assets/images/flag.png" id="2_bisac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_alavo"]
+size = Vector2(13, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bisac"]
+size = Vector2(11, 12)
 
 [node name="Flag0" unique_id=791496552 instance=ExtResource("1_alavo")]
+scale = Vector2(2, 2)
+collision_layer = 7
+collision_mask = 7
 damage = 0
 size = 0
 knockback = 0
@@ -16,6 +26,18 @@ camera_follow = false
 end_player_turn = false
 bomb_sound = false
 
+[node name="Image" parent="." index="1" unique_id=2045045234]
+rotation = -1.5707964
+texture = ExtResource("2_bisac")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=679883136]
+position = Vector2(1.5, 3)
+shape = SubResource("RectangleShape2D_alavo")
+
 [node name="DetectBox" parent="." index="3" unique_id=289666369]
 collision_layer = 4
 collision_mask = 4
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+position = Vector2(-2.5, -1)
+shape = SubResource("RectangleShape2D_bisac")

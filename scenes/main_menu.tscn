@@ -6,21 +6,21 @@
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/themes/main_label_theme.tres" id="3_1ajci"]
 [ext_resource type="Shader" uid="uid://c4wgxq1we7anv" path="res://assets/fonts/gradient.gdshader" id="3_8egab"]
 [ext_resource type="FontFile" uid="uid://beb0vnnahy1kh" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_7b55j"]
-[ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="5_5pajh"]
 [ext_resource type="PackedScene" uid="uid://d13cid3q1ddw8" path="res://scenes/map_button.tscn" id="7_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b3h4dly8ovb37" path="res://assets/images/rocket.png" id="7_a8gd2"]
+[ext_resource type="Texture2D" uid="uid://dicpprurh2or3" path="res://assets/images/blow_torch.png" id="7_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://qlt5j1ltdxr2" path="res://assets/images/grenade.png" id="8_hstxw"]
+[ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="8_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="9_8egab"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_gw5y6"]
-[ext_resource type="Texture2D" uid="uid://h8kw05ufxj51" path="res://assets/images/fire.png" id="11_5pajh"]
-[ext_resource type="Texture2D" uid="uid://x4hcewvk3glh" path="res://assets/images/drill_rocket.png" id="11_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="12_1dfpl"]
-[ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/healing_leaf.png" id="12_a8gd2"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="13_1ajci"]
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present_strike.png" id="14_7b55j"]
+[ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="15_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_8egab"]
-[ext_resource type="Texture2D" uid="uid://cd6j10f3xc22c" path="res://assets/images/pumkin_grenade.png" id="16_j7ex8"]
+[ext_resource type="Texture2D" uid="uid://t26pyg36d317" path="res://assets/images/flag.png" id="17_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://dyocank7ysnuk" path="res://assets/images/arrow.png" id="18_gw5y6"]
+[ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporta_pad.png" id="20_gw5y6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fo7mc"]
 shader = ExtResource("3_8egab")
@@ -103,7 +103,7 @@ offset_top = 56.999992
 offset_right = 308.0
 offset_bottom = 80.99999
 text = "Mine time"
-icon = ExtResource("5_5pajh")
+icon = ExtResource("7_gw5y6")
 map = "b1"
 metadata/_edit_use_anchors_ = true
 
@@ -113,7 +113,7 @@ offset_top = 89.0
 offset_right = 300.0
 offset_bottom = 113.0
 text = "The cave"
-icon = ExtResource("11_svtp6")
+icon = ExtResource("8_svtp6")
 map = "b2"
 metadata/_edit_use_anchors_ = true
 
@@ -192,7 +192,7 @@ offset_top = 206.0
 offset_right = 289.0
 offset_bottom = 230.0
 text = "Over it"
-icon = ExtResource("11_5pajh")
+icon = ExtResource("16_8egab")
 map = "s2"
 metadata/_edit_use_anchors_ = true
 
@@ -202,7 +202,7 @@ offset_top = 237.99998
 offset_right = 290.0
 offset_bottom = 262.0
 text = "Pillars"
-icon = ExtResource("12_a8gd2")
+icon = ExtResource("15_gw5y6")
 map = "s3"
 metadata/_edit_use_anchors_ = true
 
@@ -228,12 +228,12 @@ map = "g1"
 metadata/_edit_use_anchors_ = true
 
 [node name="G2MapButton" parent="Menu/Maps" unique_id=507976408 instance=ExtResource("7_7b55j")]
-offset_left = 431.50003
-offset_top = 203.0
-offset_right = 547.5
-offset_bottom = 227.0
-text = "Spring"
-icon = ExtResource("16_8egab")
+offset_left = 381.24997
+offset_top = 206.24998
+offset_right = 619.25
+offset_bottom = 230.24998
+text = "Captue the flag"
+icon = ExtResource("17_gw5y6")
 map = "g2"
 metadata/_edit_use_anchors_ = true
 
@@ -432,7 +432,7 @@ offset_top = 282.0
 offset_right = 584.0
 offset_bottom = 306.0
 text = "Make Server"
-icon = ExtResource("14_7b55j")
+icon = ExtResource("20_gw5y6")
 metadata/_edit_use_anchors_ = true
 
 [node name="LocalServer" type="Button" parent="Menu/Multiplayer" unique_id=281650061]
@@ -442,7 +442,7 @@ offset_top = 312.0
 offset_right = 668.0
 offset_bottom = 336.0
 text = "Make Local Server"
-icon = ExtResource("16_j7ex8")
+icon = ExtResource("14_7b55j")
 metadata/_edit_use_anchors_ = true
 
 [node name="Client" type="Button" parent="Menu/Multiplayer" unique_id=36848596]

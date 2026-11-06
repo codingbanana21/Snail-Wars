@@ -17,9 +17,9 @@ extends CharacterBody2D
 @onready var impressive: AudioStreamPlayer = $Impressive
 @onready var bomb: AudioStreamPlayer = $Bomb
 
-const SPEED: int = 4
-const JUMP: Vector2 = Vector2(120, -300)
-const BACK_JUMP: Vector2 = Vector2(-50, -400)
+const SPEED: int = 240
+const JUMP: Vector2 = Vector2(150, -300)
+const BACK_JUMP: Vector2 = Vector2(-60, -400)
 const PLAYER_GRAVITY: int = 1800
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nick","Leo"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Same","Super","The","Just","I am"]
@@ -110,14 +110,12 @@ func _physics_process(delta: float) -> void:
 	if player_turn_part != 0 and player_turn_part != 4 and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
-			velocity.x += dir * SPEED
+			velocity.x += dir * SPEED * delta
 			
 			if Input.is_action_just_pressed("jump"):
-				velocity.x += dir * JUMP.x
-				velocity.y = JUMP.y
+				velocity = Vector2(dir * JUMP.x, JUMP.y)
 			elif Input.is_action_just_pressed("back_jump"):
-				velocity.x += dir * BACK_JUMP.x
-				velocity.y = BACK_JUMP.y
+				velocity = Vector2(dir * BACK_JUMP.x, BACK_JUMP.y)
 		else:
 			if Input.is_action_pressed("jump"):
 				velocity.x += dir * JUMP.x * delta

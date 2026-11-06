@@ -47,6 +47,20 @@ func make_map():
 				map.set_cell(offset, 0 ,Vector2i(2 + 4 * rng.randi_range(0,1), 0))
 			elif pixel_color == Color("362427"):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
+			elif pixel_color == Color("ffffffff"):
+				if multiplayer.is_server():
+					multiplayer_spawner.spawn({"id":1,
+						"global_position":offset,
+						"node_path":"res://projectiles/flag_0.tscn",
+						"team_color":pixel_color,
+						})
+			elif pixel_color == Color("000000ff"):
+				if multiplayer.is_server():
+					multiplayer_spawner.spawn({"id":1,
+						"global_position":offset,
+						"node_path":"res://projectiles/flag_1.tscn",
+						"team_color":pixel_color,
+						})
 			elif pixel_color == Color("488535"):
 				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
