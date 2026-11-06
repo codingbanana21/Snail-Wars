@@ -31,10 +31,10 @@ extends CharacterBody2D
 @export var camera_follow: bool = true
 
 @export_group("Player")
-@export var players_projectile: bool = true
-@export var life_steel: int = 0
 @export var end_player_turn: bool = true
+@export var bomb_sound: bool = true
 @export var teleports_player: bool = false
+@export var life_steel: int = 0
 @export var spawn_time: float = 0.0
 @export var spawns: Array[String]
 
@@ -59,8 +59,8 @@ func _ready() -> void:
 		velocity += transform.x * speed
 	
 	#settings setup
+	if get_parent().get_class() == "CharacterBody2D": parent = get_parent()
 	if camera_follow: Mouse.global_position = global_position
-	if players_projectile: parent = get_parent()
 	if spawn_time > 0: spawn_timer.start(spawn_time)
 	if timer > 0: explosion_timer.start(timer)
 	if collision_shape_2d.shape != null: bodys_needed = 2
@@ -149,18 +149,18 @@ func explode(end_explode: bool = false):
 			if player.team_number == flag_number:
 				player.die.rpc(true)
 	
-	if players_projectile:
-		parent.bomb.play()
+	if bomb_sound: parent.bomb.play()
+	
+	if teleports_player:
+		parent.global_position = global_position
+		parent.velocity = Vector2.ZERO
 		
-		if teleports_player:
-			parent.global_position = global_position
-		
-		if Globals.high_graphics and particles and damage > 0:
-			var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-			hit_particle.global_position = global_position
-			hit_particle.emitting = true
-			hit_particle.amount = clampi(int(damage), 1, 100)
-			parent.add_child(hit_particle)
+	if Globals.high_graphics and particles and damage > 0:
+		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+		hit_particle.global_position = global_position
+		hit_particle.emitting = true
+		hit_particle.amount = clampi(int(damage), 1, 100)
+		parent.add_child(hit_particle)
 
 
 func _on_explosion_timer_timeout() -> void:

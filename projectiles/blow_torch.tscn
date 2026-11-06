@@ -12,6 +12,7 @@ speed = 5
 min_speed = 30
 gravity = 0
 effect_by_wind = false
+bomb_sound = false
 teleports_player = true
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

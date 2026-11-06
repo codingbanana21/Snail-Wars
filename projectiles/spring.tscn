@@ -20,7 +20,7 @@ effect_by_wind = false
 timer = 0.0
 particles = false
 camera_follow = false
-players_projectile = false
+bomb_sound = false
 end_player_turn = false
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
