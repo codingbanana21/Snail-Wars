@@ -93,7 +93,7 @@ offset_top = 42.999992
 offset_right = 505.0
 offset_bottom = 58.999992
 scale = Vector2(0.5, 0.5)
-text = "Big maps (Players 18-32)"
+text = "Big maps (Players 16-32)"
 label_settings = ExtResource("3_1ajci")
 metadata/_edit_use_anchors_ = true
 

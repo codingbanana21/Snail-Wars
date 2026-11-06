@@ -39,34 +39,33 @@ func make_map():
 			var pixel_color = data.get_pixel(x,y)
 			var offset: Vector2i = Vector2i(int(x * Globals.map_size_x -128), int(y * Globals.map_size_y -256))
 			
-			if pixel_color == Color(0.0, 1.0, 0.0, 1.0):
+			if pixel_color == Color("77c242"):
 				map.set_cell(offset, 0 ,Vector2i(4 * rng.randi_range(0,1), 0))
-			elif pixel_color == Color(1.0, 0.0, 0.0, 1.0):
+			elif pixel_color == Color("6e2b23"):
 				map.set_cell(offset, 0 ,Vector2i(1 + 4 * rng.randi_range(0,1), 0))
-			elif pixel_color == Color(0.0, 0.0, 1.0, 1.0):
+			elif pixel_color == Color("1e1526"):
 				map.set_cell(offset, 0 ,Vector2i(2 + 4 * rng.randi_range(0,1), 0))
-			elif pixel_color == Color(1.0, 0.0, 1.0, 1.0):
+			elif pixel_color == Color("362427"):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
-			elif pixel_color == Color(1.0, 1.0, 0.0, 1.0):
-				if !multiplayer.is_server(): continue
-				
-				#spawn mines and stuff
-				if Globals.map == "res://maps/map_g1.png":
+			elif pixel_color == Color("488535"):
+				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
-						"node_path":"res://projectiles/super_mine.tscn",
+						"node_path":"res://projectiles/mine.tscn",
 						"team_color":pixel_color,
 						})
-				elif Globals.map == "res://maps/map_g2.png":
+			elif pixel_color == Color("bd5044"):
+				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
 						"node_path":"res://projectiles/spring.tscn",
 						"team_color":pixel_color,
 						})
-				elif multiplayer.is_server():
+			elif pixel_color == Color("152b24"):
+				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
-						"node_path":"res://projectiles/mine.tscn",
+						"node_path":"res://projectiles/super_mine.tscn",
 						"team_color":pixel_color,
 						})
 			elif pixel_color.a != 0:

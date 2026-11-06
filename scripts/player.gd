@@ -20,7 +20,7 @@ extends CharacterBody2D
 const SPEED: int = 4
 const JUMP: Vector2 = Vector2(120, -300)
 const BACK_JUMP: Vector2 = Vector2(-50, -400)
-const PLAYER_GRAVITY: int = 30
+const PLAYER_GRAVITY: int = 1800
 const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nick","Leo"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Same","Super","The","Just","I am"]
 
@@ -105,7 +105,7 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	if velocity.y <= 2500.0:
-		velocity.y += PLAYER_GRAVITY
+		velocity.y += PLAYER_GRAVITY * delta
 	
 	if player_turn_part != 0 and player_turn_part != 4 and !Input.is_action_pressed("attack"):
 		if is_on_floor():
