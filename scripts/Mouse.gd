@@ -33,7 +33,7 @@ func _ready() -> void:
 			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png"):
 				new_weapon_button.icon = load("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png")
 			
-			new_weapon_button.global_position = Vector2(512 + x * 20, 256 + y * 20)
+			new_weapon_button.global_position = Vector2(512 + x * 20, 196 + y * 20)
 			ui.add_child(new_weapon_button)
 
 

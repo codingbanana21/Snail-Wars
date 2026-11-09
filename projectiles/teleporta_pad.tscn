@@ -31,5 +31,9 @@ texture = ExtResource("2_bqldo")
 position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_4vvqn")
 
-[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
 shape = SubResource("RectangleShape2D_mr0l2")

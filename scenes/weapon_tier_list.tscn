@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dicpprurh2or3" path="res://assets/images/blow_torch.png" id="19_oyhex"]
 [ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporta_pad.png" id="20_oyhex"]
 
-[node name="Node2D" type="Node2D" unique_id=933490339]
+[node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
 [node name="Background" type="ColorRect" parent="." unique_id=819643014]
 offset_right = 410.0
@@ -118,7 +118,7 @@ position = Vector2(147, 145)
 texture = ExtResource("3_p0c8s")
 
 [node name="Bomb" type="Sprite2D" parent="." unique_id=246353884]
-position = Vector2(180, 104)
+position = Vector2(174, 64)
 texture = ExtResource("4_tfcsd")
 
 [node name="Bullet" type="Sprite2D" parent="." unique_id=27364326]
@@ -154,7 +154,7 @@ position = Vector2(53, 20)
 texture = ExtResource("12_85va0")
 
 [node name="Leaf" type="Sprite2D" parent="." unique_id=1317753968]
-position = Vector2(84, 141)
+position = Vector2(178, 104)
 texture = ExtResource("13_2cxr1")
 
 [node name="Chicken" type="Sprite2D" parent="." unique_id=2143275653]
@@ -162,11 +162,11 @@ position = Vector2(114, 62)
 texture = ExtResource("14_53epr")
 
 [node name="FatherChrismas" type="Sprite2D" parent="." unique_id=2027833636]
-position = Vector2(80, 24)
+position = Vector2(83, 22)
 texture = ExtResource("15_gjupt")
 
 [node name="Spring" type="Sprite2D" parent="." unique_id=1484725089]
-position = Vector2(171, 66)
+position = Vector2(142, 61)
 texture = ExtResource("16_40fht")
 
 [node name="Pan" type="Sprite2D" parent="." unique_id=187238098]
@@ -174,11 +174,11 @@ position = Vector2(85, 179)
 texture = ExtResource("17_1luql")
 
 [node name="PickHammer" type="Sprite2D" parent="." unique_id=1189850938]
-position = Vector2(179, 147)
+position = Vector2(83, 143)
 texture = ExtResource("18_jppr5")
 
 [node name="BlowTorch" type="Sprite2D" parent="." unique_id=2019101113]
-position = Vector2(143, 64)
+position = Vector2(113, 24)
 texture = ExtResource("19_oyhex")
 
 [node name="TeleportaPad" type="Sprite2D" parent="." unique_id=1887089460]

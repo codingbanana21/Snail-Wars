@@ -11,9 +11,9 @@ size = Vector2(9, 6)
 
 [node name="PickHammer" unique_id=791496552 instance=ExtResource("1_75yps")]
 damage = 0
-size = 3
+size = 4
 knockback = 0
-projectile_hp = 11
+projectile_hp = 5
 hit_stun_time = 0.25
 speed = 0
 min_speed = 0
