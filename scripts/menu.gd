@@ -80,19 +80,36 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.map_size_x = inputs["map_size_x"]
 		Globals.map_size_y = inputs["map_size_y"]
 	
+	var temp_teams_weapons: int
+	
+	if teams_weapons == 0:
+		temp_teams_weapons = Globals.DEFAULT
+	elif teams_weapons == 1:
+		temp_teams_weapons = Globals.NO_AIR
+	elif teams_weapons == 2:
+		temp_teams_weapons = Globals.CRAZY
+	elif teams_weapons == 3:
+		temp_teams_weapons = Globals.EVERTHING
+	
 	#team weapon sets
-	Globals.teams_weapons.append_array(Globals.WEAPON_SET.duplicate(true)[teams_weapons])
-	for i in range(Globals.number_of_teams -1):
+	var temp_teams_weapons_array: Array[int]
+	for i in range(len(Globals.WEAPONS)):
+		temp_teams_weapons_array.append(Globals.WEAPONS[Globals.WEAPONS.keys()[i]][temp_teams_weapons])
+	
+	Globals.teams_weapons.append([])
+	Globals.teams_weapons[0].append_array(temp_teams_weapons_array)
+	
+	for i in range(Globals.number_of_teams - 1):
 		Globals.teams_weapons.append([])
 		for k in range(len(Globals.teams_weapons[0])):
 			Globals.teams_weapons[i+1].append(Globals.teams_weapons[0][k])
 	
-	var temp_array: Array
+	var temp_alive_players_array: Array
 	for x in range(Globals.players_in_team):
-		temp_array.append(true)
+		temp_alive_players_array.append(true)
 	
 	for y in range(Globals.number_of_teams):
-		Globals.alive_players.append(temp_array.duplicate())
+		Globals.alive_players.append(temp_alive_players_array.duplicate())
 	
 	for i in range(Globals.number_of_teams):
 		Globals.team_turns.append(0)
@@ -166,7 +183,7 @@ func make_server(ip_address):
 	multiplayer.peer_connected.connect(
 		func(_id):
 			multiplayer_spawner.spawn({"multiplayer":true,
-				"map":"m1",
+				"map":"res://maps/map_m1.png",
 				"players_in_team":Globals.players_in_team,
 				"teams_weapons":teams_weapons,
 				"number_of_teams":Globals.number_of_teams,

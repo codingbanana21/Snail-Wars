@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dicpprurh2or3" path="res://assets/images/blow_torch.png" id="19_oyhex"]
 [ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporta_pad.png" id="20_oyhex"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="21_ws42h"]
+[ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="22_kk8a4"]
 
 [node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
@@ -189,3 +190,7 @@ texture = ExtResource("20_oyhex")
 [node name="LandMine" type="Sprite2D" parent="." unique_id=1872506159]
 position = Vector2(175, 143)
 texture = ExtResource("21_ws42h")
+
+[node name="MudBall" type="Sprite2D" parent="." unique_id=567927627]
+position = Vector2(54, 219)
+texture = ExtResource("22_kk8a4")

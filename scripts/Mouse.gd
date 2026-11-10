@@ -30,8 +30,8 @@ func _ready() -> void:
 			new_weapon_button.weapon = sprite_weapon
 			new_weapon_button.change_weapon.connect(change_weapon)
 			
-			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png"):
-				new_weapon_button.icon = load("res://assets/images/"+Globals.WEAPONS[sprite_weapon]+".png")
+			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[sprite_weapon]+".png"):
+				new_weapon_button.icon = load("res://assets/images/"+Globals.WEAPONS.keys()[sprite_weapon]+".png")
 			
 			new_weapon_button.global_position = Vector2(512 + x * 20, 196 + y * 20)
 			ui.add_child(new_weapon_button)
@@ -42,15 +42,15 @@ func _process(_delta: float) -> void:
 	wind.value = Globals.wind
 	wind_label.text = "Wind " + str(Globals.wind)
 	
-	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS[weapon]+".png"):
-		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS[weapon]+".png")
+	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png"):
+		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png")
 	else:
 		weapon_image.texture = load("res://assets/images/rocket.png")
 	
 	if weapon_amount >= 0:
-		weapon_label.text = Globals.WEAPONS_NAMES[weapon]+" "+str(weapon_amount)
+		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon]][Globals.NAME]+" "+str(weapon_amount)
 	else:
-		weapon_label.text = Globals.WEAPONS_NAMES[weapon]
+		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon]][Globals.NAME]
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)

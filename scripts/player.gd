@@ -92,7 +92,7 @@ func _process(delta: float) -> void:
 			multiplayer_spawner.spawn({
 				"id": id,
 				"global_position": global_position,
-				"projectile": "res://projectiles/" + Globals.WEAPONS[weapon] + ".tscn"
+				"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn"
 			})
 			
 			Input.action_release("attack")

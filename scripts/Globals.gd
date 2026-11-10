@@ -1,30 +1,36 @@
 extends Node2D
 
 #const
-const WEAPONS: Array[String] = ["rocket","grenade","bomb","drill_rocket",
-	"pumkin_grenade","healing_leaf","bullet","pan",
-	"air_strike","drill_strike","present_strike","chicken",
-	"father_chrismas","tnt","cake_tnt","teleporta",
-	"spring","pick_hammer","blow_torch","teleporta_pad",
-	"land_mine"]
-const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Bomb","Drill Rocket",
-	"Pumkin Grenade","Healing Leaf","Gun","The Pan",
-	"Air Strike","Drill Strike","Present Strike","Chicken",
-	"Father Chrismas","TNT","Cake TNT","Teleporta",
-	"Spring","Pick Hammer","Blow Torch","Teleporta Pad",
-	"Land Mine"]
-const SAVE_PATH = "user://Save.tres"
-const GAME_VERSION: float = 0.5
-const WEAPON_SET: Array[Array] = [
-	[[-1,-1,5,2,3,2,3,1,1,1,0,1,0,1,0,2,2,2,3,1,2]],
-	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
-	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-	[[-1,-1,5,3,3,0,5,2,0,0,0,2,0,2,1,3,3,1,0,1,2]],
-	[[-1,-1,5,3,3,3,5,2,1,1,0,2,1,2,1,3,3,2,3,1,2]],
-	]
-const WEAPON_SET_NAMES: Array = ["Original","All","One of everthing","No Air","Crazy"]
+enum {NAME,DEFAULT,NO_AIR,CRAZY,EVERTHING}
+
+const WEAPON_SET_NAMES: Array = ["Default","No Air","Crazy","Everthing"]
+const WEAPONS: Dictionary = {
+	"rocket":{NAME:"Rocket Launcher", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERTHING:-1}, 
+	"grenade":{NAME:"Grenade", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERTHING:-1}, 
+	"bomb":{NAME:"Bomb", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERTHING:-1}, 
+	"drill_rocket":{NAME:"Drill Rocket", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERTHING:-1}, 
+	"pumkin_grenade":{NAME:"Pumkin Grenade", DEFAULT:3, NO_AIR:3, CRAZY:4, EVERTHING:-1}, 
+	"healing_leaf":{NAME:"Healing Leaf", DEFAULT:2, NO_AIR:0, CRAZY:3, EVERTHING:-1}, 
+	"bullet":{NAME:"Gun", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERTHING:-1}, 
+	"pan":{NAME:"The Pan", DEFAULT:1, NO_AIR:2, CRAZY:2, EVERTHING:-1}, 
+	"air_strike":{NAME:"Air Strike", DEFAULT:1, NO_AIR:0, CRAZY:1, EVERTHING:-1}, 
+	"drill_strike":{NAME:"Drill Strike", DEFAULT:1, NO_AIR:0, CRAZY:1, EVERTHING:-1}, 
+	"present_strike":{NAME:"Present Strike", DEFAULT:0, NO_AIR:0, CRAZY:1, EVERTHING:-1}, 
+	"chicken":{NAME:"Chicken", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERTHING:-1}, 
+	"father_chrismas":{NAME:"Father Chrismas", DEFAULT:0, NO_AIR:0, CRAZY:0, EVERTHING:-1}, 
+	"tnt":{NAME:"TNT", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERTHING:-1}, 
+	"cake_tnt":{NAME:"Cake TNT", DEFAULT:0, NO_AIR:1, CRAZY:2, EVERTHING:-1}, 
+	"land_mine":{NAME:"Land Mine", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERTHING:-1}, 
+	"teleporta_pad":{NAME:"Teleporta Pad", DEFAULT:1, NO_AIR:0, CRAZY:2, EVERTHING:-1}, 
+	"spring":{NAME:"Spring", DEFAULT:2, NO_AIR:3, CRAZY:4, EVERTHING:-1}, 
+	"pick_hammer":{NAME:"Pick Hammer", DEFAULT:2, NO_AIR:0, CRAZY:3, EVERTHING:-1}, 
+	"blow_torch":{NAME:"Blow Torch", DEFAULT:3, NO_AIR:0, CRAZY:4, EVERTHING:-1}, 
+	"mud_ball":{NAME:"Mud Ball", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERTHING:-1},
+}
 
 #save data
+const SAVE_PATH = "user://Save.tres"
+const GAME_VERSION: float = 0.5
 var save_data: SaveDataResource = SaveDataResource.new()
 var save_version: float
 var saved_ip_address: String
