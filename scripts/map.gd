@@ -5,6 +5,11 @@ extends Node2D
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
 
+const OBJECT_COLORS := {
+	Color("ffffffff"): "flag_0", Color("000000ff"): "flag_1",
+	Color("488535"): "land_mine", Color("bd5044"): "spring", Color("152b24"): "super_mine",
+}
+
 var remote_id: int
 var rng = RandomNumberGenerator.new()
 
@@ -34,8 +39,8 @@ func make_map():
 	var teams: Array[int]
 	var player_number: int = 0
 	
-	for y in image.texture.get_width():
-		for x in image.texture.get_height():
+	for y in image.texture.get_height():
+		for x in image.texture.get_width():
 			var pixel_color = data.get_pixel(x,y)
 			var offset: Vector2i = Vector2i(int(x * Globals.map_size_x -128), int(y * Globals.map_size_y -256))
 			
@@ -47,39 +52,11 @@ func make_map():
 				map.set_cell(offset, 0 ,Vector2i(2 + 4 * rng.randi_range(0,1), 0))
 			elif pixel_color == Color("362427"):
 				map.set_cell(offset, 0 ,Vector2i(3, 0))
-			elif pixel_color == Color("ffffffff"):
+			elif OBJECT_COLORS.has(pixel_color):
 				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
-						"node_path":"res://projectiles/flag_0.tscn",
-						"team_color":pixel_color,
-						})
-			elif pixel_color == Color("000000ff"):
-				if multiplayer.is_server():
-					multiplayer_spawner.spawn({"id":1,
-						"global_position":offset,
-						"node_path":"res://projectiles/flag_1.tscn",
-						"team_color":pixel_color,
-						})
-			elif pixel_color == Color("488535"):
-				if multiplayer.is_server():
-					multiplayer_spawner.spawn({"id":1,
-						"global_position":offset,
-						"node_path":"res://projectiles/land_mine.tscn",
-						"team_color":pixel_color,
-						})
-			elif pixel_color == Color("bd5044"):
-				if multiplayer.is_server():
-					multiplayer_spawner.spawn({"id":1,
-						"global_position":offset,
-						"node_path":"res://projectiles/spring.tscn",
-						"team_color":pixel_color,
-						})
-			elif pixel_color == Color("152b24"):
-				if multiplayer.is_server():
-					multiplayer_spawner.spawn({"id":1,
-						"global_position":offset,
-						"node_path":"res://projectiles/super_mine.tscn",
+						"node_path":"res://projectiles/"+OBJECT_COLORS[pixel_color]+".tscn",
 						"team_color":pixel_color,
 						})
 			elif pixel_color.a != 0:
@@ -99,7 +76,6 @@ func make_map():
 				player_number = teams[team_number]
 				
 				if !multiplayer.is_server(): continue
-				#print(pixel_color)
 				
 				if team_number == 0:
 					multiplayer_spawner.spawn({"id":1,
@@ -119,8 +95,6 @@ func make_map():
 						})
 			else:
 				map.set_cell(offset, 0 ,Vector2i(0, 2))
-	
-	#print(teams)
 
 
 func spawn(inputs: Dictionary = {"id":1,

@@ -13,15 +13,15 @@
 [ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="8_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="9_8egab"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_gw5y6"]
-[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_chrismas.png" id="10_svtp6"]
+[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_christmas.png" id="10_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="12_1dfpl"]
-[ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="13_1ajci"]
+[ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="13_1ajci"]
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present_strike.png" id="14_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="15_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_8egab"]
 [ext_resource type="Texture2D" uid="uid://t26pyg36d317" path="res://assets/images/flag.png" id="17_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://dyocank7ysnuk" path="res://assets/images/arrow.png" id="18_gw5y6"]
-[ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporta_pad.png" id="20_gw5y6"]
+[ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporter_pad.png" id="20_gw5y6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fo7mc"]
 shader = ExtResource("3_8egab")

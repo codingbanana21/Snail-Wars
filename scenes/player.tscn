@@ -101,7 +101,7 @@ stream = ExtResource("7_y4r1p")
 pitch_scale = 1.8
 bus = &"SFX"
 
-[node name="Looser" type="AudioStreamPlayer" parent="." unique_id=167378126]
+[node name="Loser" type="AudioStreamPlayer" parent="." unique_id=167378126]
 stream = ExtResource("7_fjrip")
 volume_db = 10.0
 pitch_scale = 1.7

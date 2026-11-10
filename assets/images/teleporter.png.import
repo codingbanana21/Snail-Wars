@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0dvijfos3gov"
-path="res://.godot/imported/father_chrismas.png-1ec6fb48efdaa46cbd2ca9dc7cbce65a.ctex"
+uid="uid://c0trkmwdkg627"
+path="res://.godot/imported/teleporter.png-0460402f1e9d743a62147b3702715c27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/father_chrismas.png"
-dest_files=["res://.godot/imported/father_chrismas.png-1ec6fb48efdaa46cbd2ca9dc7cbce65a.ctex"]
+source_file="res://assets/images/teleporter.png"
+dest_files=["res://.godot/imported/teleporter.png-0460402f1e9d743a62147b3702715c27.ctex"]
 
 [params]
 

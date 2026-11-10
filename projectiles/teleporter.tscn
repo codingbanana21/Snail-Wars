@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bl3ctsq3roqjd"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_4dcfj"]
-[ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporta.png" id="2_46nel"]
+[ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="2_46nel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nw1eu"]
 radius = 5.0

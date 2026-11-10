@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dbf0v4h637xdn"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_5crrp"]
-[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_chrismas.png" id="2_2nj0q"]
+[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_christmas.png" id="2_2nj0q"]
 
 [node name="FatherChrismas" unique_id=791496552 instance=ExtResource("1_5crrp")]
 damage = 0
@@ -10,7 +10,7 @@ knockback = 0
 gravity = 250
 effect_by_wind = false
 spawn_time = 0.35
-spawns = Array[String](["pumkin_grenade", "teleporta", "tnt", "spring", "mine", "chicken"])
+spawns = Array[String](["pumpkin_grenade", "tnt", "spring", "mine", "chicken"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_2nj0q")

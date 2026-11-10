@@ -24,7 +24,7 @@ const SERVER_PORT = 3100
 const CONNECT_TIMEOUT: float = 5.0
 
 var peer = ENetMultiplayerPeer.new()
-var upnp
+var upnp: UPNP
 var teams_weapons: int
 
 
@@ -79,6 +79,10 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.explosion_power = inputs["explosion_power"]
 		Globals.map_size_x = inputs["map_size_x"]
 		Globals.map_size_y = inputs["map_size_y"]
+	
+	Globals.teams_weapons.clear()
+	Globals.alive_players.clear()
+	Globals.team_turns.clear()
 	
 	var temp_teams_weapons: int
 	
@@ -206,8 +210,8 @@ func upnp_setup(server_port):
 		push_error("UPNP discover failed ", err)
 		return ""
 	
-	var gatway = upnp.get_gateway()
-	if !upnp.get_gateway() or !gatway.is_valid_gateway():
+	var gateway = upnp.get_gateway()
+	if !upnp.get_gateway() or !gateway.is_valid_gateway():
 		push_error("UPNP: no valid gateway")
 		return ""
 	
@@ -218,7 +222,7 @@ func upnp_setup(server_port):
 		
 		if map_err != UPNP.UPNP_RESULT_SUCCESS:
 			push_error("UPNP mapping failed")
-			return
+			return ""
 	
 	var addr = upnp.query_external_address()
 	return addr
@@ -250,7 +254,6 @@ func _on_map_button_make_map(map: Variant) -> void:
 		file_dialog.show()
 		file_dialog.file_selected.connect(
 			func(path):
-			print(path)
 			make_map({"multiplayer":false,"map":path})
 		)
 	else:

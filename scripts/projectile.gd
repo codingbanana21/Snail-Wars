@@ -35,13 +35,13 @@ extends CharacterBody2D
 @export var end_player_turn: bool = true
 @export var bomb_sound: bool = true
 @export var teleports_player: bool = false
-@export var life_steel: int = 0
+@export var life_steal: int = 0
 @export var spawn_time: float = 0.0
 @export var spawns: Array[String]
 
 var id: int
 var parent: Player
-var bodys_needed: int = 1
+var bodies_needed: int = 1
 
 
 func _enter_tree() -> void:
@@ -60,11 +60,11 @@ func _ready() -> void:
 		velocity += transform.x * speed
 	
 	#settings setup
-	if get_parent().get_class() == "CharacterBody2D": parent = get_parent()
+	if get_parent() as Player: parent = get_parent()
 	if camera_follow: Mouse.global_position = global_position
 	if spawn_time > 0: spawn_timer.start(spawn_time)
 	if timer > 0: explosion_timer.start(timer)
-	if collision_shape_2d.shape != null: bodys_needed = 2
+	if collision_shape_2d.shape != null: bodies_needed = 2
 	
 	if Globals.high_graphics and particles:
 		gpu_particles_2d.show()
@@ -74,10 +74,10 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	if global_position.y >= Globals.water_level:
-		explode(true)
+		explode.rpc(true)
 		return
-	elif len(detect_box.get_overlapping_bodies()) + len(detect_box.get_overlapping_areas()) >= bodys_needed:
-		explode()
+	elif len(detect_box.get_overlapping_bodies()) + len(detect_box.get_overlapping_areas()) >= bodies_needed:
+		explode.rpc()
 	
 	if !hit_timer.is_stopped(): return
 	
@@ -99,20 +99,29 @@ func _physics_process(delta: float) -> void:
 			velocity.x = temp_velocity.x * -0.6
 			velocity.y = temp_velocity.y * 0.95
 	
-	if camera_follow:
-		Mouse.global_position += velocity * delta
+	if camera_follow: Mouse.global_position += velocity * delta
 
-
+@rpc("any_peer","call_local","reliable")
 func explode(end_explode: bool = false):
-	if !is_multiplayer_authority() or !hit_timer.is_stopped(): return
+	if !hit_timer.is_stopped(): return
+	
+	if bomb_sound: parent.bomb.play()
+	
+	if Globals.high_graphics and particles and damage > 0:
+		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
+		hit_particle.global_position = global_position
+		hit_particle.emitting = true
+		hit_particle.amount = clampi(int(damage), 1, 100)
+		parent.add_child(hit_particle)
+	
+	if !is_multiplayer_authority(): return
 	
 	if hit_stun_time > 0:
 		hit_timer.start(hit_stun_time)
 	
 	projectile_hp -= 1
 	
-	if Globals.high_graphics:
-		Mouse.shake.rpc(damage / 3.0)
+	if Globals.high_graphics: Mouse.shake.rpc(damage / 4.0)
 	
 	if len(spawns) > 0:
 		parent.multiplayer_spawner.spawn({
@@ -142,31 +151,22 @@ func explode(end_explode: bool = false):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0) * Globals.explosion_power
 			player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
 			
-			if life_steel > 0:
-				parent.heal.rpc(int(life_steel * hit_power))
+			if life_steal > 0:
+				parent.heal.rpc(int(life_steal * hit_power))
 	
 	if flag_number != -1:
 		for player: Player in get_tree().get_nodes_in_group("Player"):
 			if player.team_number == flag_number:
 				player.die.rpc(true)
 	
-	if bomb_sound: parent.bomb.play()
-	
 	if teleports_player:
 		parent.global_position = global_position
 		parent.velocity = Vector2.ZERO
-		
-	if Globals.high_graphics and particles and damage > 0:
-		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
-		hit_particle.global_position = global_position
-		hit_particle.emitting = true
-		hit_particle.amount = clampi(int(damage), 1, 100)
-		parent.add_child(hit_particle)
 
 
 func _on_explosion_timer_timeout() -> void:
 	if !is_multiplayer_authority(): return
-	explode(true)
+	explode.rpc(true)
 
 
 func _on_spawn_timer_timeout() -> void:

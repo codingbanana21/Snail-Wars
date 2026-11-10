@@ -42,11 +42,6 @@ func _process(_delta: float) -> void:
 	wind.value = Globals.wind
 	wind_label.text = "Wind " + str(Globals.wind)
 	
-	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png"):
-		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png")
-	else:
-		weapon_image.texture = load("res://assets/images/rocket.png")
-	
 	if weapon_amount >= 0:
 		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon]][Globals.NAME]+" "+str(weapon_amount)
 	else:
@@ -69,6 +64,11 @@ func _process(_delta: float) -> void:
 
 func change_weapon(new_weapon: int):
 	weapon = new_weapon
+	
+	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png"):
+		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png")
+	else:
+		weapon_image.texture = load("res://assets/images/rocket.png")
 
 
 func _input(event: InputEvent) -> void:

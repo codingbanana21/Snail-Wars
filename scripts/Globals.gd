@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 #const
 enum {NAME,DEFAULT,NO_AIR,CRAZY,EVERTHING}
@@ -9,7 +9,7 @@ const WEAPONS: Dictionary = {
 	"grenade":{NAME:"Grenade", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERTHING:-1}, 
 	"bomb":{NAME:"Bomb", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERTHING:-1}, 
 	"drill_rocket":{NAME:"Drill Rocket", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERTHING:-1}, 
-	"pumkin_grenade":{NAME:"Pumkin Grenade", DEFAULT:3, NO_AIR:3, CRAZY:4, EVERTHING:-1}, 
+	"pumpkin_grenade":{NAME:"Pumpkin Grenade", DEFAULT:3, NO_AIR:3, CRAZY:4, EVERTHING:-1}, 
 	"healing_leaf":{NAME:"Healing Leaf", DEFAULT:2, NO_AIR:0, CRAZY:3, EVERTHING:-1}, 
 	"bullet":{NAME:"Gun", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERTHING:-1}, 
 	"pan":{NAME:"The Pan", DEFAULT:1, NO_AIR:2, CRAZY:2, EVERTHING:-1}, 
@@ -17,11 +17,12 @@ const WEAPONS: Dictionary = {
 	"drill_strike":{NAME:"Drill Strike", DEFAULT:1, NO_AIR:0, CRAZY:1, EVERTHING:-1}, 
 	"present_strike":{NAME:"Present Strike", DEFAULT:0, NO_AIR:0, CRAZY:1, EVERTHING:-1}, 
 	"chicken":{NAME:"Chicken", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERTHING:-1}, 
-	"father_chrismas":{NAME:"Father Chrismas", DEFAULT:0, NO_AIR:0, CRAZY:0, EVERTHING:-1}, 
+	"father_christmas":{NAME:"Father Christmas", DEFAULT:0, NO_AIR:0, CRAZY:0, EVERTHING:-1}, 
 	"tnt":{NAME:"TNT", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERTHING:-1}, 
 	"cake_tnt":{NAME:"Cake TNT", DEFAULT:0, NO_AIR:1, CRAZY:2, EVERTHING:-1}, 
 	"land_mine":{NAME:"Land Mine", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERTHING:-1}, 
-	"teleporta_pad":{NAME:"Teleporta Pad", DEFAULT:1, NO_AIR:0, CRAZY:2, EVERTHING:-1}, 
+	"teleporter":{NAME:"Teleporter", DEFAULT:2, NO_AIR:3, CRAZY:4, EVERTHING:-1}, 
+	"teleporter_pad":{NAME:"Teleporter Pad", DEFAULT:1, NO_AIR:0, CRAZY:2, EVERTHING:-1}, 
 	"spring":{NAME:"Spring", DEFAULT:2, NO_AIR:3, CRAZY:4, EVERTHING:-1}, 
 	"pick_hammer":{NAME:"Pick Hammer", DEFAULT:2, NO_AIR:0, CRAZY:3, EVERTHING:-1}, 
 	"blow_torch":{NAME:"Blow Torch", DEFAULT:3, NO_AIR:0, CRAZY:4, EVERTHING:-1}, 
@@ -74,8 +75,6 @@ func next_player(skip_player: bool = false):
 	if !multiplayer.is_server(): return
 	
 	turn.y = team_turns[turn.x]
-	#print(team_turns)
-	#print(turn.x)
 	turn.x += 1
 	
 	if turn.x >= number_of_teams:
