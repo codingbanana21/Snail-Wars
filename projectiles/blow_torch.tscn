@@ -15,6 +15,7 @@ speed = 4
 min_speed = 25
 gravity = 0
 effect_by_wind = false
+spawn_offset = 0
 bomb_sound = false
 teleports_player = true
 

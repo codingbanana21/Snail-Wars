@@ -7,7 +7,7 @@
 size = Vector2(6, 4)
 
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
-damage = 12
+damage = 15
 size = 3.5
 knockback = 10
 projectile_hp = 8

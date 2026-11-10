@@ -10,6 +10,8 @@ size = Vector2(6, 6)
 size = Vector2(9, 6)
 
 [node name="PickHammer" unique_id=791496552 instance=ExtResource("1_75yps")]
+collision_layer = 6
+collision_mask = 3
 damage = 0
 size = 4
 knockback = 0
@@ -28,6 +30,9 @@ texture = ExtResource("2_gg673")
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_snta2")
 
-[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_mask = 3
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
 position = Vector2(3.5, 0)
 shape = SubResource("RectangleShape2D_gg673")

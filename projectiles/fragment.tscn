@@ -8,17 +8,21 @@ radius = 4.0
 
 [node name="Fragment" unique_id=791496552 instance=ExtResource("1_1ak3v")]
 scale = Vector2(0.5, 0.5)
-damage = 3
+damage = 2
 size = 2
 knockback = 10
-projectile_hp = 3
+projectile_hp = 4
 speed = 0
 min_speed = 0
+spawn_offset = 0
 camera_follow = false
 end_player_turn = false
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_h2h75")
 
-[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
 shape = SubResource("CircleShape2D_h2h75")

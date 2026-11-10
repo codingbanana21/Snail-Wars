@@ -7,6 +7,7 @@
 radius = 5.0
 
 [node name="Grenade" unique_id=791496552 instance=ExtResource("1_yss3y")]
+damage = 50
 bounce = true
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

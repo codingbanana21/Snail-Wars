@@ -12,6 +12,7 @@ size = 3
 knockback = 15
 projectile_hp = 4
 speed = 75
+min_speed = 80
 spawns = Array[String](["fragment"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

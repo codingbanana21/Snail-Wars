@@ -10,6 +10,7 @@ height = 10.0
 [node name="Egg" unique_id=791496552 instance=ExtResource("1_1jwhj")]
 speed = 0
 min_speed = 0
+spawn_offset = 0
 camera_follow = false
 end_player_turn = false
 
