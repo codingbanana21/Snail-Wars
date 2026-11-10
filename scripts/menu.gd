@@ -101,7 +101,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	
 	menu.hide()
 	Mouse.ui.show()
-	var map_file = preload("res://maps/map.tscn").instantiate()
+	var map_file = preload("res://scenes/map.tscn").instantiate()
 	
 	if inputs["multiplayer"]:
 		Globals.is_multiplayer = true

@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="18_jppr5"]
 [ext_resource type="Texture2D" uid="uid://dicpprurh2or3" path="res://assets/images/blow_torch.png" id="19_oyhex"]
 [ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporta_pad.png" id="20_oyhex"]
+[ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="21_ws42h"]
 
 [node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
@@ -118,7 +119,7 @@ position = Vector2(147, 145)
 texture = ExtResource("3_p0c8s")
 
 [node name="Bomb" type="Sprite2D" parent="." unique_id=246353884]
-position = Vector2(174, 64)
+position = Vector2(170, 61)
 texture = ExtResource("4_tfcsd")
 
 [node name="Bullet" type="Sprite2D" parent="." unique_id=27364326]
@@ -184,3 +185,7 @@ texture = ExtResource("19_oyhex")
 [node name="TeleportaPad" type="Sprite2D" parent="." unique_id=1887089460]
 position = Vector2(205, 105)
 texture = ExtResource("20_oyhex")
+
+[node name="LandMine" type="Sprite2D" parent="." unique_id=1872506159]
+position = Vector2(172, 146)
+texture = ExtResource("21_ws42h")

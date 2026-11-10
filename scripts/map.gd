@@ -65,7 +65,7 @@ func make_map():
 				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
 						"global_position":offset,
-						"node_path":"res://projectiles/mine.tscn",
+						"node_path":"res://projectiles/land_mine.tscn",
 						"team_color":pixel_color,
 						})
 			elif pixel_color == Color("bd5044"):

@@ -5,20 +5,22 @@ const WEAPONS: Array[String] = ["rocket","grenade","bomb","drill_rocket",
 	"pumkin_grenade","healing_leaf","bullet","pan",
 	"air_strike","drill_strike","present_strike","chicken",
 	"father_chrismas","tnt","cake_tnt","teleporta",
-	"spring","pick_hammer","blow_torch","teleporta_pad"]
+	"spring","pick_hammer","blow_torch","teleporta_pad",
+	"land_mine"]
 const WEAPONS_NAMES: Array[String] = ["Rocket Launcher","Grenade","Bomb","Drill Rocket",
 	"Pumkin Grenade","Healing Leaf","Gun","The Pan",
 	"Air Strike","Drill Strike","Present Strike","Chicken",
 	"Father Chrismas","TNT","Cake TNT","Teleporta",
-	"Spring","Pick Hammer","Blow Torch","Teleporta Pad"]
+	"Spring","Pick Hammer","Blow Torch","Teleporta Pad",
+	"Land Mine"]
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.5
 const WEAPON_SET: Array[Array] = [
-	[[-1,-1,5,2,3,2,3,1,1,1,0,1,0,1,0,2,2,2,3,1]],
-	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
-	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
-	[[-1,-1,5,3,3,0,5,2,0,0,0,2,0,2,1,3,3,1,0,1]],
-	[[-1,-1,5,3,3,3,5,2,1,1,0,2,1,2,1,3,3,2,3,1]],
+	[[-1,-1,5,2,3,2,3,1,1,1,0,1,0,1,0,2,2,2,3,1,2]],
+	[[-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]],
+	[[-1,-1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]],
+	[[-1,-1,5,3,3,0,5,2,0,0,0,2,0,2,1,3,3,1,0,1,2]],
+	[[-1,-1,5,3,3,3,5,2,1,1,0,2,1,2,1,3,3,2,3,1,2]],
 	]
 const WEAPON_SET_NAMES: Array = ["Original","All","One of everthing","No Air","Crazy"]
 

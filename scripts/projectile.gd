@@ -23,6 +23,7 @@ extends CharacterBody2D
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
 @export var effect_by_wind: bool = true
+@export var spawn_offset: int = 16
 
 @export_group("Other")
 @export var timer: float = 3.0
@@ -55,7 +56,7 @@ func _ready() -> void:
 		global_position = Vector2(Mouse.global_position.x, -2148.0)
 		velocity.y += speed
 	else:
-		global_position += transform.x * 16.0
+		global_position += transform.x * spawn_offset
 		velocity += transform.x * speed
 	
 	#settings setup
