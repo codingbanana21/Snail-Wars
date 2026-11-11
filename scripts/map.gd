@@ -7,7 +7,7 @@ extends Node2D
 
 const OBJECT_COLORS := {
 	Color("ffffffff"): "flag_0", Color("000000ff"): "flag_1",
-	Color("488535"): "land_mine", Color("bd5044"): "spring", Color("152b24"): "super_mine",
+	Color("488535"): "land_mine", Color("bd5044"): "spring",Color("1730df"):"med_kit", Color("152b24"): "super_mine",
 }
 
 var remote_id: int

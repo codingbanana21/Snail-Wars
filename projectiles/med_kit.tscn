@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bnt0q2wj2om6b"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_32fbv"]
+[ext_resource type="Texture2D" uid="uid://bjef8j2cdxoub" path="res://assets/images/med_kit.png" id="2_fx340"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_32fbv"]
+size = Vector2(7, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fx340"]
+size = Vector2(9, 12)
+
+[node name="MedKit" unique_id=791496552 instance=ExtResource("1_32fbv")]
+damage = 0
+heal = 50
+size = 0
+knockback = 0
+speed = 0
+min_speed = 0
+effect_by_wind = false
+timer = 0.0
+particles = false
+camera_follow = false
+end_player_turn = false
+bomb_sound = false
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+rotation = -1.5707964
+texture = ExtResource("2_fx340")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=679883136]
+position = Vector2(2.5, 0)
+shape = SubResource("RectangleShape2D_32fbv")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_mask = 6
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_fx340")

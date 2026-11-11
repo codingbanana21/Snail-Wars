@@ -11,6 +11,7 @@ extends CharacterBody2D
 #projectile states
 @export_group("Hit")
 @export var damage: int = 45
+@export var heal: int = 0
 @export var size: int = 5
 @export var knockback: int = 40
 @export var projectile_hp: int = 1
@@ -151,7 +152,10 @@ func explode(end_explode: bool = false):
 		var dis_to: float = global_position.distance_to(player.global_position)
 		if dis_to < (8.0 * size * Globals.explosion_power) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0) * Globals.explosion_power
-			player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
+			if damage >= 0:
+				player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
+			else:
+				player.heal(int(heal * hit_power))
 			
 			if life_steal > 0:
 				parent.heal.rpc(int(life_steal * hit_power))
