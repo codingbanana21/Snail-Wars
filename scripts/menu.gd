@@ -93,7 +93,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	elif teams_weapons == 2:
 		temp_teams_weapons = Globals.CRAZY
 	elif teams_weapons == 3:
-		temp_teams_weapons = Globals.EVERTHING
+		temp_teams_weapons = Globals.EVERYTHING
 	
 	#team weapon sets
 	var temp_teams_weapons_array: Array[int]
@@ -187,7 +187,7 @@ func make_server(ip_address):
 	multiplayer.peer_connected.connect(
 		func(_id):
 			multiplayer_spawner.spawn({"multiplayer":true,
-				"map":"res://maps/map_m1.png",
+				"map":"res://maps/map_m4.png",
 				"players_in_team":Globals.players_in_team,
 				"teams_weapons":teams_weapons,
 				"number_of_teams":Globals.number_of_teams,

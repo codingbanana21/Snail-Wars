@@ -95,6 +95,8 @@ func _process(delta: float) -> void:
 			multiplayer_spawner.spawn({
 				"id": id,
 				"global_position": global_position,
+				"projectile_speed":projectile_speed,
+				"mouse_position":Mouse.global_position,
 				"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn"
 			})
 			
@@ -145,6 +147,8 @@ func _physics_process(delta: float) -> void:
 
 func shot_projectile(inputs: Dictionary = {"id":1,
 		"global_position":Vector2.ZERO,
+		"projectile_speed":0,
+		"mouse_position":Vector2.ZERO,
 		"projectile":"res://projectiles/rocket.tscn"
 		}):
 	
@@ -153,8 +157,8 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	
 	new_projectile.id = inputs["id"]
 	new_projectile.global_position = inputs["global_position"]
-	new_projectile.look_at(Mouse.global_position)
-	new_projectile.speed *= int(projectile_speed)
+	new_projectile.look_at(inputs["mouse_position"])
+	new_projectile.speed *= inputs["projectile_speed"]
 	
 	if new_projectile.end_player_turn:
 		player_turn_part = TurnState.FIRED
@@ -208,6 +212,8 @@ func die(spawn: bool = false):
 		multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
+			"projectile_speed":projectile_speed,
+			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/snail.tscn"
 		})
 	
@@ -220,7 +226,13 @@ func die(spawn: bool = false):
 	dead = true
 	set_physics_process(false)
 	collision_shape_2d.disabled = true
-	global_position.x = 10000.0
+	global_position.y = -10000.0
+
+
+@rpc("any_peer", "call_local", "reliable")
+func teleport(teleport_position):
+	global_position = teleport_position
+	velocity = Vector2.ZERO
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -233,6 +245,8 @@ func next_player(turn: Vector2i):
 	if turn.x == team_number and turn.y == player_number:
 		player_turn_part = TurnState.AIMING
 		Mouse.global_position = global_position
+	else:
+		player_turn_part = TurnState.IDLE
 
 
 func _on_next_player_timer_timeout() -> void:

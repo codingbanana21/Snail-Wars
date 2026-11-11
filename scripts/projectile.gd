@@ -127,6 +127,8 @@ func explode(end_explode: bool = false):
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
+			"projectile_speed":0,
+			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
 		})
 	
@@ -159,9 +161,7 @@ func explode(end_explode: bool = false):
 			if player.team_number == flag_number:
 				player.die.rpc(true)
 	
-	if teleports_player:
-		parent.global_position = global_position
-		parent.velocity = Vector2.ZERO
+	if teleports_player: parent.teleport.rpc(global_position)
 
 
 func _on_explosion_timer_timeout() -> void:
@@ -174,5 +174,7 @@ func _on_spawn_timer_timeout() -> void:
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
+			"projectile_speed":0,
+			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
 		})
