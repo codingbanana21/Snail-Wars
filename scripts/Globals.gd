@@ -1,6 +1,6 @@
 extends Node
 
-#const
+enum TurnState {IDLE, AIMING, FIRED, RESOLVING, ENDING}
 enum {NAME,DEFAULT,NO_AIR,CRAZY,EVERYTHING}
 
 const WEAPON_SET_NAMES: Array = ["Default","No Air","Crazy","Everything"]

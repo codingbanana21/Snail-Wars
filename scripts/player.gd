@@ -18,8 +18,6 @@ extends CharacterBody2D
 @onready var impressive: AudioStreamPlayer = $Impressive
 @onready var bomb: AudioStreamPlayer = $Bomb
 
-enum TurnState {IDLE, AIMING, FIRED, RESOLVING, ENDING}
-
 const SPEED: int = 240
 const JUMP: Vector2 = Vector2(150, -300)
 const BACK_JUMP: Vector2 = Vector2(-60, -400)
@@ -66,7 +64,7 @@ func _process(delta: float) -> void:
 		die.rpc(false)
 		return
 	
-	if player_turn_part == TurnState.IDLE or player_turn_part == TurnState.ENDING:
+	if player_turn_part == Globals.TurnState.IDLE or player_turn_part == Globals.TurnState.ENDING:
 		turn_arrow.hide()
 		return
 	
@@ -79,13 +77,13 @@ func _process(delta: float) -> void:
 		snail.flip_h = false
 	
 	if Input.is_action_just_pressed("skip"):
-		player_turn_part = TurnState.ENDING
+		player_turn_part = Globals.TurnState.ENDING
 		next_player_timer.start(0.1)
 	
 	weapon = Mouse.weapon
 	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
 	
-	if player_turn_part == TurnState.AIMING and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
+	if player_turn_part == Globals.TurnState.AIMING and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
 		if Input.is_action_pressed("attack"):
 			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 			shot_bar.value = projectile_speed
@@ -112,7 +110,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y <= 2500.0:
 		velocity.y += PLAYER_GRAVITY * delta
 	
-	if player_turn_part != TurnState.IDLE and player_turn_part != TurnState.ENDING and !Input.is_action_pressed("attack"):
+	if player_turn_part != Globals.TurnState.IDLE and player_turn_part != Globals.TurnState.ENDING and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED * delta
@@ -130,7 +128,7 @@ func _physics_process(delta: float) -> void:
 	var temp_velocity: Vector2 = velocity
 	move_and_slide()
 	
-	if player_turn_part != TurnState.IDLE:
+	if player_turn_part != Globals.TurnState.IDLE:
 		Mouse.global_position += velocity * delta
 	
 	if is_on_floor():
@@ -161,7 +159,7 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	new_projectile.speed *= inputs["projectile_speed"]
 	
 	if new_projectile.end_player_turn:
-		player_turn_part = TurnState.FIRED
+		player_turn_part = Globals.TurnState.FIRED
 		Mouse.hide()
 	
 	return new_projectile
@@ -178,9 +176,9 @@ func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 		hit_text.text = str(hurt_damage)
 		add_child(hit_text)
 		
-		if player_turn_part != TurnState.IDLE and hp < 1:
+		if player_turn_part != Globals.TurnState.IDLE and hp < 1:
 			impressive.play()
-		elif player_turn_part != TurnState.IDLE:
+		elif player_turn_part != Globals.TurnState.IDLE:
 			loser.play()
 		else:
 			if randf() >= 0.35:
@@ -190,9 +188,9 @@ func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 		
 		if !is_multiplayer_authority(): return
 		
-		if player_turn_part != TurnState.IDLE:
+		if player_turn_part != Globals.TurnState.IDLE:
 			Mouse.hide()
-			player_turn_part = TurnState.ENDING
+			player_turn_part = Globals.TurnState.ENDING
 			next_player_timer.start(1.0)
 
 
@@ -219,10 +217,10 @@ func die(spawn: bool = false):
 	
 	Globals.alive_players[team_number][player_number] = false
 	
-	if player_turn_part != TurnState.IDLE:
+	if player_turn_part != Globals.TurnState.IDLE:
 		Globals.next_player.rpc()
 	
-	player_turn_part = TurnState.IDLE
+	player_turn_part = Globals.TurnState.IDLE
 	dead = true
 	set_physics_process(false)
 	collision_shape_2d.disabled = true
@@ -243,17 +241,17 @@ func next_player(turn: Vector2i):
 			child.queue_free()
 	
 	if turn.x == team_number and turn.y == player_number:
-		player_turn_part = TurnState.AIMING
+		player_turn_part = Globals.TurnState.AIMING
 		Mouse.global_position = global_position
 	else:
-		player_turn_part = TurnState.IDLE
+		player_turn_part = Globals.TurnState.IDLE
 
 
 func _on_next_player_timer_timeout() -> void:
-	if player_turn_part != TurnState.IDLE:
-		if player_turn_part != TurnState.ENDING:
-			player_turn_part = TurnState.ENDING
+	if player_turn_part != Globals.TurnState.IDLE:
+		if player_turn_part != Globals.TurnState.ENDING:
+			player_turn_part = Globals.TurnState.ENDING
 			next_player_timer.start(1.0)
 		else:
-			player_turn_part = TurnState.IDLE
+			player_turn_part = Globals.TurnState.IDLE
 			Globals.next_player.rpc()

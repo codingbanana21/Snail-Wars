@@ -137,9 +137,9 @@ func explode(end_explode: bool = false):
 		queue_free()
 		
 		#if the projectile is a players end player turn
-		if end_player_turn and parent.player_turn_part != 0:
+		if end_player_turn and parent.player_turn_part != Globals.TurnState.IDLE:
 			parent.next_player_timer.start()
-			parent.player_turn_part = 3
+			parent.player_turn_part = Globals.TurnState.RESOLVING
 			Mouse.global_position = parent.global_position
 	
 	#get map and explode it
