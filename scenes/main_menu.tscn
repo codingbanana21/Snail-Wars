@@ -167,7 +167,7 @@ offset_top = 89.99996
 offset_right = -129.99997
 offset_bottom = 89.99996
 
-[node name="MapLabel" type="Label" parent="Menu/MapMenu" unique_id=2111666030]
+[node name="BigMaps" type="Label" parent="Menu/MapMenu" unique_id=2111666030]
 layout_mode = 0
 offset_left = 161.0
 offset_top = 22.999989
@@ -217,7 +217,7 @@ text = "House"
 icon = ExtResource("10_svtp6")
 map = "b4"
 
-[node name="MapLabel2" type="Label" parent="Menu/MapMenu" unique_id=498424789]
+[node name="MediumMaps" type="Label" parent="Menu/MapMenu" unique_id=498424789]
 layout_mode = 0
 offset_left = 361.0
 offset_top = 24.249992
@@ -286,7 +286,7 @@ text = "Import"
 icon = ExtResource("18_gw5y6")
 map = "c"
 
-[node name="MapLabel3" type="Label" parent="Menu/MapMenu" unique_id=218978788]
+[node name="SmallMaps" type="Label" parent="Menu/MapMenu" unique_id=218978788]
 layout_mode = 0
 offset_left = 165.0
 offset_top = 162.00003

@@ -24,13 +24,25 @@ func _ready() -> void:
 		else:
 			remote_id = 1
 	
-	var img := Image.load_from_file(Globals.map)
+	var img := _load_map_image(Globals.map)
 	if img == null or img.is_empty():
 		push_error("Couldn't load image: " + Globals.map)
 		return
-	
-	image.texture = ImageTexture.create_from_image(img) 
+
+	image.texture = ImageTexture.create_from_image(img)
 	make_map()
+
+
+func _load_map_image(path: String) -> Image:
+	if path.begins_with("res://"):
+		var res = load(path)
+		if res is Image:
+			return res
+		if res is Texture2D:
+			return res.get_image()
+		return null
+	
+	return Image.load_from_file(path)
 
 
 func make_map():
