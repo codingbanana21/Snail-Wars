@@ -154,7 +154,8 @@ func explode(end_explode: bool = false):
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0) * Globals.explosion_power
 			if damage >= 0:
 				player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
-			else:
+			
+			if heal > 0:
 				player.heal(int(heal * hit_power))
 			
 			if life_steal > 0:
