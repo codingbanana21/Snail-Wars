@@ -4,7 +4,10 @@ extends Node2D
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var menu: CanvasLayer = $Menu
 @onready var water: Polygon2D = $Water
+@onready var multiplayer_settings: Control = %MultiplayerSettings
+@onready var map_menu: Control = %MapMenu
 @onready var ip: LineEdit = %IP
+@onready var map_settings: Control = %MapSettings
 @onready var ip_check_box: CheckBox = %IPCheckBox
 @onready var file_dialog: FileDialog = %FileDialog
 
@@ -26,6 +29,7 @@ const CONNECT_TIMEOUT: float = 5.0
 var peer = ENetMultiplayerPeer.new()
 var upnp: UPNP
 var teams_weapons: int
+var map: String
 
 
 func _ready() -> void:
@@ -187,7 +191,7 @@ func make_server(ip_address):
 	multiplayer.peer_connected.connect(
 		func(_id):
 			multiplayer_spawner.spawn({"multiplayer":true,
-				"map":"res://maps/map_m4.png",
+				"map":"res://maps/map_"+map+".png",
 				"players_in_team":Globals.players_in_team,
 				"teams_weapons":teams_weapons,
 				"number_of_teams":Globals.number_of_teams,
@@ -249,7 +253,13 @@ func _on_online_server_pressed() -> void:
 	make_server(upnp_setup(SERVER_PORT))
 
 
-func _on_map_button_make_map(map: Variant) -> void:
+func _on_map_button_make_map(input_map: Variant) -> void:
+	map = input_map
+	map_menu.hide()
+	map_settings.show()
+
+
+func _on_start_button_pressed() -> void:
 	if map == "c":
 		file_dialog.show()
 		file_dialog.file_selected.connect(
