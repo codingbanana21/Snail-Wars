@@ -1,5 +1,4 @@
 TODO:
-- More weapons.
 - Add settings.
 - Player end sceen.
 - Fix 3-4 players multiplayer.
@@ -8,3 +7,4 @@ TODO:
 DONE:
 - Change map when multiplayer without editor.
 - Menus in main menus.
+- More weapons.
