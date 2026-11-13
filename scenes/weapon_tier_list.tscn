@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="22_kk8a4"]
 [ext_resource type="Texture2D" uid="uid://qyfm7ymgrjcd" path="res://assets/images/laser.png" id="23_ki71x"]
 [ext_resource type="Texture2D" uid="uid://bkwmrdnd42i44" path="res://assets/images/super_mine.png" id="24_q3jqy"]
+[ext_resource type="Texture2D" uid="uid://ciqab508x100r" path="res://assets/images/blow_torch_pro.png" id="25_rbufq"]
 
 [node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
@@ -110,23 +111,23 @@ offset_bottom = 226.0
 text = "F"
 
 [node name="Rocket" type="Sprite2D" parent="." unique_id=841642488]
-position = Vector2(56, 139)
+position = Vector2(52, 142)
 texture = ExtResource("1_8tgcj")
 
 [node name="Grenade" type="Sprite2D" parent="." unique_id=54247091]
-position = Vector2(54, 178)
+position = Vector2(52, 178)
 texture = ExtResource("2_a86gk")
 
 [node name="Drill" type="Sprite2D" parent="." unique_id=1972451352]
-position = Vector2(147, 145)
+position = Vector2(115, 143)
 texture = ExtResource("3_p0c8s")
 
 [node name="Bomb" type="Sprite2D" parent="." unique_id=246353884]
-position = Vector2(142, 65)
+position = Vector2(94, 63)
 texture = ExtResource("4_tfcsd")
 
 [node name="Bullet" type="Sprite2D" parent="." unique_id=27364326]
-position = Vector2(116, 143)
+position = Vector2(94, 142)
 texture = ExtResource("5_ic8ko")
 
 [node name="AirStrike" type="Sprite2D" parent="." unique_id=1517395229]
@@ -134,7 +135,7 @@ position = Vector2(54, 100)
 texture = ExtResource("6_p5k33")
 
 [node name="DrillStrike" type="Sprite2D" parent="." unique_id=1007482193]
-position = Vector2(86, 101)
+position = Vector2(77, 100)
 texture = ExtResource("7_sj4mm")
 
 [node name="Tnt" type="Sprite2D" parent="." unique_id=263090772]
@@ -142,15 +143,15 @@ position = Vector2(52, 60)
 texture = ExtResource("8_kqyj4")
 
 [node name="Teleporta" type="Sprite2D" parent="." unique_id=928170119]
-position = Vector2(85, 61)
+position = Vector2(73, 62)
 texture = ExtResource("9_oih76")
 
 [node name="PumkinGrenade" type="Sprite2D" parent="." unique_id=1803907583]
-position = Vector2(120, 100)
+position = Vector2(99, 100)
 texture = ExtResource("10_1jwd0")
 
 [node name="Present" type="Sprite2D" parent="." unique_id=1397960370]
-position = Vector2(150, 101)
+position = Vector2(119, 101)
 texture = ExtResource("11_v1wdc")
 
 [node name="CakeTnt" type="Sprite2D" parent="." unique_id=613711402]
@@ -158,49 +159,53 @@ position = Vector2(53, 20)
 texture = ExtResource("12_85va0")
 
 [node name="Leaf" type="Sprite2D" parent="." unique_id=1317753968]
-position = Vector2(178, 104)
+position = Vector2(138, 143)
 texture = ExtResource("13_2cxr1")
 
 [node name="Chicken" type="Sprite2D" parent="." unique_id=2143275653]
-position = Vector2(114, 62)
+position = Vector2(102, 20)
 texture = ExtResource("14_53epr")
 
 [node name="FatherChrismas" type="Sprite2D" parent="." unique_id=2027833636]
-position = Vector2(83, 22)
+position = Vector2(185, 65)
 texture = ExtResource("15_gjupt")
 
 [node name="Spring" type="Sprite2D" parent="." unique_id=1484725089]
-position = Vector2(231, 107)
+position = Vector2(161, 64)
 texture = ExtResource("16_40fht")
 
 [node name="Pan" type="Sprite2D" parent="." unique_id=187238098]
-position = Vector2(85, 179)
+position = Vector2(71, 180)
 texture = ExtResource("17_1luql")
 
 [node name="PickHammer" type="Sprite2D" parent="." unique_id=1189850938]
-position = Vector2(83, 143)
+position = Vector2(71, 142)
 texture = ExtResource("18_jppr5")
 
 [node name="BlowTorch" type="Sprite2D" parent="." unique_id=2019101113]
-position = Vector2(109, 22)
+position = Vector2(123, 23)
 texture = ExtResource("19_oyhex")
 
 [node name="TeleportaPad" type="Sprite2D" parent="." unique_id=1887089460]
-position = Vector2(205, 105)
+position = Vector2(142, 102)
 texture = ExtResource("20_oyhex")
 
 [node name="LandMine" type="Sprite2D" parent="." unique_id=1872506159]
-position = Vector2(175, 143)
+position = Vector2(90, 179)
 texture = ExtResource("21_ws42h")
 
 [node name="MudBall" type="Sprite2D" parent="." unique_id=567927627]
-position = Vector2(54, 219)
+position = Vector2(51, 220)
 texture = ExtResource("22_kk8a4")
 
 [node name="Laser" type="Sprite2D" parent="." unique_id=1383846324]
-position = Vector2(193, 69)
+position = Vector2(140, 64)
 texture = ExtResource("23_ki71x")
 
 [node name="SuperMine" type="Sprite2D" parent="." unique_id=79091923]
-position = Vector2(167, 65)
+position = Vector2(116, 62)
 texture = ExtResource("24_q3jqy")
+
+[node name="BlowTorchPro" type="Sprite2D" parent="." unique_id=455931081]
+position = Vector2(78, 22)
+texture = ExtResource("25_rbufq")

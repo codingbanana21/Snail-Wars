@@ -10,7 +10,7 @@ knockback = 0
 gravity = 250
 effect_by_wind = false
 spawn_time = 0.35
-spawns = Array[String](["pumpkin_grenade", "tnt", "spring", "land_mine", "chicken"])
+spawns = Array[String](["pumpkin_grenade", "teleporter", "tnt", "spring", "land_mine", "chicken", "pick_hammer", "med_kit"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_2nj0q")

@@ -13,7 +13,7 @@ speed = 0
 min_speed = 0
 spawn_at_mouse = true
 end_player_turn = false
-spawns = Array[String](["air_strike", "drill_strike", "pumpkin_grenade", "teleporter", "tnt", "cake_tnt"])
+spawns = Array[String](["pumpkin_grenade", "teleporter", "tnt", "cake_tnt", "pick_hammer", "med_kit"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_hm0fc")

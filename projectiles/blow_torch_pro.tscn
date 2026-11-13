@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://p82e3x7n3pmc"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_5cs13"]
+[ext_resource type="Texture2D" uid="uid://ciqab508x100r" path="res://assets/images/blow_torch_pro.png" id="2_5cs13"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg673"]
+radius = 21.095022
+
+[node name="BlowTorchPro" unique_id=791496552 instance=ExtResource("1_5cs13")]
+damage = 0
+size = 2
+knockback = 0
+projectile_hp = -1
+speed = 12
+min_speed = 25
+gravity = 0
+effect_by_wind = false
+spawn_offset = 0
+end_player_turn = false
+bomb_sound = false
+teleports_player = true
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_5cs13")
+
+[node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
+shape = SubResource("CircleShape2D_gg673")
