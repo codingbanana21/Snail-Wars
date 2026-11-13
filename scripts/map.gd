@@ -53,7 +53,7 @@ func make_map():
 	
 	for y in image.texture.get_height():
 		for x in image.texture.get_width():
-			var pixel_color = data.get_pixel(x,y)
+			var pixel_color = data.get_pixel(x, y)
 			var offset: Vector2i = Vector2i(int(x * Globals.map_size_x -128), int(y * Globals.map_size_y -256))
 			
 			if pixel_color == Color("77c242"):
@@ -107,6 +107,8 @@ func make_map():
 						})
 			else:
 				map.set_cell(offset, 0 ,Vector2i(0, 2))
+	
+	#print(teams, team_colors)
 
 
 func spawn(inputs: Dictionary = {"id":1,

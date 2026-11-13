@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_christmas.png" id="10_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="12_1dfpl"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="13_1ajci"]
+[ext_resource type="Texture2D" uid="uid://bkwmrdnd42i44" path="res://assets/images/super_mine.png" id="13_qywvv"]
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present_strike.png" id="14_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="15_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_8egab"]
@@ -190,9 +191,9 @@ map = "b1"
 [node name="B2MapButton" parent="Menu/MapMenu" unique_id=2026389007 instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 175.99994
-offset_top = 69.0
+offset_top = 66.49999
 offset_right = 320.0
-offset_bottom = 93.0
+offset_bottom = 90.49999
 text = "The cave"
 icon = ExtResource("8_svtp6")
 map = "b2"
@@ -200,9 +201,9 @@ map = "b2"
 [node name="B3MapButton" parent="Menu/MapMenu" unique_id=421375843 instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 198.99997
-offset_top = 101.0
+offset_top = 97.249985
 offset_right = 297.0
-offset_bottom = 125.0
+offset_bottom = 121.249985
 text = "Climb"
 icon = ExtResource("13_1ajci")
 map = "b3"
@@ -210,12 +211,22 @@ map = "b3"
 [node name="B4MapButton" parent="Menu/MapMenu" unique_id=309034891 instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 199.0
-offset_top = 130.99997
+offset_top = 127.249985
 offset_right = 303.0
-offset_bottom = 154.99997
+offset_bottom = 151.24998
 text = "House"
 icon = ExtResource("10_svtp6")
 map = "b4"
+
+[node name="B5MapButton2" parent="Menu/MapMenu" unique_id=896430450 instance=ExtResource("7_7b55j")]
+layout_mode = 0
+offset_left = 187.49997
+offset_top = 156.25006
+offset_right = 311.49997
+offset_bottom = 180.25006
+text = "Bigest"
+icon = ExtResource("13_qywvv")
+map = "b5"
 
 [node name="MediumMaps" type="Label" parent="Menu/MapMenu" unique_id=498424789]
 layout_mode = 0
@@ -289,9 +300,9 @@ map = "c"
 [node name="SmallMaps" type="Label" parent="Menu/MapMenu" unique_id=218978788]
 layout_mode = 0
 offset_left = 165.0
-offset_top = 162.00003
+offset_top = 202.0
 offset_right = 543.0
-offset_bottom = 178.00003
+offset_bottom = 218.0
 scale = Vector2(0.5, 0.5)
 text = "Small maps (Players 2-8)"
 label_settings = ExtResource("3_1ajci")
@@ -299,9 +310,9 @@ label_settings = ExtResource("3_1ajci")
 [node name="S1MapButton" parent="Menu/MapMenu" unique_id=1199257575 instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 184.0
-offset_top = 174.00003
+offset_top = 214.0
 offset_right = 312.0
-offset_bottom = 198.00003
+offset_bottom = 238.0
 text = "Islands"
 icon = ExtResource("10_gw5y6")
 map = "s1"
@@ -309,9 +320,9 @@ map = "s1"
 [node name="S2MapButton" parent="Menu/MapMenu" unique_id=279227966 instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 186.99997
-offset_top = 206.0
+offset_top = 246.00006
 offset_right = 309.0
-offset_bottom = 230.0
+offset_bottom = 270.00006
 text = "Over it"
 icon = ExtResource("16_8egab")
 map = "s2"
@@ -319,9 +330,9 @@ map = "s2"
 [node name="S3MapButton" parent="Menu/MapMenu" unique_id=1492122498 instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 185.99997
-offset_top = 238.0
+offset_top = 278.0
 offset_right = 310.0
-offset_bottom = 262.0
+offset_bottom = 302.0
 text = "Pillars"
 icon = ExtResource("15_gw5y6")
 map = "s3"
@@ -460,7 +471,7 @@ offset_top = 215.0
 offset_right = 280.0
 offset_bottom = 239.0
 theme_override_fonts/font = ExtResource("4_7b55j")
-text = "5"
+text = "3"
 
 [node name="WaterRiseLabel" type="Label" parent="Menu/MapSettings" unique_id=2110826948]
 unique_name_in_owner = true
@@ -513,6 +524,7 @@ icon = ExtResource("23_1dfpl")
 [connection signal="make_map" from="Menu/MapMenu/B2MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/B3MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/B4MapButton" to="." method="_on_map_button_make_map"]
+[connection signal="make_map" from="Menu/MapMenu/B5MapButton2" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/M1MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/M2MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/M3MapButton" to="." method="_on_map_button_make_map"]
