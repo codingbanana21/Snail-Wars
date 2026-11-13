@@ -163,7 +163,7 @@ func _on_client_pressed() -> void:
 	
 	peer = new_peer
 	multiplayer.multiplayer_peer = new_peer
-	print("trying to connect to ", ip_address)
+	print("Trying to connect to ", ip_address)
 	
 	await get_tree().create_timer(CONNECT_TIMEOUT).timeout
 	if new_peer.get_connection_status() == MultiplayerPeer.CONNECTION_CONNECTING:
@@ -233,7 +233,7 @@ func upnp_setup(server_port):
 
 
 func _on_connected() -> void:
-	print("connected")
+	print("Connected")
 
 
 func _on_connection_failed() -> void:

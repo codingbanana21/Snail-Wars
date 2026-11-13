@@ -33,7 +33,7 @@ const WEAPONS: Dictionary = {
 
 #save data
 const SAVE_PATH = "user://Save.tres"
-const GAME_VERSION: float = 0.5
+const GAME_VERSION: float = 0.7
 var save_data: SaveDataResource = SaveDataResource.new()
 var save_version: float
 var saved_ip_address: String
