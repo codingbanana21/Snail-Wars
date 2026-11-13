@@ -38,7 +38,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	camera_2d.limit_bottom = Globals.water_level + 64
+	camera_2d.limit_bottom = int(Globals.water_level) + 64
+	wind.max_value = Globals.wind_speed
+	wind.min_value = -Globals.wind_speed
+	
 	wind.value = Globals.wind
 	wind_label.text = "Wind " + str(Globals.wind)
 	

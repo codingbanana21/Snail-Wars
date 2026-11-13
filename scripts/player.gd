@@ -108,7 +108,7 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	if velocity.y <= 2500.0:
-		velocity.y += PLAYER_GRAVITY * delta
+		velocity.y += PLAYER_GRAVITY * Globals.gravity * delta
 	
 	if player_turn_part != Globals.TurnState.IDLE and player_turn_part != Globals.TurnState.ENDING and !Input.is_action_pressed("attack"):
 		if is_on_floor():

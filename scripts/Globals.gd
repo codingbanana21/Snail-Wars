@@ -48,13 +48,17 @@ var turn: Vector2i = Vector2i.ZERO
 
 #settings
 var player_hp: int
-var water_level: int
-var water_rise: int
+var water_level: float
+var water_rise: float
 var is_multiplayer: bool = false
 var wind: float = 0.0
 var teams_weapons: Array[Array]
 var map: String = "1m"
 var explosion_power: float = 1.0
+var wind_speed: float = 5.0
+var gravity: float = 1.0
+
+#test settings
 var map_size_x: float = 1.0
 var map_size_y: float = 1.0
 
@@ -64,6 +68,7 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	rng.seed = 1000
 	load_game()
+	
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -71,7 +76,7 @@ func next_player(skip_player: bool = false):
 	Mouse.show()
 	
 	if !skip_player:
-		wind = snapped(rng.randf_range(-5.0, 5.0), 0.5)
+		wind = snapped(rng.randf_range(-wind_speed, wind_speed), 0.5)
 		water_level += water_rise
 	
 	if !multiplayer.is_server(): return

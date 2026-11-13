@@ -22,6 +22,8 @@ extends Node2D
 @onready var water_level: LineEdit = %WaterLevel
 @onready var water_rise: LineEdit = %WaterRise
 @onready var explosion_power: LineEdit = %ExplosionPower
+@onready var wind_speed: LineEdit = %WindSpeed
+@onready var gravity: LineEdit = %Gravity
 
 const SERVER_PORT = 3100
 const CONNECT_TIMEOUT: float = 5.0
@@ -52,9 +54,11 @@ func _process(_delta: float) -> void:
 		Globals.number_of_teams = int(teams_h_slider.value)
 		
 		Globals.player_hp = int(player_hp.text)
-		Globals.water_level = -int(water_level.text)
-		Globals.water_rise = -int(water_rise.text)
+		Globals.water_level = -float(water_level.text)
+		Globals.water_rise = -float(water_rise.text)
 		Globals.explosion_power = float(explosion_power.text)
+		Globals.wind_speed = float(wind_speed.text)
+		Globals.gravity = float(gravity.text)
 
 
 func make_map(inputs: Dictionary = {"multiplayer":false,
@@ -63,9 +67,11 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		"teams_weapons":[],
 		"number_of_teams":1,
 		"player_hp":1,
-		"water_level":1,
-		"water_rise":1,
+		"water_level":1.0,
+		"water_rise":1.0,
 		"explosion_power":1,
+		"wind_speed":0.0,
+		"gravity":0.0,
 		"map_size_x":1.0,
 		"map_size_y":1.0,
 		}):
@@ -81,6 +87,8 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 		Globals.water_level = inputs["water_level"]
 		Globals.water_rise = inputs["water_rise"]
 		Globals.explosion_power = inputs["explosion_power"]
+		Globals.wind_speed = inputs["wind_speed"]
+		Globals.gravity = inputs["gravity"]
 		Globals.map_size_x = inputs["map_size_x"]
 		Globals.map_size_y = inputs["map_size_y"]
 	
@@ -199,6 +207,8 @@ func make_server(ip_address):
 				"water_level":Globals.water_level,
 				"water_rise":Globals.water_rise,
 				"explosion_power":Globals.explosion_power,
+				"wind_speed":Globals.wind_speed,
+				"gravity":Globals.gravity,
 				"map_size_x":Globals.map_size_x,
 				"map_size_y":Globals.map_size_y,
 				})

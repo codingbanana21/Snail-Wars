@@ -423,11 +423,12 @@ label_settings = ExtResource("3_1ajci")
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
-offset_top = 215.0
-offset_right = 176.0
-offset_bottom = 239.0
+offset_top = 217.5
+offset_right = 196.0
+offset_bottom = 241.5
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "100"
+alignment = 1
 
 [node name="PlayerHPLabel" type="Label" parent="Menu/MapSettings" unique_id=1266939834]
 unique_name_in_owner = true
@@ -445,11 +446,12 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 96.0
-offset_top = 250.0
-offset_right = 176.0
-offset_bottom = 274.0
+offset_top = 252.5
+offset_right = 196.0
+offset_bottom = 276.5
 theme_override_fonts/font = ExtResource("4_7b55j")
-text = "0"
+text = "0.0"
+alignment = 1
 
 [node name="LevelLabel" type="Label" parent="Menu/MapSettings" unique_id=513843222]
 unique_name_in_owner = true
@@ -467,11 +469,12 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 200.0
-offset_top = 215.0
-offset_right = 280.0
-offset_bottom = 239.0
+offset_top = 217.5
+offset_right = 300.0
+offset_bottom = 241.5
 theme_override_fonts/font = ExtResource("4_7b55j")
-text = "3"
+text = "3.0"
+alignment = 1
 
 [node name="WaterRiseLabel" type="Label" parent="Menu/MapSettings" unique_id=2110826948]
 unique_name_in_owner = true
@@ -489,11 +492,12 @@ horizontal_alignment = 1
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 200.0
-offset_top = 250.0
-offset_right = 280.0
-offset_bottom = 274.0
+offset_top = 252.5
+offset_right = 300.0
+offset_bottom = 276.5
 theme_override_fonts/font = ExtResource("4_7b55j")
 text = "1.0"
+alignment = 1
 
 [node name="ExplosionPowerLabel" type="Label" parent="Menu/MapSettings" unique_id=1715046951]
 unique_name_in_owner = true
@@ -504,6 +508,52 @@ offset_right = 449.0
 offset_bottom = 259.00006
 scale = Vector2(0.5, 0.5)
 text = "Explosion Power"
+label_settings = ExtResource("3_1ajci")
+horizontal_alignment = 1
+
+[node name="WindSpeed" type="LineEdit" parent="Menu/MapSettings" unique_id=1219962677]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 96.25001
+offset_top = 292.5
+offset_right = 196.25
+offset_bottom = 316.5
+theme_override_fonts/font = ExtResource("4_7b55j")
+text = "5.0"
+alignment = 1
+
+[node name="WindSpeedLabel" type="Label" parent="Menu/MapSettings" unique_id=1736360735]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 69.25001
+offset_top = 283.0001
+offset_right = 345.25
+offset_bottom = 299.0001
+scale = Vector2(0.5, 0.5)
+text = "Wind Speed"
+label_settings = ExtResource("3_1ajci")
+horizontal_alignment = 1
+
+[node name="Gravity" type="LineEdit" parent="Menu/MapSettings" unique_id=2068081150]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 200.0
+offset_top = 292.5
+offset_right = 300.0
+offset_bottom = 316.5
+theme_override_fonts/font = ExtResource("4_7b55j")
+text = "1.0"
+alignment = 1
+
+[node name="GravityLabel" type="Label" parent="Menu/MapSettings" unique_id=1396647349]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 173.0
+offset_top = 283.0001
+offset_right = 449.0
+offset_bottom = 299.0001
+scale = Vector2(0.5, 0.5)
+text = "Gravity"
 label_settings = ExtResource("3_1ajci")
 horizontal_alignment = 1
 
