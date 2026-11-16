@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var damage: int = 45
 @export var heal: int = 0
 @export var size: int = 5
-@export var knockback: int = 40
+@export var knockback: int = 35
 @export var projectile_hp: int = 1
 @export var hit_stun_time: float = 0.0
 

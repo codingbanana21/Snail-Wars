@@ -10,6 +10,7 @@ radius = 5.0
 damage = 50
 bounce = true
 timer = 1.5
+camera_follow = false
 end_player_turn = false
 spawn_on_death = true
 spawns = Array[String](["grenade", "pumpkin_grenade", "pumpkin_grenade"])

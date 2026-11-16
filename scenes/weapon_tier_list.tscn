@@ -22,8 +22,6 @@
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="21_ws42h"]
 [ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="22_kk8a4"]
 [ext_resource type="Texture2D" uid="uid://qyfm7ymgrjcd" path="res://assets/images/laser.png" id="23_ki71x"]
-[ext_resource type="Texture2D" uid="uid://bkwmrdnd42i44" path="res://assets/images/super_mine.png" id="24_q3jqy"]
-[ext_resource type="Texture2D" uid="uid://ciqab508x100r" path="res://assets/images/blow_torch_pro.png" id="25_rbufq"]
 
 [node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
@@ -158,11 +156,11 @@ position = Vector2(144, 142)
 texture = ExtResource("13_2cxr1")
 
 [node name="Chicken" type="Sprite2D" parent="." unique_id=2143275653]
-position = Vector2(185, 66)
+position = Vector2(168, 66)
 texture = ExtResource("14_53epr")
 
 [node name="FatherChrismas" type="Sprite2D" parent="." unique_id=2027833636]
-position = Vector2(164, 66)
+position = Vector2(144, 67)
 texture = ExtResource("15_gjupt")
 
 [node name="Spring" type="Sprite2D" parent="." unique_id=1484725089]
@@ -178,7 +176,7 @@ position = Vector2(77, 143)
 texture = ExtResource("18_jppr5")
 
 [node name="BlowTorch" type="Sprite2D" parent="." unique_id=2019101113]
-position = Vector2(101, 23)
+position = Vector2(75, 23)
 texture = ExtResource("19_oyhex")
 
 [node name="TeleportaPad" type="Sprite2D" parent="." unique_id=1887089460]
@@ -186,21 +184,13 @@ position = Vector2(142, 102)
 texture = ExtResource("20_oyhex")
 
 [node name="LandMine" type="Sprite2D" parent="." unique_id=1872506159]
-position = Vector2(54, 218)
+position = Vector2(104, 180)
 texture = ExtResource("21_ws42h")
 
 [node name="MudBall" type="Sprite2D" parent="." unique_id=567927627]
-position = Vector2(104, 180)
+position = Vector2(165, 144)
 texture = ExtResource("22_kk8a4")
 
 [node name="Laser" type="Sprite2D" parent="." unique_id=1383846324]
-position = Vector2(140, 64)
+position = Vector2(116, 64)
 texture = ExtResource("23_ki71x")
-
-[node name="SuperMine" type="Sprite2D" parent="." unique_id=79091923]
-position = Vector2(116, 62)
-texture = ExtResource("24_q3jqy")
-
-[node name="BlowTorchPro" type="Sprite2D" parent="." unique_id=455931081]
-position = Vector2(78, 22)
-texture = ExtResource("25_rbufq")

@@ -20,7 +20,6 @@ const WEAPONS: Dictionary = {
 	"dynamite":{NAME:"Dynamite", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 	"cake_dynamite":{NAME:"Cake Dynamite", DEFAULT:0, NO_AIR:1, CRAZY:2, EVERYTHING:-1},
 	"land_mine":{NAME:"Land Mine", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
-	"super_mine":{NAME:"Super Mine", DEFAULT:0, NO_AIR:0, CRAZY:1, EVERYTHING:-1},
 	"teleporter":{NAME:"Teleporter", DEFAULT:2, NO_AIR:3, CRAZY:4, EVERYTHING:-1},
 	"teleporter_pad":{NAME:"Teleporter Pad", DEFAULT:1, NO_AIR:0, CRAZY:2, EVERYTHING:-1},
 	"spring":{NAME:"Spring", DEFAULT:2, NO_AIR:3, CRAZY:4, EVERYTHING:-1},
@@ -28,7 +27,6 @@ const WEAPONS: Dictionary = {
 	"blow_torch":{NAME:"Blow Torch", DEFAULT:3, NO_AIR:0, CRAZY:5, EVERYTHING:-1},
 	"mud_ball":{NAME:"Mud Ball", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERYTHING:-1},
 	"laser":{NAME:"Laser", DEFAULT:0, NO_AIR:0, CRAZY:2, EVERYTHING:-1},
-	"blow_torch_pro":{NAME:"Blow Torch Pro", DEFAULT:0, NO_AIR:0, CRAZY:1, EVERYTHING:-1},
 }
 
 #save data
