@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_5aeut"]
 [ext_resource type="Texture2D" uid="uid://4amp0cn08tly" path="res://assets/images/pan.png" id="2_up3tt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5863u"]
-size = Vector2(12, 4)
+[sub_resource type="CircleShape2D" id="CircleShape2D_up3tt"]
+radius = 5.0
 
 [node name="Pan" unique_id=791496552 instance=ExtResource("1_5aeut")]
 damage = 30
@@ -21,5 +21,5 @@ end_player_turn = false
 texture = ExtResource("2_up3tt")
 
 [node name="CollisionShape2D" parent="DetectBox" parent_id_path=PackedInt32Array(289666369) index="0" unique_id=1905896826]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_5863u")
+position = Vector2(2, 0)
+shape = SubResource("CircleShape2D_up3tt")

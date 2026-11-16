@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b7fgok4ioqjf"
-path="res://.godot/imported/tnt.png-2a1733355a291440917c90a784213b3b.ctex"
+path="res://.godot/imported/dynamite.png-2c6ce953db4fea8ae25baec830909188.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tnt.png"
-dest_files=["res://.godot/imported/tnt.png-2a1733355a291440917c90a784213b3b.ctex"]
+source_file="res://assets/images/dynamite.png"
+dest_files=["res://.godot/imported/dynamite.png-2c6ce953db4fea8ae25baec830909188.ctex"]
 
 [params]
 

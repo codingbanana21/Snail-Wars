@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://ctkya3r66obcb"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_2ywih"]
-[ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/tnt.png" id="2_gjjih"]
+[ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/dynamite.png" id="2_gjjih"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7exph"]
-radius = 4.0
+radius = 3.0
 height = 12.0
 
-[node name="TNT" unique_id=791496552 instance=ExtResource("1_2ywih")]
+[node name="Dynamite" unique_id=791496552 instance=ExtResource("1_2ywih")]
 damage = 70
 size = 7
 knockback = 55

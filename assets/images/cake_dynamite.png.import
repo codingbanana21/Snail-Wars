@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d7rmm3hgmhlx"
-path="res://.godot/imported/cake_tnt.png-de9854c33482493f7526a3e1cb5eb3c7.ctex"
+path="res://.godot/imported/cake_dynamite.png-e8554e47e1c9d44587d402a687e918e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/cake_tnt.png"
-dest_files=["res://.godot/imported/cake_tnt.png-de9854c33482493f7526a3e1cb5eb3c7.ctex"]
+source_file="res://assets/images/cake_dynamite.png"
+dest_files=["res://.godot/imported/cake_dynamite.png-e8554e47e1c9d44587d402a687e918e9.ctex"]
 
 [params]
 

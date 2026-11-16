@@ -5,7 +5,7 @@ enum {NAME,DEFAULT,NO_AIR,CRAZY,EVERYTHING}
 
 const WEAPON_SET_NAMES: Array = ["Default","No Air","Crazy","Everything"]
 const WEAPONS: Dictionary = {
-	"rocket":{NAME:"Rocket Launcher", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
+	"rocket":{NAME:"Bazooka", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
 	"grenade":{NAME:"Grenade", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
 	"bomb":{NAME:"Bomb", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERYTHING:-1},
 	"drill_rocket":{NAME:"Drill Rocket", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERYTHING:-1},
@@ -18,8 +18,8 @@ const WEAPONS: Dictionary = {
 	"present_strike":{NAME:"Present Strike", DEFAULT:0, NO_AIR:0, CRAZY:1, EVERYTHING:-1},
 	"chicken":{NAME:"Chicken", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 	"father_christmas":{NAME:"Father Christmas", DEFAULT:0, NO_AIR:0, CRAZY:0, EVERYTHING:-1},
-	"tnt":{NAME:"TNT", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
-	"cake_tnt":{NAME:"Cake TNT", DEFAULT:0, NO_AIR:1, CRAZY:2, EVERYTHING:-1},
+	"dynamite":{NAME:"Dynamite", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
+	"cake_dynamite":{NAME:"Cake Dynamite", DEFAULT:0, NO_AIR:1, CRAZY:2, EVERYTHING:-1},
 	"land_mine":{NAME:"Land Mine", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 	"super_mine":{NAME:"Super Mine", DEFAULT:0, NO_AIR:0, CRAZY:0, EVERYTHING:-1},
 	"teleporter":{NAME:"Teleporter", DEFAULT:2, NO_AIR:3, CRAZY:4, EVERYTHING:-1},

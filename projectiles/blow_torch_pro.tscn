@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ciqab508x100r" path="res://assets/images/blow_torch_pro.png" id="2_5cs13"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg673"]
-radius = 21.095022
+radius = 15.033297
 
 [node name="BlowTorchPro" unique_id=791496552 instance=ExtResource("1_5cs13")]
 damage = 0
