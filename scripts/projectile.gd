@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var knockback: int = 35
 @export var projectile_hp: int = 1
 @export var hit_stun_time: float = 0.0
+@export var build: bool = false
 
 @export_group("Movement")
 @export var speed: int = 60
@@ -147,7 +148,7 @@ func explode(end_explode: bool = false):
 	
 	#get map and explode it
 	for map in get_tree().get_nodes_in_group("Map"):
-		map.explode_tile.rpc(global_position, size * Globals.explosion_power)
+		map.explode_tile.rpc(global_position, size * Globals.explosion_power, build)
 	
 	#hit players
 	for player: Player in get_tree().get_nodes_in_group("Player"):

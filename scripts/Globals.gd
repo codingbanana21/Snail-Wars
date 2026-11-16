@@ -27,6 +27,7 @@ const WEAPONS: Dictionary = {
 	"blow_torch":{NAME:"Blow Torch", DEFAULT:3, NO_AIR:0, CRAZY:5, EVERYTHING:-1},
 	"mud_ball":{NAME:"Mud Ball", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERYTHING:-1},
 	"laser":{NAME:"Laser", DEFAULT:0, NO_AIR:0, CRAZY:2, EVERYTHING:-1},
+	"build_ball":{NAME:"Build Ball", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 }
 
 #save data

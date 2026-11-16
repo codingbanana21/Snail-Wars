@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://y43dfv068u6k"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_ab8jg"]
+[ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="2_6fg82"]
+
+[node name="BuildBall" unique_id=791496552 instance=ExtResource("1_ab8jg")]
+damage = 0
+size = 4
+knockback = 0
+build = true
+speed = 0
+min_speed = 500
+gravity = 0
+timer = 0.25
+camera_follow = false
+end_player_turn = false
+bomb_sound = false
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_6fg82")

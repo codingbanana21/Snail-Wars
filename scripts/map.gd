@@ -132,7 +132,7 @@ func spawn(inputs: Dictionary = {"id":1,
 
 
 @rpc("any_peer","reliable","call_local")
-func explode_tile(target_position: Vector2, power: int):
+func explode_tile(target_position: Vector2, power: int, build: bool = false):
 	var tile_position: Vector2 = round(target_position / 8.0)
 	var explosion_accuracy: float = PI * 2
 	
@@ -141,8 +141,14 @@ func explode_tile(target_position: Vector2, power: int):
 			var tile: Vector2 = tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size)
 			var tile_type: Vector2i = map.get_cell_atlas_coords(tile)
 			
-			if tile_type.y == 0:
-				map.set_cell(tile, 0, tile_type + Vector2i(0, 1))
+			if !build:
+				if tile_type.y == 0:
+					map.set_cell(tile, 0, tile_type + Vector2i(0, 1))
+			else:
+				if tile_type.y == 1:
+					map.set_cell(tile, 0, tile_type - Vector2i(0, 1))
+				elif tile_type.y != 0:
+					map.set_cell(tile, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
 
 
 func _on_timer_timeout() -> void:
