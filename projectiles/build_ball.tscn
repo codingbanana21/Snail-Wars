@@ -1,20 +1,26 @@
 [gd_scene format=3 uid="uid://y43dfv068u6k"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_ab8jg"]
-[ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="2_6fg82"]
+[ext_resource type="Texture2D" uid="uid://ymo86tugl5dn" path="res://assets/images/egg.png" id="2_6fg82"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j6cch"]
+radius = 46.09772
 
 [node name="BuildBall" unique_id=791496552 instance=ExtResource("1_ab8jg")]
+collision_layer = 0
 damage = 0
-size = 4
+size = 2
 knockback = 0
+projectile_hp = -1
 build = true
-speed = 0
-min_speed = 500
-gravity = 0
-timer = 0.25
-camera_follow = false
-end_player_turn = false
+timer = 0.5
 bomb_sound = false
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_6fg82")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 0
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+shape = SubResource("CircleShape2D_j6cch")
