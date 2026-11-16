@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://ca6ny0aoftjrj" path="res://assets/sounds/bang_01.ogg" id="9_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://blv3w7t1nxx45" path="res://assets/sounds/impressive.mp3" id="10_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://d1tq3f3bhtunf" path="res://assets/sounds/stupid.mp3" id="10_d2wvv"]
-[ext_resource type="AudioStream" uid="uid://ciiscqthykh47" path="res://assets/sounds/achieved.mp3" id="11_3v2ag"]
+[ext_resource type="AudioStream" uid="uid://dxy17bi5ig8q6" path="res://assets/sounds/Recording 33.mp3" id="11_3v2ag"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y4r1p"]
 properties/0/path = NodePath(".:position")
@@ -120,7 +120,7 @@ stream = ExtResource("10_3v2ag")
 pitch_scale = 1.6
 bus = &"SFX"
 
-[node name="Achieved" type="AudioStreamPlayer" parent="." unique_id=494901631]
+[node name="WastOfTime" type="AudioStreamPlayer" parent="." unique_id=494901631]
 stream = ExtResource("11_3v2ag")
 volume_db = 5.0
 pitch_scale = 1.6

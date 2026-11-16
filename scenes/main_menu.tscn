@@ -78,8 +78,8 @@ polygon = PackedVector2Array(-1277, -27, -1185, 10, -1098, -22, -983, 10, -859, 
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=828849114]
 stream = ExtResource("2_hstxw")
-volume_db = -10.0
 autoplay = true
+bus = &"Music"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=163360968]
 

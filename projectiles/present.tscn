@@ -17,7 +17,7 @@ spawn_offset = 0
 timer = 5.0
 camera_follow = false
 end_player_turn = false
-spawn_on_death = true
+spawn_on_hit = true
 spawns = Array[String](["cake_dynamite", "dynamite", "egg", "grenade", "land_mine", "med_kit", "pick_hammer", "pumpkin_grenade", "spring"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

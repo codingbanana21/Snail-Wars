@@ -17,7 +17,7 @@ extends CharacterBody2D
 @onready var loser: AudioStreamPlayer = $Loser
 @onready var stupid: AudioStreamPlayer = $Stupid
 @onready var impressive: AudioStreamPlayer = $Impressive
-@onready var achieved: AudioStreamPlayer = $Achieved
+@onready var wast_of_time: AudioStreamPlayer = $WastOfTime
 @onready var bomb: AudioStreamPlayer = $Bomb
 
 const SPEED: int = 240
@@ -224,7 +224,7 @@ func die(spawn: bool = false):
 	
 	if player_turn_part != Globals.TurnState.IDLE:
 		if player_turn_part == Globals.TurnState.AIMING:
-			achieved.play()
+			wast_of_time.play()
 		else:
 			impressive.play()
 		Globals.next_player.rpc()

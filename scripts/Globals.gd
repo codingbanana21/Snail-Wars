@@ -31,11 +31,13 @@ const WEAPONS: Dictionary = {
 
 #save data
 const SAVE_PATH = "user://Save.tres"
-const GAME_VERSION: float = 0.7
+const GAME_VERSION: float = 0.8
 var save_data: SaveDataResource = SaveDataResource.new()
 var save_version: float
 var saved_ip_address: String
 var high_graphics: bool = true
+var SFX_volume: float = 0.0
+var music_volume: float = 0.0
 
 #teams
 var players_in_team: int
@@ -66,7 +68,6 @@ var rng = RandomNumberGenerator.new()
 func _ready() -> void:
 	rng.seed = 1000
 	load_game()
-	
 
 
 @rpc("any_peer", "call_local", "reliable")
@@ -110,6 +111,9 @@ func save_game(force_save: bool = false):
 	if save_version == GAME_VERSION or force_save:
 		save_data.save_version = save_version
 		save_data.saved_ip_address = saved_ip_address
+		save_data.high_graphics = high_graphics
+		save_data.SFX_volume = SFX_volume
+		save_data.music_volume = music_volume
 		ResourceSaver.save(save_data, SAVE_PATH)
 
 
@@ -131,6 +135,17 @@ func load_game():
 		
 		#set data
 		saved_ip_address = save_data.saved_ip_address
+		high_graphics = save_data.high_graphics
+		SFX_volume = save_data.SFX_volume
+		music_volume = save_data.music_volume
+		
+		var sfx_bus_index = AudioServer.get_bus_index("SFX")
+		AudioServer.set_bus_volume_db(sfx_bus_index, SFX_volume)
+		
+		var music_bus_index = AudioServer.get_bus_index("Music")
+		AudioServer.set_bus_volume_db(music_bus_index, music_volume)
+		
+		high_graphics = true
 	else:
 		save_game(true)
 		load_game()
