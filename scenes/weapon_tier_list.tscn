@@ -10,11 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://b7fgok4ioqjf" path="res://assets/images/dynamite.png" id="8_kqyj4"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="9_oih76"]
 [ext_resource type="Texture2D" uid="uid://cd6j10f3xc22c" path="res://assets/images/pumpkin_grenade.png" id="10_1jwd0"]
-[ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present_strike.png" id="11_v1wdc"]
 [ext_resource type="Texture2D" uid="uid://d7rmm3hgmhlx" path="res://assets/images/cake_dynamite.png" id="12_85va0"]
 [ext_resource type="Texture2D" uid="uid://ffe73y1go1j4" path="res://assets/images/healing_leaf.png" id="13_2cxr1"]
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="14_53epr"]
-[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/father_christmas.png" id="15_gjupt"]
+[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/christmas_strike.png" id="15_gjupt"]
 [ext_resource type="Texture2D" uid="uid://hlawjbs0m0s4" path="res://assets/images/spring.png" id="16_40fht"]
 [ext_resource type="Texture2D" uid="uid://4amp0cn08tly" path="res://assets/images/pan.png" id="17_1luql"]
 [ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="18_jppr5"]
@@ -119,7 +118,7 @@ position = Vector2(52, 178)
 texture = ExtResource("2_a86gk")
 
 [node name="Drill" type="Sprite2D" parent="." unique_id=1972451352]
-position = Vector2(115, 143)
+position = Vector2(119, 143)
 texture = ExtResource("3_p0c8s")
 
 [node name="Bomb" type="Sprite2D" parent="." unique_id=246353884]
@@ -127,7 +126,7 @@ position = Vector2(94, 63)
 texture = ExtResource("4_tfcsd")
 
 [node name="Bullet" type="Sprite2D" parent="." unique_id=27364326]
-position = Vector2(94, 142)
+position = Vector2(98, 142)
 texture = ExtResource("5_ic8ko")
 
 [node name="AirStrike" type="Sprite2D" parent="." unique_id=1517395229]
@@ -150,40 +149,36 @@ texture = ExtResource("9_oih76")
 position = Vector2(99, 100)
 texture = ExtResource("10_1jwd0")
 
-[node name="Present" type="Sprite2D" parent="." unique_id=1397960370]
-position = Vector2(119, 101)
-texture = ExtResource("11_v1wdc")
-
 [node name="CakeTnt" type="Sprite2D" parent="." unique_id=613711402]
 position = Vector2(53, 20)
 texture = ExtResource("12_85va0")
 
 [node name="Leaf" type="Sprite2D" parent="." unique_id=1317753968]
-position = Vector2(138, 143)
+position = Vector2(144, 142)
 texture = ExtResource("13_2cxr1")
 
 [node name="Chicken" type="Sprite2D" parent="." unique_id=2143275653]
-position = Vector2(102, 20)
+position = Vector2(185, 66)
 texture = ExtResource("14_53epr")
 
 [node name="FatherChrismas" type="Sprite2D" parent="." unique_id=2027833636]
-position = Vector2(185, 65)
+position = Vector2(164, 66)
 texture = ExtResource("15_gjupt")
 
 [node name="Spring" type="Sprite2D" parent="." unique_id=1484725089]
-position = Vector2(161, 64)
+position = Vector2(120, 103)
 texture = ExtResource("16_40fht")
 
 [node name="Pan" type="Sprite2D" parent="." unique_id=187238098]
-position = Vector2(71, 180)
+position = Vector2(79, 180)
 texture = ExtResource("17_1luql")
 
 [node name="PickHammer" type="Sprite2D" parent="." unique_id=1189850938]
-position = Vector2(71, 142)
+position = Vector2(77, 143)
 texture = ExtResource("18_jppr5")
 
 [node name="BlowTorch" type="Sprite2D" parent="." unique_id=2019101113]
-position = Vector2(123, 23)
+position = Vector2(101, 23)
 texture = ExtResource("19_oyhex")
 
 [node name="TeleportaPad" type="Sprite2D" parent="." unique_id=1887089460]
@@ -191,11 +186,11 @@ position = Vector2(142, 102)
 texture = ExtResource("20_oyhex")
 
 [node name="LandMine" type="Sprite2D" parent="." unique_id=1872506159]
-position = Vector2(90, 179)
+position = Vector2(54, 218)
 texture = ExtResource("21_ws42h")
 
 [node name="MudBall" type="Sprite2D" parent="." unique_id=567927627]
-position = Vector2(51, 220)
+position = Vector2(104, 180)
 texture = ExtResource("22_kk8a4")
 
 [node name="Laser" type="Sprite2D" parent="." unique_id=1383846324]

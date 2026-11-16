@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dbf0v4h637xdn"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_5crrp"]
+[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/christmas_strike.png" id="2_2nj0q"]
+
+[node name="ChristmasStrike" unique_id=791496552 instance=ExtResource("1_5crrp")]
+damage = 60
+size = 6
+knockback = 50
+speed = 0
+min_speed = 0
+spawn_at_mouse = true
+timer = 5.0
+spawn_time = 0.35
+spawns = Array[String](["present"])
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+texture = ExtResource("2_2nj0q")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 0

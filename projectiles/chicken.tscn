@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="2_77rtt"]
 
 [node name="Chicken" unique_id=791496552 instance=ExtResource("1_3yjh5")]
+damage = 35
+size = 4
+knockback = 25
 gravity = 250
 spawn_time = 0.35
 spawns = Array[String](["egg"])
