@@ -37,7 +37,7 @@ extends CharacterBody2D
 @export var bomb_sound: bool = true
 @export var teleports_player: bool = false
 @export var life_steal: int = 0
-@export var spawn_on_death: bool = false
+@export var spawn_on_hit: bool = false
 @export var spawn_time: float = 0.0
 @export var spawns: Array[String]
 
@@ -107,7 +107,9 @@ func _physics_process(delta: float) -> void:
 func explode(end_explode: bool = false):
 	if !hit_timer.is_stopped(): return
 	
-	if bomb_sound: parent.bomb.play()
+	if bomb_sound:
+		parent.bomb.pitch_scale = randf_range(0.95, 1.05)
+		parent.bomb.play()
 	
 	if Globals.high_graphics and particles and damage > 0:
 		var hit_particle: GPUParticles2D = load("res://scenes/hit_particle.tscn").instantiate()
@@ -125,7 +127,7 @@ func explode(end_explode: bool = false):
 	
 	if Globals.high_graphics: Mouse.shake.rpc(damage / 4.0)
 	
-	if len(spawns) > 0 and spawn_on_death:
+	if len(spawns) > 0 and spawn_on_hit:
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,

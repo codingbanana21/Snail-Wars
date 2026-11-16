@@ -11,6 +11,7 @@ speed = 0
 min_speed = 0
 spawn_at_mouse = true
 timer = 5.0
+spawn_on_hit = true
 spawn_time = 0.35
 spawns = Array[String](["present"])
 

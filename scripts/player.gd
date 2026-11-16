@@ -15,7 +15,9 @@ extends CharacterBody2D
 @onready var ooff: AudioStreamPlayer = $Ooff
 @onready var ooff_2: AudioStreamPlayer = $Ooff2
 @onready var loser: AudioStreamPlayer = $Loser
+@onready var stupid: AudioStreamPlayer = $Stupid
 @onready var impressive: AudioStreamPlayer = $Impressive
+@onready var achieved: AudioStreamPlayer = $Achieved
 @onready var bomb: AudioStreamPlayer = $Bomb
 
 const SPEED: int = 240
@@ -176,14 +178,17 @@ func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 		hit_text.text = str(hurt_damage)
 		add_child(hit_text)
 		
-		if player_turn_part != Globals.TurnState.IDLE and hp < 1:
-			impressive.play()
-		elif player_turn_part != Globals.TurnState.IDLE:
-			loser.play()
+		if player_turn_part != Globals.TurnState.IDLE and hp > 0:
+			if randf() >= 0.5:
+				loser.play()
+			else:
+				stupid.play()
 		else:
-			if randf() >= 0.35:
+			if randf() >= 0.5:
+				ooff.pitch_scale = randf_range(1.65, 1.75)
 				ooff.play()
 			else:
+				ooff_2.pitch_scale = randf_range(1.75, 1.85)
 				ooff_2.play()
 		
 		if !is_multiplayer_authority(): return
@@ -218,6 +223,10 @@ func die(spawn: bool = false):
 	Globals.alive_players[team_number][player_number] = false
 	
 	if player_turn_part != Globals.TurnState.IDLE:
+		if player_turn_part == Globals.TurnState.AIMING:
+			achieved.play()
+		else:
+			impressive.play()
 		Globals.next_player.rpc()
 	
 	player_turn_part = Globals.TurnState.IDLE
