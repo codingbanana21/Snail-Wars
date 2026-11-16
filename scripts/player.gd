@@ -135,7 +135,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		if temp_velocity.y >= 750:
-			var fall_damage = (temp_velocity.y - 750) / 50.0
+			var fall_damage = -(temp_velocity.y - 750) / 50.0
 			hit(fall_damage)
 			
 			if Globals.high_graphics:
@@ -168,16 +168,22 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 
 
 @rpc("any_peer","reliable","call_local")
-func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
-	hp -= hurt_damage
+func hit(hp_change: int = 0, knockback: Vector2 = Vector2.ZERO):
+	hp += hp_change
 	velocity += knockback
+	hp_label.text = str(hp)
+	var hit_text: Label
 	
-	if hurt_damage > 0:
-		hp_label.text = str(hp)
-		var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
-		hit_text.text = str(hurt_damage)
-		add_child(hit_text)
+	if hp_change != 0:
+		hit_text = load("res://scenes/hit_text.tscn").instantiate()
 		
+		if hp_change < 0:
+			hit_text.text = str(-hp_change)
+		else:
+			hit_text.text = "+" + str(hp_change)
+		add_child(hit_text)
+	
+	if hp_change < 0:
 		if player_turn_part != Globals.TurnState.IDLE and hp > 0:
 			if randf() >= 0.5:
 				loser.play()
@@ -191,22 +197,10 @@ func hit(hurt_damage: int, knockback: Vector2 = Vector2.ZERO):
 				ooff_2.pitch_scale = randf_range(1.75, 1.85)
 				ooff_2.play()
 		
-		if !is_multiplayer_authority(): return
-		
-		if player_turn_part != Globals.TurnState.IDLE:
+		if player_turn_part != Globals.TurnState.IDLE and is_multiplayer_authority():
 			Mouse.hide()
 			player_turn_part = Globals.TurnState.ENDING
 			next_player_timer.start(1.0)
-
-
-@rpc("any_peer","reliable","call_local")
-func heal(heal_amount: int):
-	hp += heal_amount
-	
-	hp_label.text = str(hp)
-	var hit_text: Label = load("res://scenes/hit_text.tscn").instantiate()
-	hit_text.text = "+" + str(heal_amount)
-	add_child(hit_text)
 
 
 @rpc("any_peer","call_local","reliable")

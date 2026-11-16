@@ -139,11 +139,11 @@ func load_game():
 		SFX_volume = save_data.SFX_volume
 		music_volume = save_data.music_volume
 		
-		var sfx_bus_index = AudioServer.get_bus_index("SFX")
-		AudioServer.set_bus_volume_db(sfx_bus_index, SFX_volume)
-		
-		var music_bus_index = AudioServer.get_bus_index("Music")
-		AudioServer.set_bus_volume_db(music_bus_index, music_volume)
+		#var sfx_bus_index = AudioServer.get_bus_index("SFX")
+		#AudioServer.set_bus_volume_db(sfx_bus_index, SFX_volume)
+		#
+		#var music_bus_index = AudioServer.get_bus_index("Music")
+		#AudioServer.set_bus_volume_db(music_bus_index, music_volume)
 		
 		high_graphics = true
 	else:

@@ -6,12 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://dyocank7ysnuk" path="res://assets/images/arrow.png" id="5_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://bh853f128q8t7" path="res://assets/sounds/ooff1.mp3" id="6_fjrip"]
 [ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="6_tuyoq"]
-[ext_resource type="AudioStream" uid="uid://dga6pd2qr6mhc" path="res://assets/sounds/looser.mp3" id="7_fjrip"]
 [ext_resource type="AudioStream" uid="uid://jugofiux0t1q" path="res://assets/sounds/ooff2.mp3" id="7_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://bp5boxkxhvum8" path="res://assets/sounds/Recording 39.mp3" id="8_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://ca6ny0aoftjrj" path="res://assets/sounds/bang_01.ogg" id="9_ur7pv"]
 [ext_resource type="AudioStream" uid="uid://blv3w7t1nxx45" path="res://assets/sounds/impressive.mp3" id="10_3v2ag"]
 [ext_resource type="AudioStream" uid="uid://d1tq3f3bhtunf" path="res://assets/sounds/stupid.mp3" id="10_d2wvv"]
-[ext_resource type="AudioStream" uid="uid://dxy17bi5ig8q6" path="res://assets/sounds/Recording 33.mp3" id="11_3v2ag"]
+[ext_resource type="AudioStream" uid="uid://uc5sg1e6u5mg" path="res://assets/sounds/wast_of_time.mp3" id="11_3v2ag"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_y4r1p"]
 properties/0/path = NodePath(".:position")
@@ -104,26 +104,24 @@ pitch_scale = 1.8
 bus = &"SFX"
 
 [node name="Loser" type="AudioStreamPlayer" parent="." unique_id=167378126]
-stream = ExtResource("7_fjrip")
-volume_db = 15.0
-pitch_scale = 1.7
+stream = ExtResource("8_3v2ag")
+volume_db = -5.0
+pitch_scale = 1.6
 bus = &"SFX"
 
 [node name="Stupid" type="AudioStreamPlayer" parent="." unique_id=30248913]
 stream = ExtResource("10_d2wvv")
-volume_db = -5.0
 pitch_scale = 1.6
 bus = &"SFX"
 
 [node name="Impressive" type="AudioStreamPlayer" parent="." unique_id=253486996]
 stream = ExtResource("10_3v2ag")
-pitch_scale = 1.6
+pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="WastOfTime" type="AudioStreamPlayer" parent="." unique_id=494901631]
 stream = ExtResource("11_3v2ag")
-volume_db = 5.0
-pitch_scale = 1.6
+pitch_scale = 1.5
 bus = &"SFX"
 
 [node name="Bomb" type="AudioStreamPlayer" parent="." unique_id=669141404]

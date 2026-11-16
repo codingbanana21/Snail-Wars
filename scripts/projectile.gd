@@ -11,7 +11,6 @@ extends CharacterBody2D
 #projectile states
 @export_group("Hit")
 @export var damage: int = 45
-@export var heal: int = 0
 @export var size: int = 5
 @export var knockback: int = 35
 @export var projectile_hp: int = 1
@@ -125,7 +124,7 @@ func explode(end_explode: bool = false):
 	
 	projectile_hp -= 1
 	
-	if Globals.high_graphics: Mouse.shake.rpc(damage / 4.0)
+	if Globals.high_graphics and damage > 0: Mouse.shake.rpc(damage / 5.0)
 	
 	if len(spawns) > 0 and spawn_on_hit:
 		parent.multiplayer_spawner.spawn({
@@ -156,13 +155,12 @@ func explode(end_explode: bool = false):
 		if dis_to < (8.0 * size * Globals.explosion_power) + 8.0:
 			var hit_power: float = clampf(16.0 / dis_to, 0.01, 1.0) * Globals.explosion_power
 			if damage >= 0:
-				player.hit.rpc(int(damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
-			
-			if heal > 0:
-				player.heal(int(heal * hit_power))
+				player.hit.rpc(int(-damage * hit_power), (player.global_position - global_position) * hit_power * knockback)
+			else:
+				player.hit.rpc(int(-damage), (player.global_position - global_position) * hit_power * knockback)
 			
 			if life_steal > 0:
-				parent.heal.rpc(int(life_steal * hit_power))
+				parent.hit.rpc(int(life_steal * hit_power))
 	
 	if flag_number != -1:
 		for player: Player in get_tree().get_nodes_in_group("Player"):
