@@ -4,13 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://daignqypyvx5m" path="res://assets/images/air_strike.png" id="2_0vh5p"]
 
 [node name="AirStrike" unique_id=791496552 instance=ExtResource("1_y44nj")]
-damage = 60
-size = 6
-knockback = 50
+damage = 25
+size = 4
+knockback = 15
 speed = 0
 min_speed = 0
 spawn_at_mouse = true
 timer = 5.0
+camera_follow = false
+spawn_amount = 5
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_0vh5p")

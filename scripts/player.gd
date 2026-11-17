@@ -92,13 +92,18 @@ func _process(delta: float) -> void:
 			projectile_speed += 8.0 * delta
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0):
-			multiplayer_spawner.spawn({
-				"id": id,
-				"global_position": global_position,
-				"projectile_speed":projectile_speed,
-				"mouse_position":Mouse.global_position,
-				"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn"
-			})
+			var scene: PackedScene = load("res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn")
+			var new_projectile: Projectile = scene.instantiate()
+			
+			for i in range(new_projectile.spawn_amount):
+				multiplayer_spawner.spawn({
+					"id": id,
+					"global_position": global_position,
+					"offset": Vector2(i * 24.0, 0),
+					"projectile_speed": projectile_speed,
+					"mouse_position": Mouse.global_position,
+					"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn"
+				})
 			
 			Input.action_release("attack")
 			Globals.teams_weapons[team_number][weapon] -= 1
@@ -147,6 +152,7 @@ func _physics_process(delta: float) -> void:
 
 func shot_projectile(inputs: Dictionary = {"id":1,
 		"global_position":Vector2.ZERO,
+		"offset": Vector2.ZERO,
 		"projectile_speed":0,
 		"mouse_position":Vector2.ZERO,
 		"projectile":"res://projectiles/rocket.tscn"
@@ -156,8 +162,14 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	var new_projectile: Projectile = scene.instantiate()
 	
 	new_projectile.id = inputs["id"]
-	new_projectile.global_position = inputs["global_position"]
-	new_projectile.look_at(inputs["mouse_position"])
+	
+	if new_projectile.spawn_at_mouse:
+		new_projectile.global_position = Mouse.global_position + Vector2(0.0, -1024.0) + inputs["offset"]
+		new_projectile.rotation = PI * 0.5
+	else:
+		new_projectile.global_position = inputs["global_position"]
+		new_projectile.look_at(inputs["mouse_position"])
+	
 	new_projectile.speed *= inputs["projectile_speed"]
 	
 	if new_projectile.end_player_turn:
@@ -209,6 +221,7 @@ func die(spawn: bool = false):
 		multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
+			"offset": Vector2.ZERO,
 			"projectile_speed":projectile_speed,
 			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/snail.tscn"

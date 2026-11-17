@@ -31,6 +31,7 @@ extends CharacterBody2D
 @export var flag_number: int = -1
 @export var particles: bool = true
 @export var camera_follow: bool = true
+@export var spawn_amount: int = 1
 
 @export_group("Player")
 @export var end_player_turn: bool = true
@@ -53,13 +54,8 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	if min_speed > speed: speed = min_speed
 	
-	#spawn type normal or strike
-	if spawn_at_mouse:
-		global_position = Vector2(Mouse.global_position.x, -2148.0)
-		velocity.y += speed
-	else:
-		global_position += transform.x * spawn_offset
-		velocity += transform.x * speed
+	global_position += transform.x * spawn_offset
+	velocity += transform.x * speed
 	
 	#settings setup
 	if get_parent() as Player: parent = get_parent()
@@ -131,6 +127,7 @@ func explode(end_explode: bool = false):
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
+			"offset": Vector2.ZERO,
 			"projectile_speed":0,
 			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
@@ -181,6 +178,7 @@ func _on_spawn_timer_timeout() -> void:
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
+			"offset": Vector2.ZERO,
 			"projectile_speed":0,
 			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
