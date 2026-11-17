@@ -1,11 +1,14 @@
 [gd_scene format=3 uid="uid://3lntgj2gk6yy"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_bufem"]
-[ext_resource type="Texture2D" uid="uid://qyfm7ymgrjcd" path="res://assets/images/laser.png" id="2_836yr"]
+[ext_resource type="Texture2D" uid="uid://d5beiojfqh2q" path="res://assets/images/plasma_blast.png" id="2_836yr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_836yr"]
+radius = 6.0
 
 [node name="PlasmaBlast" unique_id=791496552 instance=ExtResource("1_bufem")]
 damage = 60
-size = 3
+size = 4
 knockback = 25
 gravity = 250
 camera_follow = false
@@ -13,8 +16,10 @@ spawn_time = 0.95
 spawns = Array[String](["plasma_blast"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
-modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_836yr")
 
 [node name="DetectBox" parent="." index="3" unique_id=289666369]
 collision_mask = 1
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+shape = SubResource("CircleShape2D_836yr")

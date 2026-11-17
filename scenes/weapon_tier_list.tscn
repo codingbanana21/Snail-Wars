@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="21_ws42h"]
 [ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="22_kk8a4"]
 [ext_resource type="Texture2D" uid="uid://qyfm7ymgrjcd" path="res://assets/images/laser.png" id="23_ki71x"]
+[ext_resource type="Texture2D" uid="uid://drpx7uatcpphd" path="res://assets/images/build_ball.png" id="23_q3jqy"]
 
 [node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
@@ -116,23 +117,23 @@ position = Vector2(52, 178)
 texture = ExtResource("2_a86gk")
 
 [node name="Drill" type="Sprite2D" parent="." unique_id=1972451352]
-position = Vector2(119, 143)
+position = Vector2(98, 143)
 texture = ExtResource("3_p0c8s")
 
 [node name="Bomb" type="Sprite2D" parent="." unique_id=246353884]
-position = Vector2(94, 63)
+position = Vector2(97, 103)
 texture = ExtResource("4_tfcsd")
 
 [node name="Bullet" type="Sprite2D" parent="." unique_id=27364326]
-position = Vector2(98, 142)
+position = Vector2(142, 103)
 texture = ExtResource("5_ic8ko")
 
 [node name="AirStrike" type="Sprite2D" parent="." unique_id=1517395229]
-position = Vector2(54, 100)
+position = Vector2(138, 64)
 texture = ExtResource("6_p5k33")
 
 [node name="DrillStrike" type="Sprite2D" parent="." unique_id=1007482193]
-position = Vector2(77, 100)
+position = Vector2(161, 61)
 texture = ExtResource("7_sj4mm")
 
 [node name="Tnt" type="Sprite2D" parent="." unique_id=263090772]
@@ -144,7 +145,7 @@ position = Vector2(73, 62)
 texture = ExtResource("9_oih76")
 
 [node name="PumkinGrenade" type="Sprite2D" parent="." unique_id=1803907583]
-position = Vector2(99, 100)
+position = Vector2(54, 103)
 texture = ExtResource("10_1jwd0")
 
 [node name="CakeTnt" type="Sprite2D" parent="." unique_id=613711402]
@@ -152,11 +153,11 @@ position = Vector2(53, 20)
 texture = ExtResource("12_85va0")
 
 [node name="Leaf" type="Sprite2D" parent="." unique_id=1317753968]
-position = Vector2(144, 142)
+position = Vector2(123, 142)
 texture = ExtResource("13_2cxr1")
 
 [node name="Chicken" type="Sprite2D" parent="." unique_id=2143275653]
-position = Vector2(138, 63)
+position = Vector2(94, 62)
 texture = ExtResource("14_53epr")
 
 [node name="FatherChrismas" type="Sprite2D" parent="." unique_id=2027833636]
@@ -164,7 +165,7 @@ position = Vector2(99, 24)
 texture = ExtResource("15_gjupt")
 
 [node name="Spring" type="Sprite2D" parent="." unique_id=1484725089]
-position = Vector2(186, 147)
+position = Vector2(148, 143)
 texture = ExtResource("16_40fht")
 
 [node name="Pan" type="Sprite2D" parent="." unique_id=187238098]
@@ -180,7 +181,7 @@ position = Vector2(75, 23)
 texture = ExtResource("19_oyhex")
 
 [node name="TeleportaPad" type="Sprite2D" parent="." unique_id=1887089460]
-position = Vector2(119, 102)
+position = Vector2(73, 104)
 texture = ExtResource("20_oyhex")
 
 [node name="LandMine" type="Sprite2D" parent="." unique_id=1872506159]
@@ -188,9 +189,13 @@ position = Vector2(104, 180)
 texture = ExtResource("21_ws42h")
 
 [node name="MudBall" type="Sprite2D" parent="." unique_id=567927627]
-position = Vector2(165, 144)
+position = Vector2(54, 220)
 texture = ExtResource("22_kk8a4")
 
 [node name="Laser" type="Sprite2D" parent="." unique_id=1383846324]
 position = Vector2(116, 64)
 texture = ExtResource("23_ki71x")
+
+[node name="BuildBall" type="Sprite2D" parent="." unique_id=1817680041]
+position = Vector2(120, 101)
+texture = ExtResource("23_q3jqy")
