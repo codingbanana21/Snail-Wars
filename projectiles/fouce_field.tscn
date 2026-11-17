@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bxi5ucdyqoqm8"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_o1wyk"]
+[ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporter_pad.png" id="2_oax2w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o1wyk"]
+size = Vector2(6, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oax2w"]
+radius = 67.06713
+
+[node name="FouceField" unique_id=791496552 instance=ExtResource("1_o1wyk")]
+damage = 0
+size = 2
+knockback = 0
+projectile_hp = -1
+build = true
+speed = 0
+min_speed = 0
+effect_by_wind = false
+spawn_offset = 0
+timer = -1.0
+particles = false
+camera_follow = false
+end_player_turn = false
+bomb_sound = false
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+modulate = Color(0.592, 1, 0.49, 1)
+position = Vector2(-40, 0)
+rotation = -1.5707964
+texture = ExtResource("2_oax2w")
+
+[node name="CollisionShape2D" parent="." index="2" unique_id=679883136]
+position = Vector2(-36, 0)
+shape = SubResource("RectangleShape2D_o1wyk")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_layer = 6
+
+[node name="CollisionShape2D" parent="DetectBox" index="0" unique_id=1905896826]
+shape = SubResource("CircleShape2D_oax2w")

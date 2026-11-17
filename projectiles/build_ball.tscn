@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://y43dfv068u6k"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_ab8jg"]
-[ext_resource type="Texture2D" uid="uid://ymo86tugl5dn" path="res://assets/images/egg.png" id="2_6fg82"]
+[ext_resource type="Texture2D" uid="uid://drpx7uatcpphd" path="res://assets/images/build_ball.png" id="2_6fg82"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j6cch"]
 radius = 46.09772

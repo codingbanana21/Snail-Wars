@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://3lntgj2gk6yy"]
+
+[ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_bufem"]
+[ext_resource type="Texture2D" uid="uid://qyfm7ymgrjcd" path="res://assets/images/laser.png" id="2_836yr"]
+
+[node name="PlasmaBlast" unique_id=791496552 instance=ExtResource("1_bufem")]
+damage = 60
+size = 3
+knockback = 25
+gravity = 250
+camera_follow = false
+spawn_time = 0.95
+spawns = Array[String](["plasma_blast"])
+
+[node name="Image" parent="." index="1" unique_id=2045045234]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("2_836yr")
+
+[node name="DetectBox" parent="." index="3" unique_id=289666369]
+collision_mask = 1
