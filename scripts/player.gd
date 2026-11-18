@@ -20,22 +20,25 @@ extends CharacterBody2D
 @onready var wast_of_time: AudioStreamPlayer = $WastOfTime
 @onready var bomb: AudioStreamPlayer = $Bomb
 
-const SPEED: int = 240
-const JUMP: Vector2 = Vector2(150, -300)
-const BACK_JUMP: Vector2 = Vector2(-60, -400)
-const PLAYER_GRAVITY: int = 1800
-const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nick","Leo"]
+enum TurnState {IDLE, AIMING, FIRED, RESOLVING, ENDING}
+
+const SPEED: float = 240.0
+const JUMP: Vector2 = Vector2(150.0, -300.0)
+const BACK_JUMP: Vector2 = Vector2(-60.0, -400.0)
+const PLAYER_GRAVITY: float = 1800.0
+const NAMES: Array[String] = ["Barry","Bob","Jim","Dave","Rick","Rob","Ray","Nick","Leo","Steve"]
 const NAMES2: Array[String] = ["Good","Bad","Cool","Best","Dumb","Not","Dead","Same","Super","The","Just","I am"]
 
 var id: int
+var rng = RandomNumberGenerator.new()
+
 var player_number: int = 0
 var team_number: int = 0
-var rng = RandomNumberGenerator.new()
-var projectile_speed: float = 0.0
 var hp: int = 100
+var projectile_speed: float = 0.0
 var weapon: int = 0
 var dir: float = 0
-var player_turn_part: int = 0
+var player_turn_part: int = TurnState.IDLE
 var dead: bool = false
 var team_color: Color
 
@@ -66,7 +69,7 @@ func _process(delta: float) -> void:
 		die.rpc(false)
 		return
 	
-	if player_turn_part == Globals.TurnState.IDLE or player_turn_part == Globals.TurnState.ENDING:
+	if player_turn_part == TurnState.IDLE or player_turn_part == TurnState.ENDING:
 		turn_arrow.hide()
 		return
 	
@@ -79,13 +82,13 @@ func _process(delta: float) -> void:
 		snail.flip_h = false
 	
 	if Input.is_action_just_pressed("skip"):
-		player_turn_part = Globals.TurnState.ENDING
+		player_turn_part = TurnState.ENDING
 		next_player_timer.start(0.1)
 	
 	weapon = Mouse.weapon
 	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
 	
-	if player_turn_part == Globals.TurnState.AIMING and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
+	if player_turn_part == TurnState.AIMING and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
 		if Input.is_action_pressed("attack"):
 			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 			shot_bar.value = projectile_speed
@@ -117,7 +120,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y <= 2500.0:
 		velocity.y += PLAYER_GRAVITY * Globals.gravity * delta
 	
-	if player_turn_part != Globals.TurnState.IDLE and player_turn_part != Globals.TurnState.ENDING and !Input.is_action_pressed("attack"):
+	if player_turn_part != TurnState.IDLE and player_turn_part != TurnState.ENDING and !Input.is_action_pressed("attack"):
 		if is_on_floor():
 			dir = Input.get_axis("left", "right")
 			velocity.x += dir * SPEED * delta
@@ -135,7 +138,7 @@ func _physics_process(delta: float) -> void:
 	var temp_velocity: Vector2 = velocity
 	move_and_slide()
 	
-	if player_turn_part != Globals.TurnState.IDLE:
+	if player_turn_part != TurnState.IDLE:
 		Mouse.global_position += velocity * delta
 	
 	if is_on_floor():
@@ -144,7 +147,7 @@ func _physics_process(delta: float) -> void:
 			hit(fall_damage)
 			
 			if Globals.high_graphics:
-				Mouse.shake.rpc(fall_damage / 4.0)
+				Mouse.shake.rpc(fall_damage / 5.0)
 		velocity.x *= 0.75
 	else:
 		velocity.x *= 0.98
@@ -173,7 +176,7 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	new_projectile.speed *= inputs["projectile_speed"]
 	
 	if new_projectile.end_player_turn:
-		player_turn_part = Globals.TurnState.FIRED
+		player_turn_part = TurnState.FIRED
 		Mouse.hide()
 	
 	return new_projectile
@@ -196,22 +199,22 @@ func hit(hp_change: int = 0, knockback: Vector2 = Vector2.ZERO):
 		add_child(hit_text)
 	
 	if hp_change < 0:
-		if player_turn_part != Globals.TurnState.IDLE and hp > 0:
-			if randf() >= 0.5:
+		if player_turn_part != TurnState.IDLE and hp > 0:
+			if rng.randf() >= 0.5:
 				loser.play()
 			else:
 				stupid.play()
 		else:
-			if randf() >= 0.5:
+			if rng.randf() >= 0.5:
 				ooff.pitch_scale = randf_range(1.65, 1.75)
 				ooff.play()
 			else:
 				ooff_2.pitch_scale = randf_range(1.75, 1.85)
 				ooff_2.play()
 		
-		if player_turn_part != Globals.TurnState.IDLE and is_multiplayer_authority():
+		if player_turn_part != TurnState.IDLE and is_multiplayer_authority():
 			Mouse.hide()
-			player_turn_part = Globals.TurnState.ENDING
+			player_turn_part = TurnState.ENDING
 			next_player_timer.start(1.0)
 
 
@@ -229,14 +232,14 @@ func die(spawn: bool = false):
 	
 	Globals.alive_players[team_number][player_number] = false
 	
-	if player_turn_part != Globals.TurnState.IDLE:
-		if player_turn_part == Globals.TurnState.AIMING:
+	if player_turn_part != TurnState.IDLE:
+		if player_turn_part == TurnState.AIMING:
 			wast_of_time.play()
 		else:
 			impressive.play()
 		Globals.next_player.rpc()
 	
-	player_turn_part = Globals.TurnState.IDLE
+	player_turn_part = TurnState.IDLE
 	dead = true
 	set_physics_process(false)
 	collision_shape_2d.disabled = true
@@ -257,17 +260,17 @@ func next_player(turn: Vector2i):
 			child.queue_free()
 	
 	if turn.x == team_number and turn.y == player_number:
-		player_turn_part = Globals.TurnState.AIMING
+		player_turn_part = TurnState.AIMING
 		Mouse.global_position = global_position
 	else:
-		player_turn_part = Globals.TurnState.IDLE
+		player_turn_part = TurnState.IDLE
 
 
 func _on_next_player_timer_timeout() -> void:
-	if player_turn_part != Globals.TurnState.IDLE:
-		if player_turn_part != Globals.TurnState.ENDING:
-			player_turn_part = Globals.TurnState.ENDING
+	if player_turn_part != TurnState.IDLE:
+		if player_turn_part != TurnState.ENDING:
+			player_turn_part = TurnState.ENDING
 			next_player_timer.start(1.0)
 		else:
-			player_turn_part = Globals.TurnState.IDLE
+			player_turn_part = TurnState.IDLE
 			Globals.next_player.rpc()

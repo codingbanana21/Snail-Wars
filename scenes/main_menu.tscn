@@ -519,7 +519,7 @@ offset_top = 292.5
 offset_right = 196.25
 offset_bottom = 316.5
 theme_override_fonts/font = ExtResource("4_7b55j")
-text = "5.0"
+text = "6.0"
 alignment = 1
 
 [node name="WindSpeedLabel" type="Label" parent="Menu/MapSettings" unique_id=1736360735]

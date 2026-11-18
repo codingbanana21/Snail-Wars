@@ -9,10 +9,9 @@ size = Vector2(6, 4)
 [node name="Drill" unique_id=152536886 instance=ExtResource("1_d7knd")]
 damage = 15
 size = 3.5
-knockback = 10
+knockback = 7
 projectile_hp = 8
 hit_stun_time = 0.15
-speed = 45
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
 texture = ExtResource("2_tpgjy")

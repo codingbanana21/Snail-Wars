@@ -11,8 +11,8 @@ damage = 8
 size = 3
 knockback = 15
 projectile_hp = 4
-speed = 75
-min_speed = 80
+speed = 70
+min_speed = 65
 spawn_on_hit = true
 spawns = Array[String](["fragment"])
 

@@ -6,7 +6,7 @@
 [node name="DrillStrike" unique_id=791496552 instance=ExtResource("1_qlak5")]
 damage = 10
 size = 2
-knockback = 7
+knockback = 5
 projectile_hp = 8
 hit_stun_time = 0.15
 speed = 0

@@ -18,8 +18,8 @@ extends CharacterBody2D
 @export var build: bool = false
 
 @export_group("Movement")
-@export var speed: int = 60
-@export var min_speed: int = 60
+@export var speed: int = 55
+@export var min_speed: int = 50
 @export var gravity: int = 400
 @export var bounce: bool = false
 @export var spawn_at_mouse: bool = false
@@ -167,9 +167,9 @@ func die():
 	if !is_multiplayer_authority(): return
 	
 	#if the projectile is a players end player turn
-	if end_player_turn and parent.player_turn_part != Globals.TurnState.IDLE:
+	if end_player_turn and parent.player_turn_part != parent.TurnState.IDLE:
 		parent.next_player_timer.start()
-		parent.player_turn_part = Globals.TurnState.RESOLVING
+		parent.player_turn_part = parent.TurnState.RESOLVING
 		Mouse.global_position = parent.global_position
 	
 	queue_free()

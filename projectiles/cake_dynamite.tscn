@@ -9,7 +9,7 @@ size = Vector2(12, 6)
 [node name="CakeDynamite" unique_id=791496552 instance=ExtResource("1_fhfmu")]
 damage = 100
 size = 8
-knockback = 70
+knockback = 65
 speed = 0
 min_speed = 0
 bounce = true

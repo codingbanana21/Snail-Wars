@@ -1,6 +1,5 @@
 extends Node
 
-enum TurnState {IDLE, AIMING, FIRED, RESOLVING, ENDING}
 enum {NAME,DEFAULT,NO_AIR,CRAZY,EVERYTHING}
 
 const WEAPON_SET_NAMES: Array = ["Default","No Air","Crazy","Everything"]
@@ -34,9 +33,10 @@ const WEAPONS: Dictionary = {
 	"dominator":{NAME:"Dominator", DEFAULT:0, NO_AIR:0, CRAZY:-1, EVERYTHING:-1},
 }
 
-#save data
 const SAVE_PATH = "user://Save.tres"
 const GAME_VERSION: float = 0.8
+
+#save data
 var save_data: SaveDataResource = SaveDataResource.new()
 var save_version: float
 var saved_ip_address: String
