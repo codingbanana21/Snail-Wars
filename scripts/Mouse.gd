@@ -29,10 +29,6 @@ func _ready() -> void:
 			
 			new_weapon_button.weapon = sprite_weapon
 			new_weapon_button.change_weapon.connect(change_weapon)
-			
-			if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[sprite_weapon]+".png"):
-				new_weapon_button.icon = load("res://assets/images/"+Globals.WEAPONS.keys()[sprite_weapon]+".png")
-			
 			new_weapon_button.global_position = Vector2(512 + x * 20, 196 + y * 20)
 			ui.add_child(new_weapon_button)
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d38v5ajw1h25b"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_bwltc"]
-[ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="2_f4eo6"]
+[ext_resource type="Texture2D" uid="uid://vkvleli05ex8" path="res://assets/images/wangler.png" id="2_f4eo6"]
 
 [node name="Wangler" unique_id=791496552 instance=ExtResource("1_bwltc")]
 damage = 100

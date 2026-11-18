@@ -164,6 +164,8 @@ func explode(end_explode: bool = false):
 
 @rpc("any_peer","call_local","reliable")
 func die():
+	if !is_multiplayer_authority(): return
+	
 	#if the projectile is a players end player turn
 	if end_player_turn and parent.player_turn_part != Globals.TurnState.IDLE:
 		parent.next_player_timer.start()

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c5k3265dobdu"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_c356l"]
-[ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="2_cfj02"]
+[ext_resource type="Texture2D" uid="uid://db1y7rll3gadd" path="res://assets/images/dominator.png" id="2_cfj02"]
 
 [node name="Dominator" unique_id=791496552 instance=ExtResource("1_c356l")]
 damage = 60
@@ -14,5 +14,4 @@ effect_by_wind = false
 timer = 5.0
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
-modulate = Color(1, 0, 0, 1)
 texture = ExtResource("2_cfj02")

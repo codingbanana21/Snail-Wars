@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bxi5ucdyqoqm8"]
 
 [ext_resource type="PackedScene" uid="uid://cubfm8w8o5obj" path="res://projectiles/projectile.tscn" id="1_o1wyk"]
-[ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporter_pad.png" id="2_oax2w"]
+[ext_resource type="Texture2D" uid="uid://cu4qvetk8hyqj" path="res://assets/images/fouce_field.png" id="2_oax2w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o1wyk"]
 size = Vector2(6, 8)
@@ -26,7 +26,6 @@ end_player_turn = false
 bomb_sound = false
 
 [node name="Image" parent="." index="1" unique_id=2045045234]
-modulate = Color(0.19999993, 1, 0, 1)
 position = Vector2(-40, 0)
 rotation = -1.5707964
 texture = ExtResource("2_oax2w")

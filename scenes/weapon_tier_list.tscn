@@ -23,6 +23,10 @@
 [ext_resource type="Texture2D" uid="uid://2w7o7ld58st6" path="res://assets/images/mud_ball.png" id="22_kk8a4"]
 [ext_resource type="Texture2D" uid="uid://qyfm7ymgrjcd" path="res://assets/images/laser.png" id="23_ki71x"]
 [ext_resource type="Texture2D" uid="uid://drpx7uatcpphd" path="res://assets/images/build_ball.png" id="23_q3jqy"]
+[ext_resource type="Texture2D" uid="uid://db1y7rll3gadd" path="res://assets/images/dominator.png" id="24_ki61v"]
+[ext_resource type="Texture2D" uid="uid://cu4qvetk8hyqj" path="res://assets/images/fouce_field.png" id="25_r2svk"]
+[ext_resource type="Texture2D" uid="uid://vkvleli05ex8" path="res://assets/images/wangler.png" id="26_t3s74"]
+[ext_resource type="Texture2D" uid="uid://d5beiojfqh2q" path="res://assets/images/plasma_blast.png" id="27_qvi4c"]
 
 [node name="WeaponTierList" type="Node2D" unique_id=933490339]
 
@@ -133,7 +137,7 @@ position = Vector2(138, 64)
 texture = ExtResource("6_p5k33")
 
 [node name="DrillStrike" type="Sprite2D" parent="." unique_id=1007482193]
-position = Vector2(161, 61)
+position = Vector2(161, 67)
 texture = ExtResource("7_sj4mm")
 
 [node name="Tnt" type="Sprite2D" parent="." unique_id=263090772]
@@ -199,3 +203,19 @@ texture = ExtResource("23_ki71x")
 [node name="BuildBall" type="Sprite2D" parent="." unique_id=1817680041]
 position = Vector2(120, 101)
 texture = ExtResource("23_q3jqy")
+
+[node name="Dominator" type="Sprite2D" parent="." unique_id=1672459866]
+position = Vector2(122, 24)
+texture = ExtResource("24_ki61v")
+
+[node name="FouceField" type="Sprite2D" parent="." unique_id=1745911704]
+position = Vector2(144, 24)
+texture = ExtResource("25_r2svk")
+
+[node name="Wangler" type="Sprite2D" parent="." unique_id=1967916052]
+position = Vector2(165, 25)
+texture = ExtResource("26_t3s74")
+
+[node name="PlasmaBlast" type="Sprite2D" parent="." unique_id=1101481447]
+position = Vector2(189, 27)
+texture = ExtResource("27_qvi4c")
