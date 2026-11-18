@@ -9,7 +9,7 @@ const WEAPONS: Dictionary = {
 	"bomb":{NAME:"Bomb", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERYTHING:-1},
 	"drill_rocket":{NAME:"Drill Rocket", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERYTHING:-1},
 	"pumpkin_grenade":{NAME:"Pumpkin Grenade", DEFAULT:3, NO_AIR:4, CRAZY:4, EVERYTHING:-1},
-	"healing_leaf":{NAME:"Healing Leaf", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
+	"sword_leaf":{NAME:"Sword Leaf", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 	"bullet":{NAME:"Gun", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERYTHING:-1},
 	"pan":{NAME:"The Pan", DEFAULT:1, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 	"air_strike":{NAME:"Air Strike", DEFAULT:1, NO_AIR:0, CRAZY:2, EVERYTHING:-1},

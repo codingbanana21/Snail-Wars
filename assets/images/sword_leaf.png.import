@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ffe73y1go1j4"
-path="res://.godot/imported/healing_leaf.png-e0bc104ea229b07a571013a57ccf0697.ctex"
+path="res://.godot/imported/sword_leaf.png-a4040123e9bf4f56f2e8b309ad88eafb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/healing_leaf.png"
-dest_files=["res://.godot/imported/healing_leaf.png-e0bc104ea229b07a571013a57ccf0697.ctex"]
+source_file="res://assets/images/sword_leaf.png"
+dest_files=["res://.godot/imported/sword_leaf.png-a4040123e9bf4f56f2e8b309ad88eafb.ctex"]
 
 [params]
 

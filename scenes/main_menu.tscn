@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="9_8egab"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/christmas_strike.png" id="10_svtp6"]
-[ext_resource type="Texture2D" uid="uid://cdrohksna380c" path="res://assets/images/land_mine.png" id="12_1dfpl"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="13_1ajci"]
+[ext_resource type="Texture2D" uid="uid://bjef8j2cdxoub" path="res://assets/images/med_kit.png" id="13_3wgol"]
 [ext_resource type="Texture2D" uid="uid://bkwmrdnd42i44" path="res://assets/images/super_mine.png" id="13_qywvv"]
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="14_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="15_gw5y6"]
@@ -225,7 +225,7 @@ offset_top = 156.25006
 offset_right = 311.49997
 offset_bottom = 180.25006
 text = "Bigest"
-icon = ExtResource("13_qywvv")
+icon = ExtResource("13_3wgol")
 map = "b5"
 
 [node name="MediumMaps" type="Label" parent="Menu/MapMenu" unique_id=498424789]
@@ -274,7 +274,7 @@ offset_top = 132.25003
 offset_right = 564.00006
 offset_bottom = 156.25003
 text = "Super Mines"
-icon = ExtResource("12_1dfpl")
+icon = ExtResource("13_qywvv")
 map = "m4"
 
 [node name="M5MapButton" parent="Menu/MapMenu" unique_id=507976408 instance=ExtResource("7_7b55j")]
@@ -360,7 +360,7 @@ offset_right = 264.0
 offset_bottom = 159.0
 min_value = 1.0
 max_value = 8.0
-value = 4.0
+value = 8.0
 rounded = true
 
 [node name="PerTeamLabel" type="Label" parent="Menu/MapSettings" unique_id=911952572]
