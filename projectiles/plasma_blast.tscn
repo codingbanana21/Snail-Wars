@@ -8,11 +8,13 @@ radius = 6.0
 
 [node name="PlasmaBlast" unique_id=791496552 instance=ExtResource("1_bufem")]
 damage = 60
-size = 4
-knockback = 25
+size = 6
+knockback = 45
 gravity = 250
+effect_by_wind = false
+particles = false
 camera_follow = false
-spawn_time = 0.95
+spawn_time = 0.8
 spawns = Array[String](["plasma_blast"])
 
 [node name="Image" parent="." index="1" unique_id=2045045234]

@@ -72,7 +72,7 @@ func _physics_process(delta: float) -> void:
 	if !is_multiplayer_authority(): return
 	
 	if global_position.y >= Globals.water_level:
-		explode.rpc(true)
+		die.rpc()
 		return
 	elif len(detect_box.get_overlapping_bodies()) + len(detect_box.get_overlapping_areas()) >= bodies_needed:
 		explode.rpc()
@@ -98,6 +98,7 @@ func _physics_process(delta: float) -> void:
 			velocity.y = temp_velocity.y * 0.95
 	
 	if camera_follow: Mouse.global_position += velocity * delta
+
 
 @rpc("any_peer","call_local","reliable")
 func explode(end_explode: bool = false):
@@ -134,14 +135,7 @@ func explode(end_explode: bool = false):
 		})
 	
 	if projectile_hp == 0 or end_explode:
-		end_explode = true
-		queue_free()
-		
-		#if the projectile is a players end player turn
-		if end_player_turn and parent.player_turn_part != Globals.TurnState.IDLE:
-			parent.next_player_timer.start()
-			parent.player_turn_part = Globals.TurnState.RESOLVING
-			Mouse.global_position = parent.global_position
+		die.rpc()
 	
 	#get map and explode it
 	for map in get_tree().get_nodes_in_group("Map"):
@@ -166,6 +160,17 @@ func explode(end_explode: bool = false):
 				player.die.rpc(true)
 	
 	if teleports_player: parent.teleport.rpc(global_position)
+
+
+@rpc("any_peer","call_local","reliable")
+func die():
+	#if the projectile is a players end player turn
+	if end_player_turn and parent.player_turn_part != Globals.TurnState.IDLE:
+		parent.next_player_timer.start()
+		parent.player_turn_part = Globals.TurnState.RESOLVING
+		Mouse.global_position = parent.global_position
+	
+	queue_free()
 
 
 func _on_explosion_timer_timeout() -> void:

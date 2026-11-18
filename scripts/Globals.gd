@@ -10,7 +10,7 @@ const WEAPONS: Dictionary = {
 	"bomb":{NAME:"Bomb", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERYTHING:-1},
 	"drill_rocket":{NAME:"Drill Rocket", DEFAULT:2, NO_AIR:3, CRAZY:3, EVERYTHING:-1},
 	"pumpkin_grenade":{NAME:"Pumpkin Grenade", DEFAULT:3, NO_AIR:3, CRAZY:4, EVERYTHING:-1},
-	"healing_leaf":{NAME:"Healing Leaf", DEFAULT:2, NO_AIR:0, CRAZY:3, EVERYTHING:-1},
+	"healing_leaf":{NAME:"Healing Leaf", DEFAULT:2, NO_AIR:2, CRAZY:3, EVERYTHING:-1},
 	"bullet":{NAME:"Gun", DEFAULT:5, NO_AIR:5, CRAZY:5, EVERYTHING:-1},
 	"pan":{NAME:"The Pan", DEFAULT:1, NO_AIR:2, CRAZY:2, EVERYTHING:-1},
 	"air_strike":{NAME:"Air Strike", DEFAULT:1, NO_AIR:0, CRAZY:1, EVERYTHING:-1},
@@ -31,6 +31,7 @@ const WEAPONS: Dictionary = {
 	#"fouce_field":{NAME:"Fouce Field", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
 	#"plasma_blast":{NAME:"Plasma Blast", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
 	#"wangler":{NAME:"Wangler", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
+	#"dominator":{NAME:"Dominator", DEFAULT:-1, NO_AIR:-1, CRAZY:-1, EVERYTHING:-1},
 }
 
 #save data
