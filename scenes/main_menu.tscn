@@ -13,9 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://ci0ll7t6ljv4t" path="res://assets/images/pick_hammer.png" id="8_svtp6"]
 [ext_resource type="Texture2D" uid="uid://cdi5eipdsfw53" path="res://assets/images/bomb.png" id="9_8egab"]
 [ext_resource type="Texture2D" uid="uid://blounwen1686h" path="res://assets/images/bullet.png" id="10_gw5y6"]
-[ext_resource type="Texture2D" uid="uid://0dvijfos3gov" path="res://assets/images/christmas_strike.png" id="10_svtp6"]
+[ext_resource type="Texture2D" uid="uid://ymo86tugl5dn" path="res://assets/images/egg.png" id="12_3wgol"]
 [ext_resource type="Texture2D" uid="uid://c0trkmwdkg627" path="res://assets/images/teleporter.png" id="13_1ajci"]
-[ext_resource type="Texture2D" uid="uid://bjef8j2cdxoub" path="res://assets/images/med_kit.png" id="13_3wgol"]
+[ext_resource type="Texture2D" uid="uid://daignqypyvx5m" path="res://assets/images/air_strike.png" id="13_3wgol"]
 [ext_resource type="Texture2D" uid="uid://bkwmrdnd42i44" path="res://assets/images/super_mine.png" id="13_qywvv"]
 [ext_resource type="Texture2D" uid="uid://cbnwe1cqap1py" path="res://assets/images/present.png" id="14_7b55j"]
 [ext_resource type="Texture2D" uid="uid://b0l83wcduc6v5" path="res://assets/images/chicken.png" id="15_gw5y6"]
@@ -205,7 +205,7 @@ offset_top = 97.249985
 offset_right = 297.0
 offset_bottom = 121.249985
 text = "Climb"
-icon = ExtResource("13_1ajci")
+icon = ExtResource("12_3wgol")
 map = "b3"
 
 [node name="B4MapButton" parent="Menu/MapMenu" unique_id=309034891 instance=ExtResource("7_7b55j")]
@@ -215,14 +215,14 @@ offset_top = 127.249985
 offset_right = 303.0
 offset_bottom = 151.24998
 text = "House"
-icon = ExtResource("10_svtp6")
+icon = ExtResource("14_7b55j")
 map = "b4"
 
 [node name="B5MapButton2" parent="Menu/MapMenu" unique_id=896430450 instance=ExtResource("7_7b55j")]
 layout_mode = 0
-offset_left = 187.49997
+offset_left = 192.49997
 offset_top = 156.25006
-offset_right = 311.49997
+offset_right = 306.49997
 offset_bottom = 180.25006
 text = "Bigest"
 icon = ExtResource("13_3wgol")

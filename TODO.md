@@ -8,3 +8,4 @@ DONE:
 - Change map when multiplayer without editor.
 - Menus in main menus.
 - More weapons.
+- Update all art.
