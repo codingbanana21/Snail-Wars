@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dyocank7ysnuk" path="res://assets/images/arrow.png" id="18_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://bpclgac7dq1cm" path="res://assets/images/teleporter_pad.png" id="20_gw5y6"]
 [ext_resource type="Texture2D" uid="uid://bekdgnnikk6tf" path="res://assets/images/shot.png" id="23_1dfpl"]
+[ext_resource type="Texture2D" uid="uid://bdm5g2j38707a" path="res://assets/images/snail.png" id="25_3wgol"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fo7mc"]
 shader = ExtResource("3_8egab")
@@ -89,6 +90,7 @@ transform = Transform2D(0.8, 0, 0, 0.8, 0, 0)
 
 [node name="MultiplayerSettings" type="Control" parent="Menu" unique_id=1580750856]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_transform_enabled = true
@@ -161,6 +163,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="MapMenu" type="Control" parent="Menu" unique_id=637893322]
 unique_name_in_owner = true
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -129.99997
@@ -557,7 +560,7 @@ text = "Gravity"
 label_settings = ExtResource("3_1ajci")
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Menu/MapSettings" unique_id=681833200]
+[node name="StartGameButton" type="Button" parent="Menu/MapSettings" unique_id=681833200]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 318.74994
@@ -566,6 +569,60 @@ offset_right = 450.74994
 offset_bottom = 217.49998
 text = "Start"
 icon = ExtResource("23_1dfpl")
+
+[node name="Settings" type="Control" parent="Menu" unique_id=684536268]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GraphicsCheckBox" type="CheckBox" parent="Menu/Settings" unique_id=667336607]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 298.75012
+offset_top = 280.00003
+offset_right = 514.7501
+offset_bottom = 304.00003
+button_pressed = true
+text = "High Graphics"
+
+[node name="StartMenu" type="Control" parent="Menu" unique_id=1743730862]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="Menu/StartMenu" unique_id=556431039]
+layout_mode = 0
+offset_left = 343.74994
+offset_top = -15.0
+offset_right = 435.74994
+offset_bottom = 13.0
+text = "Play"
+icon = ExtResource("25_3wgol")
+
+[node name="MultiplayerButton" type="Button" parent="Menu/StartMenu" unique_id=1364639543]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 25.0
+offset_right = 496.0
+offset_bottom = 53.0
+text = "Multiplayer"
+icon = ExtResource("25_3wgol")
+
+[node name="TestingButton" type="Button" parent="Menu/StartMenu" unique_id=1028840329]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 64.999985
+offset_right = 496.0
+offset_bottom = 92.999985
+text = "Testing"
+icon = ExtResource("25_3wgol")
 
 [connection signal="pressed" from="Menu/MultiplayerSettings/OnlineServer" to="." method="_on_online_server_pressed"]
 [connection signal="pressed" from="Menu/MultiplayerSettings/LocalServer" to="." method="_on_local_server_pressed"]
@@ -584,4 +641,8 @@ icon = ExtResource("23_1dfpl")
 [connection signal="make_map" from="Menu/MapMenu/S1MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/S2MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="make_map" from="Menu/MapMenu/S3MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="pressed" from="Menu/MapSettings/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/MapSettings/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="Menu/Settings/GraphicsCheckBox" to="." method="_on_graphics_check_box_pressed"]
+[connection signal="pressed" from="Menu/StartMenu/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/StartMenu/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="Menu/StartMenu/TestingButton" to="." method="_on_testing_button_pressed"]

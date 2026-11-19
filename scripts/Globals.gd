@@ -70,7 +70,7 @@ var map_size_y: float = 1.0
 var rng = RandomNumberGenerator.new()
 
 
-func _ready() -> void:
+func _enter_tree() -> void:
 	rng.seed = 1000
 	load_game()
 
@@ -149,8 +149,6 @@ func load_game():
 		#
 		#var music_bus_index = AudioServer.get_bus_index("Music")
 		#AudioServer.set_bus_volume_db(music_bus_index, music_volume)
-		
-		high_graphics = true
 	else:
 		save_game(true)
 		load_game()

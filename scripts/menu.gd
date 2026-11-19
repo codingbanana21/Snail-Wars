@@ -3,13 +3,16 @@ extends Node2D
 
 @onready var multiplayer_spawner: MultiplayerSpawner = $MultiplayerSpawner
 @onready var menu: CanvasLayer = $Menu
-@onready var water: Polygon2D = $Water
 @onready var multiplayer_settings: Control = %MultiplayerSettings
 @onready var map_menu: Control = %MapMenu
-@onready var ip: LineEdit = %IP
 @onready var map_settings: Control = %MapSettings
+@onready var settings: Control = %Settings
+@onready var start_menu: Control = %StartMenu
+@onready var water: Polygon2D = $Water
+@onready var ip: LineEdit = %IP
 @onready var ip_check_box: CheckBox = %IPCheckBox
 @onready var file_dialog: FileDialog = %FileDialog
+@onready var start_game_button: Button = %StartGameButton
 
 #map settings
 @onready var per_team_h_slider: HSlider = %PerTeamHSlider
@@ -25,6 +28,9 @@ extends Node2D
 @onready var wind_speed: LineEdit = %WindSpeed
 @onready var gravity: LineEdit = %Gravity
 
+#settings
+@onready var graphics_check_box: CheckBox = %GraphicsCheckBox
+
 const SERVER_PORT = 3100
 const CONNECT_TIMEOUT: float = 5.0
 
@@ -37,6 +43,7 @@ var map: String
 func _ready() -> void:
 	multiplayer_spawner.spawn_function = make_map
 	ip.text = Globals.saved_ip_address
+	graphics_check_box.button_pressed = Globals.high_graphics
 
 
 func _process(_delta: float) -> void:
@@ -263,13 +270,41 @@ func _on_online_server_pressed() -> void:
 	make_server(upnp_setup(SERVER_PORT))
 
 
+func _on_start_button_pressed() -> void:
+	start_menu.hide()
+	map_menu.show()
+	settings.hide()
+	Globals.save_game()
+
+
+func _on_multiplayer_button_pressed() -> void:
+	teams_h_slider.max_value = 2
+	teams_h_slider.min_value = 2
+	start_menu.hide()
+	settings.hide()
+	start_game_button.hide()
+	map_menu.show()
+	multiplayer_settings.show()
+	Globals.save_game()
+
+
+func _on_testing_button_pressed() -> void:
+	map = "m1"
+	weapons_h_slider.value = 3
+	start_menu.hide()
+	map_menu.hide()
+	settings.hide()
+	map_settings.show()
+	Globals.save_game()
+
+
 func _on_map_button_make_map(input_map: Variant) -> void:
 	map = input_map
 	map_menu.hide()
 	map_settings.show()
 
 
-func _on_start_button_pressed() -> void:
+func _on_start_game_button_pressed() -> void:
 	if map == "c":
 		file_dialog.show()
 		file_dialog.file_selected.connect(
@@ -278,3 +313,7 @@ func _on_start_button_pressed() -> void:
 		)
 	else:
 		make_map({"multiplayer":false,"map":"res://maps/map_"+map+".png"})
+
+
+func _on_graphics_check_box_pressed() -> void:
+	Globals.high_graphics = graphics_check_box.button_pressed

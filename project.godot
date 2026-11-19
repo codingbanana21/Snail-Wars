@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="Snail Wars"
-config/version="0.7.0"
+config/version="0.8.0"
 config/tags=PackedStringArray("2d", "multplayer", "network")
 run/main_scene="uid://dbu738lf8tcco"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/image="uid://cvhxdli1mcl6m"
 config/icon="uid://c228d8y1akokm"
+
+[audio]
+
+buses/default_bus_layout="uid://sxkifhipxbjy"
 
 [autoload]
 
@@ -31,6 +35,7 @@ window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=0
 
 [dotnet]
 

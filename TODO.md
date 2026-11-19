@@ -1,5 +1,4 @@
 TODO:
-- Add settings.
 - Player end sceen.
 - Fix 3-4 players multiplayer.
 - Add themes.
@@ -9,3 +8,4 @@ DONE:
 - Menus in main menus.
 - More weapons.
 - Update all art.
+- Add settings.
