@@ -36,7 +36,7 @@ var player_number: int = 0
 var team_number: int = 0
 var hp: int = 100
 var projectile_speed: float = 0.0
-var weapon: int = 0
+var weapon_number: int = 0
 var dir: float = 0
 var player_turn_part: int = TurnState.IDLE
 var dead: bool = false
@@ -60,9 +60,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if !is_multiplayer_authority(): return
+	if !is_multiplayer_authority() or dead: return
 	
-	if hp < 1 and !dead:
+	if hp < 1:
 		die.rpc(true)
 	
 	if global_position.y >= Globals.water_level:
@@ -85,17 +85,17 @@ func _process(delta: float) -> void:
 		player_turn_part = TurnState.ENDING
 		next_player_timer.start(0.1)
 	
-	weapon = Mouse.weapon
-	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon]
+	weapon_number = Mouse.weapon_number
+	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon_number]
 	
-	if player_turn_part == TurnState.AIMING and Globals.teams_weapons[team_number][weapon] != 0 and Mouse.mouse_mode == 1:
+	if player_turn_part == TurnState.AIMING and Globals.teams_weapons[team_number][weapon_number] != 0 and Mouse.mouse_mode == 1:
 		if Input.is_action_pressed("attack"):
 			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
 			shot_bar.value = projectile_speed
 			projectile_speed += 8.0 * delta
 		
 		if (Input.is_action_just_released("attack") or projectile_speed >= 10.0):
-			var scene: PackedScene = load("res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn")
+			var scene: PackedScene = load("res://projectiles/" + Globals.WEAPONS.keys()[weapon_number] + ".tscn")
 			var new_projectile: Projectile = scene.instantiate()
 			
 			for i in range(new_projectile.spawn_amount):
@@ -105,11 +105,11 @@ func _process(delta: float) -> void:
 					"offset": Vector2(i * 24.0, 0),
 					"projectile_speed": projectile_speed,
 					"mouse_position": Mouse.global_position,
-					"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon] + ".tscn"
+					"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon_number] + ".tscn"
 				})
-			
+			new_projectile.free()
 			Input.action_release("attack")
-			Globals.teams_weapons[team_number][weapon] -= 1
+			Globals.teams_weapons[team_number][weapon_number] -= 1
 			projectile_speed = 0.0
 			shot_bar.value = 0
 
@@ -143,8 +143,8 @@ func _physics_process(delta: float) -> void:
 	
 	if is_on_floor():
 		if temp_velocity.y >= 750:
-			var fall_damage = -(temp_velocity.y - 750) / 50.0
-			hit(fall_damage)
+			var fall_damage: int = -int((temp_velocity.y - 750) / 50.0)
+			hit.rpc(fall_damage)
 			
 			if Globals.high_graphics:
 				Mouse.shake.rpc(fall_damage / 5.0)

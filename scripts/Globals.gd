@@ -151,4 +151,3 @@ func load_game():
 		#AudioServer.set_bus_volume_db(music_bus_index, music_volume)
 	else:
 		save_game(true)
-		load_game()

@@ -44,6 +44,10 @@ func _ready() -> void:
 	multiplayer_spawner.spawn_function = make_map
 	ip.text = Globals.saved_ip_address
 	graphics_check_box.button_pressed = Globals.high_graphics
+	file_dialog.file_selected.connect(
+		func(path):
+			make_map({"multiplayer":false,"map":path})
+	)
 
 
 func _process(_delta: float) -> void:
@@ -307,10 +311,6 @@ func _on_map_button_make_map(input_map: Variant) -> void:
 func _on_start_game_button_pressed() -> void:
 	if map == "c":
 		file_dialog.show()
-		file_dialog.file_selected.connect(
-			func(path):
-			make_map({"multiplayer":false,"map":path})
-		)
 	else:
 		make_map({"multiplayer":false,"map":"res://maps/map_"+map+".png"})
 

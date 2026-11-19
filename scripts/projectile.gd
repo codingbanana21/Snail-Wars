@@ -58,7 +58,7 @@ func _ready() -> void:
 	velocity += transform.x * speed
 	
 	#settings setup
-	if get_parent() as Player: parent = get_parent()
+	if get_parent() as Player: parent = get_parent() as Player
 	if camera_follow: Mouse.global_position = global_position
 	if spawn_time > 0: spawn_timer.start(spawn_time)
 	if timer > 0: explosion_timer.start(timer)
@@ -124,15 +124,7 @@ func explode(end_explode: bool = false):
 	
 	if Globals.high_graphics and damage > 0: Mouse.shake.rpc(damage / 5.0)
 	
-	if len(spawns) > 0 and spawn_on_hit:
-		parent.multiplayer_spawner.spawn({
-			"id": id,
-			"global_position": global_position,
-			"offset": Vector2.ZERO,
-			"projectile_speed":0,
-			"mouse_position":Mouse.global_position,
-			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
-		})
+	spawn()
 	
 	if projectile_hp == 0 or end_explode:
 		die.rpc()
@@ -167,9 +159,9 @@ func die():
 	if !is_multiplayer_authority(): return
 	
 	#if the projectile is a players end player turn
-	if end_player_turn and parent.player_turn_part != parent.TurnState.IDLE:
+	if end_player_turn and parent.player_turn_part != Player.TurnState.IDLE:
 		parent.next_player_timer.start()
-		parent.player_turn_part = parent.TurnState.RESOLVING
+		parent.player_turn_part = Player.TurnState.RESOLVING
 		Mouse.global_position = parent.global_position
 	
 	queue_free()
@@ -180,8 +172,8 @@ func _on_explosion_timer_timeout() -> void:
 	explode.rpc(true)
 
 
-func _on_spawn_timer_timeout() -> void:
-	if len(spawns) > 0 and is_multiplayer_authority():
+func spawn():
+	if len(spawns) > 0:
 		parent.multiplayer_spawner.spawn({
 			"id": id,
 			"global_position": global_position,
@@ -190,3 +182,8 @@ func _on_spawn_timer_timeout() -> void:
 			"mouse_position":Mouse.global_position,
 			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
 		})
+
+
+func _on_spawn_timer_timeout() -> void:
+	if !is_multiplayer_authority(): return
+	spawn()

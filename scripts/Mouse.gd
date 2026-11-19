@@ -11,7 +11,7 @@ extends Node2D
 var moving: bool = false
 var shake_amount: float = 0.0
 var weapon_amount: int
-var weapon: int = 0
+var weapon_number: int = 0
 var mouse_mode: int = 0
 
 
@@ -42,9 +42,9 @@ func _process(_delta: float) -> void:
 	wind_label.text = "Wind " + str(Globals.wind)
 	
 	if weapon_amount >= 0:
-		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon]][Globals.NAME]+" "+str(weapon_amount)
+		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon_number]][Globals.NAME]+" "+str(weapon_amount)
 	else:
-		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon]][Globals.NAME]
+		weapon_label.text = Globals.WEAPONS[Globals.WEAPONS.keys()[weapon_number]][Globals.NAME]
 	
 	if !shake_timer.is_stopped():
 		camera_2d.offset.x = randf_range(-shake_amount, shake_amount)
@@ -62,10 +62,10 @@ func _process(_delta: float) -> void:
 
 
 func change_weapon(new_weapon: int):
-	weapon = new_weapon
+	weapon_number = new_weapon
 	
-	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png"):
-		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS.keys()[weapon]+".png")
+	if ResourceLoader.exists("res://assets/images/"+Globals.WEAPONS.keys()[weapon_number]+".png"):
+		weapon_image.texture = load("res://assets/images/"+Globals.WEAPONS.keys()[weapon_number]+".png")
 	else:
 		weapon_image.texture = load("res://assets/images/rocket.png")
 

@@ -5,6 +5,7 @@ extends Node2D
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
 
+const TERRAIN_ATLAS_X := {Color("77c242"): 0, Color("6e2b23"): 1, Color("1e1526"): 2, Color("362427"): 3,}
 const OBJECT_COLORS := {
 	Color("ffffffff"): "flag_0", Color("000000ff"): "flag_1",
 	Color("488535"): "land_mine", Color("bd5044"): "spring",Color("1730df"):"med_kit", Color("152b24"): "super_mine",
@@ -56,14 +57,8 @@ func make_map():
 			var pixel_color = data.get_pixel(x, y)
 			var offset: Vector2i = Vector2i(int(x * Globals.map_size_x -128), int(y * Globals.map_size_y -256))
 			
-			if pixel_color == Color("77c242"):
-				map.set_cell(offset, 0 ,Vector2i(4 * rng.randi_range(0,1), 0))
-			elif pixel_color == Color("6e2b23"):
-				map.set_cell(offset, 0 ,Vector2i(1 + 4 * rng.randi_range(0,1), 0))
-			elif pixel_color == Color("1e1526"):
-				map.set_cell(offset, 0 ,Vector2i(2 + 4 * rng.randi_range(0,1), 0))
-			elif pixel_color == Color("362427"):
-				map.set_cell(offset, 0 ,Vector2i(3, 0))
+			if TERRAIN_ATLAS_X.has(pixel_color):
+				map.set_cell(offset, 0, Vector2i(TERRAIN_ATLAS_X[pixel_color] + (rng.randi_range(0, 1) * 4), 0))
 			elif OBJECT_COLORS.has(pixel_color):
 				if multiplayer.is_server():
 					multiplayer_spawner.spawn({"id":1,
@@ -133,25 +128,26 @@ func spawn(inputs: Dictionary = {"id":1,
 
 @rpc("any_peer","reliable","call_local")
 func explode_tile(target_position: Vector2, power: int, build: bool = false):
-	var tile_position: Vector2 = round(target_position / 8.0)
-	var explosion_accuracy: float = PI * 2
+	var center := Vector2i((target_position / 8.0).round())
+	var r := int(power) - 1
 	
-	for explosion_size in range(power):
-		for number in range(explosion_accuracy * 16 * explosion_size):
-			var tile: Vector2 = tile_position + Vector2(sin(number / explosion_accuracy) * explosion_size, cos(number / explosion_accuracy) * explosion_size)
-			var tile_type: Vector2i = map.get_cell_atlas_coords(tile)
+	for dx in range(-r, r + 1):
+		for dy in range(-r, r + 1):
+			if dx * dx + dy * dy > r * r: continue
+			var cell := center + Vector2i(dx, dy)
+			var tile_type: Vector2i = map.get_cell_atlas_coords(cell)
 			
 			if !build:
 				if tile_type.y == 0:
-					map.set_cell(tile, 0, tile_type + Vector2i(0, 1))
+					map.set_cell(cell, 0, tile_type + Vector2i(0, 1))
 			else:
-				map.set_cell(tile, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
-				
-				#for reper
-				#if tile_type.y == 1:
-					#map.set_cell(tile, 0, tile_type - Vector2i(0, 1))
-				#elif tile_type.y != 0:
-					#map.set_cell(tile, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
+				map.set_cell(cell, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
+			
+			#for reper
+			#if tile_type.y == 1:
+				#map.set_cell(tile, 0, tile_type - Vector2i(0, 1))
+			#elif tile_type.y != 0:
+				#map.set_cell(tile, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
 
 
 func _on_timer_timeout() -> void:
