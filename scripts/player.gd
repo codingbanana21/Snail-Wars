@@ -45,6 +45,7 @@ var team_color: Color
 
 func _enter_tree() -> void:
 	set_multiplayer_authority(id)
+	#player rng for random names
 	rng.seed = player_number + (team_number * 10)
 
 
@@ -76,21 +77,21 @@ func _process(delta: float) -> void:
 	turn_arrow.show()
 	turn_arrow.position.y = sin(Engine.get_physics_frames() / 5.0) * 3.0 - 16.0
 	
-	if (global_position.x > Mouse.global_position.x and Mouse.moving) or velocity.x < 0:
+	if (global_position.x > Cursor.global_position.x and Cursor.moving) or velocity.x < 0:
 		snail.flip_h = true
-	elif Mouse.moving or velocity.x > 0:
+	elif Cursor.moving or velocity.x > 0:
 		snail.flip_h = false
 	
 	if Input.is_action_just_pressed("skip"):
 		player_turn_part = TurnState.ENDING
 		next_player_timer.start(0.1)
 	
-	weapon_number = Mouse.weapon_number
-	Mouse.weapon_amount = Globals.teams_weapons[team_number][weapon_number]
+	weapon_number = Cursor.weapon_number
+	Cursor.weapon_amount = Globals.teams_weapons[team_number][weapon_number]
 	
-	if player_turn_part == TurnState.AIMING and Globals.teams_weapons[team_number][weapon_number] != 0 and Mouse.mouse_mode == 1:
+	if player_turn_part == TurnState.AIMING and Globals.teams_weapons[team_number][weapon_number] != 0 and Cursor.mouse_mode == 1:
 		if Input.is_action_pressed("attack"):
-			shot_bar.rotation = global_position.angle_to_point(Mouse.global_position)
+			shot_bar.rotation = global_position.angle_to_point(Cursor.global_position)
 			shot_bar.value = projectile_speed
 			projectile_speed += 8.0 * delta
 		
@@ -104,7 +105,7 @@ func _process(delta: float) -> void:
 					"global_position": global_position,
 					"offset": Vector2(i * 24.0, 0),
 					"projectile_speed": projectile_speed,
-					"mouse_position": Mouse.global_position,
+					"mouse_position": Cursor.global_position,
 					"projectile": "res://projectiles/" + Globals.WEAPONS.keys()[weapon_number] + ".tscn"
 				})
 			new_projectile.free()
@@ -139,7 +140,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	if player_turn_part != TurnState.IDLE:
-		Mouse.global_position += velocity * delta
+		Cursor.global_position += velocity * delta
 	
 	if is_on_floor():
 		if temp_velocity.y >= 750:
@@ -147,7 +148,7 @@ func _physics_process(delta: float) -> void:
 			hit.rpc(fall_damage)
 			
 			if Globals.high_graphics:
-				Mouse.shake.rpc(fall_damage / 5.0)
+				Cursor.shake.rpc(fall_damage / 5.0)
 		velocity.x *= 0.75
 	else:
 		velocity.x *= 0.98
@@ -167,7 +168,7 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	new_projectile.id = inputs["id"]
 	
 	if new_projectile.spawn_at_mouse:
-		new_projectile.global_position = Mouse.global_position + Vector2(0.0, -1024.0) + inputs["offset"]
+		new_projectile.global_position = Cursor.global_position + Vector2(0.0, -1024.0) + inputs["offset"]
 		new_projectile.rotation = PI * 0.5
 	else:
 		new_projectile.global_position = inputs["global_position"]
@@ -177,7 +178,7 @@ func shot_projectile(inputs: Dictionary = {"id":1,
 	
 	if new_projectile.end_player_turn:
 		player_turn_part = TurnState.FIRED
-		Mouse.hide()
+		Cursor.hide()
 	
 	return new_projectile
 
@@ -213,7 +214,7 @@ func hit(hp_change: int = 0, knockback: Vector2 = Vector2.ZERO):
 				ooff_2.play()
 		
 		if player_turn_part != TurnState.IDLE and is_multiplayer_authority():
-			Mouse.hide()
+			Cursor.hide()
 			player_turn_part = TurnState.ENDING
 			next_player_timer.start(1.0)
 
@@ -226,7 +227,7 @@ func die(spawn: bool = false):
 			"global_position": global_position,
 			"offset": Vector2.ZERO,
 			"projectile_speed":projectile_speed,
-			"mouse_position":Mouse.global_position,
+			"mouse_position":Cursor.global_position,
 			"projectile": "res://projectiles/snail.tscn"
 		})
 	
@@ -261,7 +262,7 @@ func next_player(turn: Vector2i):
 	
 	if turn.x == team_number and turn.y == player_number:
 		player_turn_part = TurnState.AIMING
-		Mouse.global_position = global_position
+		Cursor.global_position = global_position
 	else:
 		player_turn_part = TurnState.IDLE
 

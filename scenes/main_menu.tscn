@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dbu738lf8tcco"]
 
-[ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scripts/menu.gd" id="1_flqon"]
+[ext_resource type="Script" uid="uid://ce6yxby0frcqe" path="res://scripts/main_menu.gd" id="1_flqon"]
 [ext_resource type="AudioStream" uid="uid://6kba5togvlgl" path="res://assets/sounds/battleThemeA.mp3" id="2_hstxw"]
 [ext_resource type="Texture2D" uid="uid://drlmc4vi0ri0h" path="res://assets/images/water.png" id="2_rcqid"]
 [ext_resource type="LabelSettings" uid="uid://cm76igu117yxn" path="res://assets/themes/main_label_theme.tres" id="3_1ajci"]
@@ -181,7 +181,7 @@ scale = Vector2(0.5, 0.5)
 text = "Big maps (Players 16-32)"
 label_settings = ExtResource("3_1ajci")
 
-[node name="B1MapButton" parent="Menu/MapMenu" unique_id=132146067 instance=ExtResource("7_7b55j")]
+[node name="B1MapButton" parent="Menu/MapMenu" unique_id=132146067 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 173.99994
 offset_top = 36.999992
@@ -190,8 +190,9 @@ offset_bottom = 60.999992
 text = "Mine time"
 icon = ExtResource("7_gw5y6")
 map = "b1"
+map_connect = NodePath("../../..")
 
-[node name="B2MapButton" parent="Menu/MapMenu" unique_id=2026389007 instance=ExtResource("7_7b55j")]
+[node name="B2MapButton" parent="Menu/MapMenu" unique_id=2026389007 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 175.99994
 offset_top = 66.49999
@@ -200,8 +201,9 @@ offset_bottom = 90.49999
 text = "The cave"
 icon = ExtResource("8_svtp6")
 map = "b2"
+map_connect = NodePath("../../..")
 
-[node name="B3MapButton" parent="Menu/MapMenu" unique_id=421375843 instance=ExtResource("7_7b55j")]
+[node name="B3MapButton" parent="Menu/MapMenu" unique_id=421375843 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 198.99997
 offset_top = 97.249985
@@ -210,8 +212,9 @@ offset_bottom = 121.249985
 text = "Climb"
 icon = ExtResource("12_3wgol")
 map = "b3"
+map_connect = NodePath("../../..")
 
-[node name="B4MapButton" parent="Menu/MapMenu" unique_id=309034891 instance=ExtResource("7_7b55j")]
+[node name="B4MapButton" parent="Menu/MapMenu" unique_id=309034891 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 199.0
 offset_top = 127.249985
@@ -220,8 +223,9 @@ offset_bottom = 151.24998
 text = "House"
 icon = ExtResource("14_7b55j")
 map = "b4"
+map_connect = NodePath("../../..")
 
-[node name="B5MapButton2" parent="Menu/MapMenu" unique_id=896430450 instance=ExtResource("7_7b55j")]
+[node name="B5MapButton2" parent="Menu/MapMenu" unique_id=896430450 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 192.49997
 offset_top = 156.25006
@@ -230,6 +234,7 @@ offset_bottom = 180.25006
 text = "Bigest"
 icon = ExtResource("13_3wgol")
 map = "b5"
+map_connect = NodePath("../../..")
 
 [node name="MediumMaps" type="Label" parent="Menu/MapMenu" unique_id=498424789]
 layout_mode = 0
@@ -241,7 +246,7 @@ scale = Vector2(0.5, 0.5)
 text = "Medium maps (Players 8-18)"
 label_settings = ExtResource("3_1ajci")
 
-[node name="M1MapButton" parent="Menu/MapMenu" unique_id=2021083051 instance=ExtResource("7_7b55j")]
+[node name="M1MapButton" parent="Menu/MapMenu" unique_id=2021083051 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 392.0
 offset_top = 37.249992
@@ -249,8 +254,9 @@ offset_right = 532.0
 offset_bottom = 61.249992
 text = "Original"
 icon = ExtResource("7_a8gd2")
+map_connect = NodePath("../../..")
 
-[node name="M2MapButton" parent="Menu/MapMenu" unique_id=1499827498 instance=ExtResource("7_7b55j")]
+[node name="M2MapButton" parent="Menu/MapMenu" unique_id=1499827498 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 415.0
 offset_top = 69.25
@@ -259,8 +265,9 @@ offset_bottom = 93.25
 text = "Split"
 icon = ExtResource("8_hstxw")
 map = "m2"
+map_connect = NodePath("../../..")
 
-[node name="M3MapButton" parent="Menu/MapMenu" unique_id=1270339665 instance=ExtResource("7_7b55j")]
+[node name="M3MapButton" parent="Menu/MapMenu" unique_id=1270339665 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 392.0
 offset_top = 101.24998
@@ -269,8 +276,9 @@ offset_bottom = 125.24998
 text = "The rock"
 icon = ExtResource("9_8egab")
 map = "m3"
+map_connect = NodePath("../../..")
 
-[node name="M4MapButton" parent="Menu/MapMenu" unique_id=1936396846 instance=ExtResource("7_7b55j")]
+[node name="M4MapButton" parent="Menu/MapMenu" unique_id=1936396846 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 374.00006
 offset_top = 132.25003
@@ -279,8 +287,9 @@ offset_bottom = 156.25003
 text = "Super Mines"
 icon = ExtResource("13_qywvv")
 map = "m4"
+map_connect = NodePath("../../..")
 
-[node name="M5MapButton" parent="Menu/MapMenu" unique_id=507976408 instance=ExtResource("7_7b55j")]
+[node name="M5MapButton" parent="Menu/MapMenu" unique_id=507976408 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 361.24994
 offset_top = 163.75
@@ -289,8 +298,9 @@ offset_bottom = 187.75
 text = "Captue the flag"
 icon = ExtResource("17_gw5y6")
 map = "m5"
+map_connect = NodePath("../../..")
 
-[node name="CMapButton" parent="Menu/MapMenu" unique_id=600467502 instance=ExtResource("7_7b55j")]
+[node name="CMapButton" parent="Menu/MapMenu" unique_id=600467502 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 413.0
 offset_top = 196.25
@@ -299,6 +309,7 @@ offset_bottom = 220.24998
 text = "Import"
 icon = ExtResource("18_gw5y6")
 map = "c"
+map_connect = NodePath("../../..")
 
 [node name="SmallMaps" type="Label" parent="Menu/MapMenu" unique_id=218978788]
 layout_mode = 0
@@ -310,7 +321,7 @@ scale = Vector2(0.5, 0.5)
 text = "Small maps (Players 2-8)"
 label_settings = ExtResource("3_1ajci")
 
-[node name="S1MapButton" parent="Menu/MapMenu" unique_id=1199257575 instance=ExtResource("7_7b55j")]
+[node name="S1MapButton" parent="Menu/MapMenu" unique_id=1199257575 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 184.0
 offset_top = 214.0
@@ -319,8 +330,9 @@ offset_bottom = 238.0
 text = "Islands"
 icon = ExtResource("10_gw5y6")
 map = "s1"
+map_connect = NodePath("../../..")
 
-[node name="S2MapButton" parent="Menu/MapMenu" unique_id=279227966 instance=ExtResource("7_7b55j")]
+[node name="S2MapButton" parent="Menu/MapMenu" unique_id=279227966 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 186.99997
 offset_top = 246.00006
@@ -329,8 +341,9 @@ offset_bottom = 270.00006
 text = "Over it"
 icon = ExtResource("16_8egab")
 map = "s2"
+map_connect = NodePath("../../..")
 
-[node name="S3MapButton" parent="Menu/MapMenu" unique_id=1492122498 instance=ExtResource("7_7b55j")]
+[node name="S3MapButton" parent="Menu/MapMenu" unique_id=1492122498 node_paths=PackedStringArray("map_connect") instance=ExtResource("7_7b55j")]
 layout_mode = 0
 offset_left = 185.99997
 offset_top = 278.0
@@ -339,6 +352,7 @@ offset_bottom = 302.0
 text = "Pillars"
 icon = ExtResource("15_gw5y6")
 map = "s3"
+map_connect = NodePath("../../..")
 
 [node name="FileDialog" type="FileDialog" parent="Menu/MapMenu" unique_id=1181111496]
 unique_name_in_owner = true
@@ -627,20 +641,6 @@ icon = ExtResource("25_3wgol")
 [connection signal="pressed" from="Menu/MultiplayerSettings/OnlineServer" to="." method="_on_online_server_pressed"]
 [connection signal="pressed" from="Menu/MultiplayerSettings/LocalServer" to="." method="_on_local_server_pressed"]
 [connection signal="pressed" from="Menu/MultiplayerSettings/Client" to="." method="_on_client_pressed"]
-[connection signal="make_map" from="Menu/MapMenu/B1MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/B2MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/B3MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/B4MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/B5MapButton2" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/M1MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/M2MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/M3MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/M4MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/M5MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/CMapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/S1MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/S2MapButton" to="." method="_on_map_button_make_map"]
-[connection signal="make_map" from="Menu/MapMenu/S3MapButton" to="." method="_on_map_button_make_map"]
 [connection signal="pressed" from="Menu/MapSettings/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="Menu/Settings/GraphicsCheckBox" to="." method="_on_graphics_check_box_pressed"]
 [connection signal="pressed" from="Menu/StartMenu/StartButton" to="." method="_on_start_button_pressed"]

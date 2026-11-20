@@ -34,15 +34,15 @@ const WEAPONS: Dictionary = {
 }
 
 const SAVE_PATH = "user://Save.tres"
-const GAME_VERSION: float = 0.8
+const GAME_VERSION: float = 0.81
 
 #save data
 var save_data: SaveDataResource = SaveDataResource.new()
 var save_version: float
 var saved_ip_address: String
 var high_graphics: bool = true
-var SFX_volume: float = 0.0
-var music_volume: float = 0.0
+var sfx_volume: float = 100.0
+var music_volume: float = 100.0
 
 #teams
 var players_in_team: int
@@ -77,7 +77,7 @@ func _enter_tree() -> void:
 
 @rpc("any_peer", "call_local", "reliable")
 func next_player(skip_player: bool = false):
-	Mouse.show()
+	Cursor.show()
 	
 	if !skip_player:
 		wind = snapped(rng.randf_range(-wind_speed, wind_speed), 0.5)
@@ -104,6 +104,9 @@ func next_player(skip_player: bool = false):
 			turn.y = 0
 		
 		if turn.y == temp_turn.y:
+			#if turn.x == temp_turn.x:
+				#return
+			#else:
 			turn.x += 1
 			if turn.x >= number_of_teams:
 				turn.x = 0
@@ -117,7 +120,7 @@ func save_game(force_save: bool = false):
 		save_data.save_version = save_version
 		save_data.saved_ip_address = saved_ip_address
 		save_data.high_graphics = high_graphics
-		save_data.SFX_volume = SFX_volume
+		save_data.sfx_volume = sfx_volume
 		save_data.music_volume = music_volume
 		ResourceSaver.save(save_data, SAVE_PATH)
 
@@ -131,23 +134,25 @@ func load_game():
 			if save_version < GAME_VERSION:
 				print("Out of date save")
 				save_version = GAME_VERSION
+				save_game(true)
 			elif save_version > GAME_VERSION:
 				push_error("Save is to new is use")
 				return
 		else:
-			push_warning("No save version")
+			print("No save version")
 			save_version = GAME_VERSION
+			save_game(true)
 		
 		#set data
 		saved_ip_address = save_data.saved_ip_address
 		high_graphics = save_data.high_graphics
-		SFX_volume = save_data.SFX_volume
+		sfx_volume = save_data.sfx_volume
 		music_volume = save_data.music_volume
 		
-		#var sfx_bus_index = AudioServer.get_bus_index("SFX")
-		#AudioServer.set_bus_volume_db(sfx_bus_index, SFX_volume)
-		#
-		#var music_bus_index = AudioServer.get_bus_index("Music")
-		#AudioServer.set_bus_volume_db(music_bus_index, music_volume)
+		var sfx_bus_index = AudioServer.get_bus_index("Sfx")
+		AudioServer.set_bus_volume_db(sfx_bus_index, linear_to_db(sfx_volume / 100.0))
+		
+		var music_bus_index = AudioServer.get_bus_index("Music")
+		AudioServer.set_bus_volume_db(music_bus_index, linear_to_db(music_volume / 100.0))
 	else:
 		save_game(true)

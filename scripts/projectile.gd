@@ -59,7 +59,7 @@ func _ready() -> void:
 	
 	#settings setup
 	if get_parent() as Player: parent = get_parent() as Player
-	if camera_follow: Mouse.global_position = global_position
+	if camera_follow: Cursor.global_position = global_position
 	if spawn_time > 0: spawn_timer.start(spawn_time)
 	if timer > 0: explosion_timer.start(timer)
 	if collision_shape_2d.shape != null: bodies_needed = 2
@@ -97,7 +97,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = temp_velocity.x * -0.6
 			velocity.y = temp_velocity.y * 0.95
 	
-	if camera_follow: Mouse.global_position += velocity * delta
+	if camera_follow: Cursor.global_position += velocity * delta
 
 
 @rpc("any_peer","call_local","reliable")
@@ -122,7 +122,7 @@ func explode(end_explode: bool = false):
 	
 	projectile_hp -= 1
 	
-	if Globals.high_graphics and damage > 0: Mouse.shake.rpc(damage / 5.0)
+	if Globals.high_graphics and damage > 0: Cursor.shake.rpc(damage / 5.0)
 	
 	spawn()
 	
@@ -162,7 +162,7 @@ func die():
 	if end_player_turn and parent.player_turn_part != Player.TurnState.IDLE:
 		parent.next_player_timer.start()
 		parent.player_turn_part = Player.TurnState.RESOLVING
-		Mouse.global_position = parent.global_position
+		Cursor.global_position = parent.global_position
 	
 	queue_free()
 
@@ -179,7 +179,7 @@ func spawn():
 			"global_position": global_position,
 			"offset": Vector2.ZERO,
 			"projectile_speed":0,
-			"mouse_position":Mouse.global_position,
+			"mouse_position":Cursor.global_position,
 			"projectile": "res://projectiles/" + spawns.pick_random() + ".tscn"
 		})
 

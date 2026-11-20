@@ -41,12 +41,12 @@ var map: String
 
 
 func _ready() -> void:
-	multiplayer_spawner.spawn_function = make_map
+	multiplayer_spawner.spawn_function = setup_map
 	ip.text = Globals.saved_ip_address
 	graphics_check_box.button_pressed = Globals.high_graphics
 	file_dialog.file_selected.connect(
 		func(path):
-			make_map({"multiplayer":false,"map":path})
+			setup_map({"multiplayer":false,"map":path})
 	)
 
 
@@ -72,7 +72,7 @@ func _process(_delta: float) -> void:
 		Globals.gravity = float(gravity.text)
 
 
-func make_map(inputs: Dictionary = {"multiplayer":false,
+func setup_map(inputs: Dictionary = {"multiplayer":false,
 		"map":"m1",
 		"players_in_team":1,
 		"teams_weapons":[],
@@ -144,7 +144,7 @@ func make_map(inputs: Dictionary = {"multiplayer":false,
 	Globals.turn = Vector2i(randi_range(0, Globals.number_of_teams -1 ), randi_range(0, Globals.players_in_team -1))
 	
 	menu.hide()
-	Mouse.ui.show()
+	Cursor.ui.show()
 	var map_file = preload("res://scenes/map.tscn").instantiate()
 	
 	if inputs["multiplayer"]:
@@ -302,7 +302,7 @@ func _on_testing_button_pressed() -> void:
 	Globals.save_game()
 
 
-func _on_map_button_make_map(input_map: Variant) -> void:
+func _on_map_button_setup_map(input_map: Variant) -> void:
 	map = input_map
 	map_menu.hide()
 	map_settings.show()
@@ -312,7 +312,7 @@ func _on_start_game_button_pressed() -> void:
 	if map == "c":
 		file_dialog.show()
 	else:
-		make_map({"multiplayer":false,"map":"res://maps/map_"+map+".png"})
+		setup_map({"multiplayer":false,"map":"res://maps/map_"+map+".png"})
 
 
 func _on_graphics_check_box_pressed() -> void:
