@@ -11,8 +11,9 @@ size = Vector2(8, 10)
 
 [node name="MedKit" unique_id=791496552 instance=ExtResource("1_32fbv")]
 damage = -50
-size = 1
+size = 3
 knockback = 0
+change_tile = 2
 speed = 0
 min_speed = 0
 effect_by_wind = false

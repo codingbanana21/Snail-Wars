@@ -10,6 +10,7 @@ radius = 5.0
 damage = 30
 size = 1
 knockback = 120
+change_tile = 3
 speed = 0
 min_speed = 350
 gravity = 0

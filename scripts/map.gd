@@ -5,6 +5,8 @@ extends Node2D
 @onready var map: TileMapLayer = $Map
 @onready var image: Sprite2D = $Image
 
+enum CHANGE_TILE {DESTROY, BUILD, REPAIR, DONT}
+
 const TERRAIN_ATLAS_X := {Color("77c242"): 0, Color("6e2b23"): 1, Color("1e1526"): 2, Color("362427"): 3,}
 const OBJECT_COLORS := {
 	Color("ffffffff"): "flag_0", Color("000000ff"): "flag_1",
@@ -127,7 +129,9 @@ func spawn(inputs: Dictionary = {"id":1,
 
 
 @rpc("any_peer","reliable","call_local")
-func explode_tile(target_position: Vector2, power: int, build: bool = false):
+func explode_tile(target_position: Vector2, power: int, change_tile: CHANGE_TILE = CHANGE_TILE.DESTROY):
+	if change_tile == CHANGE_TILE.DONT: return
+	
 	var center := Vector2i((target_position / 8.0).round())
 	var r := int(power) - 1
 	
@@ -137,17 +141,14 @@ func explode_tile(target_position: Vector2, power: int, build: bool = false):
 			var cell := center + Vector2i(dx, dy)
 			var tile_type: Vector2i = map.get_cell_atlas_coords(cell)
 			
-			if !build:
+			if change_tile == CHANGE_TILE.DESTROY:
 				if tile_type.y == 0:
 					map.set_cell(cell, 0, tile_type + Vector2i(0, 1))
+			elif change_tile == CHANGE_TILE.REPAIR:
+				if tile_type.y == 1:
+					map.set_cell(cell, 0, tile_type - Vector2i(0, 1))
 			else:
 				map.set_cell(cell, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
-			
-			#for reper
-			#if tile_type.y == 1:
-				#map.set_cell(tile, 0, tile_type - Vector2i(0, 1))
-			#elif tile_type.y != 0:
-				#map.set_cell(tile, 0, Vector2i(1 + 4 * rng.randi_range(0,1), 0))
 
 
 func _on_timer_timeout() -> void:

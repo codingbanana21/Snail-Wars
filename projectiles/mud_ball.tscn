@@ -10,6 +10,7 @@ radius = 4.0
 damage = 0
 size = 1
 knockback = 0
+change_tile = 3
 end_player_turn = false
 bomb_sound = false
 

@@ -11,6 +11,7 @@ collision_layer = 0
 damage = 0
 size = 0
 knockback = 0
+change_tile = 3
 speed = 0
 min_speed = 100
 spawn_offset = 0
